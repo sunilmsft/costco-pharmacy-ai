@@ -313,6 +313,16 @@
         .journey-card.today h3 { color: var(--text-light); }
         .journey-card.future h3 { color: var(--costco-blue); }
 
+        .journey-subtitle {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: -4px;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .journey-card.future .journey-subtitle { color: var(--costco-blue); opacity: 0.8; }
+
         .journey-steps {
             list-style: none;
             padding: 0;
@@ -325,6 +335,7 @@
             display: flex;
             align-items: flex-start;
             gap: 12px;
+            line-height: 1.4;
         }
 
         .journey-steps li:last-child { border-bottom: none; }
@@ -540,28 +551,30 @@
     <section class="slide slide-journey">
         <div class="slide-content">
             <div class="section-label">The Opportunity</div>
-            <h2>From &ldquo;navigate and find&rdquo; to &ldquo;ask and done.&rdquo;</h2>
-            <p>Today, members need to know what they&rsquo;re looking for and where to find it. The opportunity isn&rsquo;t to fix what&rsquo;s broken — it&rsquo;s to meet members where they are and help them accomplish what they came to do, conversationally.</p>
+            <h2>From self-service to <em>guided</em> service.</h2>
+            <p>Today, members navigate on their own. With an intelligent assistant, they have a knowledgeable guide who knows their history, anticipates what they need, and walks them through it — step by step.</p>
             <div class="journey-comparison">
                 <div class="journey-card today">
                     <h3>Today&rsquo;s Experience</h3>
+                    <p class="journey-subtitle">Member figures it out alone</p>
                     <ul class="journey-steps">
-                        <li><span class="step-num">1</span> Member arrives at rx.costco.com</li>
-                        <li><span class="step-num">2</span> Scans navigation for the right link</li>
-                        <li><span class="step-num">3</span> Clicks through to a specific service page</li>
-                        <li><span class="step-num">4</span> Reads content to understand options</li>
-                        <li><span class="step-num">5</span> Navigates to another page to take action</li>
-                        <li><span class="step-num">6</span> May call the pharmacy if unsure</li>
+                        <li><span class="step-num">1</span> <strong>Arrives</strong> at rx.costco.com — unsure where to start</li>
+                        <li><span class="step-num">2</span> <strong>Searches</strong> the navigation for the right link</li>
+                        <li><span class="step-num">3</span> <strong>Clicks through</strong> multiple pages to find a service</li>
+                        <li><span class="step-num">4</span> <strong>Reads</strong> dense content to understand their options</li>
+                        <li><span class="step-num">5</span> <strong>Navigates again</strong> to a different page to take action</li>
+                        <li><span class="step-num">6</span> <strong>Calls the pharmacy</strong> if still unsure</li>
                     </ul>
                 </div>
                 <div class="journey-card future">
                     <h3>With an Intelligent Assistant</h3>
+                    <p class="journey-subtitle">Member is guided every step of the way</p>
                     <ul class="journey-steps">
-                        <li><span class="step-num">1</span> Member arrives or opens the assistant</li>
-                        <li><span class="step-num">2</span> Sees personalized prompts based on their history</li>
-                        <li><span class="step-num">3</span> States what they need in their own words</li>
-                        <li><span class="step-num">4</span> Assistant guides them through it, step by step</li>
-                        <li><span class="step-num">5</span> Action completed — confirmation and next steps</li>
+                        <li><span class="step-num">1</span> <strong>Greeted personally</strong> — assistant already knows their history</li>
+                        <li><span class="step-num">2</span> <strong>Offered smart prompts</strong> — no need to know what to ask</li>
+                        <li><span class="step-num">3</span> <strong>Speaks naturally</strong> — describes what they need in their own words</li>
+                        <li><span class="step-num">4</span> <strong>Guided through decisions</strong> — options presented clearly, one step at a time</li>
+                        <li><span class="step-num">5</span> <strong>Action complete</strong> — confirmation, next steps, and a summary sent</li>
                     </ul>
                 </div>
             </div>

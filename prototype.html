@@ -727,6 +727,27 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
+        .chat-back-btn {
+            background: none;
+            border: none;
+            color: var(--chat-blue);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 4px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .chat-back-btn:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
         /* Typing indicator */
         .typing-indicator {
             display: flex;
@@ -1171,7 +1192,7 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        Hey Sarah 👋 Welcome back! I see a few things I can help with today.
+                        Hi Sarah! Welcome back. I noticed a few things I can help you with today.
                         <div class="chat-card">
                             <div class="chat-card-title">🔔 Refill Available</div>
                             <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — 90-day supply</div>
@@ -1192,7 +1213,7 @@
                     messages: [
                         { type: 'user', html: 'Yes, refill my Lisinopril' },
                         { type: 'bot', delay: 1200, html: `
-                            Done! Your refill is being processed. Here's your summary:
+                            All set! Your refill is being processed. Here's your summary:
                             <div class="chat-card">
                                 <div class="chat-card-title">✓ Refill Submitted</div>
                                 <div class="chat-card-detail">Lisinopril 10mg — 90-day supply</div>
@@ -1216,16 +1237,16 @@
                     messages: [
                         { type: 'user', html: 'Pick up at counter' },
                         { type: 'bot', delay: 1000, html: `
-                            Got it — standard counter pickup. You'll get a text when it's ready (tomorrow by 2 PM). Just head to the pharmacy counter with your ID.
+                            Perfect — I've set that up as a standard counter pickup. You'll get a text when it's ready (tomorrow by 2 PM). Just head to the pharmacy counter with your ID.
                             <div class="email-summary">
                                 <strong>📧 Confirmation sent to sarah.m@gmail.com</strong>
                                 Includes: Rx details, pickup time, and store directions.
                             </div>
-                            <br>Is there anything else I can help with?
+                            <br>Is there anything else I can help you with today?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Schedule my flu shot while I'm there</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 21)">Check my other prescriptions</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -1237,7 +1258,7 @@
                     messages: [
                         { type: 'user', html: 'Use Pay Ahead — I want to skip the wait' },
                         { type: 'bot', delay: 1000, html: `
-                            Smart choice. I've set it to Pay Ahead — you'll get a notification when it's paid and ready. Just show your ID at the pickup counter and you're set. No line, no waiting.
+                            Great choice. I've set that up with Pay Ahead — you'll get a notification when it's paid and ready. Just show your ID at the pickup counter and you're set. No line, no waiting.
                             <div class="chat-card">
                                 <div class="chat-card-title">💳 Pay Ahead — Confirmed</div>
                                 <div class="chat-card-detail">Payment: Blue Cross copay $4.00</div>
@@ -1248,11 +1269,11 @@
                                 <strong>📧 Summary emailed to sarah.m@gmail.com</strong>
                                 Includes: Rx details, pickup instructions, and your copay receipt.
                             </div>
-                            <br>Anything else?
+                            <br>Is there anything else I can help you with today?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Schedule my flu shot while I'm there</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 21)">Check my other prescriptions</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -1264,7 +1285,7 @@
                     messages: [
                         { type: 'user', html: 'Same-day delivery via Instacart' },
                         { type: 'bot', delay: 1200, html: `
-                            I can set that up! Instacart delivery is available to your area. Here are your options:
+                            I'd be happy to help with that. Instacart delivery is available to your area. Here are your options:
                             <div class="chat-card">
                                 <div class="chat-card-title">🚗 Same-Day Delivery</div>
                                 <div class="chat-card-detail"><strong>Express (1-2 hours):</strong> +$3.99</div>
@@ -1300,7 +1321,7 @@
                                 <strong>📧 Full delivery details emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Perfect, that's all I need</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That covers everything, thank you</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 33)">Can I add groceries to this delivery?</button>
                             </div>
                         `},
@@ -1324,7 +1345,7 @@
                                 <strong>📧 Delivery confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 33)">Can I add groceries to this delivery?</button>
                             </div>
                         `},
@@ -1355,9 +1376,9 @@
                     messages: [
                         { type: 'user', html: "Actually, I'll just pick it up" },
                         { type: 'bot', delay: 800, html: `
-                            No problem — switched to counter pickup. You'll get a text when it's ready tomorrow by 2 PM. 👍
+                            Absolutely — I've switched that to counter pickup for you. You'll get a text when it's ready tomorrow by 2 PM. 👍
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -1369,7 +1390,7 @@
                     messages: [
                         { type: 'user', html: "Schedule my flu shot while I'm there" },
                         { type: 'bot', delay: 1200, html: `
-                            Great idea — get it done in one trip! Here are the available times at Costco #482:
+                            That's a great idea — you can take care of everything in one trip. Here are the available times at Costco #482:
                             <div class="chat-card">
                                 <div class="chat-card-title">💉 Flu Shot — Available Times</div>
                                 <div class="chat-card-detail">Tomorrow (when your Rx is ready):</div>
@@ -1406,9 +1427,9 @@
                                 <strong>📧 Full itinerary emailed to sarah.m@gmail.com</strong>
                                 Includes: appointment confirmation, what to bring, and pharmacy hours.
                             </div>
-                            <br>One trip, everything done. Anything else?
+                            <br>One trip, everything taken care of. Is there anything else I can help you with today?
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Nope, I'm all set. Thank you!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 50)">Add this to my calendar</button>
                             </div>
                         `},
@@ -1426,7 +1447,7 @@
                                 <strong>📧 Appointment confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks, that's everything!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's everything, thank you</button>
                             </div>
                         `},
                     ]
@@ -1440,7 +1461,7 @@
                         { type: 'bot', delay: 800, html: `
                             Done — I've included a calendar invite (.ics) in the email I just sent. It should show up in your calendar when you open it. 📅
                             <br><br>
-                            Have a great day, Sarah!
+                            Take care, Sarah. Wishing you a great rest of your day.
                         `},
                     ]
                 },
@@ -1518,10 +1539,10 @@
                         { type: 'bot', delay: 800, html: `
                             ✓ Reminder set! I'll send you a text and email on July 3 when your Atorvastatin is eligible for refill.
                             <br><br>
-                            Anything else I can help with?
+                            Is there anything else I can help you with today?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 1)">Refill my Lisinopril now</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -1557,7 +1578,7 @@
                         { type: 'bot', delay: 800, html: `
                             ✓ Auto-refill enabled for Atorvastatin 20mg. You'll get a heads-up 2 days before each refill processes. You can turn it off anytime.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Great, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's perfect, thank you</button>
                             </div>
                         `},
                     ]
@@ -1577,9 +1598,9 @@
                                 <div class="chat-card-detail">✓ Vitamin D3 2000IU — every 90 days</div>
                                 <div class="chat-card-detail">You'll get a notification 2 days before each</div>
                             </div>
-                            <br>You're all set — pharmacy on autopilot. 👍
+                            <br>You're all set. We'll take care of the rest — one less thing for you to worry about.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Love it. Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's wonderful, thank you</button>
                             </div>
                         `},
                     ]
@@ -1591,7 +1612,7 @@
                     messages: [
                         { type: 'user', html: 'I need something else' },
                         { type: 'bot', delay: 800, html: `
-                            Of course! What can I help you with?
+                            Of course — I'm happy to help. What can I assist you with?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 70)">Transfer a prescription to Costco</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 71)">Schedule an immunization</button>
@@ -1626,7 +1647,7 @@
                     messages: [
                         { type: 'user', html: 'Walgreens' },
                         { type: 'bot', delay: 1100, html: `
-                            Got it! What medication would you like to transfer from Walgreens? You can tell me the name or the Rx number from your bottle.
+                            Of course! What medication would you like to transfer from Walgreens? You can tell me the name or the Rx number from your bottle.
                         `},
                     ]
                 },
@@ -1735,7 +1756,7 @@
                                 <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;1175 NE Park Dr • Open until 7 PM</div>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks, that's what I needed</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's helpful, thank you</button>
                             </div>
                         `},
                     ]
@@ -1772,7 +1793,7 @@
                             <br>Would you like to schedule your first dose?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Yes, schedule it</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Not right now, but good to know</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Not right now, but thank you for letting me know</button>
                             </div>
                         `},
                     ]
@@ -1782,12 +1803,13 @@
                     type: 'continuation',
                     branch: 22,
                     messages: [
-                        { type: 'user', html: "That's all, thanks!" },
+                        { type: 'user', html: "I'm all set, thank you" },
                         { type: 'bot', delay: 800, html: `
-                            You're welcome, Sarah! Have a great day. I'm always here if you need anything — just tap the chat icon. 💙
+                            You're very welcome, Sarah. I'm glad I could help today. If anything comes up — questions about your medications, refills, or anything at all — don't hesitate to reach out. We're always here for you.
+                            <br><br>Take care, and have a wonderful day. 💙
                             <div class="chat-actions-row">
-                                <span class="chat-action-pill">📋 Email me this transcript</span>
-                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                                <span class="chat-action-pill">📋 Email me a summary</span>
+                                <span class="chat-action-pill">⭐ Rate this conversation</span>
                             </div>
                         `},
                     ]
@@ -1916,11 +1938,11 @@
                                 <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
                                 Includes: transfer details, expected timeline, and your Costco Pharmacy location info.
                             </div>
-                            <br>Anything else?
+                            <br>Is there anything else I can help you with today?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 40)">Transfer another medication</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 41)">Set up auto-refill for this one</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -1983,7 +2005,7 @@
                             </div>
                             <br>Welcome to Costco Pharmacy! 🎉 Your combined monthly savings on these two medications will be approximately <strong>$28/month</strong> vs. typical retail pricing.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Awesome, that's all!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's everything I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -2008,7 +2030,7 @@
                         { type: 'bot', delay: 1000, html: `
                             ✓ Auto-refill enabled! Once the transfer completes and your first fill is done, we'll automatically refill it every 30 days. You'll get a text 2 days before each refill processes.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Perfect, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -2018,12 +2040,13 @@
                     type: 'continuation',
                     branch: 42,
                     messages: [
-                        { type: 'user', html: "That's all, thanks!" },
+                        { type: 'user', html: "I'm all set, thank you" },
                         { type: 'bot', delay: 800, html: `
-                            You're welcome! We're glad to have you at Costco Pharmacy. I'm always here if you need anything. 💙
+                            You're very welcome, Sarah. We're really glad we could help. If you ever have questions — about your prescriptions, transfers, or anything else — we're always here for you.
+                            <br><br>Take care, and have a wonderful day. 💙
                             <div class="chat-actions-row">
-                                <span class="chat-action-pill">📋 Email me this transcript</span>
-                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                                <span class="chat-action-pill">📋 Email me a summary</span>
+                                <span class="chat-action-pill">⭐ Rate this conversation</span>
                             </div>
                         `},
                     ]
@@ -2079,7 +2102,7 @@
                                 <div class="chat-card-detail">Both medications in one delivery</div>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Perfect, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -2263,7 +2286,7 @@
                                 <strong>📧 Request confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -2351,7 +2374,7 @@
                             <br>Have a wonderful trip! Anything else?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('travel', 50)">What about malaria pills?</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">That's everything, thank you!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">That's everything, thank you</button>
                             </div>
                         `},
                     ]
@@ -2368,7 +2391,7 @@
                                 <strong>📧 Full travel prep summary emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks, I'm all set!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -2485,12 +2508,13 @@
                     type: 'continuation',
                     branch: 32,
                     messages: [
-                        { type: 'user', html: "That's everything, thank you!" },
+                        { type: 'user', html: "I'm all set, thank you" },
                         { type: 'bot', delay: 800, html: `
-                            You're welcome, Sarah! Have an amazing trip. I'm here if anything comes up before you leave. 🌴
+                            You're very welcome, Sarah. I hope you have a wonderful trip! If anything comes up before you leave — or if you think of any other questions — don't hesitate to reach out. We're here for you.
+                            <br><br>Safe travels! 🌴
                             <div class="chat-actions-row">
-                                <span class="chat-action-pill">📋 Email me this transcript</span>
-                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                                <span class="chat-action-pill">📋 Email me a summary</span>
+                                <span class="chat-action-pill">⭐ Rate this conversation</span>
                             </div>
                         `},
                     ]
@@ -2573,7 +2597,7 @@
                                 <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -2635,7 +2659,7 @@
                                 <strong>📧 Refill confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Perfect, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">That's all I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -2780,7 +2804,7 @@
                                 <div class="chat-card-detail"><strong>Tip:</strong> Costco's bulk sizing = more product per benefit dollar</div>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks, that's helpful!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's very helpful, thank you</button>
                             </div>
                         `},
                     ]
@@ -2806,7 +2830,7 @@
                                 <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 20)">Set up auto-refill for my prescriptions</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 21)">Tell me about locker pickup</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 22)">Book a $29 virtual visit</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's helpful to know, thank you</button>
                             </div>
                         `},
                     ]
@@ -2886,7 +2910,7 @@
                         { type: 'bot', delay: 800, html: `
                             ✓ Locker pickup set as your default! Next time a prescription is ready, you'll get a text with your locker code instead of waiting at the counter.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Awesome, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's great to know, thank you</button>
                             </div>
                         `},
                     ]
@@ -2928,7 +2952,7 @@
                                 <strong>📧 Video visit link emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -3038,7 +3062,7 @@
                             </div>
                             <br>Anything else for you or Max? 🐾
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's everything!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's everything I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -3073,7 +3097,7 @@
                             </div>
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 50)">Transfer this from my vet</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's helpful to know, thank you</button>
                             </div>
                         `},
                     ]
@@ -3129,7 +3153,7 @@
                                 <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">I'm all set, thank you</button>
                             </div>
                         `},
                     ]
@@ -3153,7 +3177,7 @@
                                 <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Perfect, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's all I needed, thank you</button>
                             </div>
                         `},
                     ]
@@ -3163,12 +3187,13 @@
                     type: 'continuation',
                     branch: 30,
                     messages: [
-                        { type: 'user', html: "Thanks!" },
+                        { type: 'user', html: "I'm all set, thank you" },
                         { type: 'bot', delay: 700, html: `
-                            You're welcome, Sarah! I'm always here if you need anything. Have a great day! 💙
+                            You're very welcome, Sarah. I'm glad I could help. If you ever have questions — about savings, services, or anything at all — we're always here for you.
+                            <br><br>Take care! 💙
                             <div class="chat-actions-row">
-                                <span class="chat-action-pill">📋 Email me this transcript</span>
-                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                                <span class="chat-action-pill">📋 Email me a summary</span>
+                                <span class="chat-action-pill">⭐ Rate this conversation</span>
                             </div>
                         `},
                     ]
@@ -3180,6 +3205,7 @@
     // ============ CHAT ENGINE ============
     let currentScenario = 'personalized';
     let chatOpen = false;
+    let conversationStack = [];
 
     function openChat() {
         document.getElementById('chatWindow').classList.add('open');
@@ -3229,6 +3255,10 @@
         const continuation = data.messages.find(m => m.type === 'continuation' && m.branch === branch);
         if (!continuation) return;
 
+        // Save snapshot before branching
+        const body = document.getElementById('chatBody');
+        conversationStack.push(body.innerHTML);
+
         // Disable all current prompt buttons
         document.querySelectorAll('.smart-prompt-btn').forEach(btn => {
             btn.style.pointerEvents = 'none';
@@ -3254,6 +3284,21 @@
             }
             delay += 400;
         });
+
+        // Add back button after all messages render
+        setTimeout(() => {
+            const backDiv = document.createElement('div');
+            backDiv.innerHTML = '<button class="chat-back-btn" onclick="goBack()">← Explore other options</button>';
+            body.appendChild(backDiv);
+            body.scrollTop = body.scrollHeight;
+        }, delay + 200);
+    }
+
+    function goBack() {
+        if (conversationStack.length === 0) return;
+        const body = document.getElementById('chatBody');
+        body.innerHTML = conversationStack.pop();
+        body.scrollTop = body.scrollHeight;
     }
 
     function handleSend() {
@@ -3266,7 +3311,7 @@
         setTimeout(() => showTyping(), 500);
         setTimeout(() => {
             removeTyping();
-            addMessage('bot', `I can help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help with?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">That's all, thanks!</button></div>`);
+            addMessage('bot', `I'd be happy to help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help you with today?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">I'm all set, thank you</button></div>`);
         }, 1500);
     }
 
@@ -3294,6 +3339,7 @@
     }
 
     function restartScenario() {
+        conversationStack = [];
         loadScenario(currentScenario);
     }
 

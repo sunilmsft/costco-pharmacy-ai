@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costco Pharmacy — Elevating the Digital Member Experience</title>
+    <style>
+        :root {
+            --costco-red: #E31837;
+            --costco-blue: #005DAA;
+            --dark: #1a1a2e;
+            --text: #2d2d2d;
+            --text-light: #5a5a5a;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border: #e8e8e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--bg-white);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            font-size: 14px;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-label {
+            font-size: 13px;
+            color: var(--costco-blue);
+            font-weight: 600;
+            background: #e8f2fc;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 80px;
+        }
+
+        .section-content {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%);
+            text-align: center;
+            padding-top: 140px;
+        }
+
+        .hero-eyebrow {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--costco-blue);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--costco-red);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-meta {
+            font-size: 14px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-top: 40px;
+        }
+
+        /* Context Section */
+        .context {
+            background: var(--bg-white);
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--costco-blue);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-content h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .section-content > p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--costco-red);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Journey */
+        .journey-section {
+            background: var(--bg-light);
+        }
+
+        .journey-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .journey-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 36px;
+            border: 1px solid var(--border);
+        }
+
+        .journey-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .journey-card.today h3 {
+            color: var(--text-light);
+        }
+
+        .journey-card.future h3 {
+            color: var(--costco-blue);
+        }
+
+        .journey-steps {
+            list-style: none;
+            padding: 0;
+        }
+
+        .journey-steps li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .journey-steps li:last-child {
+            border-bottom: none;
+        }
+
+        .step-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .today .step-num {
+            background: #f0f0f0;
+            color: var(--text-light);
+        }
+
+        .future .step-num {
+            background: #e8f2fc;
+            color: var(--costco-blue);
+        }
+
+        /* Capabilities */
+        .capabilities-section {
+            background: var(--bg-white);
+        }
+
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .capability-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 32px;
+            border-left: 4px solid var(--costco-blue);
+        }
+
+        .capability-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .capability-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .capability-card .example {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--costco-blue);
+            font-style: italic;
+        }
+
+        /* Impact */
+        .impact-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+        }
+
+        .impact-section .section-label {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .impact-section h2 {
+            color: white;
+        }
+
+        .impact-section > .section-content > p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .impact-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .impact-card h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .impact-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .impact-card .metric {
+            font-size: 13px;
+            color: var(--costco-red);
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        /* Approach */
+        .approach-section {
+            background: var(--bg-light);
+        }
+
+        .phase-timeline {
+            margin-top: 40px;
+        }
+
+        .phase {
+            display: flex;
+            gap: 32px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .phase:last-child {
+            border-bottom: none;
+        }
+
+        .phase-marker {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--costco-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .phase-content h4 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .phase-content p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--bg-white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 16px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--costco-blue);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 32px;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #004a8a;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--costco-blue);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            z-index: 50;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 57px;
+            left: 0;
+            height: 3px;
+            background: var(--costco-red);
+            z-index: 101;
+            transition: width 0.1s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 24px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .journey-comparison,
+            .capability-grid,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <span class="nav-brand">Costco Pharmacy — Digital Experience</span>
+    <span class="nav-label">Concept Exploration</span>
+</nav>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- 1. HERO -->
+<section class="section hero">
+    <div class="section-content">
+        <div class="hero-eyebrow">Concept Exploration</div>
+        <h1>Elevating the Pharmacy <span>Member Experience</span></h1>
+        <p>How an intelligent assistant layer can help members get more value from the services Costco Pharmacy already offers — faster, easier, and more personally.</p>
+        <div class="hero-meta">
+            Prepared by Sunil Venugopal &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; For Discussion Purposes
+        </div>
+    </div>
+</section>
+
+<!-- 2. CONTEXT — WHAT'S WORKING -->
+<section class="section context">
+    <div class="section-content">
+        <div class="section-label">Starting Point</div>
+        <h2>Costco Pharmacy has built something members trust.</h2>
+        <p>The digital experience today is functional, well-organized, and expanding. Members can refill prescriptions, schedule immunizations, compare pricing, and choose from multiple fulfillment options. The foundation is strong.</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Fulfillment options<br>(Same-day, Pay Ahead, Locker, Mail)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Services available<br>(Rx, Vaccines, Fertility, Pets, Virtual)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Open to non-members<br>(Unique competitive advantage)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. THE OPPORTUNITY -->
+<section class="section journey-section">
+    <div class="section-content">
+        <div class="section-label">The Opportunity</div>
+        <h2>From "navigate and find" to "ask and done."</h2>
+        <p>Today, members need to know what they're looking for and where to find it. The opportunity isn't to fix what's broken — it's to meet members where they are and help them accomplish what they came to do, conversationally.</p>
+
+        <div class="journey-comparison">
+            <div class="journey-card today">
+                <h3>Today's Experience</h3>
+                <ul class="journey-steps">
+                    <li><span class="step-num">1</span> Member arrives at rx.costco.com</li>
+                    <li><span class="step-num">2</span> Scans navigation for the right link</li>
+                    <li><span class="step-num">3</span> Clicks through to a specific service page</li>
+                    <li><span class="step-num">4</span> Reads content to understand options</li>
+                    <li><span class="step-num">5</span> Navigates to another page to take action</li>
+                    <li><span class="step-num">6</span> May call the pharmacy if unsure</li>
+                </ul>
+            </div>
+            <div class="journey-card future">
+                <h3>With an Intelligent Assistant</h3>
+                <ul class="journey-steps">
+                    <li><span class="step-num">1</span> Member arrives or opens the assistant</li>
+                    <li><span class="step-num">2</span> Sees personalized prompts based on their history</li>
+                    <li><span class="step-num">3</span> States what they need in their own words</li>
+                    <li><span class="step-num">4</span> Assistant guides them through it, step by step</li>
+                    <li><span class="step-num">5</span> Action completed — confirmation and next steps</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. CAPABILITIES -->
+<section class="section capabilities-section">
+    <div class="section-content">
+        <div class="section-label">What It Enables</div>
+        <h2>Six capabilities that compound member value.</h2>
+        <p>Each of these works independently but becomes significantly more powerful together — creating an experience that feels less like a website and more like a conversation with a knowledgeable pharmacist.</p>
+
+        <div class="capability-grid">
+            <div class="capability-card">
+                <h4>Personalized Greeting & Smart Prompts</h4>
+                <p>Recognize returning members and surface their most likely next action — refill due, prescription ready for pickup, upcoming immunization window.</p>
+                <div class="example">"Welcome back, Sarah. Your Lisinopril refill is available. Want to refill now?"</div>
+            </div>
+            <div class="capability-card">
+                <h4>Conversational Task Completion</h4>
+                <p>Members accomplish tasks by describing what they need rather than navigating menus. Transfer a prescription, check coverage, schedule a vaccine — all within the conversation.</p>
+                <div class="example">"I need to move my prescription from Walgreens" → walks through the transfer in 3 steps</div>
+            </div>
+            <div class="capability-card">
+                <h4>Guided Service Discovery</h4>
+                <p>Proactively connect members with services they qualify for but may not know about — FSA/HSA card acceptance, member pricing, fertility partnerships, pet medications.</p>
+                <div class="example">"Did you know your HSA card is now accepted at every Costco register, including pharmacy?"</div>
+            </div>
+            <div class="capability-card">
+                <h4>Fulfillment Recommendation</h4>
+                <p>With 4 delivery options, help members choose the right one for their situation — urgency, location, preference — rather than requiring them to evaluate each option.</p>
+                <div class="example">"Need it today? Same-day delivery is available to your area. Or Pay Ahead and pick up at the counter in 15 min."</div>
+            </div>
+            <div class="capability-card">
+                <h4>Cross-Service Intelligence</h4>
+                <p>Connect related needs that span multiple service areas. Travel planning that links immunizations + medication refills. Seasonal wellness that links flu shots + Rx management.</p>
+                <div class="example">"Traveling to Brazil? You'll want Hep A and Typhoid vaccines, plus let's make sure your medications are refilled before you go."</div>
+            </div>
+            <div class="capability-card">
+                <h4>Conversation Continuity</h4>
+                <p>Email a summary of what was discussed, next steps, and relevant links. Pick up where you left off next time. Never lose the thread.</p>
+                <div class="example">"I've emailed you a summary. Your transfer will be ready in 48 hours — I'll remind you."</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. BUSINESS IMPACT -->
+<section class="section impact-section">
+    <div class="section-content">
+        <div class="section-label">Why It Matters</div>
+        <h2>Business impact for the pharmacy and the member.</h2>
+        <p>This isn't technology for technology's sake. Each capability maps directly to measurable outcomes that matter to the business and the member experience.</p>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h4>Reduce Inbound Call Volume</h4>
+                <p>The most common pharmacy calls — refill status, transfer process, insurance questions — are exactly what conversational AI handles best.</p>
+                <div class="metric">Industry benchmark: 25-40% call deflection in Year 1</div>
+            </div>
+            <div class="impact-card">
+                <h4>Increase Service Adoption</h4>
+                <p>Members don't use services they don't discover. Proactive, contextual recommendations drive adoption of Pay Ahead, Mail Order, and partner services like Sesame.</p>
+                <div class="metric">Surfaces services at the moment of relevance, not just on a page</div>
+            </div>
+            <div class="impact-card">
+                <h4>Deepen Member Loyalty</h4>
+                <p>A pharmacy that remembers you, anticipates your needs, and makes complex tasks simple becomes part of why you keep your membership.</p>
+                <div class="metric">Pharmacy is a top-3 reason for Costco membership renewal</div>
+            </div>
+            <div class="impact-card">
+                <h4>Competitive Differentiation</h4>
+                <p>CVS, Walgreens, and Amazon Pharmacy are investing heavily in digital. Costco's advantage has always been value + trust — an intelligent assistant extends both into digital.</p>
+                <div class="metric">First-mover advantage in pharmacy-specific conversational AI</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. APPROACH -->
+<section class="section approach-section">
+    <div class="section-content">
+        <div class="section-label">How This Could Unfold</div>
+        <h2>A phased approach that delivers value early.</h2>
+        <p>This isn't a multi-year platform rebuild. It's an experience layer that sits on top of existing systems and can launch incrementally, proving value at each stage.</p>
+
+        <div class="phase-timeline">
+            <div class="phase">
+                <div class="phase-marker">1</div>
+                <div class="phase-content">
+                    <h4>Informational Assistant</h4>
+                    <p>Answer common questions, guide navigation, surface relevant services. No system integration required — just the pharmacy's existing content made conversational. Immediate call deflection value.</p>
+                </div>
+            </div>
+            <div class="phase">
+                <div class="phase-marker">2</div>
+                <div class="phase-content">
+                    <h4>Personalized & Action-Oriented</h4>
+                    <p>Recognize logged-in members, show prescription status, enable refills and scheduling within the conversation. Requires integration with pharmacy systems but dramatically increases utility.</p>
+                </div>
+            </div>
+            <div class="phase">
+                <div class="phase-marker">3</div>
+                <div class="phase-content">
+                    <h4>Proactive & Predictive</h4>
+                    <p>Anticipate member needs — refill reminders, vaccine eligibility windows, plan coverage changes. The assistant becomes a trusted health companion, not just a tool you visit when something's needed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. CTA -->
+<section class="section cta-section">
+    <div class="section-content">
+        <div class="section-label">See It In Action</div>
+        <h2>What this could look and feel like for a member.</h2>
+        <p>The following prototype demonstrates the experience from a member's perspective — the assistant embedded naturally into the pharmacy experience, helping members accomplish their goals conversationally.</p>
+        <a href="prototype.html" class="cta-button">View the Interactive Prototype →</a>
+        <div class="hero-meta" style="margin-top: 48px;">
+            This is a concept demonstration only. No real member data is used.<br>
+            Built to illustrate the potential of an intelligent assistant layer for Costco Pharmacy.
+        </div>
+    </div>
+</section>
+
+<div class="scroll-indicator" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">↓</div>
+
+<script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+
+        // Hide scroll indicator near bottom
+        const indicator = document.querySelector('.scroll-indicator');
+        if (progress > 90) {
+            indicator.style.opacity = '0';
+        } else {
+            indicator.style.opacity = '0.8';
+        }
+    });
+</script>
+
+</body>
+</html>

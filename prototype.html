@@ -1,0 +1,3198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Costco Pharmacy</title>
+    <style>
+        :root {
+            --costco-red: #E31837;
+            --costco-blue: #003B64;
+            --costco-nav-blue: #003B64;
+            --text: #333333;
+            --text-light: #666666;
+            --bg: #ffffff;
+            --bg-gray: #f4f4f4;
+            --border: #e0e0e0;
+            --border-light: #ebebeb;
+            --chat-blue: #005DAA;
+            --chat-user: #e8f2fc;
+            --chat-bot: #f5f5f5;
+            --yellow-banner: #fef9e7;
+            --yellow-border: #f5c518;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg-gray);
+        }
+
+        /* === HEADER === */
+        .site-header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-top {
+            background: #fff;
+            padding: 0 32px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .costco-logo {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .costco-logo-text {
+            font-family: 'Impact', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #003B64;
+            letter-spacing: -0.5px;
+            line-height: 0.9;
+            font-style: italic;
+        }
+
+        .costco-logo-sub {
+            font-family: 'Impact', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 3.5px;
+            color: var(--costco-red);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 0px;
+            font-style: italic;
+        }
+
+        .header-top-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 14px;
+        }
+
+        .header-top-right a {
+            color: #0060a9;
+            text-decoration: none;
+        }
+
+        .header-top-right a:hover { text-decoration: underline; }
+
+        .header-top-right .account-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text);
+        }
+
+        .account-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        /* Nav bar */
+        .header-nav {
+            background: var(--costco-nav-blue);
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: background 0.2s;
+        }
+
+        .header-nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-chevron {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        /* === YELLOW BANNER === */
+        .info-banner {
+            background: var(--yellow-banner);
+            border: 1.5px solid var(--yellow-border);
+            border-radius: 6px;
+            padding: 16px 24px;
+            margin: 24px 32px 0;
+        }
+
+        .info-banner strong {
+            display: block;
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .info-banner p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .info-banner a {
+            font-size: 13px;
+            color: #0060a9;
+            text-decoration: none;
+        }
+
+        .info-banner a:hover { text-decoration: underline; }
+
+        /* === WELCOME === */
+        .welcome-section {
+            padding: 28px 32px 8px;
+        }
+
+        .welcome-section h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* === ACTION CARDS === */
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 20px 32px;
+        }
+
+        .action-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px 20px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .action-card-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .action-card-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .action-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .action-card-arrow {
+            position: absolute;
+            top: 24px;
+            right: 20px;
+            font-size: 18px;
+            color: #999;
+        }
+
+        /* === MAIN BODY LAYOUT === */
+        .main-body {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+            padding: 12px 32px 40px;
+        }
+
+        /* Prescription List */
+        .rx-list-panel {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 28px;
+        }
+
+        .rx-list-panel h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .rx-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .rx-tab {
+            padding: 10px 16px;
+            font-size: 14px;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+        }
+
+        .rx-tab.active {
+            color: var(--text);
+            border-bottom-color: var(--text);
+            font-weight: 600;
+        }
+
+        .rx-search {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+        }
+
+        .rx-search input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            flex: 1;
+            color: var(--text);
+        }
+
+        .rx-search input::placeholder { color: #aaa; }
+
+        .rx-search-icon {
+            color: #999;
+            font-size: 16px;
+        }
+
+        .rx-filters-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .rx-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .rx-filter-group label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .rx-filter-group select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--text);
+            background: white;
+            cursor: pointer;
+        }
+
+        .rx-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .rx-checkboxes label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .rx-checkboxes input[type="checkbox"] {
+            accent-color: var(--costco-blue);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Other Services Sidebar */
+        .other-services {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .other-services h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .service-link-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: box-shadow 0.2s;
+            position: relative;
+        }
+
+        .service-link-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .service-link-icon {
+            font-size: 20px;
+            color: var(--text);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .service-link-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .service-link-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .service-link-card .card-arrow {
+            position: absolute;
+            top: 20px;
+            right: 16px;
+            font-size: 16px;
+            color: #999;
+        }
+
+        /* === CHAT WIDGET === */
+        .chat-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--costco-nav-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,59,100,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.06);
+            box-shadow: 0 6px 24px rgba(0,59,100,0.5);
+        }
+
+        .chat-fab.hidden { display: none; }
+
+        .chat-fab-pulse {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--costco-nav-blue);
+            opacity: 0.3;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-fab-pulse.hidden { display: none; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.4); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        /* Chat Window */
+        .chat-window {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 400px;
+            height: 580px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--costco-nav-blue);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .chat-header-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .chat-header-info p {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .chat-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-header-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            opacity: 0.7;
+            padding: 6px;
+            border-radius: 4px;
+            transition: opacity 0.2s, background 0.2s;
+        }
+
+        .chat-header-btn:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            padding: 4px;
+        }
+
+        .chat-close:hover { opacity: 1; }
+
+        /* Chat Body */
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.bot {
+            background: var(--chat-bot);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.user {
+            background: var(--chat-user);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            color: var(--costco-dark);
+        }
+
+        .chat-message .msg-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            margin-bottom: 4px;
+        }
+
+        /* Smart Prompts */
+        .smart-prompts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .smart-prompt-btn {
+            background: white;
+            border: 1px solid var(--costco-nav-blue);
+            color: var(--costco-nav-blue);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .smart-prompt-btn:hover {
+            background: #f0f7ff;
+            border-color: var(--costco-nav-blue);
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--chat-bot);
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            max-width: 60px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #999;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        /* Chat Input */
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--costco-nav-blue);
+        }
+
+        .chat-send {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--costco-nav-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .chat-send:hover { background: #002a4a; }
+
+        /* Chat actions row */
+        .chat-actions-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chat-action-pill {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-action-pill:hover {
+            border-color: var(--costco-nav-blue);
+            color: var(--costco-nav-blue);
+        }
+
+        /* Inline card in chat */
+        .chat-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 8px;
+        }
+
+        .chat-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--costco-dark);
+            margin-bottom: 6px;
+        }
+
+        .chat-card-detail {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .chat-card-action {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--costco-nav-blue);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Personalization badge */
+        .personalized-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #fff3e0;
+            color: #e65100;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        /* Email summary in chat */
+        .email-summary {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #166534;
+        }
+
+        .email-summary strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Scenario tabs */
+        .scenario-tabs {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+            z-index: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .scenario-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-light);
+            border: none;
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .scenario-tab:hover { background: var(--bg-light); }
+
+        .scenario-tab.active {
+            background: var(--costco-nav-blue);
+            color: white;
+        }
+
+        /* Concept label */
+        .concept-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fef3c7;
+            color: #92400e;
+            text-align: center;
+            padding: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 2000;
+        }
+
+        .site-header { margin-top: 28px; }
+
+    </style>
+</head>
+<body>
+
+<div class="concept-banner">
+    ✦ Concept Prototype — For discussion purposes only. Not a production application.
+</div>
+
+<!-- Scenario switcher -->
+<div class="scenario-tabs">
+    <button class="scenario-tab active" onclick="loadScenario('personalized')">Personalized Return</button>
+    <button class="scenario-tab" onclick="loadScenario('transfer')">Transfer Rx</button>
+    <button class="scenario-tab" onclick="loadScenario('travel')">Travel Planning</button>
+    <button class="scenario-tab" onclick="loadScenario('discovery')">Service Discovery</button>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="costco-logo">
+            <img src="logo-cropped.png" alt="Costco Pharmacy" style="height: 42px;">
+        </div>
+        <div class="header-top-right">
+            <a href="#">Go To Costco.com</a>
+            <a href="#" class="account-link">
+                <span class="account-icon">👤</span>
+                Account
+            </a>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <a href="#">Prescriptions <span class="nav-chevron">∨</span></a>
+        <a href="#">Family and Pets</a>
+        <a href="#">Medicare OTC</a>
+        <a href="#">Resources <span class="nav-chevron">∨</span></a>
+        <a href="#">Support <span class="nav-chevron">∨</span></a>
+    </nav>
+</header>
+
+<!-- YELLOW BANNER -->
+<div class="info-banner">
+    <strong>Save yourself some time.</strong>
+    <p>There's some missing information on your account. To save time at checkout, upload your payment method.</p>
+    <a href="#">Add Payment Method</a>
+</div>
+
+<!-- WELCOME -->
+<div class="welcome-section">
+    <h1>Welcome to Costco Pharmacy, Sarah</h1>
+</div>
+
+<!-- ACTION CARDS -->
+<div class="action-cards">
+    <div class="action-card">
+        <div class="action-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="2" width="12" height="20" rx="2"/>
+                <line x1="10" y1="7" x2="14" y2="7"/>
+                <line x1="10" y1="10" x2="14" y2="10"/>
+                <line x1="10" y1="13" x2="14" y2="13"/>
+            </svg>
+        </div>
+        <h3>Refill a Prescription</h3>
+        <p>Pick-up or get delivery for your family and pets.</p>
+        <span class="action-card-arrow">›</span>
+    </div>
+    <div class="action-card">
+        <div class="action-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="5" y="3" width="14" height="18" rx="2"/>
+                <path d="M9 3v3h6V3"/>
+                <line x1="9" y1="10" x2="15" y2="10"/>
+                <line x1="9" y1="13" x2="15" y2="13"/>
+            </svg>
+        </div>
+        <h3>Move a Prescription</h3>
+        <p>Move prescriptions from another pharmacy to Costco.</p>
+        <span class="action-card-arrow">›</span>
+    </div>
+    <div class="action-card">
+        <div class="action-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="10" r="3"/>
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            </svg>
+        </div>
+        <h3>Find a Pharmacy</h3>
+        <p>Find the nearest pharmacy quickly with our search tool.</p>
+        <span class="action-card-arrow">›</span>
+    </div>
+    <div class="action-card">
+        <div class="action-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="8" y1="4" x2="8" y2="9"/>
+                <line x1="16" y1="4" x2="16" y2="9"/>
+            </svg>
+        </div>
+        <h3>Schedule Immunization</h3>
+        <p>Stay protected with our convenient immunization services.</p>
+        <span class="action-card-arrow">›</span>
+    </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="main-body">
+    <!-- Prescription List -->
+    <div class="rx-list-panel">
+        <h2>Prescription List</h2>
+        <div class="rx-tabs">
+            <div class="rx-tab active">Active (3)</div>
+            <div class="rx-tab">My Hidden Prescriptions (0)</div>
+        </div>
+        <div class="rx-search">
+            <input type="text" placeholder="Search for Prescription">
+            <span class="rx-search-icon">🔍</span>
+        </div>
+        <div class="rx-filters-label">Rx Filters</div>
+        <div class="rx-filters">
+            <div class="rx-filter-group">
+                <label>Family Member</label>
+                <select><option>Everyone</option></select>
+            </div>
+            <div class="rx-filter-group">
+                <label>Status</label>
+                <select><option>All</option></select>
+            </div>
+            <div class="rx-filter-group">
+                <label>Timeframe</label>
+                <select><option>Up to 24 Months</option></select>
+            </div>
+            <div class="rx-filter-group">
+                <label>Sort By</label>
+                <select><option>Most Relevant</option></select>
+            </div>
+        </div>
+        <div class="rx-checkboxes">
+            <label><input type="checkbox" checked> Display Expired</label>
+            <label><input type="checkbox" checked> Display Zero Refills</label>
+        </div>
+    </div>
+
+    <!-- Other Services -->
+    <div class="other-services">
+        <h2>Other Services</h2>
+        <div class="service-link-card">
+            <span class="service-link-icon">＋</span>
+            <div>
+                <h4>Request a New Prescription</h4>
+                <p>Provide us with a few details about your prescription and we'll reach out to your healthcare provider for you.</p>
+            </div>
+            <span class="card-arrow">›</span>
+        </div>
+        <div class="service-link-card">
+            <span class="service-link-icon">👥</span>
+            <div>
+                <h4>Manage Family and Pets</h4>
+                <p>Add or manage family members and pets on your account.</p>
+            </div>
+            <span class="card-arrow">›</span>
+        </div>
+        <div class="service-link-card">
+            <span class="service-link-icon">📋</span>
+            <div>
+                <h4>View RX History Report</h4>
+                <p>Access your complete prescription history and records.</p>
+            </div>
+            <span class="card-arrow">›</span>
+        </div>
+    </div>
+</div>
+
+<!-- CHAT FAB -->
+<div class="chat-fab-pulse" id="chatPulse"></div>
+<button class="chat-fab" id="chatFab" onclick="openChat()">💬</button>
+
+<!-- CHAT WINDOW -->
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <div class="chat-header-left">
+            <div class="chat-avatar">⚕️</div>
+            <div class="chat-header-info">
+                <h3>Costco Pharmacy Assistant</h3>
+                <p>Here to help with your pharmacy needs</p>
+            </div>
+        </div>
+        <div class="chat-header-actions">
+            <button class="chat-header-btn" onclick="restartScenario()" title="Restart conversation">↺</button>
+            <button class="chat-header-btn" onclick="downloadTranscript()" title="Download transcript">↓</button>
+            <button class="chat-close" onclick="closeChat()">✕</button>
+        </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <!-- Messages loaded by scenario -->
+    </div>
+    <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about your pharmacy needs..." onkeypress="handleKeyPress(event)">
+        <button class="chat-send" onclick="handleSend()">→</button>
+    </div>
+</div>
+
+<script>
+    // ============ SCENARIO DATA ============
+    const scenarios = {
+        personalized: {
+            autoOpen: true,
+            messages: [
+                {
+                    type: 'bot',
+                    delay: 500,
+                    html: `
+                        <div class="personalized-badge">✦ Personalized for you</div>
+                        Hi Sarah! I noticed your <strong>Lisinopril 10mg</strong> refill is available. Would you like me to refill it now?
+                        <div class="chat-card">
+                            <div class="chat-card-title">Lisinopril 10mg — Ready to Refill</div>
+                            <div class="chat-card-detail">Last filled: May 12, 2026</div>
+                            <div class="chat-card-detail">Pharmacy: Costco #482 — Issaquah, WA</div>
+                            <div class="chat-card-detail">Copay: $4.00 (Blue Cross)</div>
+                            <div class="chat-card-action" onclick="advanceConversation('personalized', 1)">✓ Refill Now</div>
+                        </div>
+                        <div class="smart-prompts">
+                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 1)">Yes, refill my Lisinopril</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 2)">What other prescriptions do I have?</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 3)">I need something else</button>
+                        </div>
+                    `
+                },
+                // Branch 1: Refill flow
+                {
+                    type: 'continuation',
+                    branch: 1,
+                    messages: [
+                        { type: 'user', html: 'Yes, refill my Lisinopril' },
+                        { type: 'bot', delay: 1200, html: `
+                            Done! Your refill is being processed. Here's your summary:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Refill Submitted</div>
+                                <div class="chat-card-detail">Lisinopril 10mg — 90-day supply</div>
+                                <div class="chat-card-detail">Ready for pickup: Tomorrow by 2:00 PM</div>
+                                <div class="chat-card-detail">Location: Costco #482, Issaquah</div>
+                                <div class="chat-card-detail">Copay: $4.00</div>
+                            </div>
+                            How would you like to get it?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 10)">Pick up at counter</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 11)">Use Pay Ahead (skip the wait)</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 12)">Same-day delivery via Instacart</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 10: Counter pickup
+                {
+                    type: 'continuation',
+                    branch: 10,
+                    messages: [
+                        { type: 'user', html: 'Pick up at counter' },
+                        { type: 'bot', delay: 1000, html: `
+                            Got it — standard counter pickup. You'll get a text when it's ready (tomorrow by 2 PM). Just head to the pharmacy counter with your ID.
+                            <div class="email-summary">
+                                <strong>📧 Confirmation sent to sarah.m@gmail.com</strong>
+                                Includes: Rx details, pickup time, and store directions.
+                            </div>
+                            <br>Is there anything else I can help with?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Schedule my flu shot while I'm there</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 21)">Check my other prescriptions</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 11: Pay Ahead
+                {
+                    type: 'continuation',
+                    branch: 11,
+                    messages: [
+                        { type: 'user', html: 'Use Pay Ahead — I want to skip the wait' },
+                        { type: 'bot', delay: 1000, html: `
+                            Smart choice. I've set it to Pay Ahead — you'll get a notification when it's paid and ready. Just show your ID at the pickup counter and you're set. No line, no waiting.
+                            <div class="chat-card">
+                                <div class="chat-card-title">💳 Pay Ahead — Confirmed</div>
+                                <div class="chat-card-detail">Payment: Blue Cross copay $4.00</div>
+                                <div class="chat-card-detail">Status: Processing</div>
+                                <div class="chat-card-detail">You'll receive a text + email when ready</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Summary emailed to sarah.m@gmail.com</strong>
+                                Includes: Rx details, pickup instructions, and your copay receipt.
+                            </div>
+                            <br>Anything else?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Schedule my flu shot while I'm there</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 21)">Check my other prescriptions</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 12: Same-day delivery
+                {
+                    type: 'continuation',
+                    branch: 12,
+                    messages: [
+                        { type: 'user', html: 'Same-day delivery via Instacart' },
+                        { type: 'bot', delay: 1200, html: `
+                            I can set that up! Instacart delivery is available to your area. Here are your options:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🚗 Same-Day Delivery</div>
+                                <div class="chat-card-detail"><strong>Express (1-2 hours):</strong> +$3.99</div>
+                                <div class="chat-card-detail"><strong>Standard (3-5 hours):</strong> Free with Instacart+</div>
+                                <div class="chat-card-detail"><strong>Scheduled window:</strong> Choose a 2-hr window today</div>
+                            </div>
+                            <br>Which delivery speed would you like?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 30)">Express — get it ASAP</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 31)">Standard — no rush</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 32)">Actually, I'll just pick it up</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 30: Express delivery confirmed
+                {
+                    type: 'continuation',
+                    branch: 30,
+                    messages: [
+                        { type: 'user', html: 'Express — get it ASAP' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Express delivery confirmed! 
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Delivery Scheduled</div>
+                                <div class="chat-card-detail">Estimated arrival: Today by 4:30 PM</div>
+                                <div class="chat-card-detail">Delivery fee: $3.99</div>
+                                <div class="chat-card-detail">Address: 1847 Sammamish Way, Issaquah WA</div>
+                                <div class="chat-card-detail">Rx copay: $4.00 (charged to Blue Cross)</div>
+                            </div>
+                            <br>You'll get Instacart tracking updates via text. The driver will need to verify your ID at the door — it's a prescription requirement.
+                            <div class="email-summary">
+                                <strong>📧 Full delivery details emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Perfect, that's all I need</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 33)">Can I add groceries to this delivery?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 31: Standard delivery
+                {
+                    type: 'continuation',
+                    branch: 31,
+                    messages: [
+                        { type: 'user', html: 'Standard — no rush' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Standard delivery set!
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Delivery Scheduled</div>
+                                <div class="chat-card-detail">Estimated arrival: Today between 5-7 PM</div>
+                                <div class="chat-card-detail">Delivery fee: Free (Instacart+)</div>
+                                <div class="chat-card-detail">Address: 1847 Sammamish Way, Issaquah WA</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Delivery confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 33)">Can I add groceries to this delivery?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 33: Add groceries
+                {
+                    type: 'continuation',
+                    branch: 33,
+                    messages: [
+                        { type: 'user', html: 'Can I add groceries to this delivery?' },
+                        { type: 'bot', delay: 1000, html: `
+                            Yes! Since your prescription is coming via Instacart, you can bundle Costco groceries with the same delivery — no extra trip.
+                            <br><br>
+                            I'll open your Costco Instacart cart so you can add items. Your prescription will be included automatically.
+                            <div class="chat-card">
+                                <div class="chat-card-title">🛒 Add to Your Delivery</div>
+                                <div class="chat-card-detail">Your Rx is locked in. Add grocery items at sameday.costco.com and they'll arrive together.</div>
+                                <div class="chat-card-action">Open Costco Same-Day Shopping →</div>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 32: Switch to pickup
+                {
+                    type: 'continuation',
+                    branch: 32,
+                    messages: [
+                        { type: 'user', html: "Actually, I'll just pick it up" },
+                        { type: 'bot', delay: 800, html: `
+                            No problem — switched to counter pickup. You'll get a text when it's ready tomorrow by 2 PM. 👍
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 20: Schedule flu shot
+                {
+                    type: 'continuation',
+                    branch: 20,
+                    messages: [
+                        { type: 'user', html: "Schedule my flu shot while I'm there" },
+                        { type: 'bot', delay: 1200, html: `
+                            Great idea — get it done in one trip! Here are the available times at Costco #482:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💉 Flu Shot — Available Times</div>
+                                <div class="chat-card-detail">Tomorrow (when your Rx is ready):</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• 10:00 AM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• 11:30 AM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• 2:15 PM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• 4:00 PM</div>
+                                <div class="chat-card-detail">Cost: $0 (covered by Blue Cross)</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 40)">Book 2:15 PM — right when my Rx is ready</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 41)">Book 10:00 AM</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 42)">Show me later this week instead</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 40: Flu shot booked
+                {
+                    type: 'continuation',
+                    branch: 40,
+                    messages: [
+                        { type: 'user', html: 'Book 2:15 PM — right when my Rx is ready' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Perfect timing! Both scheduled for tomorrow:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Tomorrow's Plan</div>
+                                <div class="chat-card-detail">📍 Costco #482, Issaquah</div>
+                                <div class="chat-card-detail">💊 Pick up Lisinopril — ready by 2:00 PM</div>
+                                <div class="chat-card-detail">💉 Flu shot appointment — 2:15 PM</div>
+                                <div class="chat-card-detail">💰 Total cost: $4.00 (Rx) + $0 (vaccine)</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Full itinerary emailed to sarah.m@gmail.com</strong>
+                                Includes: appointment confirmation, what to bring, and pharmacy hours.
+                            </div>
+                            <br>One trip, everything done. Anything else?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Nope, I'm all set. Thank you!</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 50)">Add this to my calendar</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 41: 10am
+                {
+                    type: 'continuation',
+                    branch: 41,
+                    messages: [
+                        { type: 'user', html: 'Book 10:00 AM' },
+                        { type: 'bot', delay: 900, html: `
+                            ✓ Flu shot booked for tomorrow at 10:00 AM at Costco #482. You're all set!
+                            <div class="email-summary">
+                                <strong>📧 Appointment confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks, that's everything!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 50: Calendar
+                {
+                    type: 'continuation',
+                    branch: 50,
+                    messages: [
+                        { type: 'user', html: 'Add this to my calendar' },
+                        { type: 'bot', delay: 800, html: `
+                            Done — I've included a calendar invite (.ics) in the email I just sent. It should show up in your calendar when you open it. 📅
+                            <br><br>
+                            Have a great day, Sarah!
+                        `},
+                    ]
+                },
+                // Branch 2: Other prescriptions
+                {
+                    type: 'continuation',
+                    branch: 2,
+                    messages: [
+                        { type: 'user', html: 'What other prescriptions do I have?' },
+                        { type: 'bot', delay: 1200, html: `
+                            Here's your current prescription list:
+                            <div class="chat-card">
+                                <div class="chat-card-title">Your Active Prescriptions</div>
+                                <div class="chat-card-detail">1. <strong>Lisinopril 10mg</strong> — Refill available ✓</div>
+                                <div class="chat-card-detail">2. <strong>Atorvastatin 20mg</strong> — Next refill: July 3</div>
+                                <div class="chat-card-detail">3. <strong>Vitamin D3 2000IU</strong> — Refill available ✓</div>
+                            </div>
+                            <br>Would you like to refill any of these?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 60)">Refill both available ones (Lisinopril + Vitamin D3)</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 1)">Just refill the Lisinopril</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 61)">When can I refill the Atorvastatin?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 60: Refill both
+                {
+                    type: 'continuation',
+                    branch: 60,
+                    messages: [
+                        { type: 'user', html: 'Refill both — Lisinopril and Vitamin D3' },
+                        { type: 'bot', delay: 1200, html: `
+                            ✓ Both refills submitted!
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ 2 Refills Processing</div>
+                                <div class="chat-card-detail">💊 Lisinopril 10mg — 90-day — $4.00 copay</div>
+                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — 90-day — $8.50 copay</div>
+                                <div class="chat-card-detail">📍 Costco #482, Issaquah</div>
+                                <div class="chat-card-detail">Ready: Tomorrow by 2:00 PM</div>
+                                <div class="chat-card-detail"><strong>Total: $12.50</strong></div>
+                            </div>
+                            How would you like to pick these up?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 10)">Pick up at counter</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 11)">Use Pay Ahead</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 12)">Same-day delivery</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 61: Atorvastatin timing
+                {
+                    type: 'continuation',
+                    branch: 61,
+                    messages: [
+                        { type: 'user', html: 'When can I refill the Atorvastatin?' },
+                        { type: 'bot', delay: 900, html: `
+                            Your Atorvastatin 20mg was last filled on June 3, and your insurance allows a refill after <strong>July 3, 2026</strong> (30-day window).
+                            <br><br>
+                            Want me to set up an automatic reminder so you don't have to think about it?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 62)">Yes, remind me when it's ready</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 63)">Can I set up auto-refill?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 62: Reminder set
+                {
+                    type: 'continuation',
+                    branch: 62,
+                    messages: [
+                        { type: 'user', html: "Yes, remind me when it's ready" },
+                        { type: 'bot', delay: 800, html: `
+                            ✓ Reminder set! I'll send you a text and email on July 3 when your Atorvastatin is eligible for refill.
+                            <br><br>
+                            Anything else I can help with?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 1)">Refill my Lisinopril now</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">That's all, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 63: Auto-refill
+                {
+                    type: 'continuation',
+                    branch: 63,
+                    messages: [
+                        { type: 'user', html: 'Can I set up auto-refill?' },
+                        { type: 'bot', delay: 1000, html: `
+                            Absolutely! Auto-refill means we'll automatically process your refill when it's due — you just pick it up or get it delivered. No action needed.
+                            <div class="chat-card">
+                                <div class="chat-card-title">🔄 Auto-Refill Setup</div>
+                                <div class="chat-card-detail">Medication: Atorvastatin 20mg</div>
+                                <div class="chat-card-detail">Frequency: Every 30 days</div>
+                                <div class="chat-card-detail">Next fill: July 3, 2026</div>
+                                <div class="chat-card-detail">You'll get a notification 2 days before each fill</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 64)">Yes, turn on auto-refill</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 65)">Set up auto-refill for ALL my prescriptions</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 64: Auto-refill on
+                {
+                    type: 'continuation',
+                    branch: 64,
+                    messages: [
+                        { type: 'user', html: 'Yes, turn on auto-refill' },
+                        { type: 'bot', delay: 800, html: `
+                            ✓ Auto-refill enabled for Atorvastatin 20mg. You'll get a heads-up 2 days before each refill processes. You can turn it off anytime.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Great, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 65: Auto-refill all
+                {
+                    type: 'continuation',
+                    branch: 65,
+                    messages: [
+                        { type: 'user', html: 'Set up auto-refill for all my prescriptions' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Auto-refill enabled for all 3 prescriptions:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🔄 Auto-Refill — All Medications</div>
+                                <div class="chat-card-detail">✓ Lisinopril 10mg — every 90 days</div>
+                                <div class="chat-card-detail">✓ Atorvastatin 20mg — every 30 days</div>
+                                <div class="chat-card-detail">✓ Vitamin D3 2000IU — every 90 days</div>
+                                <div class="chat-card-detail">You'll get a notification 2 days before each</div>
+                            </div>
+                            <br>You're all set — pharmacy on autopilot. 👍
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Love it. Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 3: Something else
+                {
+                    type: 'continuation',
+                    branch: 3,
+                    messages: [
+                        { type: 'user', html: 'I need something else' },
+                        { type: 'bot', delay: 800, html: `
+                            Of course! What can I help you with?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 70)">Transfer a prescription to Costco</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 71)">Schedule an immunization</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 72)">Check drug pricing</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 73)">I have a question about my insurance coverage</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 74)">Find my nearest Costco Pharmacy</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 70: Transfer teaser
+                {
+                    type: 'continuation',
+                    branch: 70,
+                    messages: [
+                        { type: 'user', html: 'Transfer a prescription to Costco' },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help with that! Which pharmacy are you transferring from?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 75)">Walgreens</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 75)">CVS</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 75)">Rite Aid</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 75)">Another pharmacy</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 75: Transfer continuation
+                {
+                    type: 'continuation',
+                    branch: 75,
+                    messages: [
+                        { type: 'user', html: 'Walgreens' },
+                        { type: 'bot', delay: 1100, html: `
+                            Got it! What medication would you like to transfer from Walgreens? You can tell me the name or the Rx number from your bottle.
+                        `},
+                    ]
+                },
+                // Branch 71: Immunization
+                {
+                    type: 'continuation',
+                    branch: 71,
+                    messages: [
+                        { type: 'user', html: 'Schedule an immunization' },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help you schedule. Based on your records, here's what might be relevant:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💉 Your Immunization Status</div>
+                                <div class="chat-card-detail">Flu shot — Last: Oct 2025 (due this fall)</div>
+                                <div class="chat-card-detail">COVID booster — Last: Sep 2025</div>
+                                <div class="chat-card-detail">Shingles (Shingrix) — Not yet received (recommended 50+)</div>
+                                <div class="chat-card-detail">Tdap — Last: 2019 (next due: 2029)</div>
+                            </div>
+                            <br>What would you like to schedule?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 76)">Flu shot</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 77)">COVID booster</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 78)">Tell me more about Shingrix</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 72: Drug pricing
+                {
+                    type: 'continuation',
+                    branch: 72,
+                    messages: [
+                        { type: 'user', html: 'Check drug pricing' },
+                        { type: 'bot', delay: 800, html: `
+                            Sure! What medication would you like me to look up pricing for? I can show you member pricing, your insurance copay, and how it compares to other pharmacies.
+                        `},
+                    ]
+                },
+                // Branch 73: Insurance
+                {
+                    type: 'continuation',
+                    branch: 73,
+                    messages: [
+                        { type: 'user', html: 'I have a question about my insurance coverage' },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help! I see you have <strong>Blue Cross Blue Shield</strong> on file. What would you like to know?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 80)">Is a specific medication covered?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 81)">What's my copay for a medication?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 82)">I got a new insurance card — how do I update it?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 82: Update insurance
+                {
+                    type: 'continuation',
+                    branch: 82,
+                    messages: [
+                        { type: 'user', html: 'I got a new insurance card — how do I update it?' },
+                        { type: 'bot', delay: 1000, html: `
+                            Easy! You have two options:
+                            <br><br>
+                            <strong>Option 1 (fastest):</strong> Take a photo of your new card and upload it right here — front and back.
+                            <br><br>
+                            <strong>Option 2:</strong> Bring the card to the pharmacy counter next time you visit, and we'll update it in person.
+                            <br><br>
+                            Would you like to upload it now?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 83)">Upload my new card now</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">I'll bring it next time</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 83: Upload card
+                {
+                    type: 'continuation',
+                    branch: 83,
+                    messages: [
+                        { type: 'user', html: 'Upload my new card now' },
+                        { type: 'bot', delay: 800, html: `
+                            Great! Please upload a clear photo of the <strong>front</strong> of your insurance card. I'll pull the relevant details automatically.
+                            <br><br>
+                            <em>[In production: file upload button would appear here]</em>
+                            <br><br>
+                            Once I have both sides, I'll update your profile and your new coverage will apply to all future fills.
+                        `},
+                    ]
+                },
+                // Branch 74: Find pharmacy
+                {
+                    type: 'continuation',
+                    branch: 74,
+                    messages: [
+                        { type: 'user', html: 'Find my nearest Costco Pharmacy' },
+                        { type: 'bot', delay: 1000, html: `
+                            Based on your account address, here are the closest locations:
+                            <div class="chat-card">
+                                <div class="chat-card-title">📍 Nearest Costco Pharmacies</div>
+                                <div class="chat-card-detail"><strong>1. Costco #482 — Issaquah</strong> (2.1 mi)</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;1801 10th Ave NW • Open until 7 PM</div>
+                                <div class="chat-card-detail"><strong>2. Costco #1 — Seattle</strong> (8.4 mi)</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;4401 4th Ave S • Open until 7 PM</div>
+                                <div class="chat-card-detail"><strong>3. Costco #110 — Woodinville</strong> (9.2 mi)</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;1175 NE Park Dr • Open until 7 PM</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Thanks, that's what I needed</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 76: Flu shot scheduling
+                {
+                    type: 'continuation',
+                    branch: 76,
+                    messages: [
+                        { type: 'user', html: 'Flu shot' },
+                        { type: 'bot', delay: 1000, html: `
+                            Flu vaccines for the 2026-27 season will be available starting September. Want me to notify you when they're in?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Yes, remind me in September</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 78: Shingrix info
+                {
+                    type: 'continuation',
+                    branch: 78,
+                    messages: [
+                        { type: 'user', html: 'Tell me more about Shingrix' },
+                        { type: 'bot', delay: 1200, html: `
+                            Shingrix is the shingles vaccine — it's recommended for adults 50+ and is a 2-dose series (2-6 months apart).
+                            <div class="chat-card">
+                                <div class="chat-card-title">Shingrix (Shingles Vaccine)</div>
+                                <div class="chat-card-detail"><strong>Who:</strong> Recommended for adults 50+</div>
+                                <div class="chat-card-detail"><strong>Doses:</strong> 2 shots, 2-6 months apart</div>
+                                <div class="chat-card-detail"><strong>Coverage:</strong> Most insurance covers it at $0 copay</div>
+                                <div class="chat-card-detail"><strong>Why:</strong> 90%+ effective at preventing shingles</div>
+                            </div>
+                            <br>Would you like to schedule your first dose?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 20)">Yes, schedule it</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 22)">Not right now, but good to know</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 22: End conversation
+                {
+                    type: 'continuation',
+                    branch: 22,
+                    messages: [
+                        { type: 'user', html: "That's all, thanks!" },
+                        { type: 'bot', delay: 800, html: `
+                            You're welcome, Sarah! Have a great day. I'm always here if you need anything — just tap the chat icon. 💙
+                            <div class="chat-actions-row">
+                                <span class="chat-action-pill">📋 Email me this transcript</span>
+                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                            </div>
+                        `},
+                    ]
+                },
+            ]
+        },
+
+        transfer: {
+            autoOpen: true,
+            messages: [
+                {
+                    type: 'bot',
+                    delay: 500,
+                    html: `
+                        Hi Sarah! How can I help you today?
+                        <div class="smart-prompts">
+                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">I want to transfer a prescription to Costco</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 2)">Refill a prescription</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 3)">Check if my Rx is ready</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 4)">Compare drug pricing</button>
+                        </div>
+                    `
+                },
+                // Branch 1: Transfer flow
+                {
+                    type: 'continuation',
+                    branch: 1,
+                    messages: [
+                        { type: 'user', html: 'I want to transfer a prescription to Costco' },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help with that! Transferring is easy — I just need a couple of details.
+                            <br><br>
+                            <strong>Which pharmacy are you transferring from?</strong>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">Walgreens</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">CVS</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">Rite Aid</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 11)">Another pharmacy</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 10: Walgreens/CVS/Rite Aid
+                {
+                    type: 'continuation',
+                    branch: 10,
+                    messages: [
+                        { type: 'user', html: 'Walgreens' },
+                        { type: 'bot', delay: 1200, html: `
+                            Got it — transferring from Walgreens. What medication would you like to transfer?
+                            <br><br>
+                            You can tell me the medication name, or if you have the Rx number from your bottle, that works too.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 20)">Metformin 500mg</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 21)">I have multiple prescriptions to transfer</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 11: Another pharmacy
+                {
+                    type: 'continuation',
+                    branch: 11,
+                    messages: [
+                        { type: 'user', html: 'Another pharmacy' },
+                        { type: 'bot', delay: 800, html: `
+                            No problem! What's the name of the pharmacy? If you know the location (city or zip), that helps too.
+                        `},
+                    ]
+                },
+                // Branch 20: Single medication
+                {
+                    type: 'continuation',
+                    branch: 20,
+                    messages: [
+                        { type: 'user', html: 'Metformin 500mg, from the Walgreens on Front St in Issaquah' },
+                        { type: 'bot', delay: 1500, html: `
+                            Let me confirm the details:
+                            <div class="chat-card">
+                                <div class="chat-card-title">Transfer Request</div>
+                                <div class="chat-card-detail"><strong>Medication:</strong> Metformin 500mg</div>
+                                <div class="chat-card-detail"><strong>From:</strong> Walgreens — Front St, Issaquah, WA</div>
+                                <div class="chat-card-detail"><strong>To:</strong> Costco #482 — Issaquah, WA</div>
+                                <div class="chat-card-detail"><strong>Timeline:</strong> Usually ready within 24-48 hours</div>
+                                <div class="chat-card-detail"><strong>Costco member price:</strong> $4.00 / 30-day supply</div>
+                            </div>
+                            <br>
+                            Should I submit this transfer? We'll handle contacting Walgreens — you don't need to do anything else.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 30)">Yes, submit the transfer</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 31)">Wait — I have another one to transfer too</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 21: Multiple transfer
+                {
+                    type: 'continuation',
+                    branch: 21,
+                    messages: [
+                        { type: 'user', html: 'I have multiple prescriptions to transfer' },
+                        { type: 'bot', delay: 1000, html: `
+                            No problem — we can transfer them all at once. Just list the medications and I'll bundle them into one transfer request. 
+                            <br><br>
+                            What are the medications? (Name and strength if you know it)
+                        `},
+                    ]
+                },
+                // Branch 30: Submit transfer
+                {
+                    type: 'continuation',
+                    branch: 30,
+                    messages: [
+                        { type: 'user', html: 'Yes, submit the transfer' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Transfer submitted! Here's what happens next:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Transfer In Progress</div>
+                                <div class="chat-card-detail">We'll contact Walgreens to retrieve your prescription</div>
+                                <div class="chat-card-detail">You'll get a text when it's ready (usually 24-48 hrs)</div>
+                                <div class="chat-card-detail">No action needed from you</div>
+                            </div>
+                            <br>
+                            <strong>Quick tip:</strong> Costco member pricing on Metformin 500mg is $4.00 for a 30-day supply — one of the lowest around.
+                            <div class="email-summary">
+                                <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
+                                Includes: transfer details, expected timeline, and your Costco Pharmacy location info.
+                            </div>
+                            <br>Anything else?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 40)">Transfer another medication</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 41)">Set up auto-refill for this one</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 31: Add another
+                {
+                    type: 'continuation',
+                    branch: 31,
+                    messages: [
+                        { type: 'user', html: 'Wait — I have another one to transfer too' },
+                        { type: 'bot', delay: 800, html: `
+                            Sure! What's the other medication? Same pharmacy (Walgreens on Front St)?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 50)">Yes, same Walgreens — Atorvastatin 40mg</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 51)">Different pharmacy</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 50: Second transfer same pharmacy
+                {
+                    type: 'continuation',
+                    branch: 50,
+                    messages: [
+                        { type: 'user', html: 'Yes, same Walgreens — Atorvastatin 40mg' },
+                        { type: 'bot', delay: 1200, html: `
+                            Got it. Here's both transfers:
+                            <div class="chat-card">
+                                <div class="chat-card-title">Transfer Request — 2 Medications</div>
+                                <div class="chat-card-detail"><strong>1. Metformin 500mg</strong></div>
+                                <div class="chat-card-detail"><strong>2. Atorvastatin 40mg</strong></div>
+                                <div class="chat-card-detail">From: Walgreens — Front St, Issaquah, WA</div>
+                                <div class="chat-card-detail">To: Costco #482 — Issaquah, WA</div>
+                                <div class="chat-card-detail">Timeline: 24-48 hours for both</div>
+                            </div>
+                            <br>Ready to submit both?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 52)">Yes, submit both transfers</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 53)">Add one more</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 52: Both submitted
+                {
+                    type: 'continuation',
+                    branch: 52,
+                    messages: [
+                        { type: 'user', html: 'Yes, submit both transfers' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Both transfers submitted! We'll contact Walgreens and you'll get a text when each is ready.
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ 2 Transfers In Progress</div>
+                                <div class="chat-card-detail">✓ Metformin 500mg — processing</div>
+                                <div class="chat-card-detail">✓ Atorvastatin 40mg — processing</div>
+                                <div class="chat-card-detail">Expected: Ready within 24-48 hours</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Transfer confirmations emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <br>Welcome to Costco Pharmacy! 🎉 Your combined monthly savings on these two medications will be approximately <strong>$28/month</strong> vs. typical retail pricing.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Awesome, that's all!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 40: Transfer another
+                {
+                    type: 'continuation',
+                    branch: 40,
+                    messages: [
+                        { type: 'user', html: 'Transfer another medication' },
+                        { type: 'bot', delay: 800, html: `
+                            Sure! What's the next medication and which pharmacy is it at?
+                        `},
+                    ]
+                },
+                // Branch 41: Auto-refill
+                {
+                    type: 'continuation',
+                    branch: 41,
+                    messages: [
+                        { type: 'user', html: 'Set up auto-refill for the Metformin' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Auto-refill enabled! Once the transfer completes and your first fill is done, we'll automatically refill it every 30 days. You'll get a text 2 days before each refill processes.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Perfect, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 42: End
+                {
+                    type: 'continuation',
+                    branch: 42,
+                    messages: [
+                        { type: 'user', html: "That's all, thanks!" },
+                        { type: 'bot', delay: 800, html: `
+                            You're welcome! We're glad to have you at Costco Pharmacy. I'm always here if you need anything. 💙
+                            <div class="chat-actions-row">
+                                <span class="chat-action-pill">📋 Email me this transcript</span>
+                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 3: Check Rx ready
+                {
+                    type: 'continuation',
+                    branch: 3,
+                    messages: [
+                        { type: 'user', html: 'Check if my Rx is ready' },
+                        { type: 'bot', delay: 1000, html: `
+                            Let me check your active prescriptions...
+                            <div class="chat-card">
+                                <div class="chat-card-title">📋 Prescription Status</div>
+                                <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — ✓ Ready for pickup</div>
+                                <div class="chat-card-detail"><strong>Atorvastatin 20mg</strong> — Processing (ready by 3 PM)</div>
+                            </div>
+                            <br>Your Lisinopril is ready now! Want to pick it up or have it delivered?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 60)">Pick up now</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 61)">Wait for both to be ready, then deliver</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 60: Pick up now
+                {
+                    type: 'continuation',
+                    branch: 60,
+                    messages: [
+                        { type: 'user', html: "I'll pick up the Lisinopril now" },
+                        { type: 'bot', delay: 800, html: `
+                            Sounds good! Head to the pharmacy counter at Costco #482 — it's ready and waiting. Bring your ID.
+                            <br><br>Want me to text you when the Atorvastatin is ready later today?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Yes, text me when it's ready</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 61: Wait and deliver
+                {
+                    type: 'continuation',
+                    branch: 61,
+                    messages: [
+                        { type: 'user', html: 'Wait for both, then deliver together' },
+                        { type: 'bot', delay: 1000, html: `
+                            Smart — I'll bundle them. Once the Atorvastatin is ready (~3 PM), I'll trigger a same-day delivery for both. You'll get a text with tracking.
+                            <div class="chat-card">
+                                <div class="chat-card-title">📦 Bundled Delivery — Pending</div>
+                                <div class="chat-card-detail">Waiting for: Atorvastatin 20mg (~3 PM)</div>
+                                <div class="chat-card-detail">Then: Same-day delivery to your address</div>
+                                <div class="chat-card-detail">Both medications in one delivery</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Perfect, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 4: Compare pricing
+                {
+                    type: 'continuation',
+                    branch: 4,
+                    messages: [
+                        { type: 'user', html: 'Compare drug pricing' },
+                        { type: 'bot', delay: 900, html: `
+                            I can look up Costco member pricing for any medication. What drug would you like to price check?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 70)">Ozempic</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 71)">Lipitor (generic)</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 72)">Adderall</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 70: Ozempic pricing
+                {
+                    type: 'continuation',
+                    branch: 70,
+                    messages: [
+                        { type: 'user', html: 'Ozempic' },
+                        { type: 'bot', delay: 1200, html: `
+                            <div class="chat-card">
+                                <div class="chat-card-title">Ozempic (Semaglutide) — Pricing</div>
+                                <div class="chat-card-detail"><strong>Costco member price:</strong> $892.47 (4-week pen)</div>
+                                <div class="chat-card-detail"><strong>With most insurance:</strong> $25-150 copay</div>
+                                <div class="chat-card-detail"><strong>Manufacturer savings card:</strong> May reduce to $25/fill</div>
+                                <div class="chat-card-detail"><strong>vs. Walgreens retail:</strong> ~$1,029</div>
+                                <div class="chat-card-detail"><strong>Your savings at Costco:</strong> ~$136/fill</div>
+                            </div>
+                            <br>Want me to check if your Blue Cross plan covers it, or would you like to transfer this prescription here?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 73)">Check my insurance coverage</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">Transfer it to Costco</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 73: Insurance check
+                {
+                    type: 'continuation',
+                    branch: 73,
+                    messages: [
+                        { type: 'user', html: 'Check if my Blue Cross covers Ozempic' },
+                        { type: 'bot', delay: 1200, html: `
+                            Based on your Blue Cross BCBS plan, Ozempic is covered under <strong>Tier 3 (Preferred Brand)</strong> with a $75 copay per fill.
+                            <br><br>
+                            That means with insurance at Costco, you'd pay <strong>$75/month</strong> — and there's a manufacturer savings card that could bring it to <strong>$25</strong>.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">Great, let me transfer it here</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Good to know, thanks</button>
+                            </div>
+                        `},
+                    ]
+                },
+            ]
+        },
+
+        travel: {
+            autoOpen: true,
+            messages: [
+                {
+                    type: 'bot',
+                    delay: 500,
+                    html: `
+                        Hi Sarah! What can I help you with today?
+                        <div class="smart-prompts">
+                            <button class="smart-prompt-btn" onclick="advanceConversation('travel', 1)">I'm planning a trip and need to get ready</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('travel', 2)">Schedule a vaccine</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('travel', 3)">Refill early — I'm going away</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('travel', 4)">What travel health services do you offer?</button>
+                        </div>
+                    `
+                },
+                // Branch 1: Trip planning
+                {
+                    type: 'continuation',
+                    branch: 1,
+                    messages: [
+                        { type: 'user', html: "I'm planning a trip and need to get ready" },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help you prepare! Where are you headed, and when do you leave?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 10)">Thailand — leaving July 15</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 11)">Mexico — leaving next week</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 12)">Europe — leaving in August</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 10: Thailand
+                {
+                    type: 'continuation',
+                    branch: 10,
+                    messages: [
+                        { type: 'user', html: "Thailand — leaving July 15th" },
+                        { type: 'bot', delay: 1800, html: `
+                            Thailand — great trip! Here's what I'd recommend based on CDC guidelines and your pharmacy history:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🌏 Thailand Travel Prep</div>
+                                <div class="chat-card-detail"><strong>Recommended immunizations:</strong></div>
+                                <div class="chat-card-detail">• Hepatitis A — ✓ You're up to date</div>
+                                <div class="chat-card-detail">• Typhoid — Recommended (not on file)</div>
+                                <div class="chat-card-detail">• Japanese Encephalitis — If visiting rural areas</div>
+                                <div class="chat-card-detail"><strong>Medications to consider:</strong></div>
+                                <div class="chat-card-detail">• Malaria prophylaxis (rural/jungle areas)</div>
+                                <div class="chat-card-detail">• Traveler's diarrhea kit (Azithromycin)</div>
+                            </div>
+                            <br>
+                            Also — your Lisinopril refill would be due while you're away. Want me to refill it early so you have enough?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 20)">Yes, refill early + schedule Typhoid vaccine</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 21)">Tell me more about malaria prevention</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 22)">Book a full travel consultation</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 11: Mexico
+                {
+                    type: 'continuation',
+                    branch: 11,
+                    messages: [
+                        { type: 'user', html: "Mexico — leaving next week" },
+                        { type: 'bot', delay: 1500, html: `
+                            Mexico — nice! Short timeline, so let's focus on what matters most:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🇲🇽 Mexico Travel Prep</div>
+                                <div class="chat-card-detail"><strong>Immunizations:</strong></div>
+                                <div class="chat-card-detail">• Hepatitis A — ✓ You're up to date</div>
+                                <div class="chat-card-detail">• Typhoid — Recommended if eating street food</div>
+                                <div class="chat-card-detail"><strong>Medications:</strong></div>
+                                <div class="chat-card-detail">• Traveler's diarrhea kit — Highly recommended</div>
+                                <div class="chat-card-detail"><strong>Your Rx:</strong></div>
+                                <div class="chat-card-detail">• Lisinopril supply is sufficient for your trip ✓</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 30)">Get me the traveler's diarrhea kit</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 31)">Schedule Typhoid vaccine ASAP</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm good — just wanted to check</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 30: Traveler's kit
+                {
+                    type: 'continuation',
+                    branch: 30,
+                    messages: [
+                        { type: 'user', html: "Get me the traveler's diarrhea kit" },
+                        { type: 'bot', delay: 1000, html: `
+                            I can set that up. The traveler's diarrhea kit typically includes Azithromycin (antibiotic) and Loperamide (symptom relief). It requires a prescription.
+                            <div class="chat-card">
+                                <div class="chat-card-title">💊 Traveler's Health Kit</div>
+                                <div class="chat-card-detail">Azithromycin 250mg (3-day course) — Rx required</div>
+                                <div class="chat-card-detail">Loperamide 2mg (OTC) — no Rx needed</div>
+                                <div class="chat-card-detail">Costco member price: $6.50 total</div>
+                            </div>
+                            <br>Would you like me to request the Azithromycin from your doctor? We can reach out to them for you.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 33)">Yes, contact my doctor</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 34)">I'll ask at my $29 Sesame virtual visit instead</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 33: Contact doctor
+                {
+                    type: 'continuation',
+                    branch: 33,
+                    messages: [
+                        { type: 'user', html: 'Yes, contact my doctor' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Request sent to Dr. Patel's office. They usually respond within 24 hours. Once approved, we'll fill it immediately and text you.
+                            <div class="email-summary">
+                                <strong>📧 Request confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 34: Sesame visit
+                {
+                    type: 'continuation',
+                    branch: 34,
+                    messages: [
+                        { type: 'user', html: "I'll use a Sesame virtual visit" },
+                        { type: 'bot', delay: 1000, html: `
+                            Great option! As a Costco member, you get $29 virtual doctor visits through Sesame. The doctor can prescribe travel medications right in the appointment.
+                            <div class="chat-card">
+                                <div class="chat-card-title">👨‍⚕️ Sesame Virtual Visit</div>
+                                <div class="chat-card-detail">Cost: $29 (Costco member exclusive)</div>
+                                <div class="chat-card-detail">Available: Today, next appointment in ~30 min</div>
+                                <div class="chat-card-detail">Prescription sent directly to Costco Pharmacy</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 35)">Book the next available Sesame appointment</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'll book later, thanks</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 35: Sesame booked
+                {
+                    type: 'continuation',
+                    branch: 35,
+                    messages: [
+                        { type: 'user', html: 'Book the next available' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Sesame appointment booked! You'll see Dr. Rivera in about 30 minutes. Check your email for the video link.
+                            <br><br>
+                            <strong>Tip:</strong> Mention you're traveling to Mexico and need a traveler's diarrhea kit — they'll send the Rx right to our pharmacy.
+                            <div class="email-summary">
+                                <strong>📧 Appointment details emailed to sarah.m@gmail.com</strong>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 20: Refill + Typhoid
+                {
+                    type: 'continuation',
+                    branch: 20,
+                    messages: [
+                        { type: 'user', html: 'Yes, refill early and schedule the Typhoid vaccine' },
+                        { type: 'bot', delay: 1200, html: `
+                            Done and done. Here's your plan:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Travel Prep — Confirmed</div>
+                                <div class="chat-card-detail"><strong>Rx Refill:</strong> Lisinopril 10mg — 90-day supply processing now</div>
+                                <div class="chat-card-detail"><strong>Typhoid Vaccine:</strong> Available dates at Costco #482:</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Sat, June 21 at 10:00 AM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Mon, June 23 at 3:30 PM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Wed, June 25 at 11:00 AM</div>
+                                <div class="chat-card-detail"><em>Typhoid vaccine should be given at least 2 weeks before travel.</em></div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 40)">Book Saturday June 21 at 10 AM</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 41)">Book Monday June 23 at 3:30 PM</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 40: Saturday booked
+                {
+                    type: 'continuation',
+                    branch: 40,
+                    messages: [
+                        { type: 'user', html: 'Book Saturday June 21 at 10 AM' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ All set! Here's your complete travel prep:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🌏 Thailand Trip — Ready</div>
+                                <div class="chat-card-detail">✓ Lisinopril refill processing (ready tomorrow)</div>
+                                <div class="chat-card-detail">✓ Typhoid vaccine — Sat, June 21 at 10:00 AM</div>
+                                <div class="chat-card-detail">✓ Hep A — Already current</div>
+                                <div class="chat-card-detail">📍 Costco Pharmacy #482, Issaquah, WA</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Travel prep summary emailed to sarah.m@gmail.com</strong>
+                                Includes: appointment confirmation, medication timeline, and CDC travel health resources for Thailand.
+                            </div>
+                            <br>Have a wonderful trip! Anything else?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 50)">What about malaria pills?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">That's everything, thank you!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 41: Monday booked
+                {
+                    type: 'continuation',
+                    branch: 41,
+                    messages: [
+                        { type: 'user', html: 'Book Monday June 23 at 3:30 PM' },
+                        { type: 'bot', delay: 900, html: `
+                            ✓ Booked! Typhoid vaccine — Mon, June 23 at 3:30 PM at Costco #482.
+                            <div class="email-summary">
+                                <strong>📧 Full travel prep summary emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks, I'm all set!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 21: Malaria info
+                {
+                    type: 'continuation',
+                    branch: 21,
+                    messages: [
+                        { type: 'user', html: 'Tell me more about malaria prevention' },
+                        { type: 'bot', delay: 1200, html: `
+                            Good question! For Thailand, malaria risk depends on where you're going:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🦟 Malaria Prevention — Thailand</div>
+                                <div class="chat-card-detail"><strong>Low/no risk:</strong> Bangkok, Chiang Mai city, beach resorts</div>
+                                <div class="chat-card-detail"><strong>Higher risk:</strong> Rural/jungle areas, border regions</div>
+                                <div class="chat-card-detail"><strong>Prophylaxis options:</strong></div>
+                                <div class="chat-card-detail">• Doxycycline — $4/month (cheapest, take daily)</div>
+                                <div class="chat-card-detail">• Malarone — $120/month (fewer side effects)</div>
+                                <div class="chat-card-detail">• Mefloquine — $45/month (weekly dosing)</div>
+                            </div>
+                            <br>Will you be visiting rural or jungle areas?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 50)">Yes — we're doing a jungle trek</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 51)">No — mostly Bangkok and beaches</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 50: Need malaria pills
+                {
+                    type: 'continuation',
+                    branch: 50,
+                    messages: [
+                        { type: 'user', html: "Yes — we're doing a jungle trek" },
+                        { type: 'bot', delay: 1000, html: `
+                            In that case, I'd recommend getting a prescription for malaria prophylaxis. Doxycycline is the most affordable option at $4/month with Costco pricing.
+                            <br><br>
+                            You'll need a prescription — I can either contact your doctor or you can get one via a $29 Sesame virtual visit.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 33)">Contact my doctor</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 34)">Book a Sesame virtual visit</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 22)">Book a full travel consultation instead</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 51: No malaria needed
+                {
+                    type: 'continuation',
+                    branch: 51,
+                    messages: [
+                        { type: 'user', html: "No — mostly Bangkok and beaches" },
+                        { type: 'bot', delay: 900, html: `
+                            Good news — for Bangkok and resort areas, the CDC says malaria prophylaxis is generally not needed. Just use insect repellent (DEET 30%+) and you'll be fine.
+                            <br><br>
+                            Anything else for your trip?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 20)">Schedule my Typhoid vaccine + early refill</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm all set, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 22: Full travel consultation
+                {
+                    type: 'continuation',
+                    branch: 22,
+                    messages: [
+                        { type: 'user', html: 'Book a full travel consultation' },
+                        { type: 'bot', delay: 1100, html: `
+                            Great choice! Our full-service travel medicine consultation covers everything — vaccines, medications, and country-specific health briefing.
+                            <div class="chat-card">
+                                <div class="chat-card-title">🌐 Travel Medicine Consultation</div>
+                                <div class="chat-card-detail"><strong>What's included:</strong></div>
+                                <div class="chat-card-detail">• Full country risk assessment</div>
+                                <div class="chat-card-detail">• All recommended vaccines administered</div>
+                                <div class="chat-card-detail">• Prescriptions for prophylaxis meds</div>
+                                <div class="chat-card-detail">• Travel health kit assembled</div>
+                                <div class="chat-card-detail"><strong>Cost:</strong> $55 consultation + vaccine/med costs</div>
+                                <div class="chat-card-detail"><strong>Next available:</strong> Thursday, June 12 at 2 PM</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 52)">Book Thursday June 12 at 2 PM</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 53)">Show other available dates</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 52: Consultation booked
+                {
+                    type: 'continuation',
+                    branch: 52,
+                    messages: [
+                        { type: 'user', html: 'Book Thursday June 12 at 2 PM' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Consultation booked!
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ Travel Medicine Consultation</div>
+                                <div class="chat-card-detail">📅 Thursday, June 12 at 2:00 PM</div>
+                                <div class="chat-card-detail">📍 Costco Pharmacy #482, Issaquah</div>
+                                <div class="chat-card-detail">⏱️ Allow 30-45 minutes</div>
+                                <div class="chat-card-detail">Bring: Vaccination records if you have them</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Appointment details emailed to sarah.m@gmail.com</strong>
+                                Includes: what to bring, forms to pre-fill, and parking info.
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 32: End
+                {
+                    type: 'continuation',
+                    branch: 32,
+                    messages: [
+                        { type: 'user', html: "That's everything, thank you!" },
+                        { type: 'bot', delay: 800, html: `
+                            You're welcome, Sarah! Have an amazing trip. I'm here if anything comes up before you leave. 🌴
+                            <div class="chat-actions-row">
+                                <span class="chat-action-pill">📋 Email me this transcript</span>
+                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 2: Schedule vaccine
+                {
+                    type: 'continuation',
+                    branch: 2,
+                    messages: [
+                        { type: 'user', html: 'Schedule a vaccine' },
+                        { type: 'bot', delay: 1000, html: `
+                            Sure! What vaccine are you looking to schedule?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 60)">Flu shot</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 61)">COVID booster</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 62)">Shingles (Shingrix)</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 63)">Travel vaccines</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 64)">Not sure — what do I need?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 64: What do I need?
+                {
+                    type: 'continuation',
+                    branch: 64,
+                    messages: [
+                        { type: 'user', html: "Not sure — what do I need?" },
+                        { type: 'bot', delay: 1200, html: `
+                            Based on your records and age, here's what I'd recommend:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💉 Your Vaccine Status</div>
+                                <div class="chat-card-detail">✓ Hepatitis A — Current</div>
+                                <div class="chat-card-detail">✓ Tdap — Current (due 2029)</div>
+                                <div class="chat-card-detail">⚠️ Flu — Due this fall (last: Oct 2025)</div>
+                                <div class="chat-card-detail">⚠️ COVID booster — May be due (last: Sep 2025)</div>
+                                <div class="chat-card-detail">💡 Shingrix — Recommended for your age</div>
+                            </div>
+                            <br>Would you like to schedule any of these?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 62)">Schedule Shingrix — let's do it</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">I'm good for now, thanks</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 62: Shingrix
+                {
+                    type: 'continuation',
+                    branch: 62,
+                    messages: [
+                        { type: 'user', html: "Schedule Shingrix" },
+                        { type: 'bot', delay: 1000, html: `
+                            Shingrix is a 2-dose series. Let's get your first dose scheduled:
+                            <div class="chat-card">
+                                <div class="chat-card-title">Shingrix — Dose 1</div>
+                                <div class="chat-card-detail">Available at Costco #482:</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Tomorrow at 10:30 AM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Friday at 2:00 PM</div>
+                                <div class="chat-card-detail">&nbsp;&nbsp;• Saturday at 9:00 AM</div>
+                                <div class="chat-card-detail">Cost: $0 (covered by Blue Cross)</div>
+                                <div class="chat-card-detail">Dose 2: I'll schedule 2-6 months later</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 65)">Book Saturday at 9 AM</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 65)">Book tomorrow at 10:30 AM</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 65: Vaccine booked
+                {
+                    type: 'continuation',
+                    branch: 65,
+                    messages: [
+                        { type: 'user', html: 'Book Saturday at 9 AM' },
+                        { type: 'bot', delay: 900, html: `
+                            ✓ Shingrix Dose 1 booked — Saturday at 9:00 AM at Costco #482. I'll automatically schedule Dose 2 in 2 months and send you a reminder.
+                            <div class="email-summary">
+                                <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 3: Early refill
+                {
+                    type: 'continuation',
+                    branch: 3,
+                    messages: [
+                        { type: 'user', html: "Refill early — I'm going away" },
+                        { type: 'bot', delay: 1000, html: `
+                            Smart thinking! Let me check what's eligible for early refill:
+                            <div class="chat-card">
+                                <div class="chat-card-title">📋 Early Refill Check</div>
+                                <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — ✓ Can refill now</div>
+                                <div class="chat-card-detail"><strong>Atorvastatin 20mg</strong> — ✗ Too early (eligible July 3)</div>
+                                <div class="chat-card-detail"><strong>Vitamin D3</strong> — ✓ Can refill now</div>
+                            </div>
+                            <br>When do you leave? I can check if your insurance allows a vacation override for the Atorvastatin.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 70)">I leave July 10 — can we get the override?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 71)">Just refill the two that are available</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 70: Vacation override
+                {
+                    type: 'continuation',
+                    branch: 70,
+                    messages: [
+                        { type: 'user', html: "I leave July 10 — can we get the override?" },
+                        { type: 'bot', delay: 1200, html: `
+                            Let me check with Blue Cross... Yes! Since your trip starts July 10 and the refill is eligible July 3, we can process a <strong>vacation supply override</strong> to fill it a few days early.
+                            <br><br>
+                            Want me to refill all three for your trip?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 72)">Yes, refill all three</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 71: Refill available ones
+                {
+                    type: 'continuation',
+                    branch: 71,
+                    messages: [
+                        { type: 'user', html: 'Just refill the two that are available' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Done! Processing refills for:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ 2 Refills Submitted</div>
+                                <div class="chat-card-detail">💊 Lisinopril 10mg — 90-day supply</div>
+                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — 90-day supply</div>
+                                <div class="chat-card-detail">Ready: Tomorrow by 2 PM</div>
+                                <div class="chat-card-detail">Total copay: $12.50</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Refill confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Perfect, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 72: Refill all three
+                {
+                    type: 'continuation',
+                    branch: 72,
+                    messages: [
+                        { type: 'user', html: 'Yes, refill all three' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ All three refills submitted!
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ 3 Refills — Travel Supply</div>
+                                <div class="chat-card-detail">💊 Lisinopril 10mg — 90-day</div>
+                                <div class="chat-card-detail">💊 Atorvastatin 20mg — 30-day (vacation override)</div>
+                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — 90-day</div>
+                                <div class="chat-card-detail">Ready: Tomorrow by 2 PM</div>
+                            </div>
+                            <br>You're all stocked up for your trip! 🧳
+                            <div class="email-summary">
+                                <strong>📧 Refill confirmations emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Amazing, thank you!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 4: What travel services
+                {
+                    type: 'continuation',
+                    branch: 4,
+                    messages: [
+                        { type: 'user', html: 'What travel health services do you offer?' },
+                        { type: 'bot', delay: 1000, html: `
+                            Costco Pharmacy offers comprehensive travel health services:
+                            <div class="chat-card">
+                                <div class="chat-card-title">✈️ Travel Health Services</div>
+                                <div class="chat-card-detail"><strong>Travel Consultation ($55)</strong> — Full country-specific health assessment</div>
+                                <div class="chat-card-detail"><strong>Immunizations</strong> — Hep A/B, Typhoid, Yellow Fever, Japanese Encephalitis, and more</div>
+                                <div class="chat-card-detail"><strong>Prophylaxis Meds</strong> — Malaria, altitude sickness, traveler's diarrhea</div>
+                                <div class="chat-card-detail"><strong>Early Refills</strong> — Vacation supply overrides for your regular meds</div>
+                                <div class="chat-card-detail"><strong>Virtual Visit ($29)</strong> — Sesame doctors can prescribe travel meds</div>
+                            </div>
+                            <br>Would you like to get started with any of these?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 22)">Book a travel consultation</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 1)">I have a specific trip to plan for</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Just exploring, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+            ]
+        },
+
+        discovery: {
+            autoOpen: true,
+            messages: [
+                {
+                    type: 'bot',
+                    delay: 500,
+                    html: `
+                        <div class="personalized-badge">✦ New for you</div>
+                        Hi Sarah! Quick heads-up — based on your profile, here are a couple of things you might not know about:
+                        <div class="chat-card">
+                            <div class="chat-card-title">💳 Your HSA Card Works Here</div>
+                            <div class="chat-card-detail">Costco now accepts HSA/FSA cards at every register, including pharmacy. Your Blue Cross HSA is eligible.</div>
+                            <div class="chat-card-action">Learn more</div>
+                        </div>
+                        <div class="chat-card">
+                            <div class="chat-card-title">🐕 Pet Medications</div>
+                            <div class="chat-card-detail">We fill pet prescriptions too — often at lower cost than vet offices. Same member pricing applies.</div>
+                            <div class="chat-card-action">Explore pet meds</div>
+                        </div>
+                        <div class="smart-prompts">
+                            <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 1)">Tell me more about using my HSA card</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 2)">I actually do have a dog — how does pet Rx work?</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 3)">No thanks, I need help with something else</button>
+                        </div>
+                    `
+                },
+                // Branch 1: HSA info
+                {
+                    type: 'continuation',
+                    branch: 1,
+                    messages: [
+                        { type: 'user', html: 'Tell me more about using my HSA card' },
+                        { type: 'bot', delay: 1100, html: `
+                            Great question! Here's how it works:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💳 HSA/FSA at Costco Pharmacy</div>
+                                <div class="chat-card-detail"><strong>Where:</strong> Every register, including pharmacy counter</div>
+                                <div class="chat-card-detail"><strong>What's covered:</strong></div>
+                                <div class="chat-card-detail">• All prescription medications ✓</div>
+                                <div class="chat-card-detail">• Most OTC medications (with Rx or eligible item) ✓</div>
+                                <div class="chat-card-detail">• First aid supplies ✓</div>
+                                <div class="chat-card-detail">• Contact lenses & solution ✓</div>
+                                <div class="chat-card-detail">• Sunscreen (SPF 15+) ✓</div>
+                                <div class="chat-card-detail"><strong>Not covered:</strong> General groceries, cosmetics, vitamins (without Rx)</div>
+                            </div>
+                            <br>You can simply swipe your HSA card at checkout — no paperwork needed. Would you like to know anything else?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 10)">Can I use it for my pet's medications?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 11)">What about Medicare OTC benefits?</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 12)">Good to know! Anything else I should know about?</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 10: HSA for pets
+                {
+                    type: 'continuation',
+                    branch: 10,
+                    messages: [
+                        { type: 'user', html: 'Can I use my HSA for pet medications?' },
+                        { type: 'bot', delay: 1000, html: `
+                            Unfortunately, HSA/FSA funds generally <strong>cannot</strong> be used for pet medications — the IRS requires the expense to be for a qualifying human dependent.
+                            <br><br>
+                            <strong>However</strong> — Costco member pricing on pet meds is still significantly lower than vet offices (typically 30-50% less). So you're still saving!
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 2)">Tell me more about pet prescriptions</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 11: Medicare OTC
+                {
+                    type: 'continuation',
+                    branch: 11,
+                    messages: [
+                        { type: 'user', html: 'What about Medicare OTC benefits?' },
+                        { type: 'bot', delay: 1100, html: `
+                            If you have a Medicare Advantage plan with OTC benefits, you can use your OTC benefit card at Costco too!
+                            <div class="chat-card">
+                                <div class="chat-card-title">🏥 Medicare OTC Benefits at Costco</div>
+                                <div class="chat-card-detail"><strong>Accepted:</strong> Most Medicare Advantage OTC benefit cards</div>
+                                <div class="chat-card-detail"><strong>Where:</strong> Any register, including pharmacy</div>
+                                <div class="chat-card-detail"><strong>Eligible items:</strong> OTC medications, vitamins, first aid, dental care, eye care</div>
+                                <div class="chat-card-detail"><strong>Tip:</strong> Costco's bulk sizing = more product per benefit dollar</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks, that's helpful!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 12: What else should I know
+                {
+                    type: 'continuation',
+                    branch: 12,
+                    messages: [
+                        { type: 'user', html: 'Anything else I should know about?' },
+                        { type: 'bot', delay: 1000, html: `
+                            A few things members often don't realize:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💡 Did You Know?</div>
+                                <div class="chat-card-detail">• <strong>$29 virtual doctor visits</strong> through Sesame — no insurance needed</div>
+                                <div class="chat-card-detail">• <strong>Locker Pickup</strong> — grab your Rx from a secure locker, no counter wait</div>
+                                <div class="chat-card-detail">• <strong>Pay Ahead</strong> — pay online, skip the line at pickup</div>
+                                <div class="chat-card-detail">• <strong>Auto-refill</strong> — never miss a dose, we handle the timing</div>
+                                <div class="chat-card-detail">• <strong>Non-members welcome</strong> — pharmacy is open to everyone</div>
+                            </div>
+                            <br>Want me to set up any of these?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 20)">Set up auto-refill for my prescriptions</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 21)">Tell me about locker pickup</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 22)">Book a $29 virtual visit</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 20: Auto-refill
+                {
+                    type: 'continuation',
+                    branch: 20,
+                    messages: [
+                        { type: 'user', html: 'Set up auto-refill for my prescriptions' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Here's what I can set up:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🔄 Auto-Refill</div>
+                                <div class="chat-card-detail">✓ Lisinopril 10mg — every 90 days</div>
+                                <div class="chat-card-detail">✓ Atorvastatin 20mg — every 30 days</div>
+                                <div class="chat-card-detail">✓ Vitamin D3 2000IU — every 90 days</div>
+                                <div class="chat-card-detail">You'll get a notification 2 days before each fill</div>
+                                <div class="chat-card-detail">Cancel anytime</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 23)">Enable auto-refill for all</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 24)">Just for Lisinopril and Atorvastatin</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 23: All auto-refill
+                {
+                    type: 'continuation',
+                    branch: 23,
+                    messages: [
+                        { type: 'user', html: 'Enable auto-refill for all' },
+                        { type: 'bot', delay: 800, html: `
+                            ✓ Auto-refill enabled for all 3 prescriptions! Pharmacy on autopilot — we'll handle the timing, you just pick up or get delivery. 👍
+                            <div class="email-summary">
+                                <strong>📧 Auto-refill confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Love it, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 21: Locker pickup
+                {
+                    type: 'continuation',
+                    branch: 21,
+                    messages: [
+                        { type: 'user', html: 'Tell me about locker pickup' },
+                        { type: 'bot', delay: 1100, html: `
+                            Locker Pickup is our newest convenience option:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🔐 Rx Locker Pickup</div>
+                                <div class="chat-card-detail"><strong>How it works:</strong></div>
+                                <div class="chat-card-detail">1. Your prescription is filled and placed in a secure locker</div>
+                                <div class="chat-card-detail">2. You get a code via text when it's ready</div>
+                                <div class="chat-card-detail">3. Enter your code at the locker — grab and go</div>
+                                <div class="chat-card-detail"><strong>Available at:</strong> Costco #482 Issaquah ✓</div>
+                                <div class="chat-card-detail"><strong>Hours:</strong> Available during store hours (no pharmacy counter wait)</div>
+                                <div class="chat-card-detail"><strong>Cost:</strong> Free — same as regular pickup</div>
+                            </div>
+                            <br>Want to use locker pickup for your next refill?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 25)">Yes, set locker as my default</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know for next time</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 25: Locker default
+                {
+                    type: 'continuation',
+                    branch: 25,
+                    messages: [
+                        { type: 'user', html: 'Yes, set locker as my default' },
+                        { type: 'bot', delay: 800, html: `
+                            ✓ Locker pickup set as your default! Next time a prescription is ready, you'll get a text with your locker code instead of waiting at the counter.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Awesome, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 22: Virtual visit
+                {
+                    type: 'continuation',
+                    branch: 22,
+                    messages: [
+                        { type: 'user', html: 'Book a $29 virtual visit' },
+                        { type: 'bot', delay: 1100, html: `
+                            Sesame virtual visits are great for quick consultations, new prescriptions, or refills. Here's what's available:
+                            <div class="chat-card">
+                                <div class="chat-card-title">👨‍⚕️ Sesame Virtual Visit — $29</div>
+                                <div class="chat-card-detail"><strong>Next available:</strong> Today in ~25 minutes</div>
+                                <div class="chat-card-detail"><strong>What they can do:</strong></div>
+                                <div class="chat-card-detail">• New prescriptions</div>
+                                <div class="chat-card-detail">• Refill existing medications</div>
+                                <div class="chat-card-detail">• Travel medicine consultation</div>
+                                <div class="chat-card-detail">• General health concerns</div>
+                                <div class="chat-card-detail"><strong>Rx sent to:</strong> Costco Pharmacy #482 automatically</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 26)">Book the next available appointment</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">I'll bookmark this for later</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 26: Virtual booked
+                {
+                    type: 'continuation',
+                    branch: 26,
+                    messages: [
+                        { type: 'user', html: 'Book the next available' },
+                        { type: 'bot', delay: 900, html: `
+                            ✓ Sesame appointment booked! You'll see a doctor in about 25 minutes via video call. Check your email for the link.
+                            <div class="email-summary">
+                                <strong>📧 Video visit link emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 2: Pet prescriptions
+                {
+                    type: 'continuation',
+                    branch: 2,
+                    messages: [
+                        { type: 'user', html: "I actually do have a dog — how does pet Rx work?" },
+                        { type: 'bot', delay: 1200, html: `
+                            Great news — it's simple! Here's how it works:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🐕 Pet Prescriptions at Costco</div>
+                                <div class="chat-card-detail"><strong>How it works:</strong></div>
+                                <div class="chat-card-detail">1. Get a prescription from your vet (or we can contact them)</div>
+                                <div class="chat-card-detail">2. Fill it at Costco Pharmacy — same counter, same team</div>
+                                <div class="chat-card-detail">3. Member pricing applies — often 30-50% less than vet offices</div>
+                                <div class="chat-card-detail"><strong>Common pet meds we fill:</strong></div>
+                                <div class="chat-card-detail">Heartgard, Apoquel, Rimadyl, Gabapentin, Trazodone, antibiotics</div>
+                            </div>
+                            <br>Would you like me to check pricing or transfer a pet prescription?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 40)">Check pricing on Apoquel</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 41)">Transfer my dog's Heartgard prescription</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 42)">Check pricing on Trazodone</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 40: Apoquel pricing
+                {
+                    type: 'continuation',
+                    branch: 40,
+                    messages: [
+                        { type: 'user', html: 'Check pricing on Apoquel for my dog' },
+                        { type: 'bot', delay: 1000, html: `
+                            <div class="chat-card">
+                                <div class="chat-card-title">Apoquel (Oclacitinib) — Member Pricing</div>
+                                <div class="chat-card-detail"><strong>16mg, 30 tablets:</strong> $62.49</div>
+                                <div class="chat-card-detail"><strong>Typical vet office price:</strong> $90-120</div>
+                                <div class="chat-card-detail"><strong>Your savings:</strong> ~$30-60 per fill</div>
+                                <div class="chat-card-detail"><strong>Annual savings:</strong> ~$360-720</div>
+                            </div>
+                            <br>Want me to start a transfer from your vet? I'll just need their name or clinic.
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 50)">Yes, transfer from my vet</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 42)">Check another medication too</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 41: Heartgard transfer
+                {
+                    type: 'continuation',
+                    branch: 41,
+                    messages: [
+                        { type: 'user', html: "Transfer my dog's Heartgard prescription" },
+                        { type: 'bot', delay: 1000, html: `
+                            I can help! To transfer your dog's Heartgard, I'll need:
+                            <br><br>
+                            <strong>1.</strong> Your dog's name<br>
+                            <strong>2.</strong> Your vet's name or clinic
+                            <br><br>
+                            What's your dog's name and who's the vet?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 51)">Max — vet is Issaquah Animal Hospital</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 51: Pet transfer submitted
+                {
+                    type: 'continuation',
+                    branch: 51,
+                    messages: [
+                        { type: 'user', html: 'Max — vet is Issaquah Animal Hospital' },
+                        { type: 'bot', delay: 1200, html: `
+                            Got it! Let me confirm:
+                            <div class="chat-card">
+                                <div class="chat-card-title">🐕 Pet Rx Transfer</div>
+                                <div class="chat-card-detail"><strong>Pet:</strong> Max</div>
+                                <div class="chat-card-detail"><strong>Medication:</strong> Heartgard Plus</div>
+                                <div class="chat-card-detail"><strong>From:</strong> Issaquah Animal Hospital</div>
+                                <div class="chat-card-detail"><strong>To:</strong> Costco Pharmacy #482</div>
+                                <div class="chat-card-detail"><strong>Costco price:</strong> ~$42/6-month supply</div>
+                                <div class="chat-card-detail"><strong>Typical vet price:</strong> ~$65-80</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 52)">Submit the transfer</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 52: Transfer confirmed
+                {
+                    type: 'continuation',
+                    branch: 52,
+                    messages: [
+                        { type: 'user', html: 'Submit the transfer' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Pet Rx transfer submitted! We'll contact Issaquah Animal Hospital and text you when Max's Heartgard is ready.
+                            <div class="email-summary">
+                                <strong>📧 Transfer confirmation emailed to sarah.m@gmail.com</strong>
+                                Max is now in your Family & Pets profile.
+                            </div>
+                            <br>Anything else for you or Max? 🐾
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">That's everything!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 50: Vet transfer from pricing
+                {
+                    type: 'continuation',
+                    branch: 50,
+                    messages: [
+                        { type: 'user', html: 'Yes, transfer from my vet' },
+                        { type: 'bot', delay: 900, html: `
+                            Great! What's your vet's name or clinic? And your dog's name?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 51)">Max — Issaquah Animal Hospital</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 42: Trazodone pricing
+                {
+                    type: 'continuation',
+                    branch: 42,
+                    messages: [
+                        { type: 'user', html: 'Check pricing on Trazodone for my dog' },
+                        { type: 'bot', delay: 1000, html: `
+                            <div class="chat-card">
+                                <div class="chat-card-title">Trazodone 50mg — Member Pricing</div>
+                                <div class="chat-card-detail"><strong>30 tablets:</strong> $4.00</div>
+                                <div class="chat-card-detail"><strong>Typical vet office:</strong> $15-25</div>
+                                <div class="chat-card-detail"><strong>Your savings:</strong> ~$11-21 per fill</div>
+                                <div class="chat-card-detail"><em>Great for dog anxiety — storms, vet visits, travel</em></div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 50)">Transfer this from my vet</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Good to know!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 3: Something else
+                {
+                    type: 'continuation',
+                    branch: 3,
+                    messages: [
+                        { type: 'user', html: 'No thanks, I need help with something else' },
+                        { type: 'bot', delay: 800, html: `
+                            Of course! What can I help with?
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 60)">Refill a prescription</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 61)">Check if my Rx is ready</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 62)">Schedule a vaccine</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 63)">Transfer a prescription to Costco</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 64)">Compare drug pricing</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 60: Refill
+                {
+                    type: 'continuation',
+                    branch: 60,
+                    messages: [
+                        { type: 'user', html: 'Refill a prescription' },
+                        { type: 'bot', delay: 1000, html: `
+                            Here are your active prescriptions:
+                            <div class="chat-card">
+                                <div class="chat-card-title">💊 Available for Refill</div>
+                                <div class="chat-card-detail">1. <strong>Lisinopril 10mg</strong> — ✓ Ready to refill</div>
+                                <div class="chat-card-detail">2. <strong>Vitamin D3 2000IU</strong> — ✓ Ready to refill</div>
+                                <div class="chat-card-detail">3. <strong>Atorvastatin 20mg</strong> — Available July 3</div>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 65)">Refill Lisinopril</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 66)">Refill both available ones</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 65: Single refill
+                {
+                    type: 'continuation',
+                    branch: 65,
+                    messages: [
+                        { type: 'user', html: 'Refill Lisinopril' },
+                        { type: 'bot', delay: 900, html: `
+                            ✓ Refill submitted! Lisinopril 10mg will be ready tomorrow by 2 PM at Costco #482. Copay: $4.00.
+                            <div class="email-summary">
+                                <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 66: Both refills
+                {
+                    type: 'continuation',
+                    branch: 66,
+                    messages: [
+                        { type: 'user', html: 'Refill both available ones' },
+                        { type: 'bot', delay: 1000, html: `
+                            ✓ Both refills submitted!
+                            <div class="chat-card">
+                                <div class="chat-card-title">✓ 2 Refills Processing</div>
+                                <div class="chat-card-detail">💊 Lisinopril 10mg — $4.00</div>
+                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — $8.50</div>
+                                <div class="chat-card-detail">Ready: Tomorrow by 2 PM</div>
+                                <div class="chat-card-detail">Total: $12.50</div>
+                            </div>
+                            <div class="email-summary">
+                                <strong>📧 Confirmation emailed to sarah.m@gmail.com</strong>
+                            </div>
+                            <div class="smart-prompts">
+                                <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 30)">Perfect, thanks!</button>
+                            </div>
+                        `},
+                    ]
+                },
+                // Branch 30: End
+                {
+                    type: 'continuation',
+                    branch: 30,
+                    messages: [
+                        { type: 'user', html: "Thanks!" },
+                        { type: 'bot', delay: 700, html: `
+                            You're welcome, Sarah! I'm always here if you need anything. Have a great day! 💙
+                            <div class="chat-actions-row">
+                                <span class="chat-action-pill">📋 Email me this transcript</span>
+                                <span class="chat-action-pill">⭐ Rate this experience</span>
+                            </div>
+                        `},
+                    ]
+                },
+            ]
+        }
+    };
+
+    // ============ CHAT ENGINE ============
+    let currentScenario = 'personalized';
+    let chatOpen = false;
+
+    function openChat() {
+        document.getElementById('chatWindow').classList.add('open');
+        document.getElementById('chatFab').classList.add('hidden');
+        document.getElementById('chatPulse').classList.add('hidden');
+        chatOpen = true;
+    }
+
+    function closeChat() {
+        document.getElementById('chatWindow').classList.remove('open');
+        document.getElementById('chatFab').classList.remove('hidden');
+        document.getElementById('chatPulse').classList.remove('hidden');
+        chatOpen = false;
+    }
+
+    function addMessage(type, html) {
+        const body = document.getElementById('chatBody');
+        const msg = document.createElement('div');
+        msg.className = `chat-message ${type}`;
+        if (type === 'bot') {
+            msg.innerHTML = `<div class="msg-name">Pharmacy Assistant</div>${html}`;
+        } else {
+            msg.innerHTML = html;
+        }
+        body.appendChild(msg);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function showTyping() {
+        const body = document.getElementById('chatBody');
+        const typing = document.createElement('div');
+        typing.className = 'typing-indicator';
+        typing.id = 'typingIndicator';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        body.appendChild(typing);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function removeTyping() {
+        const el = document.getElementById('typingIndicator');
+        if (el) el.remove();
+    }
+
+    function advanceConversation(scenario, branch) {
+        const data = scenarios[scenario];
+        const continuation = data.messages.find(m => m.type === 'continuation' && m.branch === branch);
+        if (!continuation) return;
+
+        // Disable all current prompt buttons
+        document.querySelectorAll('.smart-prompt-btn').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        });
+        document.querySelectorAll('.chat-action-pill').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        });
+
+        let delay = 0;
+        continuation.messages.forEach((msg, i) => {
+            delay += msg.delay || 800;
+            if (msg.type === 'user') {
+                setTimeout(() => addMessage('user', msg.html), delay);
+            } else {
+                const showTypingDelay = delay - 600;
+                setTimeout(() => showTyping(), Math.max(showTypingDelay, delay - 800));
+                setTimeout(() => {
+                    removeTyping();
+                    addMessage('bot', msg.html);
+                }, delay);
+            }
+            delay += 400;
+        });
+    }
+
+    function handleSend() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+        addMessage('user', text);
+        input.value = '';
+
+        setTimeout(() => showTyping(), 500);
+        setTimeout(() => {
+            removeTyping();
+            addMessage('bot', `I can help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help with?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">That's all, thanks!</button></div>`);
+        }, 1500);
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') handleSend();
+    }
+
+    function loadScenario(name) {
+        currentScenario = name;
+        document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
+        const activeTab = document.querySelector(`.scenario-tab[onclick*="${name}"]`);
+        if (activeTab) activeTab.classList.add('active');
+
+        const body = document.getElementById('chatBody');
+        body.innerHTML = '';
+
+        const scenario = scenarios[name];
+        if (scenario.autoOpen && !chatOpen) {
+            setTimeout(() => openChat(), 300);
+        }
+
+        setTimeout(() => {
+            addMessage('bot', scenario.messages[0].html);
+        }, scenario.messages[0].delay || 500);
+    }
+
+    function restartScenario() {
+        loadScenario(currentScenario);
+    }
+
+    function downloadTranscript() {
+        const body = document.getElementById('chatBody');
+        const messages = body.querySelectorAll('.chat-message');
+        let transcript = `Costco Pharmacy Assistant — Transcript\nScenario: ${currentScenario}\nDate: ${new Date().toLocaleDateString()}\n${'—'.repeat(40)}\n\n`;
+        messages.forEach(msg => {
+            const isBot = msg.classList.contains('bot');
+            const sender = isBot ? 'Pharmacy Assistant' : 'You';
+            const text = msg.innerText.replace('Pharmacy Assistant\n', '').trim();
+            transcript += `${sender}:\n${text}\n\n`;
+        });
+        const blob = new Blob([transcript], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `pharmacy-chat-${currentScenario}-${Date.now()}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    // Auto-load first scenario
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loadScenario('personalized');
+        }, 800);
+    });
+</script>
+
+</body>
+</html>

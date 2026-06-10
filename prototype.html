@@ -419,35 +419,59 @@
             position: fixed;
             bottom: 24px;
             right: 24px;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: var(--costco-nav-blue);
+            background: linear-gradient(135deg, #003B64 0%, #005DAA 100%);
             color: white;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0,59,100,0.4);
+            box-shadow: 0 4px 20px rgba(0,59,100,0.45);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 24px;
             z-index: 1000;
             transition: all 0.3s;
         }
 
         .chat-fab:hover {
-            transform: scale(1.06);
-            box-shadow: 0 6px 24px rgba(0,59,100,0.5);
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(0,59,100,0.6);
         }
 
         .chat-fab.hidden { display: none; }
+
+        .chat-fab-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--costco-red);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            animation: badgePop 0.3s ease;
+        }
+
+        @keyframes badgePop {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
 
         .chat-fab-pulse {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: var(--costco-nav-blue);
             opacity: 0.3;
@@ -461,6 +485,74 @@
             0% { transform: scale(1); opacity: 0.3; }
             50% { transform: scale(1.4); opacity: 0; }
             100% { transform: scale(1); opacity: 0; }
+        }
+
+        /* Notification toast above FAB */
+        .chat-toast {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+            border: 1px solid var(--border);
+            max-width: 280px;
+            z-index: 1000;
+            animation: toastSlide 0.4s ease;
+            cursor: pointer;
+        }
+
+        .chat-toast.hidden { display: none; }
+
+        @keyframes toastSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-toast-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .chat-toast-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #003B64, #005DAA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .chat-toast-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--costco-dark);
+        }
+
+        .chat-toast-body {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .chat-toast-body strong {
+            color: var(--costco-dark);
+        }
+
+        .chat-toast-dismiss {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            color: #999;
+            cursor: pointer;
         }
 
         /* Chat Window */
@@ -502,7 +594,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.95);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -602,25 +694,37 @@
         .smart-prompts {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 12px;
         }
 
         .smart-prompt-btn {
             background: white;
-            border: 1px solid var(--costco-nav-blue);
+            border: 1px solid #e2e8f0;
             color: var(--costco-nav-blue);
-            padding: 10px 14px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 10px;
             font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             text-align: left;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
         }
 
         .smart-prompt-btn:hover {
             background: #f0f7ff;
             border-color: var(--costco-nav-blue);
+            box-shadow: 0 4px 12px rgba(0,93,170,0.15), 0 2px 4px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+
+        .smart-prompt-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
         /* Typing indicator */
@@ -718,46 +822,62 @@
         /* Inline card in chat */
         .chat-card {
             background: white;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px;
-            margin-top: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         }
 
         .chat-card-title {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--costco-dark);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .chat-card-detail {
             font-size: 12px;
             color: var(--text-light);
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            padding-left: 2px;
         }
 
         .chat-card-action {
-            display: inline-block;
-            margin-top: 8px;
-            font-size: 12px;
-            color: var(--costco-nav-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: white;
             font-weight: 600;
             cursor: pointer;
+            background: var(--costco-nav-blue);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .chat-card-action:hover {
+            background: #002a4a;
         }
 
         /* Personalization badge */
         .personalized-badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            background: #fff3e0;
-            color: #e65100;
+            gap: 5px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            color: #1e40af;
             font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-            margin-bottom: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 1px solid #bfdbfe;
         }
 
         /* Email summary in chat */
@@ -1002,17 +1122,28 @@
 </div>
 
 <!-- CHAT FAB -->
+<div class="chat-toast" id="chatToast" onclick="openChat()">
+    <button class="chat-toast-dismiss" onclick="event.stopPropagation(); document.getElementById('chatToast').classList.add('hidden');">✕</button>
+    <div class="chat-toast-header">
+        <div class="chat-toast-icon">💊</div>
+        <div class="chat-toast-title">Pharmacy Assistant</div>
+    </div>
+    <div class="chat-toast-body">Your <strong>Lisinopril 10mg</strong> refill is ready. Tap to manage it or ask me anything.</div>
+</div>
 <div class="chat-fab-pulse" id="chatPulse"></div>
-<button class="chat-fab" id="chatFab" onclick="openChat()">💬</button>
+<button class="chat-fab" id="chatFab" onclick="openChat()">
+    💬
+    <span class="chat-fab-badge">1</span>
+</button>
 
 <!-- CHAT WINDOW -->
 <div class="chat-window" id="chatWindow">
     <div class="chat-header">
         <div class="chat-header-left">
-            <div class="chat-avatar">⚕️</div>
+            <div class="chat-avatar">💊</div>
             <div class="chat-header-info">
-                <h3>Costco Pharmacy Assistant</h3>
-                <p>Here to help with your pharmacy needs</p>
+                <h3>Pharmacy Assistant</h3>
+                <p>Online · Typically replies instantly</p>
             </div>
         </div>
         <div class="chat-header-actions">
@@ -1040,19 +1171,17 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        <div class="personalized-badge">✦ Personalized for you</div>
-                        Hi Sarah! I noticed your <strong>Lisinopril 10mg</strong> refill is available. Would you like me to refill it now?
+                        Hey Sarah 👋 Welcome back! I see a few things I can help with today.
                         <div class="chat-card">
-                            <div class="chat-card-title">Lisinopril 10mg — Ready to Refill</div>
-                            <div class="chat-card-detail">Last filled: May 12, 2026</div>
-                            <div class="chat-card-detail">Pharmacy: Costco #482 — Issaquah, WA</div>
-                            <div class="chat-card-detail">Copay: $4.00 (Blue Cross)</div>
-                            <div class="chat-card-action" onclick="advanceConversation('personalized', 1)">✓ Refill Now</div>
+                            <div class="chat-card-title">🔔 Refill Available</div>
+                            <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — 90-day supply</div>
+                            <div class="chat-card-detail">📍 Costco #482, Issaquah · Copay: $4.00</div>
+                            <div class="chat-card-detail">Last filled May 12 — due now</div>
+                            <div class="chat-card-action" onclick="advanceConversation('personalized', 1)">💊 Refill Now</div>
                         </div>
                         <div class="smart-prompts">
-                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 1)">Yes, refill my Lisinopril</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 2)">What other prescriptions do I have?</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 3)">I need something else</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 2)">Show all my prescriptions</button>
+                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 3)">I need help with something else</button>
                         </div>
                     `
                 },
@@ -3056,6 +3185,7 @@
         document.getElementById('chatWindow').classList.add('open');
         document.getElementById('chatFab').classList.add('hidden');
         document.getElementById('chatPulse').classList.add('hidden');
+        document.getElementById('chatToast').classList.add('hidden');
         chatOpen = true;
     }
 

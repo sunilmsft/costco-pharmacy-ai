@@ -3308,10 +3308,81 @@
         addMessage('user', text);
         input.value = '';
 
+        // Detect "talk to human" intent
+        const humanIntent = /\b(human|person|someone|call|phone|speak|talk to|representative|agent|real person)\b/i.test(text);
+
         setTimeout(() => showTyping(), 500);
+
+        if (humanIntent) {
+            setTimeout(() => {
+                removeTyping();
+                addMessage('bot', `Of course — I'm happy to connect you with our pharmacy team. Let me get you the right number.<br><br>Who would you like to speak with?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">My local pharmacy (Costco #482, Issaquah)</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('mailorder')">Mail Order Pharmacy</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('tech')">Tech Support (website or app help)</button></div>`);
+            }, 1200);
+        } else {
+            setTimeout(() => {
+                removeTyping();
+                addMessage('bot', `I'd be happy to help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help you with today?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">I'm all set, thank you</button></div>`);
+            }, 1500);
+        }
+    }
+
+    function showPharmacyConnect(type) {
+        // Disable current buttons
+        document.querySelectorAll('.smart-prompt-btn').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        });
+
+        const body = document.getElementById('chatBody');
+        conversationStack.push(body.innerHTML);
+
+        let userMsg, botMsg;
+        if (type === 'local') {
+            userMsg = 'My local pharmacy (Costco #482, Issaquah)';
+            botMsg = `Here's the direct line for your pharmacy:
+                <div class="chat-card">
+                    <div class="chat-card-title">📞 Costco Pharmacy #482 — Issaquah</div>
+                    <div class="chat-card-detail"><strong>Phone:</strong> (425) 313-0965</div>
+                    <div class="chat-card-detail"><strong>Hours:</strong> Mon–Fri 10am–7pm, Sat 9:30am–6pm</div>
+                    <div class="chat-card-detail"><strong>Address:</strong> 1801 10th Ave NW, Issaquah, WA 98027</div>
+                </div>
+                They should be able to pick up right now. Is there anything else I can help you with before you call?
+                <div class="smart-prompts">
+                    <button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">No, I'll give them a call. Thank you!</button>
+                </div>`;
+        } else if (type === 'mailorder') {
+            userMsg = 'Mail Order Pharmacy';
+            botMsg = `Here's the direct number for Costco Mail Order Pharmacy:
+                <div class="chat-card">
+                    <div class="chat-card-title">📞 Costco Mail Order Pharmacy</div>
+                    <div class="chat-card-detail"><strong>Phone:</strong> +1 (800) 607-6861</div>
+                    <div class="chat-card-detail"><strong>Hours:</strong> Mon–Fri 5am–7pm PT</div>
+                    <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sat 9:30am–2pm PT</div>
+                </div>
+                Is there anything else I can help you with?
+                <div class="smart-prompts">
+                    <button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">That's all I needed, thank you</button>
+                </div>`;
+        } else {
+            userMsg = 'Tech Support (website or app help)';
+            botMsg = `Here's our Tech Support line for website and app questions:
+                <div class="chat-card">
+                    <div class="chat-card-title">📞 Pharmacy Tech Support</div>
+                    <div class="chat-card-detail"><strong>Phone:</strong> +1 (833) 902-1022</div>
+                    <div class="chat-card-detail"><strong>Hours:</strong> Mon–Fri 5am–7pm PT</div>
+                    <div class="chat-card-detail">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sat 8am–4:30pm PT</div>
+                </div>
+                Is there anything else I can help you with?
+                <div class="smart-prompts">
+                    <button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">That's all I needed, thank you</button>
+                </div>`;
+        }
+
+        setTimeout(() => addMessage('user', userMsg), 300);
+        setTimeout(() => showTyping(), 700);
         setTimeout(() => {
             removeTyping();
-            addMessage('bot', `I'd be happy to help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help you with today?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">I'm all set, thank you</button></div>`);
+            addMessage('bot', botMsg);
         }, 1500);
     }
 

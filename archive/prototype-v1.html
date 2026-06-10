@@ -958,13 +958,12 @@
             top: 0;
             left: 0;
             right: 0;
-            background: #003B64;
-            color: rgba(255,255,255,0.85);
+            background: #fef3c7;
+            color: #92400e;
             text-align: center;
             padding: 6px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.3px;
             z-index: 2000;
         }
 
@@ -975,7 +974,7 @@
 <body>
 
 <div class="concept-banner">
-    Concept exploration · Not affiliated with or endorsed by Costco · For discussion only · All member data shown is sample data
+    ✦ Concept Prototype — For discussion purposes only. Not a production application.
 </div>
 
 <!-- Scenario switcher -->
@@ -2206,7 +2205,7 @@
                     messages: [
                         { type: 'user', html: "Thailand — leaving July 15th" },
                         { type: 'bot', delay: 1800, html: `
-                            Thailand — great trip! Based on CDC travel health guidelines, here are some services that may be relevant. A pharmacist can help confirm what's appropriate for your situation:
+                            Thailand — great trip! Here's what I'd recommend based on CDC guidelines and your pharmacy history:
                             <div class="chat-card">
                                 <div class="chat-card-title">🌏 Thailand Travel Prep</div>
                                 <div class="chat-card-detail"><strong>Recommended immunizations:</strong></div>
@@ -2429,7 +2428,7 @@
                     messages: [
                         { type: 'user', html: "Yes — we're doing a jungle trek" },
                         { type: 'bot', delay: 1000, html: `
-                            For rural areas, malaria prophylaxis is often recommended by travel health providers. Doxycycline is the most affordable option at $4/month with Costco pricing.
+                            In that case, I'd recommend getting a prescription for malaria prophylaxis. Doxycycline is the most affordable option at $4/month with Costco pricing.
                             <br><br>
                             You'll need a prescription — I can either contact your doctor or you can get one via a $29 Sesame virtual visit.
                             <div class="smart-prompts">
@@ -2545,7 +2544,7 @@
                     messages: [
                         { type: 'user', html: "Not sure — what do I need?" },
                         { type: 'bot', delay: 1200, html: `
-                            Based on general guidelines, here are immunization services that may be relevant for you. A pharmacist can confirm what's appropriate:
+                            Based on your records and age, here's what I'd recommend:
                             <div class="chat-card">
                                 <div class="chat-card-title">💉 Your Vaccine Status</div>
                                 <div class="chat-card-detail">✓ Hepatitis A — Current</div>

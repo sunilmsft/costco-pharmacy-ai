@@ -1,774 +1,879 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Costco Pharmacy — Elevating the Digital Member Experience</title>
+    <title>Guided Pharmacy Care — Concept Exploration</title>
     <style>
         :root {
             --costco-red: #E31837;
             --costco-blue: #005DAA;
-            --dark: #1a1a2e;
-            --text: #2d2d2d;
-            --text-light: #5a5a5a;
-            --bg-light: #f8f9fa;
-            --bg-white: #ffffff;
-            --border: #e8e8e8;
+            --costco-nav-blue: #003B64;
+            --text: #1a1a2e;
+            --text-light: #555;
+            --bg: #f8f9fb;
+            --white: #ffffff;
+            --border: #e8ecf0;
+            --accent-light: #eef4fb;
+            --green: #2e7d32;
+            --green-light: #e8f5e9;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            background: var(--dark);
-        }
-
-        /* Slide container */
-        .deck {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .slide {
-            min-width: 100vw;
+            overflow: hidden;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 80px;
-            overflow-y: auto;
         }
 
-        .slide-content {
-            max-width: 960px;
-            width: 100%;
-        }
-
-        /* Top bar */
-        .top-bar {
+        /* === DISCLAIMER BAR === */
+        .disclaimer-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 48px;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(8px);
+            background: var(--costco-nav-blue);
+            color: rgba(255,255,255,0.85);
+            text-align: center;
+            font-size: 11px;
+            padding: 6px 16px;
+            letter-spacing: 0.3px;
+            z-index: 1000;
+        }
+
+        /* === NAV BAR === */
+        .nav-bar {
+            position: fixed;
+            top: 28px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
-            z-index: 200;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 8px 24px;
+            z-index: 999;
+            height: 40px;
         }
 
-        .top-bar-left {
-            font-size: 13px;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 0.5px;
+        .nav-left {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
-        .top-bar-right {
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
-        .top-btn {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: rgba(255,255,255,0.7);
-            font-size: 14px;
-            cursor: pointer;
-            padding: 6px 12px;
+        .nav-right .slide-counter {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .fullscreen-btn {
+            background: none;
+            border: 1px solid var(--border);
             border-radius: 6px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .top-btn:hover {
-            background: rgba(255,255,255,0.15);
-            color: white;
-        }
-
-        .slide-counter {
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            min-width: 60px;
-            text-align: center;
-        }
-
-        /* Progress bar */
-        .progress-bar {
-            position: fixed;
-            top: 48px;
-            left: 0;
-            height: 3px;
-            background: var(--costco-red);
-            z-index: 201;
-            transition: width 0.4s ease;
-        }
-
-        /* Navigation arrows */
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: white;
-            font-size: 20px;
+            padding: 4px 10px;
+            font-size: 12px;
             cursor: pointer;
+            color: var(--text);
+        }
+
+        .fullscreen-btn:hover { background: var(--accent-light); }
+
+        /* === SLIDES === */
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100vh;
+            padding-top: 68px;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: calc(100vh - 68px);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 150;
-            transition: all 0.2s;
-            backdrop-filter: blur(4px);
+            padding: 40px 60px;
         }
 
-        .nav-arrow:hover {
-            background: rgba(0,0,0,0.6);
-            border-color: rgba(255,255,255,0.3);
-            transform: translateY(-50%) scale(1.1);
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
         }
 
-        .nav-arrow.left { left: 24px; }
-        .nav-arrow.right { right: 24px; }
-        .nav-arrow.hidden { opacity: 0; pointer-events: none; }
+        /* === TYPOGRAPHY === */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--costco-blue);
+            margin-bottom: 12px;
+        }
 
-        /* Dot indicators */
-        .dot-nav {
+        .slide h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--costco-nav-blue);
+            margin-bottom: 16px;
+        }
+
+        .slide h1 em {
+            font-style: normal;
+            color: var(--costco-red);
+        }
+
+        .slide h2 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--costco-nav-blue);
+            margin-bottom: 16px;
+        }
+
+        .slide p.subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .takeaway {
+            margin-top: 28px;
+            padding: 16px 20px;
+            background: var(--accent-light);
+            border-left: 3px solid var(--costco-blue);
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+            color: var(--costco-nav-blue);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* === HERO === */
+        .slide-hero {
+            background: linear-gradient(135deg, #f8f9fb 0%, #eef4fb 100%);
+        }
+
+        .hero-content { text-align: center; }
+
+        .hero-content .hero-line {
+            font-size: 20px;
+            color: var(--costco-blue);
+            font-weight: 500;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .hero-content p.subtitle {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-meta {
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* === TILES GRID === */
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .tile {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+        }
+
+        .tile-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tile-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* === MOMENTS GRID === */
+        .moments-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .moment-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .moment-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .moment-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .moment-context {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* === TWO COLUMN COMPARISON === */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 28px;
+        }
+
+        .compare-col {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .compare-col.future {
+            border-color: var(--costco-blue);
+            border-width: 2px;
+        }
+
+        .compare-col h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .compare-col.today h3 { color: var(--text-light); }
+        .compare-col.future h3 { color: var(--costco-blue); }
+
+        .compare-subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .compare-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .compare-col ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .compare-col ul li:last-child { border-bottom: none; }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .today .step-dot { background: #ccc; }
+        .future .step-dot { background: var(--costco-blue); }
+
+        /* === CAPABILITY CARDS === */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .cap-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .cap-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cap-card-icon {
+            font-size: 20px;
+        }
+
+        .cap-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+        }
+
+        .cap-card-example {
+            font-size: 13px;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* === TRUST CHECKLIST === */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .trust-item {
+            background: var(--green-light);
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--green);
+        }
+
+        .trust-check {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* === ROADMAP === */
+        .roadmap {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-top: 28px;
+        }
+
+        .roadmap-phase {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .roadmap-phase.active {
+            border-color: var(--costco-blue);
+            border-width: 2px;
+        }
+
+        .phase-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            color: var(--costco-blue);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .phase-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 8px;
+        }
+
+        .phase-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .phase-example {
+            font-size: 12px;
+            background: var(--accent-light);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--costco-blue);
+            font-style: italic;
+        }
+
+        /* === HUB SPOKE === */
+        .hub-spoke {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 36px;
+            position: relative;
+            height: 380px;
+        }
+
+        .hub-center {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--costco-nav-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.3;
+            padding: 20px;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0,59,100,0.2);
+        }
+
+        .spokes-ring {
+            position: absolute;
+            width: 480px;
+            height: 380px;
+        }
+
+        .spoke {
+            position: absolute;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .spoke:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .spoke:nth-child(2) { top: 18%; right: 0; }
+        .spoke:nth-child(3) { bottom: 18%; right: 0; }
+        .spoke:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .spoke:nth-child(5) { bottom: 18%; left: 0; }
+        .spoke:nth-child(6) { top: 18%; left: 0; }
+
+        .spoke.highlight {
+            border-color: var(--costco-blue);
+            background: var(--accent-light);
+        }
+
+        /* === DOT INDICATORS === */
+        .dot-indicators {
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 8px;
-            z-index: 150;
+            z-index: 999;
         }
 
         .dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.25);
+            background: #ccc;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .dot.active {
-            background: var(--costco-red);
-            transform: scale(1.3);
-        }
-
-        .dot:hover:not(.active) {
-            background: rgba(255,255,255,0.5);
-        }
-
-        /* Slide backgrounds */
-        .slide-hero { background: linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%); }
-        .slide-context { background: var(--bg-white); }
-        .slide-journey { background: var(--bg-light); }
-        .slide-capabilities { background: var(--bg-white); }
-        .slide-impact { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; }
-        .slide-approach { background: var(--bg-light); }
-        .slide-cta { background: var(--bg-white); }
-
-        /* Hero */
-        .hero-content { text-align: center; }
-
-        .hero-logo {
-            margin-bottom: 40px;
-        }
-
-        .hero-logo img {
-            height: 56px;
-            width: auto;
-        }
-
-        .hero-eyebrow {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--costco-blue);
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-
-        .hero-content h1 span { color: var(--costco-red); }
-
-        .hero-content p {
-            font-size: 20px;
-            color: var(--text-light);
-            max-width: 650px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        .hero-meta {
-            font-size: 14px;
-            color: var(--text-light);
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-            margin-top: 40px;
-        }
-
-        /* Section labels */
-        .section-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--costco-blue);
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .slide-content h2 {
-            font-size: 38px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .slide-content > p {
-            font-size: 18px;
-            color: var(--text-light);
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin: 48px 0;
-        }
-
-        .stat-card {
-            background: var(--bg-light);
-            border-radius: 12px;
-            padding: 32px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--costco-red);
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-
-        /* Journey */
-        .journey-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .journey-card {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 36px;
-            border: 1px solid var(--border);
-        }
-
-        .journey-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .journey-card.today h3 { color: var(--text-light); }
-        .journey-card.future h3 { color: var(--costco-blue); }
-
-        .journey-subtitle {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-top: -4px;
-            margin-bottom: 8px;
-            font-style: italic;
-        }
-
-        .journey-card.future .journey-subtitle { color: var(--costco-blue); opacity: 0.8; }
-
-        .journey-steps {
-            list-style: none;
-            padding: 0;
-        }
-
-        .journey-steps li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            line-height: 1.4;
-        }
-
-        .journey-steps li:last-child { border-bottom: none; }
-
-        .step-num {
+            background: var(--costco-blue);
             width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-            flex-shrink: 0;
+            border-radius: 4px;
         }
 
-        .today .step-num { background: #f0f0f0; color: var(--text-light); }
-        .future .step-num { background: #e8f2fc; color: var(--costco-blue); }
-
-        /* Capabilities */
-        .capability-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 32px;
-        }
-
-        .capability-card {
-            background: var(--bg-light);
-            border-radius: 12px;
-            padding: 28px;
-            border-left: 4px solid var(--costco-blue);
-        }
-
-        .capability-card h4 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 6px;
-        }
-
-        .capability-card p {
-            font-size: 13px;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .capability-card .example {
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--costco-blue);
-            font-style: italic;
-        }
-
-        /* Impact */
-        .slide-impact .section-label { color: rgba(255,255,255,0.6); }
-        .slide-impact h2 { color: white; }
-        .slide-impact > .slide-content > p { color: rgba(255,255,255,0.7); }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .impact-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 28px;
-        }
-
-        .impact-card h4 { color: white; font-size: 16px; margin-bottom: 8px; }
-        .impact-card p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; }
-        .impact-card .metric { font-size: 13px; color: #64b5f6; font-weight: 600; margin-top: 12px; }
-
-        /* Approach */
-        .phase-timeline { margin-top: 40px; }
-
-        .phase {
-            display: flex;
-            gap: 32px;
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .phase:last-child { border-bottom: none; }
-
-        .phase-marker {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--costco-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
-        .phase-content h4 { font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
-        .phase-content p { font-size: 15px; color: var(--text-light); line-height: 1.6; }
-
-        /* CTA */
-        .cta-content { text-align: center; }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--costco-blue);
-            color: white;
-            text-decoration: none;
-            padding: 16px 40px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 32px;
-            transition: background 0.2s;
-        }
-
-        .cta-button:hover { background: #004a8a; }
-
-        /* Keyboard hint */
-        .keyboard-hint {
+        /* === ARROWS === */
+        .slide-arrow {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            z-index: 150;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text);
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        /* Fullscreen body adjustment */
-        :fullscreen .top-bar { display: none; }
-        :fullscreen .progress-bar { top: 0; }
-        :fullscreen .slide { padding-top: 40px; }
+        .slide-arrow:hover { background: var(--accent-light); }
+        .slide-arrow.left { left: 20px; }
+        .slide-arrow.right { right: 20px; }
 
-        /* Animations */
-        .slide-content {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
-        }
-
-        .slide.active .slide-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* === FULLSCREEN === */
+        :fullscreen .disclaimer-bar,
+        :fullscreen .nav-bar { display: none; }
+        :fullscreen .slides-container { padding-top: 0; }
+        :fullscreen .slide { height: 100vh; }
     </style>
 </head>
 <body>
-
-<!-- Top bar -->
-<div class="top-bar">
-    <span class="top-bar-left">Costco Pharmacy — Digital Experience</span>
-    <div class="top-bar-right">
-        <span class="slide-counter" id="slideCounter">1 / 7</span>
-        <button class="top-btn" onclick="goFullscreen()" title="Fullscreen (F)">&#x26F6; Fullscreen</button>
+    <!-- DISCLAIMER -->
+    <div class="disclaimer-bar">
+        Concept exploration · Not affiliated with or endorsed by Costco · For discussion only
     </div>
-</div>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- Navigation -->
-<div class="nav-arrow left hidden" id="prevBtn" onclick="prevSlide()">&#8592;</div>
-<div class="nav-arrow right" id="nextBtn" onclick="nextSlide()">&#8594;</div>
-
-<!-- Dot nav -->
-<div class="dot-nav" id="dotNav"></div>
-
-<!-- SLIDES -->
-<div class="deck" id="deck">
-
-    <!-- 1. HERO -->
-    <section class="slide slide-hero active">
-        <div class="slide-content hero-content">
-            <div class="hero-logo"><img src="logo-cropped.png" alt="Costco Wholesale"></div>
-            <div class="hero-eyebrow">Pharmacy &middot; Concept Exploration</div>
-            <h1>What If Every Member Had <span>a Pharmacist in Their Pocket?</span></h1>
-            <p>An intelligent assistant that knows your history, anticipates what you need, and walks you through it — so every interaction feels personal, guided, and effortless.</p>
-            <div class="hero-meta">
-                Prepared by Sunil Venugopal &nbsp;&middot;&nbsp; June 2026 &nbsp;&middot;&nbsp; For Discussion Purposes
-            </div>
+    <!-- NAV -->
+    <div class="nav-bar">
+        <div class="nav-left">Guided Pharmacy Care — Concept Exploration</div>
+        <div class="nav-right">
+            <span class="slide-counter"><span id="currentSlide">1</span> / 8</span>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
         </div>
-    </section>
+    </div>
 
-    <!-- 2. CONTEXT -->
-    <section class="slide slide-context">
-        <div class="slide-content">
-            <div class="section-label">Starting Point</div>
-            <h2>Costco Pharmacy has built something members trust.</h2>
-            <p>The digital experience today is functional, well-organized, and expanding. Members can refill prescriptions, schedule immunizations, compare pricing, and choose from multiple fulfillment options. The foundation is strong.</p>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Fulfillment options<br>(Same-day, Pay Ahead, Locker, Mail)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12+</div>
-                    <div class="stat-label">Services available<br>(Rx, Vaccines, Fertility, Pets, Virtual)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Open to non-members<br>(Unique competitive advantage)</div>
+    <!-- SLIDES -->
+    <div class="slides-container" id="slidesContainer">
+
+        <!-- SLIDE 1: HERO -->
+        <section class="slide slide-hero">
+            <div class="slide-content hero-content">
+                <div class="hero-line">In pharmacy, clarity is care.</div>
+                <h1>From Self-Service to <em>Guided Pharmacy Care</em></h1>
+                <p class="subtitle">A concept exploration for how an intelligent experience layer could help Costco Pharmacy members find the right next step — with more confidence, context, and support.</p>
+                <div class="hero-meta">
+                    Prepared by Sunil Venugopal &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; For Discussion Purposes
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 3. JOURNEY -->
-    <section class="slide slide-journey">
-        <div class="slide-content">
-            <div class="section-label">The Opportunity</div>
-            <h2>From self-service to <em>guided</em> service.</h2>
-            <p>Today, members navigate on their own. With an intelligent assistant, they have a knowledgeable guide who knows their history, anticipates what they need, and walks them through it — step by step.</p>
-            <div class="journey-comparison">
-                <div class="journey-card today">
-                    <h3>Today&rsquo;s Experience</h3>
-                    <p class="journey-subtitle">Member figures it out alone</p>
-                    <ul class="journey-steps">
-                        <li><span class="step-num">1</span> <strong>Arrives</strong> at rx.costco.com — unsure where to start</li>
-                        <li><span class="step-num">2</span> <strong>Searches</strong> the navigation for the right link</li>
-                        <li><span class="step-num">3</span> <strong>Clicks through</strong> multiple pages to find a service</li>
-                        <li><span class="step-num">4</span> <strong>Reads</strong> dense content to understand their options</li>
-                        <li><span class="step-num">5</span> <strong>Navigates again</strong> to a different page to take action</li>
-                        <li><span class="step-num">6</span> <strong>Calls the pharmacy</strong> if still unsure</li>
-                    </ul>
-                </div>
-                <div class="journey-card future">
-                    <h3>With an Intelligent Assistant</h3>
-                    <p class="journey-subtitle">Member is guided every step of the way</p>
-                    <ul class="journey-steps">
-                        <li><span class="step-num">1</span> <strong>Greeted personally</strong> — assistant already knows their history</li>
-                        <li><span class="step-num">2</span> <strong>Offered smart prompts</strong> — no need to know what to ask</li>
-                        <li><span class="step-num">3</span> <strong>Speaks naturally</strong> — describes what they need in their own words</li>
-                        <li><span class="step-num">4</span> <strong>Guided through decisions</strong> — options presented clearly, one step at a time</li>
-                        <li><span class="step-num">5</span> <strong>Action complete</strong> — confirmation, next steps, and a summary sent</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. CAPABILITIES -->
-    <section class="slide slide-capabilities">
-        <div class="slide-content">
-            <div class="section-label">What It Enables</div>
-            <h2>Six capabilities that compound member value.</h2>
-            <div class="capability-grid">
-                <div class="capability-card">
-                    <h4>Personalized Greeting &amp; Smart Prompts</h4>
-                    <p>Recognize returning members and surface their most likely next action — refill due, prescription ready, upcoming immunization window.</p>
-                    <div class="example">&ldquo;Welcome back, Sarah. Your Lisinopril refill is available. Want to refill now?&rdquo;</div>
-                </div>
-                <div class="capability-card">
-                    <h4>Conversational Task Completion</h4>
-                    <p>Members accomplish tasks by describing what they need rather than navigating menus. Transfer, check coverage, schedule — all in the conversation.</p>
-                    <div class="example">&ldquo;I need to move my prescription from Walgreens&rdquo; &rarr; walks through the transfer in 3 steps</div>
-                </div>
-                <div class="capability-card">
-                    <h4>Guided Service Discovery</h4>
-                    <p>Proactively connect members with services they qualify for but may not know about — FSA/HSA acceptance, pet medications, partner services.</p>
-                    <div class="example">&ldquo;Did you know your HSA card is now accepted at every Costco register?&rdquo;</div>
-                </div>
-                <div class="capability-card">
-                    <h4>Fulfillment Recommendation</h4>
-                    <p>With 4 delivery options, help members choose the right one for their situation — urgency, location, preference.</p>
-                    <div class="example">&ldquo;Need it today? Same-day delivery is available. Or Pay Ahead and skip the line.&rdquo;</div>
-                </div>
-                <div class="capability-card">
-                    <h4>Cross-Service Intelligence</h4>
-                    <p>Connect related needs that span multiple service areas. Travel planning that links immunizations + medication refills.</p>
-                    <div class="example">&ldquo;Traveling to Brazil? You&rsquo;ll want Hep A and Typhoid, plus let&rsquo;s refill your meds.&rdquo;</div>
-                </div>
-                <div class="capability-card">
-                    <h4>Conversation Continuity</h4>
-                    <p>Email a summary of what was discussed, next steps, and relevant links. Pick up where you left off next time.</p>
-                    <div class="example">&ldquo;I&rsquo;ve emailed you a summary. Your transfer will be ready in 48 hours.&rdquo;</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. IMPACT -->
-    <section class="slide slide-impact">
-        <div class="slide-content">
-            <div class="section-label">Why It Matters</div>
-            <h2>Business impact for the pharmacy and the member.</h2>
-            <p>Each capability maps directly to measurable outcomes that matter to the business and the member experience.</p>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <h4>Reduce Inbound Call Volume</h4>
-                    <p>The most common pharmacy calls — refill status, transfer process, insurance questions — are exactly what conversational AI handles best.</p>
-                    <div class="metric">Industry benchmark: 25-40% call deflection in Year 1</div>
-                </div>
-                <div class="impact-card">
-                    <h4>Increase Service Adoption</h4>
-                    <p>Members don&rsquo;t use services they don&rsquo;t discover. Proactive recommendations drive adoption of Pay Ahead, Mail Order, and Sesame.</p>
-                    <div class="metric">Surfaces services at the moment of relevance</div>
-                </div>
-                <div class="impact-card">
-                    <h4>Deepen Member Loyalty</h4>
-                    <p>A pharmacy that remembers you, anticipates your needs, and makes complex tasks simple becomes part of why you keep your membership.</p>
-                    <div class="metric">Pharmacy is a top-3 reason for Costco membership renewal</div>
-                </div>
-                <div class="impact-card">
-                    <h4>Competitive Differentiation</h4>
-                    <p>CVS, Walgreens, and Amazon Pharmacy are investing heavily in digital. Costco&rsquo;s advantage — value + trust — an intelligent assistant extends both.</p>
-                    <div class="metric">First-mover advantage in pharmacy-specific conversational AI</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. APPROACH -->
-    <section class="slide slide-approach">
-        <div class="slide-content">
-            <div class="section-label">How This Could Unfold</div>
-            <h2>A phased approach that delivers value early.</h2>
-            <p>This isn&rsquo;t a multi-year platform rebuild. It&rsquo;s an experience layer that sits on top of existing systems and can launch incrementally.</p>
-            <div class="phase-timeline">
-                <div class="phase">
-                    <div class="phase-marker">1</div>
-                    <div class="phase-content">
-                        <h4>Informational Assistant</h4>
-                        <p>Answer common questions, guide navigation, surface relevant services. No system integration required — just existing content made conversational. Immediate call deflection value.</p>
+        <!-- SLIDE 2: FOUNDATION -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">Starting Point</div>
+                <h2>Costco Pharmacy already gives members a strong digital foundation.</h2>
+                <div class="tiles-grid">
+                    <div class="tile">
+                        <div class="tile-icon">💊</div>
+                        <div class="tile-label">Refill Prescriptions</div>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-icon">🔄</div>
+                        <div class="tile-label">Transfer Prescriptions</div>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-icon">💉</div>
+                        <div class="tile-label">Schedule Immunizations</div>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-icon">💰</div>
+                        <div class="tile-label">Compare Prices</div>
+                    </div>
+                    <div class="tile">
+                        <div class="tile-icon">🚗</div>
+                        <div class="tile-label">Choose Fulfillment</div>
                     </div>
                 </div>
-                <div class="phase">
-                    <div class="phase-marker">2</div>
-                    <div class="phase-content">
-                        <h4>Personalized &amp; Action-Oriented</h4>
-                        <p>Recognize logged-in members, show prescription status, enable refills and scheduling within the conversation. Requires pharmacy system integration.</p>
+                <div class="takeaway">The opportunity is not to replace the experience. It is to make the next step easier to find.</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: MEMBER MOMENTS -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">Member Perspective</div>
+                <h2>Pharmacy journeys are different.</h2>
+                <div class="moments-grid">
+                    <div class="moment-card">
+                        <div class="moment-icon">⏱️</div>
+                        <div>
+                            <div class="moment-text">"I need this medication today."</div>
+                            <div class="moment-context">Urgency — needs the fastest fulfillment path</div>
+                        </div>
+                    </div>
+                    <div class="moment-card">
+                        <div class="moment-icon">👨‍👩‍👧</div>
+                        <div>
+                            <div class="moment-text">"I'm managing prescriptions for my family."</div>
+                            <div class="moment-context">Complexity — multiple people, multiple medications</div>
+                        </div>
+                    </div>
+                    <div class="moment-card">
+                        <div class="moment-icon">❓</div>
+                        <div>
+                            <div class="moment-text">"I'm not sure if I need an appointment."</div>
+                            <div class="moment-context">Uncertainty — doesn't know the right next step</div>
+                        </div>
+                    </div>
+                    <div class="moment-card">
+                        <div class="moment-icon">🏥</div>
+                        <div>
+                            <div class="moment-text">"I'm transferring from another pharmacy."</div>
+                            <div class="moment-context">New to Costco — needs clear process guidance</div>
+                        </div>
                     </div>
                 </div>
-                <div class="phase">
-                    <div class="phase-marker">3</div>
-                    <div class="phase-content">
-                        <h4>Proactive &amp; Predictive</h4>
-                        <p>Anticipate member needs — refill reminders, vaccine eligibility, coverage changes. The assistant becomes a trusted health companion.</p>
+                <div class="takeaway">Members may arrive with urgency, uncertainty, or caregiving responsibility. The experience should feel clear, calm, and supportive.</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: COMPARISON -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">The Shift</div>
+                <h2>From navigation to guidance.</h2>
+                <div class="comparison">
+                    <div class="compare-col today">
+                        <h3>Today</h3>
+                        <div class="compare-subtitle">Member navigates independently</div>
+                        <ul>
+                            <li><span class="step-dot"></span><strong>Find</strong> the right page for their need</li>
+                            <li><span class="step-dot"></span><strong>Read</strong> through content to understand options</li>
+                            <li><span class="step-dot"></span><strong>Decide</strong> which option applies to them</li>
+                            <li><span class="step-dot"></span><strong>Switch</strong> between different flows</li>
+                            <li><span class="step-dot"></span><strong>Call</strong> when unsure what to do next</li>
+                        </ul>
+                    </div>
+                    <div class="compare-col future">
+                        <h3>With a Guided Experience Layer</h3>
+                        <div class="compare-subtitle">Member is supported at each step</div>
+                        <ul>
+                            <li><span class="step-dot"></span><strong>Ask</strong> in natural language what they need</li>
+                            <li><span class="step-dot"></span><strong>Receive</strong> plain-language guidance</li>
+                            <li><span class="step-dot"></span><strong>See</strong> relevant next steps surfaced clearly</li>
+                            <li><span class="step-dot"></span><strong>Continue</strong> one connected journey</li>
+                            <li><span class="step-dot"></span><strong>Escalate</strong> to a pharmacist only when needed</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 7. CTA -->
-    <section class="slide slide-cta">
-        <div class="slide-content cta-content">
-            <div class="section-label">See It In Action</div>
-            <h2>What this could look and feel like for a member.</h2>
-            <p>The following prototype demonstrates the experience from a member&rsquo;s perspective — the assistant embedded naturally into the pharmacy experience, helping members accomplish their goals conversationally.</p>
-            <a href="prototype.html" class="cta-button">View the Interactive Prototype &rarr;</a>
-            <div class="hero-meta" style="margin-top: 48px;">
-                This is a concept demonstration only. No real member data is used.<br>
-                Built to illustrate the potential of an intelligent assistant layer for Costco Pharmacy.
+        <!-- SLIDE 5: CAPABILITIES -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">What It Enables</div>
+                <h2>A guide for common pharmacy moments.</h2>
+                <div class="cap-grid">
+                    <div class="cap-card">
+                        <div class="cap-card-header">
+                            <span class="cap-card-icon">💊</span>
+                            <span class="cap-card-title">Refill</span>
+                        </div>
+                        <div class="cap-card-example">"Can I refill this now?"</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header">
+                            <span class="cap-card-icon">🔄</span>
+                            <span class="cap-card-title">Transfer</span>
+                        </div>
+                        <div class="cap-card-example">"Move my prescription from another pharmacy."</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header">
+                            <span class="cap-card-icon">💉</span>
+                            <span class="cap-card-title">Immunization</span>
+                        </div>
+                        <div class="cap-card-example">"Help me find the right appointment path."</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header">
+                            <span class="cap-card-icon">🚗</span>
+                            <span class="cap-card-title">Fulfillment</span>
+                        </div>
+                        <div class="cap-card-example">"What is the best pickup or delivery option?"</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header">
+                            <span class="cap-card-icon">👨‍👩‍👧</span>
+                            <span class="cap-card-title">Family &amp; Pet</span>
+                        </div>
+                        <div class="cap-card-example">"Help me understand what services are available."</div>
+                    </div>
+                </div>
+                <div class="takeaway">The assistant helps members move from intent to action — without needing to understand the site structure first.</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-</div>
+        <!-- SLIDE 6: TRUST -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">Guardrails</div>
+                <h2>Designed for trust from day one.</h2>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        Guide, not a pharmacist replacement
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        No diagnosis or independent clinical advice
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        Approved content and business rules only
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        Authentication before personal details
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        Privacy, consent, and auditability built in
+                    </div>
+                    <div class="trust-item">
+                        <span class="trust-check">✓</span>
+                        Human handoff when needed
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<div class="keyboard-hint">Arrow keys &middot; Space &middot; F for fullscreen</div>
+        <!-- SLIDE 7: ROADMAP -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">Phased Approach</div>
+                <h2>Start with guidance. Expand with confidence.</h2>
+                <div class="roadmap">
+                    <div class="roadmap-phase active">
+                        <div class="phase-num">1</div>
+                        <div class="phase-title">Guide</div>
+                        <div class="phase-desc">Public content + navigation assistance</div>
+                        <div class="phase-example">"Where do I transfer a prescription?"</div>
+                    </div>
+                    <div class="roadmap-phase">
+                        <div class="phase-num">2</div>
+                        <div class="phase-title">Assist</div>
+                        <div class="phase-desc">Authenticated task support</div>
+                        <div class="phase-example">"Refill this prescription."</div>
+                    </div>
+                    <div class="roadmap-phase">
+                        <div class="phase-num">3</div>
+                        <div class="phase-title">Anticipate</div>
+                        <div class="phase-desc">Consent-based proactive next steps</div>
+                        <div class="phase-example">"You may want to review refill options."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script>
-    const deck = document.getElementById('deck');
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let currentSlide = 0;
+        <!-- SLIDE 8: VISION -->
+        <section class="slide">
+            <div class="slide-content" style="text-align: center;">
+                <div class="section-label">Broader Opportunity</div>
+                <h2>Pharmacy could be the starting point for a broader guided-member experience.</h2>
+                <div class="hub-spoke">
+                    <div class="spokes-ring">
+                        <div class="spoke highlight">🏥 Pharmacy</div>
+                        <div class="spoke">👁️ Optical</div>
+                        <div class="spoke">👂 Hearing</div>
+                        <div class="spoke">✈️ Travel</div>
+                        <div class="spoke">🎫 Membership</div>
+                        <div class="spoke">🚗 Tire Center</div>
+                    </div>
+                    <div class="hub-center">Guided<br>Member<br>Experience<br>Layer</div>
+                </div>
+                <div class="takeaway" style="max-width: 700px; margin: 32px auto 0; text-align: left;">The pattern is bigger than one site: help members describe what they need, understand their options, and complete the right next step.</div>
+            </div>
+        </section>
 
-    // Build dot nav
-    const dotNav = document.getElementById('dotNav');
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
-        dotNav.appendChild(dot);
-    }
+    </div>
 
-    function goToSlide(n) {
-        currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
-        deck.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    <!-- NAVIGATION -->
+    <div class="slide-arrow left" onclick="prevSlide()">&#8249;</div>
+    <div class="slide-arrow right" onclick="nextSlide()">&#8250;</div>
 
-        // Update active states
-        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    <div class="dot-indicators" id="dotIndicators"></div>
 
-        // Update counter
-        document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 8;
 
-        // Update arrows
-        document.getElementById('prevBtn').classList.toggle('hidden', currentSlide === 0);
-        document.getElementById('nextBtn').classList.toggle('hidden', currentSlide === totalSlides - 1);
-
-        // Update progress
-        const progress = ((currentSlide) / (totalSlides - 1)) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-    }
-
-    function nextSlide() { goToSlide(currentSlide + 1); }
-    function prevSlide() { goToSlide(currentSlide - 1); }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
-        else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
-        else if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
-        else if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides - 1); }
-        else if (e.key === 'f' || e.key === 'F') { goFullscreen(); }
-        else if (e.key === 'Escape' && document.fullscreenElement) { document.exitFullscreen(); }
-    });
-
-    function goFullscreen() {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-        } else {
-            document.exitFullscreen();
+        // Build dots
+        const dotsContainer = document.getElementById('dotIndicators');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
         }
-    }
 
-    // Touch/swipe support
-    let touchStartX = 0;
-    document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-    document.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 60) {
-            if (diff > 0) nextSlide();
-            else prevSlide();
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+            document.getElementById('slidesContainer').style.transform = `translateX(-${currentIndex * 100}vw)`;
+            document.getElementById('currentSlide').textContent = currentIndex + 1;
+            document.querySelectorAll('.dot').forEach((d, i) => {
+                d.className = 'dot' + (i === currentIndex ? ' active' : '');
+            });
         }
-    });
-</script>
 
+        function nextSlide() { goToSlide(currentIndex + 1); }
+        function prevSlide() { goToSlide(currentIndex - 1); }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        // Touch/swipe
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+        });
+    </script>
 </body>
 </html>

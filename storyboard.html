@@ -36,12 +36,13 @@
             left: 0;
             right: 0;
             background: var(--costco-nav-blue);
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.9);
             text-align: center;
-            font-size: 11px;
-            padding: 6px 16px;
-            letter-spacing: 0.3px;
+            font-size: 12px;
+            padding: 8px 16px;
+            letter-spacing: 0.5px;
             z-index: 1000;
+            font-weight: 500;
         }
 
         /* === NAV BAR === */
@@ -569,7 +570,7 @@
     <div class="nav-bar">
         <div class="nav-left">Guided Pharmacy Care — Concept Exploration</div>
         <div class="nav-right">
-            <span class="slide-counter"><span id="currentSlide">1</span> / 8</span>
+            <span class="slide-counter"><span id="currentSlide">1</span> / 9</span>
             <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
         </div>
     </div>
@@ -819,6 +820,21 @@
             </div>
         </section>
 
+        <!-- SLIDE 9: CTA -->
+        <section class="slide slide-hero">
+            <div class="slide-content hero-content">
+                <div class="section-label">See It In Action</div>
+                <h1>Interactive Prototype</h1>
+                <p class="subtitle">Explore what a guided pharmacy experience could feel like — from personalized prompts to fulfillment choices, transfer flows, and travel planning.</p>
+                <div style="margin-top: 32px;">
+                    <a href="prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
+                </div>
+                <div class="hero-meta" style="margin-top: 32px;">
+                    Sample data only · No real member information · Conversation flows are illustrative
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- NAVIGATION -->
@@ -829,7 +845,7 @@
 
     <script>
         let currentIndex = 0;
-        const totalSlides = 8;
+        const totalSlides = 9;
 
         // Build dots
         const dotsContainer = document.getElementById('dotIndicators');

@@ -535,21 +535,27 @@
             top: 50%;
             transform: translateY(-50%);
             background: var(--white);
-            border: 1px solid var(--border);
+            border: 1px solid #d0d5dd;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 18px;
-            color: var(--text);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
             z-index: 999;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: all 0.2s;
         }
 
-        .slide-arrow:hover { background: var(--accent-light); }
+        .slide-arrow:hover {
+            background: var(--accent-light);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+            transform: translateY(-50%) scale(1.05);
+        }
         .slide-arrow.left { left: 20px; }
         .slide-arrow.right { right: 20px; }
 
@@ -570,6 +576,7 @@
     <div class="nav-bar">
         <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">v2 · June 2026</span></div>
         <div class="nav-right">
+            <button class="fullscreen-btn" onclick="goToSlide(0)" title="Back to start">↺ Start</button>
             <span class="slide-counter"><span id="currentSlide">1</span> / 9</span>
             <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
         </div>

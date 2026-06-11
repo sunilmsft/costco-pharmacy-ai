@@ -564,6 +564,81 @@
         :fullscreen .nav-bar { display: none; }
         :fullscreen .slides-container { padding-top: 0; }
         :fullscreen .slide { height: 100vh; }
+
+        /* === MOBILE RESPONSIVE === */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 20px 60px;
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+
+            .slide h1 { font-size: 28px; }
+            .slide h2 { font-size: 22px; }
+            .slide p.subtitle { font-size: 15px; }
+
+            .hero-content h1 { font-size: 30px; }
+            .hero-content .hero-line { font-size: 16px; }
+
+            .tiles-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .tile { padding: 14px 8px; }
+            .tile-label { font-size: 11px; }
+
+            .moments-grid { grid-template-columns: 1fr; }
+            .moment-card { padding: 16px; }
+
+            .comparison { grid-template-columns: 1fr; gap: 16px; }
+            .compare-col { padding: 18px; }
+
+            .cap-grid { grid-template-columns: 1fr; }
+
+            .trust-grid { grid-template-columns: 1fr; }
+            .trust-item { padding: 14px 16px; font-size: 13px; }
+
+            .roadmap { grid-template-columns: 1fr; gap: 14px; }
+            .roadmap-phase { padding: 20px; }
+
+            /* Hub-spoke → stacked list on mobile */
+            .hub-spoke {
+                position: static;
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .hub {
+                position: static;
+                transform: none;
+                width: auto;
+                margin-bottom: 12px;
+            }
+            .spoke {
+                position: static;
+                transform: none !important;
+                width: 80%;
+                text-align: center;
+            }
+
+            /* Nav */
+            .slide-arrow { width: 36px; height: 36px; font-size: 16px; }
+            .slide-arrow.left { left: 8px; }
+            .slide-arrow.right { right: 8px; }
+
+            .nav-bar { padding: 8px 12px; }
+            .dot-indicators { bottom: 12px; }
+
+            .takeaway { font-size: 13px; padding: 12px 14px; }
+
+            /* CTA slide */
+            .cta-links { flex-direction: column; gap: 12px; }
+        }
     </style>
 </head>
 <body>

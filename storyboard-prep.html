@@ -629,6 +629,7 @@
             gap: 6px;
         }
 
+
         /* === FULLSCREEN === */
         :fullscreen .disclaimer-bar,
         :fullscreen .nav-bar { display: none; }
@@ -872,32 +873,32 @@
             </div>
         </section>
 
-        <!-- SLIDE 4: COMPARISON -->
-        <section class="slide">
+        <!-- SLIDE 5: COMPARISON -->
+        <section class="slide slide-shift">
             <div class="slide-content">
-                <div class="section-label">The Shift</div>
-                <h2>From navigation to guidance.</h2>
+                <div class="section-label">THE SHIFT</div>
+                <h2>From navigation alone to guidance when it matters</h2>
                 <div class="comparison">
                     <div class="compare-col today">
-                        <h3>Today</h3>
-                        <div class="compare-subtitle">Member uses pages, links, and flows to find the right path</div>
+                        <h3>In a navigation-first experience</h3>
+                        <div class="compare-subtitle">The member interprets the available paths</div>
                         <ul>
-                            <li><span class="step-dot"></span><strong>Find</strong> the right page for their need</li>
-                            <li><span class="step-dot"></span><strong>Read</strong> through content to understand options</li>
-                            <li><span class="step-dot"></span><strong>Decide</strong> which option applies to them</li>
-                            <li><span class="step-dot"></span><strong>Switch</strong> between different flows</li>
-                            <li><span class="step-dot"></span><strong>Call</strong> when unsure what to do next</li>
+                            <li><span class="step-dot"></span><strong>Find</strong> the page or service that appears relevant</li>
+                            <li><span class="step-dot"></span><strong>Read</strong> information across pages and flows</li>
+                            <li><span class="step-dot"></span><strong>Determine</strong> which option fits their situation</li>
+                            <li><span class="step-dot"></span><strong>Move</strong> between experiences as the journey changes</li>
+                            <li><span class="step-dot"></span><strong>Seek help</strong> when the next step remains unclear</li>
                         </ul>
                     </div>
                     <div class="compare-col future">
-                        <h3>With a Guided Experience Layer</h3>
-                        <div class="compare-subtitle">Member is supported at each step</div>
+                        <h3>With guided support</h3>
+                        <div class="compare-subtitle">The member receives help moving from intent to action</div>
                         <ul>
-                            <li><span class="step-dot"></span><strong>Ask</strong> in natural language what they need</li>
-                            <li><span class="step-dot"></span><strong>Receive</strong> plain-language guidance</li>
-                            <li><span class="step-dot"></span><strong>See</strong> relevant next steps surfaced clearly</li>
-                            <li><span class="step-dot"></span><strong>Continue</strong> one connected journey</li>
-                            <li><span class="step-dot"></span><strong>Escalate</strong> to pharmacy staff when human judgment or support is needed</li>
+                            <li><span class="step-dot"></span><strong>Ask</strong> in their own words what they need</li>
+                            <li><span class="step-dot"></span><strong>Receive</strong> clear, plain-language guidance</li>
+                            <li><span class="step-dot"></span><strong>See</strong> relevant options and next steps</li>
+                            <li><span class="step-dot"></span><strong>Continue</strong> through a more connected journey</li>
+                            <li><span class="step-dot"></span><strong>Reach pharmacy staff</strong> when judgment or reassurance is needed</li>
                         </ul>
                     </div>
                 </div>
@@ -1140,7 +1141,7 @@
             "Before I get into the opportunity, I wanted to give you a little context on the lens I used. I spent more than 25 years at Microsoft across operational, customer experience, platform, and product roles, so I have had the opportunity to see the same customer problem from several different angles.\n\nOne lens I bring to product work is looking beyond an individual screen, feature, or transaction. Often, each experience works on its own. The friction appears in the spaces between them, where the customer has to connect the pieces, repeat context, or figure out what happens next. I look for those breaks and where a more connected journey could remove friction.\n\nAI was sometimes part of that experience, but the goal was always clarity and action rather than adding technology for its own sake. I also spent a lot of time translating broad ideas into smaller hypotheses and practical experiences that teams could test.\n\nI applied those same lenses here. At the same time, this is very much an outside-in view based on the publicly available Costco Pharmacy experience. I have not yet had the benefit of speaking with your members, pharmacists, operational teams, or technology teams. So I expect parts of this to be incomplete, and that is one of the reasons I was excited to have this conversation.",
             "My starting point was that Costco Pharmacy already offers a strong set of digital capabilities. Members can refill or transfer prescriptions, schedule immunizations, compare prices, and choose how they receive medications.\n\nSo the hypothesis is not necessarily that another capability is missing. The opportunity may be in helping members connect their situation to the right capability.\n\nMembers usually do not arrive thinking in terms of features or site structure. They arrive with a question or circumstance: 'I have a new prescription,' 'I need this medication soon,' 'Can I get this vaccine here?' or 'What will this cost me?'\n\nThe question I started exploring was whether Costco could make it easier for members to move from that intent to the right next step.",
             "The same pharmacy capability can feel very different depending on the member’s situation. Someone who needs a medication today is thinking differently from someone managing several prescriptions for their family. A member transferring from another pharmacy may need reassurance and process guidance, while someone exploring an immunization may simply be unsure whether an appointment is required.\n\nThese are not just different tasks. They involve different levels of urgency, responsibility, and confidence.\n\nThat is why the experience should not only expose the available options. It should help the member understand which option applies to their situation and what to expect next. The goal is to reduce cognitive load and make the journey feel clear, calm, and supportive.",
-            "Shift script: The core shift is from page-first navigation to guided resolution. Instead of asking members to map the system, we guide intent to action in plain language. Human handoff remains essential when judgment or reassurance is needed.",
+            "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
             "Capabilities script: These use cases show a repeatable pattern across refill, transfer, immunization, and fulfillment moments. The assistant is not trying to be everything. It helps members move from a question to a concrete next step without needing to understand site architecture.",
             "Guardrails script: Trust is non-negotiable in pharmacy contexts. This model assumes strict guardrails: no diagnosis, approved content, authentication before personal tasks, and clear escalation. The role is guidance and orchestration, not clinical authority.",
             "Phasing script: This is a proposed rollout path, not a fixed plan. Start with a focused MVP to validate member value and operational feasibility. If that works, expand progressively into authenticated assistance and then consent-based proactive support.",
@@ -1202,6 +1203,7 @@
 
         // Enable presenter notes panel with ?presenter=1
         if (presenterMode) {
+            document.body.classList.add('presenter-mode');
             const btn = document.getElementById('notesToggleBtn');
             if (btn) {
                 btn.classList.add('visible');

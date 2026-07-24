@@ -629,6 +629,10 @@
             gap: 6px;
         }
 
+        .presenter-mode .slide-capabilities .cap-takeaway {
+            margin-bottom: 84px;
+        }
+
 
         /* === FULLSCREEN === */
         :fullscreen .disclaimer-bar,
@@ -722,6 +726,10 @@
                 right: 10px;
                 bottom: 10px;
                 padding: 9px 12px;
+            }
+
+            .presenter-mode .slide-capabilities .cap-takeaway {
+                margin-bottom: 0;
             }
 
             .nav-bar { padding: 8px 12px; }
@@ -905,49 +913,49 @@
             </div>
         </section>
 
-        <!-- SLIDE 5: CAPABILITIES -->
-        <section class="slide">
+        <!-- SLIDE 6: CAPABILITIES -->
+        <section class="slide slide-capabilities">
             <div class="slide-content">
-                <div class="section-label">What It Enables</div>
-                <h2>A guide for common member moments.</h2>
+                <div class="section-label">WHAT IT ENABLES</div>
+                <h2>Guidance can begin with the member’s situation</h2>
                 <div class="cap-grid">
                     <div class="cap-card">
                         <div class="cap-card-header">
                             <span class="cap-card-icon">💊</span>
                             <span class="cap-card-title">Refill</span>
                         </div>
-                        <div class="cap-card-example">"Can I refill this now?"</div>
+                        <div class="cap-card-example">"How do I refill my prescription?"</div>
                     </div>
                     <div class="cap-card">
                         <div class="cap-card-header">
                             <span class="cap-card-icon">🔄</span>
                             <span class="cap-card-title">Transfer</span>
                         </div>
-                        <div class="cap-card-example">"Move my prescription from another pharmacy."</div>
+                        <div class="cap-card-example">"How do I move a prescription from another pharmacy?"</div>
                     </div>
                     <div class="cap-card">
                         <div class="cap-card-header">
                             <span class="cap-card-icon">💉</span>
                             <span class="cap-card-title">Immunization</span>
                         </div>
-                        <div class="cap-card-example">"Help me find the right appointment path."</div>
+                        <div class="cap-card-example">"Help me understand how to schedule the right vaccine."</div>
                     </div>
                     <div class="cap-card">
                         <div class="cap-card-header">
                             <span class="cap-card-icon">🚗</span>
-                            <span class="cap-card-title">Fulfillment</span>
+                            <span class="cap-card-title">Pickup or Delivery</span>
                         </div>
-                        <div class="cap-card-example">"What is the best pickup or delivery option?"</div>
+                        <div class="cap-card-example">"What options are available for receiving my medication?"</div>
                     </div>
                     <div class="cap-card">
                         <div class="cap-card-header">
                             <span class="cap-card-icon">👨‍👩‍👧</span>
-                            <span class="cap-card-title">Family &amp; Pet</span>
+                            <span class="cap-card-title">Managing Prescriptions</span>
                         </div>
-                        <div class="cap-card-example">"Help me understand what services are available."</div>
+                        <div class="cap-card-example">"Help me understand how to manage prescriptions for my family."</div>
                     </div>
                 </div>
-                <div class="takeaway">The assistant helps members move from intent to action — without needing to understand the site structure first.</div>
+                <div class="takeaway cap-takeaway">Guided support helps members move from a question to the appropriate next step, without first needing to understand the site structure.</div>
             </div>
         </section>
 
@@ -1142,7 +1150,7 @@
             "My starting point was that Costco Pharmacy already offers a strong set of digital capabilities. Members can refill or transfer prescriptions, schedule immunizations, compare prices, and choose how they receive medications.\n\nSo the hypothesis is not necessarily that another capability is missing. The opportunity may be in helping members connect their situation to the right capability.\n\nMembers usually do not arrive thinking in terms of features or site structure. They arrive with a question or circumstance: 'I have a new prescription,' 'I need this medication soon,' 'Can I get this vaccine here?' or 'What will this cost me?'\n\nThe question I started exploring was whether Costco could make it easier for members to move from that intent to the right next step.",
             "The same pharmacy capability can feel very different depending on the member’s situation. Someone who needs a medication today is thinking differently from someone managing several prescriptions for their family. A member transferring from another pharmacy may need reassurance and process guidance, while someone exploring an immunization may simply be unsure whether an appointment is required.\n\nThese are not just different tasks. They involve different levels of urgency, responsibility, and confidence.\n\nThat is why the experience should not only expose the available options. It should help the member understand which option applies to their situation and what to expect next. The goal is to reduce cognitive load and make the journey feel clear, calm, and supportive.",
             "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
-            "Capabilities script: These use cases show a repeatable pattern across refill, transfer, immunization, and fulfillment moments. The assistant is not trying to be everything. It helps members move from a question to a concrete next step without needing to understand site architecture.",
+            "This is what the idea could enable across a few common member moments. The member begins with their situation or question rather than having to know which page, feature, or flow applies.\n\nThe goal is not for one experience to do everything. It is to understand enough of the member’s intent to provide clear information, surface the appropriate option, and move them into the right existing workflow.\n\nSome moments may require only simple guidance. Others may eventually use account or prescription context, if that is appropriate and feasible. And when the request requires pharmacy judgment or reassurance, the experience should make it easy to reach a person.",
             "Guardrails script: Trust is non-negotiable in pharmacy contexts. This model assumes strict guardrails: no diagnosis, approved content, authentication before personal tasks, and clear escalation. The role is guidance and orchestration, not clinical authority.",
             "Phasing script: This is a proposed rollout path, not a fixed plan. Start with a focused MVP to validate member value and operational feasibility. If that works, expand progressively into authenticated assistance and then consent-based proactive support.",
             "Review questions script: These are the questions I want to pressure-test with your team. Where does this align or conflict with current roadmap priorities. Which journeys have the most pain today. What technical constraints should shape any MVP boundary.",

@@ -431,6 +431,26 @@
             margin-bottom: 2px;
         }
 
+        .presenter-mode.notes-open .slide-lens {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-lens .slide-content {
+            margin-top: -42px;
+        }
+
+        .presenter-mode.notes-open .slide-lens .cap-grid {
+            margin-top: 20px !important;
+        }
+
+        .presenter-mode.notes-open .slide-lens .cap-card {
+            padding: 18px;
+        }
+
+        .presenter-mode.notes-open .slide-lens .takeaway {
+            margin-top: 14px;
+        }
+
         .presenter-mode.is-fullscreen .slide-trust {
             align-items: center;
         }
@@ -635,8 +655,12 @@
             border-radius: 12px;
             padding: 14px 16px;
             box-shadow: 0 10px 24px rgba(0,0,0,0.22);
-            max-height: 38vh;
+            max-height: 34vh;
             overflow-y: auto;
+        }
+
+        .presenter-mode.notes-open.active-slide-2 .presenter-notes {
+            max-height: 28vh;
         }
 
         .presenter-notes.visible {
@@ -780,7 +804,11 @@
                 right: 10px;
                 bottom: 10px;
                 padding: 12px;
-                max-height: 46vh;
+                max-height: 42vh;
+            }
+
+            .presenter-mode.notes-open.active-slide-2 .presenter-notes {
+                max-height: 36vh;
             }
 
             .notes-body {
@@ -812,6 +840,22 @@
 
             .presenter-mode.notes-open .slide-trust .trust-group {
                 gap: 8px;
+            }
+
+            .presenter-mode.notes-open .slide-lens .cap-grid {
+                margin-top: 16px !important;
+            }
+
+            .presenter-mode.notes-open .slide-lens .cap-card {
+                padding: 16px;
+            }
+
+            .presenter-mode.notes-open .slide-lens .takeaway {
+                margin-top: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-lens .slide-content {
+                margin-top: -14px;
             }
 
             .presenter-mode.is-fullscreen .slide-trust { align-items: center; }
@@ -859,7 +903,7 @@
         </section>
 
         <!-- SLIDE 2: WHY THIS -->
-        <section class="slide">
+        <section class="slide slide-lens">
             <div class="slide-content">
                 <div class="section-label">Relevant Product Lens</div>
                 <h2>The experience that shaped this exploration</h2>
@@ -1270,6 +1314,12 @@
             btn.setAttribute('aria-expanded', show ? 'true' : 'false');
         }
 
+        function updateActiveSlideClass() {
+            const body = document.body;
+            body.className = body.className.replace(/\bactive-slide-\d+\b/g, '').trim();
+            body.classList.add(`active-slide-${currentIndex + 1}`);
+        }
+
         function syncFullscreenState() {
             document.body.classList.toggle('is-fullscreen', !!document.fullscreenElement);
         }
@@ -1290,6 +1340,7 @@
             document.querySelectorAll('.dot').forEach((d, i) => {
                 d.className = 'dot' + (i === currentIndex ? ' active' : '');
             });
+            updateActiveSlideClass();
             updateNotes();
         }
 
@@ -1316,6 +1367,8 @@
             toggleNotes(false);
             syncFullscreenState();
         }
+
+        updateActiveSlideClass();
 
         document.addEventListener('fullscreenchange', syncFullscreenState);
 

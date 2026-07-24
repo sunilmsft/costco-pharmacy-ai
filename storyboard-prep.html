@@ -200,6 +200,151 @@
             color: var(--text-light);
         }
 
+        .slide-closing-placeholder,
+        .slide-appendix-divider {
+            background: #f6f8fb;
+        }
+
+        .slide-closing-placeholder .slide-content,
+        .slide-appendix-divider .slide-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .slide-closing-placeholder p.subtitle,
+        .slide-appendix-divider p.subtitle {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .slide-appendix-divider .slide-content {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid #d9e3ee;
+            border-radius: 16px;
+            padding: 46px 52px;
+            box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+            position: relative;
+        }
+
+        .slide-appendix-divider .slide-content::before,
+        .slide-appendix-divider .slide-content::after {
+            content: "";
+            position: absolute;
+            left: 36px;
+            right: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,59,100,0.22) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        .slide-appendix-divider .slide-content::before { top: 16px; }
+        .slide-appendix-divider .slide-content::after { bottom: 16px; }
+
+        .slide-appendix-divider .section-label {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid #bdd2e7;
+            background: #edf4fb;
+            letter-spacing: 1.8px;
+        }
+
+        .slide-appendix-divider h2 {
+            margin-bottom: 14px;
+            font-size: 46px;
+        }
+
+        .slide-appendix-divider p.subtitle {
+            max-width: 760px;
+        }
+
+        .appendix-start-note {
+            margin-top: 24px;
+            font-size: 13px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #5a6f84;
+            font-weight: 600;
+        }
+
+        .presenter-mode.notes-open .slide-closing-placeholder,
+        .presenter-mode.notes-open .slide-appendix-divider {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-closing-placeholder .slide-content,
+        .presenter-mode.notes-open .slide-appendix-divider .slide-content {
+            margin-top: 18px;
+        }
+
+        .presenter-mode.notes-open .slide-appendix-divider .slide-content {
+            padding-top: 34px;
+            padding-bottom: 34px;
+        }
+
+        .presenter-mode.notes-open .slide-appendix-divider h2 {
+            font-size: 40px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-closing-placeholder,
+        .presenter-mode.is-fullscreen .slide-appendix-divider {
+            align-items: center;
+        }
+
+        .slide-prototype .prototype-review {
+            margin-top: 22px;
+            color: var(--text-light);
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slide-prototype .prototype-review-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            margin-bottom: 10px;
+        }
+
+        .slide-prototype .prototype-review-items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 7px;
+            font-size: 15px;
+            line-height: 1.45;
+        }
+
+        .slide-prototype .prototype-review-items li {
+            color: #54677a;
+        }
+
+        .presenter-mode.notes-open .slide-prototype {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .slide-content {
+            margin-top: -10px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .prototype-review {
+            margin-top: 16px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .prototype-review-items {
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .hero-meta {
+            margin-top: 18px !important;
+        }
+
+        .presenter-mode.is-fullscreen .slide-prototype {
+            align-items: center;
+        }
+
         /* === TILES GRID === */
         .tiles-grid {
             display: grid;
@@ -262,6 +407,184 @@
             color: var(--text-light);
             margin-top: 6px;
             font-weight: 400;
+        }
+
+        /* === MEMBER PERSPECTIVE + SHIFT (CONSOLIDATED) === */
+        .slide-member-shift .member-shift-layout {
+            margin-top: 20px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .slide-member-shift .column-heading {
+            font-size: 12px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: #4a6377;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slide-member-shift .member-situation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .slide-member-shift .member-moment-item {
+            position: relative;
+            background: #fbfdff;
+            border: 1px solid #d5e0ea;
+            border-radius: 12px;
+            padding: 14px 15px;
+            box-shadow: 0 7px 16px rgba(16, 24, 40, 0.08), 0 1px 3px rgba(16, 24, 40, 0.04);
+            min-height: 88px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-member-shift .member-moment-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 12px 0 0 12px;
+            background: #b6c7d8;
+        }
+
+        .slide-member-shift .member-urgency::before { background: #d98080; }
+        .slide-member-shift .member-responsibility::before { background: #d4a45d; }
+        .slide-member-shift .member-uncertainty::before { background: #8f83ba; }
+        .slide-member-shift .member-new-process::before { background: #74a6d3; }
+
+        .slide-member-shift .member-moment-label {
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #5b7286;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .slide-member-shift .member-moment-quote {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.35;
+        }
+
+        .slide-member-shift .response-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .slide-member-shift .guidance-section {
+            background: #f8fbff;
+            border: 1px solid #d3dfeb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-member-shift .guidance-section.navigation-card {
+            background: #f8fbff;
+            border-left: 3px solid #9bb6cf;
+        }
+
+        .slide-member-shift .guidance-section.guidance-card {
+            background: #f5f9ff;
+            border-left: 3px solid #6f9fc8;
+        }
+
+        .slide-member-shift .guidance-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 8px;
+        }
+
+        .slide-member-shift .guidance-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .slide-member-shift .guidance-points li {
+            font-size: 13px;
+            line-height: 1.38;
+            color: #4f6579;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .slide-member-shift .guidance-points li::before {
+            content: "\2022";
+            color: #89a8c5;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .slide-member-shift .takeaway {
+            margin-top: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .slide-content {
+            margin-top: -22px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift h2 {
+            margin-bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-shift-layout {
+            margin-top: 8px;
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .column-heading {
+            margin-bottom: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-situation-grid,
+        .presenter-mode.notes-open .slide-member-shift .response-grid {
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-moment-item,
+        .presenter-mode.notes-open .slide-member-shift .guidance-section {
+            padding: 10px 12px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-moment-item {
+            min-height: 68px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .guidance-points {
+            gap: 6px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .takeaway {
+            margin-top: 6px;
+            padding: 12px 14px;
+            font-size: 13px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift {
+            align-items: center;
         }
 
         /* === TWO COLUMN COMPARISON === */
@@ -529,19 +852,21 @@
         }
 
         .phase-desc {
-            font-size: 13px;
+            font-size: 14px;
+            line-height: 1.45;
             color: var(--text-light);
-            margin-bottom: 12px;
-            line-height: 1.4;
+            margin-bottom: 10px;
         }
 
         .phase-example {
-            font-size: 12px;
-            background: var(--accent-light);
+            font-size: 13px;
+            color: var(--costco-blue);
+            background: #eaf3fc;
             border-radius: 8px;
             padding: 10px 12px;
-            color: var(--costco-blue);
+            line-height: 1.35;
             font-style: italic;
+            font-weight: 500;
         }
 
         .phase-gate {
@@ -639,6 +964,46 @@
         .spoke.highlight {
             border-color: var(--costco-blue);
             background: var(--accent-light);
+        }
+
+        .slide-optional-future .spoke {
+            opacity: 0.68;
+            border-color: #d7e2ec;
+            color: #5a7085;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+        }
+
+        .slide-optional-future .spoke.highlight {
+            opacity: 0.88;
+            border-color: #a9c5df;
+            background: #edf4fb;
+            color: #315d86;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content {
+            margin-top: -10px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .hub-spoke {
+            margin-top: 22px;
+            height: 300px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .spokes-ring {
+            width: 430px;
+            height: 300px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .takeaway {
+            margin-top: 20px !important;
+        }
+
+        .presenter-mode.is-fullscreen .slide-optional-future {
+            align-items: center;
         }
 
         /* === DOT INDICATORS === */
@@ -913,6 +1278,33 @@
                 margin-top: -14px;
             }
 
+            .slide-member-shift .member-shift-layout {
+                gap: 10px;
+            }
+
+            .slide-member-shift .member-situation-grid,
+            .slide-member-shift .response-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .slide-member-shift .member-moment-item,
+            .slide-member-shift .guidance-section {
+                padding: 10px 12px;
+            }
+
+            .slide-member-shift .member-moment-item {
+                min-height: 0;
+            }
+
+            .slide-member-shift .guidance-section {
+                margin-bottom: 0;
+            }
+
+            .slide-member-shift .takeaway {
+                margin-top: 10px;
+            }
+
             .presenter-mode.notes-open .slide-roadmap {
                 align-items: flex-start;
             }
@@ -955,6 +1347,19 @@
             .dot-indicators { bottom: 12px; }
 
             .takeaway { font-size: 13px; padding: 12px 14px; }
+
+            .slide-appendix-divider .slide-content {
+                padding: 30px 20px;
+            }
+
+            .slide-appendix-divider h2 {
+                font-size: 34px;
+            }
+
+            .appendix-start-note {
+                margin-top: 16px;
+                font-size: 12px;
+            }
 
             /* CTA slide */
             .cta-links { flex-direction: column; gap: 12px; }
@@ -1062,77 +1467,57 @@
         </section>
 
         <!-- SLIDE 4: MEMBER MOMENTS -->
-        <section class="slide">
+        <section class="slide slide-member-shift">
             <div class="slide-content">
                 <div class="section-label">MEMBER PERSPECTIVE</div>
-                <h2>Members arrive with different needs, urgency, and confidence</h2>
-                <div class="moments-grid">
-                    <div class="moment-card">
-                        <div class="moment-icon">⏱️</div>
-                        <div>
-                            <div class="moment-text">"I need this medication today."</div>
-                            <div class="moment-context">Urgency — needs the fastest available path</div>
+                <h2>Members arrive with different needs. Guidance can help when the path is unclear.</h2>
+                <div class="member-shift-layout">
+                    <div class="member-situations-row">
+                        <div class="column-heading">DIFFERENT MEMBER SITUATIONS</div>
+                        <div class="member-situation-grid">
+                            <div class="member-moment-item member-urgency">
+                                <div class="member-moment-label">Urgency</div>
+                                <div class="member-moment-quote">"I need this medication today."</div>
+                            </div>
+                            <div class="member-moment-item member-responsibility">
+                                <div class="member-moment-label">Responsibility</div>
+                                <div class="member-moment-quote">"I’m managing prescriptions for my family."</div>
+                            </div>
+                            <div class="member-moment-item member-uncertainty">
+                                <div class="member-moment-label">Uncertainty</div>
+                                <div class="member-moment-quote">"I’m not sure whether I need an appointment."</div>
+                            </div>
+                            <div class="member-moment-item member-new-process">
+                                <div class="member-moment-label">New to the process</div>
+                                <div class="member-moment-quote">"I’m transferring from another pharmacy."</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="moment-card">
-                        <div class="moment-icon">👨‍👩‍👧</div>
-                        <div>
-                            <div class="moment-text">"I'm managing prescriptions for my family."</div>
-                            <div class="moment-context">Responsibility — coordinating multiple people and medications</div>
+
+                    <div class="response-grid">
+                        <div class="guidance-section navigation-card">
+                            <h3>Navigation remains essential</h3>
+                            <ul class="guidance-points">
+                                <li>Members can still browse services and complete familiar tasks.</li>
+                                <li>Existing Costco Pharmacy flows remain the destination.</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="moment-card">
-                        <div class="moment-icon">❓</div>
-                        <div>
-                            <div class="moment-text">"I'm not sure whether I need an appointment."</div>
-                            <div class="moment-context">Uncertainty — needs help understanding the right next step</div>
-                        </div>
-                    </div>
-                    <div class="moment-card">
-                        <div class="moment-icon">🏥</div>
-                        <div>
-                            <div class="moment-text">"I'm transferring from another pharmacy."</div>
-                            <div class="moment-context">New to the process — needs clear guidance and expectations</div>
+                        <div class="guidance-section guidance-card">
+                            <h3>Guidance helps when needed</h3>
+                            <ul class="guidance-points">
+                                <li>Start with the member’s question or situation.</li>
+                                <li>Clarify relevant options and the next step.</li>
+                                <li>Connect experiences when the journey crosses flows.</li>
+                                <li>Make pharmacy staff easy to reach when judgment is needed.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="takeaway">The experience should respond to the member’s situation while remaining clear, calm, and supportive.</div>
+                <div class="takeaway">The opportunity is not to replace navigation. It is to reduce the effort required to understand which path applies.</div>
             </div>
         </section>
 
-        <!-- SLIDE 5: COMPARISON -->
-        <section class="slide slide-shift">
-            <div class="slide-content">
-                <div class="section-label">THE SHIFT</div>
-                <h2>From navigation alone to guidance when it matters</h2>
-                <div class="comparison">
-                    <div class="compare-col today">
-                        <h3>In a navigation-first experience</h3>
-                        <div class="compare-subtitle">The member interprets the available paths</div>
-                        <ul>
-                            <li><span class="step-dot"></span><strong>Find</strong> the page or service that appears relevant</li>
-                            <li><span class="step-dot"></span><strong>Read</strong> information across pages and flows</li>
-                            <li><span class="step-dot"></span><strong>Determine</strong> which option fits their situation</li>
-                            <li><span class="step-dot"></span><strong>Move</strong> between experiences as the journey changes</li>
-                            <li><span class="step-dot"></span><strong>Seek help</strong> when the next step remains unclear</li>
-                        </ul>
-                    </div>
-                    <div class="compare-col future">
-                        <h3>With guided support</h3>
-                        <div class="compare-subtitle">The member receives help moving from intent to action</div>
-                        <ul>
-                            <li><span class="step-dot"></span><strong>Ask</strong> in their own words what they need</li>
-                            <li><span class="step-dot"></span><strong>Receive</strong> clear, plain-language guidance</li>
-                            <li><span class="step-dot"></span><strong>See</strong> relevant options and next steps</li>
-                            <li><span class="step-dot"></span><strong>Continue</strong> through a more connected journey</li>
-                            <li><span class="step-dot"></span><strong>Reach pharmacy staff</strong> when judgment or reassurance is needed</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 6: CAPABILITIES -->
+        <!-- SLIDE 5: CAPABILITIES -->
         <section class="slide slide-capabilities">
             <div class="slide-content">
                 <div class="section-label">WHAT IT ENABLES</div>
@@ -1178,7 +1563,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: TRUST -->
+        <!-- SLIDE 6: TRUST -->
         <section class="slide slide-trust">
             <div class="slide-content">
                 <div class="section-label">GUARDRAILS</div>
@@ -1222,7 +1607,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 8: ROADMAP -->
+        <!-- SLIDE 7: ROADMAP -->
         <section class="slide slide-roadmap">
             <div class="slide-content">
                 <div class="section-label">Proposed Phased Approach</div>
@@ -1254,7 +1639,81 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: REVIEW QUESTIONS -->
+        <!-- SLIDE 8: PROTOTYPE REVIEW -->
+        <section class="slide slide-hero slide-prototype">
+            <div class="slide-content hero-content">
+                <div class="section-label">MAKE THE HYPOTHESIS TANGIBLE</div>
+                <h1>Explore the concept through a working prototype</h1>
+                <p class="subtitle">See how guided support could help a member move from a question to the appropriate next step across transfer, refill, pickup or delivery, and staff handoff moments.</p>
+                <div class="prototype-review">
+                    <div class="prototype-review-label">As you explore, consider:</div>
+                    <ul class="prototype-review-items">
+                        <li>Does the experience improve clarity?</li>
+                        <li>Where does guidance add value—or get in the way?</li>
+                        <li>What would need to change to fit Costco Pharmacy?</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 32px;">
+                    <a href="prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
+                </div>
+                <div class="hero-meta" style="margin-top: 32px;">
+                    Sample data only · No real member information · Interactions are illustrative
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: CLOSING DISCUSSION PLACEHOLDER -->
+        <section class="slide slide-closing-placeholder">
+            <div class="slide-content">
+                <div class="section-label">CLOSING DISCUSSION</div>
+                <h2>Placeholder for a new closing discussion slide</h2>
+                <p class="subtitle">This placeholder marks where the new closing discussion content will be created next.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: APPENDIX DIVIDER -->
+        <section class="slide slide-appendix-divider">
+            <div class="slide-content">
+                <div class="section-label">APPENDIX</div>
+                <h2>Supporting detail for discussion</h2>
+                <p class="subtitle">Additional context on the experience shift, review questions, collaboration model, and broader implications.</p>
+                <div class="appendix-start-note">Optional supporting material begins on the next slide</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: COMPARISON -->
+        <section class="slide slide-shift">
+            <div class="slide-content">
+                <div class="section-label">THE SHIFT</div>
+                <h2>From navigation alone to guidance when it matters</h2>
+                <div class="comparison">
+                    <div class="compare-col today">
+                        <h3>In a navigation-first experience</h3>
+                        <div class="compare-subtitle">The member interprets the available paths</div>
+                        <ul>
+                            <li><span class="step-dot"></span><strong>Find</strong> the page or service that appears relevant</li>
+                            <li><span class="step-dot"></span><strong>Read</strong> information across pages and flows</li>
+                            <li><span class="step-dot"></span><strong>Determine</strong> which option fits their situation</li>
+                            <li><span class="step-dot"></span><strong>Move</strong> between experiences as the journey changes</li>
+                            <li><span class="step-dot"></span><strong>Seek help</strong> when the next step remains unclear</li>
+                        </ul>
+                    </div>
+                    <div class="compare-col future">
+                        <h3>With guided support</h3>
+                        <div class="compare-subtitle">The member receives help moving from intent to action</div>
+                        <ul>
+                            <li><span class="step-dot"></span><strong>Ask</strong> in their own words what they need</li>
+                            <li><span class="step-dot"></span><strong>Receive</strong> clear, plain-language guidance</li>
+                            <li><span class="step-dot"></span><strong>See</strong> relevant options and next steps</li>
+                            <li><span class="step-dot"></span><strong>Continue</strong> through a more connected journey</li>
+                            <li><span class="step-dot"></span><strong>Reach pharmacy staff</strong> when judgment or reassurance is needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: REVIEW QUESTIONS -->
         <section class="slide">
             <div class="slide-content">
                 <div class="section-label">REVIEW FOCUS</div>
@@ -1286,7 +1745,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 10: HOW I CAN HELP -->
+        <!-- SLIDE 13: HOW I CAN HELP -->
         <section class="slide">
             <div class="slide-content">
                 <div class="section-label">COLLABORATION MODEL</div>
@@ -1318,11 +1777,11 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: VISION -->
-        <section class="slide">
+        <!-- SLIDE 14: OPTIONAL APPENDIX -->
+        <section class="slide slide-optional-future">
             <div class="slide-content" style="text-align: center;">
-                <div class="section-label">Broader Opportunity</div>
-                <h2>Pharmacy could be the starting point for a broader guided-member experience.</h2>
+                <div class="section-label">OPTIONAL FUTURE IMPLICATION</div>
+                <h2>What pharmacy could teach us about guidance in other complex member journeys</h2>
                 <div class="hub-spoke">
                     <div class="spokes-ring">
                         <div class="spoke highlight">🏥 Pharmacy</div>
@@ -1332,24 +1791,9 @@
                         <div class="spoke">🎫 Membership</div>
                         <div class="spoke">🏢 Business Center</div>
                     </div>
-                    <div class="hub-center">Guided<br>Member<br>Experience<br>Layer</div>
+                    <div class="hub-center">Reusable<br>guidance<br>pattern</div>
                 </div>
-                <div class="takeaway" style="max-width: 700px; margin: 32px auto 0; text-align: left;">Pharmacy is a high-trust place to learn the pattern. The same guided experience model could later extend to other member journeys.</div>
-            </div>
-        </section>
-
-        <!-- SLIDE 12: CTA -->
-        <section class="slide slide-hero">
-            <div class="slide-content hero-content">
-                <div class="section-label">See It In Action</div>
-                <h1>Interactive Prototype</h1>
-                <p class="subtitle">Explore what a guided pharmacy experience could feel like — from personalized prompts to fulfillment choices, transfer flows, and staff handoff behavior.</p>
-                <div style="margin-top: 32px;">
-                    <a href="prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
-                </div>
-                <div class="hero-meta" style="margin-top: 32px;">
-                    Sample data only · No real member information · Conversation flows are illustrative
-                </div>
+                <div class="takeaway" style="max-width: 700px; margin: 32px auto 0; text-align: left;">Pharmacy could provide a high-trust environment to learn what works. Any broader application would depend on evidence, relevance, and the priorities of each business area.</div>
             </div>
         </section>
 
@@ -1370,22 +1814,24 @@
 
     <script>
         let currentIndex = 0;
-        const totalSlides = 12;
+        const totalSlides = 14;
         const presenterMode = new URLSearchParams(window.location.search).get('presenter') === '1';
 
         const slideNotes = [
             "Thanks everyone for making the time. This is not a finished recommendation. I put it together to explore one question: could Costco Pharmacy make it easier for members to understand what to do next, especially when the right path is not immediately clear?\n\nI’ll share how I arrived at that hypothesis, show what the experience could feel like, and then I’d really value your perspective on whether the problem is real, where the idea fits, and what I may be missing.",
             "Before I get into the opportunity, I wanted to give you a little context on the lens I used. I spent more than 25 years at Microsoft across operational, customer experience, platform, and product roles, so I have had the opportunity to see the same customer problem from several different angles.\n\nOne lens I bring to product work is looking beyond an individual screen, feature, or transaction. Often, each experience works on its own. The friction appears in the spaces between them, where the customer has to connect the pieces, repeat context, or figure out what happens next. I look for those breaks and where a more connected journey could remove friction.\n\nAI was sometimes part of that experience, but the goal was always clarity and action rather than adding technology for its own sake. I also spent a lot of time translating broad ideas into smaller hypotheses and practical experiences that teams could test.\n\nI applied those same lenses here. At the same time, this is very much an outside-in view based on the publicly available Costco Pharmacy experience. I have not yet had the benefit of speaking with your members, pharmacists, operational teams, or technology teams. So I expect parts of this to be incomplete, and that is one of the reasons I was excited to have this conversation.",
             "My starting point was that Costco Pharmacy already offers a strong set of digital capabilities. Members can refill or transfer prescriptions, schedule immunizations, compare prices, and choose how they receive medications.\n\nSo the hypothesis is not necessarily that another capability is missing. The opportunity may be in helping members connect their situation to the right capability.\n\nMembers usually do not arrive thinking in terms of features or site structure. They arrive with a question or circumstance: 'I have a new prescription,' 'I need this medication soon,' 'Can I get this vaccine here?' or 'What will this cost me?'\n\nThe question I started exploring was whether Costco could make it easier for members to move from that intent to the right next step.",
-            "The same pharmacy capability can feel very different depending on the member’s situation. Someone who needs a medication today is thinking differently from someone managing several prescriptions for their family. A member transferring from another pharmacy may need reassurance and process guidance, while someone exploring an immunization may simply be unsure whether an appointment is required.\n\nThese are not just different tasks. They involve different levels of urgency, responsibility, and confidence.\n\nThat is why the experience should not only expose the available options. It should help the member understand which option applies to their situation and what to expect next. The goal is to reduce cognitive load and make the journey feel clear, calm, and supportive.",
-            "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
+            "Members can arrive at the same pharmacy experience with very different needs. Someone who needs a medication today is thinking differently from someone managing prescriptions for their family, transferring from another pharmacy, or simply trying to understand whether an appointment is required.\n\nNavigation and structured digital flows remain essential, especially when members already know what they need. The opportunity may be at the moments where the path is less clear, the journey crosses experiences, or the member needs reassurance.\n\nGuided support could let the member begin with their question, understand the relevant options, and move into the appropriate existing Costco flow. When judgment or pharmacy expertise is required, the path to a person should remain clear.\n\nSo the idea is not to replace navigation. It is to reduce the work members have to do to determine which path applies to their situation.",
             "This is what the idea could enable across a few common member moments. The member begins with their situation or question rather than having to know which page, feature, or flow applies.\n\nThe goal is not for one experience to do everything. It is to understand enough of the member’s intent to provide clear information, surface the appropriate option, and move them into the right existing workflow.\n\nSome moments may require only simple guidance. Others may eventually use account or prescription context, if that is appropriate and feasible. And when the request requires pharmacy judgment or reassurance, the experience should make it easy to reach a person.",
             "Trust has to be designed into the experience from the beginning, especially in a pharmacy context.\n\nThe concept is not intended to diagnose, provide independent clinical advice, or replace pharmacist judgment. Its role is to help members understand available options, navigate approved processes, and move into the right existing workflow.\n\nOn the implementation side, the experience would need to be grounded in approved content and defined business rules, authenticate before using personal information, preserve privacy and auditability, and make human escalation clear.\n\nThe important principle is that the experience should always be honest about its role and its limits. Members should never be left wondering whether they are receiving general guidance or clinical advice.",
             "This is a proposed learning path, not a fixed product roadmap.\n\nI would start with the lowest-risk version of the idea: public information, clear guidance, and navigation into existing Costco Pharmacy flows. That lets us test whether the member problem is real and whether guidance actually improves clarity and next-step success.\n\nIf that demonstrates value, the next phase could explore authenticated support and tighter workflow integration. The question at that point would not only be whether we can build it, but whether it improves completion without adding operational burden or risk.\n\nProactive support would be a later exploration, not an assumed destination. It would depend on member consent, trust, relevance, technical feasibility, and Costco’s priorities.\n\nThe principle is that each phase should earn the next one through evidence.",
+            "Rather than explain the concept only through slides, I built a prototype to make the hypothesis easier to react to.\n\nThis is not intended to represent a finished Costco experience or a proposed final design. It uses sample data and illustrative flows to explore how guidance might help a member move from a question into the appropriate next step.\n\nAs we walk through it, I would especially value your reactions to three things: whether the experience improves clarity, where the guidance feels useful or unnecessary, and what would need to change to fit the realities of Costco Pharmacy.\n\nI would like to treat this as something we can pause, question, and challenge together rather than a formal demo.",
+            "Placeholder note: new closing discussion slide content will be added next.",
+            "Appendix divider note: supporting detail slides begin here.",
+            "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
             "At this point, the most useful outcome for me would not be agreement with the concept. It would be a better understanding of the problem from your perspective.\n\nI would like to learn where members or pharmacy teams experience the most friction today, whether this problem aligns with current priorities, and what operational, technical, trust, or workflow constraints would shape any first test.\n\nI also expect there may be areas where the outside-in hypothesis does not match how the pharmacy actually operates. That would be valuable to understand.\n\nThe goal is to decide together whether there is a meaningful opportunity here and, if there is, what the smallest responsible next step might be.",
             "I also wanted to briefly explain where I believe I could add value if the team sees something worth pursuing here.\n\nThe first area is framing and validation: helping sharpen the member problem, identify the assumptions that matter most, and shape a focused way to learn.\n\nThe second is connecting perspectives. Opportunities like this cross member experience, pharmacy operations, product, design, technology, trust, and compliance. A strength I bring is helping those groups form a shared view of the problem and translate it into practical decisions.\n\nThe third is carrying the learning forward—turning feedback into prototype iterations, clearer hypotheses, roadmap choices, and an executable next step.\n\nI would see the role as flexible around what the team needs, rather than forcing a predefined engagement model.",
-            "Vision script: This broader extension is optional and intentionally future-facing. If pharmacy proves the pattern, the same guidance model may transfer to other member journeys. If not, we still learn valuable design and decision insights from the MVP stage.",
-            "Close script: I would love to do two things today. First, get your candid reaction to usefulness and fit. Second, if there is interest, agree on one concrete next step such as a focused discovery sprint around a single MVP journey."
+            "I would not make this part of the initial proposal, but I wanted to capture one possible future implication.\n\nIf pharmacy demonstrates that guided support improves clarity and helps members move through complex journeys, some of the product and design patterns may be reusable elsewhere. That does not mean one experience or platform should automatically extend across Costco. Each area would have different member needs, workflows, ownership, and constraints.\n\nThe broader value may simply be in learning a repeatable way to connect member intent with the right next step. I would only explore that after pharmacy has demonstrated meaningful value."
         ];
 
         function updateNotes() {

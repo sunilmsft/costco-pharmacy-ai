@@ -217,6 +217,43 @@
             text-align: center;
         }
 
+        .slide-closing-discussion .closing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .slide-closing-discussion .closing-card {
+            background: var(--white);
+            border: 1px solid #d7e2ec;
+            border-radius: 12px;
+            padding: 18px 16px;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.04);
+        }
+
+        .slide-closing-discussion .closing-card:nth-child(1) { border-top: 3px solid #9fb5ca; }
+        .slide-closing-discussion .closing-card:nth-child(2) { border-top: 3px solid #9aaec2; }
+        .slide-closing-discussion .closing-card:nth-child(3) { border-top: 3px solid #8ca9c5; }
+
+        .slide-closing-discussion .closing-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .slide-closing-discussion .closing-card-body {
+            font-size: 14px;
+            line-height: 1.42;
+            color: #4e6478;
+        }
+
+        .slide-closing-discussion .takeaway {
+            margin-top: 16px;
+        }
+
         .slide-appendix-divider .slide-content {
             background: rgba(255, 255, 255, 0.86);
             border: 1px solid #d9e3ee;
@@ -272,9 +309,45 @@
             align-items: flex-start;
         }
 
+        .presenter-mode.notes-open .slide-closing-discussion {
+            align-items: flex-start;
+        }
+
         .presenter-mode.notes-open .slide-closing-placeholder .slide-content,
         .presenter-mode.notes-open .slide-appendix-divider .slide-content {
             margin-top: 18px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .slide-content {
+            margin-top: -6px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion h2 {
+            margin-bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-grid {
+            margin-top: 14px;
+            gap: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card {
+            padding: 14px 13px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card-title {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card-body {
+            font-size: 13px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .takeaway {
+            margin-top: 10px;
+            padding: 12px 14px;
+            font-size: 13px;
         }
 
         .presenter-mode.notes-open .slide-appendix-divider .slide-content {
@@ -288,6 +361,10 @@
 
         .presenter-mode.is-fullscreen .slide-closing-placeholder,
         .presenter-mode.is-fullscreen .slide-appendix-divider {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-closing-discussion {
             align-items: center;
         }
 
@@ -1305,6 +1382,20 @@
                 margin-top: 10px;
             }
 
+            .slide-closing-discussion .closing-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .slide-closing-discussion .closing-card {
+                padding: 12px 13px;
+            }
+
+            .slide-closing-discussion .takeaway {
+                margin-top: 10px;
+            }
+
             .presenter-mode.notes-open .slide-roadmap {
                 align-items: flex-start;
             }
@@ -1377,7 +1468,7 @@
         <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">v3 · July 2026</span></div>
         <div class="nav-right">
             <button class="fullscreen-btn" onclick="goToSlide(0)" title="Back to start">↺ Start</button>
-            <span class="slide-counter"><span id="currentSlide">1</span> / 12</span>
+            <span class="slide-counter"><span id="currentSlide">1</span> / 14</span>
             <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
         </div>
     </div>
@@ -1662,12 +1753,26 @@
             </div>
         </section>
 
-        <!-- SLIDE 9: CLOSING DISCUSSION PLACEHOLDER -->
-        <section class="slide slide-closing-placeholder">
+        <!-- SLIDE 9: CLOSING DISCUSSION -->
+        <section class="slide slide-closing-discussion">
             <div class="slide-content">
                 <div class="section-label">CLOSING DISCUSSION</div>
-                <h2>Placeholder for a new closing discussion slide</h2>
-                <p class="subtitle">This placeholder marks where the new closing discussion content will be created next.</p>
+                <h2>What feels worth exploring further?</h2>
+                <div class="closing-grid">
+                    <div class="closing-card">
+                        <div class="closing-card-title">What resonated?</div>
+                        <div class="closing-card-body">Which member moments or parts of the experience felt most relevant?</div>
+                    </div>
+                    <div class="closing-card">
+                        <div class="closing-card-title">What should we challenge?</div>
+                        <div class="closing-card-body">Where does the outside-in hypothesis not match Costco Pharmacy’s reality?</div>
+                    </div>
+                    <div class="closing-card">
+                        <div class="closing-card-title">What might be worth exploring next?</div>
+                        <div class="closing-card-body">Is there one member journey that deserves deeper validation?</div>
+                    </div>
+                </div>
+                <div class="takeaway">If the problem resonates, one possible next step could be for the team to identify a high-value journey, key constraints, and whether a responsible first test is worth exploring.</div>
             </div>
         </section>
 
@@ -1826,7 +1931,7 @@
             "Trust has to be designed into the experience from the beginning, especially in a pharmacy context.\n\nThe concept is not intended to diagnose, provide independent clinical advice, or replace pharmacist judgment. Its role is to help members understand available options, navigate approved processes, and move into the right existing workflow.\n\nOn the implementation side, the experience would need to be grounded in approved content and defined business rules, authenticate before using personal information, preserve privacy and auditability, and make human escalation clear.\n\nThe important principle is that the experience should always be honest about its role and its limits. Members should never be left wondering whether they are receiving general guidance or clinical advice.",
             "This is a proposed learning path, not a fixed product roadmap.\n\nI would start with the lowest-risk version of the idea: public information, clear guidance, and navigation into existing Costco Pharmacy flows. That lets us test whether the member problem is real and whether guidance actually improves clarity and next-step success.\n\nIf that demonstrates value, the next phase could explore authenticated support and tighter workflow integration. The question at that point would not only be whether we can build it, but whether it improves completion without adding operational burden or risk.\n\nProactive support would be a later exploration, not an assumed destination. It would depend on member consent, trust, relevance, technical feasibility, and Costco’s priorities.\n\nThe principle is that each phase should earn the next one through evidence.",
             "Rather than explain the concept only through slides, I built a prototype to make the hypothesis easier to react to.\n\nThis is not intended to represent a finished Costco experience or a proposed final design. It uses sample data and illustrative flows to explore how guidance might help a member move from a question into the appropriate next step.\n\nAs we walk through it, I would especially value your reactions to three things: whether the experience improves clarity, where the guidance feels useful or unnecessary, and what would need to change to fit the realities of Costco Pharmacy.\n\nI would like to treat this as something we can pause, question, and challenge together rather than a formal demo.",
-            "Placeholder note: new closing discussion slide content will be added next.",
+            "I’d like to come back to the questions behind the prototype rather than the prototype itself.\n\nWhat felt most relevant based on what you know about members and pharmacy operations? Where does the hypothesis not match the reality of how things work today? And is there one journey that feels worth understanding more deeply?\n\nI’m not looking for a decision on a product or roadmap today. If the problem resonates, one possible next step could be for the team to identify a high-value journey, understand the key constraints, and decide whether a responsible first test is worth exploring.\n\nI’d really value your candid reactions.",
             "Appendix divider note: supporting detail slides begin here.",
             "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
             "At this point, the most useful outcome for me would not be agreement with the concept. It would be a better understanding of the problem from your perspective.\n\nI would like to learn where members or pharmacy teams experience the most friction today, whether this problem aligns with current priorities, and what operational, technical, trust, or workflow constraints would shape any first test.\n\nI also expect there may be areas where the outside-in hypothesis does not match how the pharmacy actually operates. That would be valuable to understand.\n\nThe goal is to decide together whether there is a meaningful opportunity here and, if there is, what the smallest responsible next step might be.",

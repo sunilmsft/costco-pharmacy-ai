@@ -375,6 +375,20 @@
             margin-top: 28px;
         }
 
+        .trust-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .trust-group-title {
+            font-size: 12px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: #4a6377;
+            font-weight: 700;
+        }
+
         .trust-item {
             background: var(--green-light);
             border-radius: 10px;
@@ -391,6 +405,49 @@
             font-size: 18px;
             flex-shrink: 0;
         }
+
+        .presenter-mode .slide-trust {
+            align-items: center;
+        }
+
+        .presenter-mode.notes-open .slide-trust {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-trust .slide-content {
+            margin-top: 4px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-grid {
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-group {
+            gap: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-group-title {
+            margin-bottom: 2px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust .trust-grid {
+            margin-top: 28px;
+            gap: 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust .trust-group {
+            gap: 12px;
+        }
+
 
         /* === ROADMAP === */
         .roadmap {
@@ -629,6 +686,10 @@
             gap: 6px;
         }
 
+        .presenter-mode.notes-open:not(.is-fullscreen) .slide {
+            padding-bottom: 190px;
+        }
+
         .presenter-mode .slide-capabilities .cap-takeaway {
             margin-bottom: 84px;
         }
@@ -646,6 +707,10 @@
                 padding: 20px 20px 60px;
                 align-items: flex-start;
                 overflow-y: auto;
+            }
+
+            .presenter-mode.notes-open:not(.is-fullscreen) .slide {
+                padding-bottom: 240px;
             }
 
             .slide h1 { font-size: 28px; }
@@ -731,6 +796,25 @@
             .presenter-mode .slide-capabilities .cap-takeaway {
                 margin-bottom: 0;
             }
+
+            .presenter-mode.notes-open .slide-trust {
+                align-items: flex-start;
+            }
+
+            .presenter-mode.notes-open .slide-trust .slide-content {
+                margin-top: 0;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-grid {
+                margin-top: 16px;
+                gap: 8px;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-group {
+                gap: 8px;
+            }
+
+            .presenter-mode.is-fullscreen .slide-trust { align-items: center; }
 
             .nav-bar { padding: 8px 12px; }
             .dot-indicators { bottom: 12px; }
@@ -959,39 +1043,45 @@
             </div>
         </section>
 
-        <!-- SLIDE 6: TRUST -->
-        <section class="slide">
+        <!-- SLIDE 7: TRUST -->
+        <section class="slide slide-trust">
             <div class="slide-content">
-                <div class="section-label">Guardrails</div>
+                <div class="section-label">GUARDRAILS</div>
                 <h2>Designed for trust from day one.</h2>
                 <div class="trust-grid">
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Guide, not a pharmacist replacement
+                    <div class="trust-group">
+                        <div class="trust-group-title">Clear boundaries</div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Supports members without replacing pharmacist judgment
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            No diagnosis or independent clinical advice
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Complements existing pharmacy workflows rather than replacing them
+                        </div>
                     </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        No diagnosis or independent clinical advice
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Approved content and business rules only
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Authentication before personal details
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Privacy, consent, and auditability built in
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Human handoff when needed
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-check">✓</span>
-                        Complements existing pharmacy workflows — does not replace them
+                    <div class="trust-group">
+                        <div class="trust-group-title">Built-in trust mechanisms</div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Grounded in approved content and defined business rules
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Authentication before accessing or discussing personal information
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Privacy, consent, and auditability built in
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            Clear handoff to pharmacy staff when needed
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1151,7 +1241,7 @@
             "The same pharmacy capability can feel very different depending on the member’s situation. Someone who needs a medication today is thinking differently from someone managing several prescriptions for their family. A member transferring from another pharmacy may need reassurance and process guidance, while someone exploring an immunization may simply be unsure whether an appointment is required.\n\nThese are not just different tasks. They involve different levels of urgency, responsibility, and confidence.\n\nThat is why the experience should not only expose the available options. It should help the member understand which option applies to their situation and what to expect next. The goal is to reduce cognitive load and make the journey feel clear, calm, and supportive.",
             "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
             "This is what the idea could enable across a few common member moments. The member begins with their situation or question rather than having to know which page, feature, or flow applies.\n\nThe goal is not for one experience to do everything. It is to understand enough of the member’s intent to provide clear information, surface the appropriate option, and move them into the right existing workflow.\n\nSome moments may require only simple guidance. Others may eventually use account or prescription context, if that is appropriate and feasible. And when the request requires pharmacy judgment or reassurance, the experience should make it easy to reach a person.",
-            "Guardrails script: Trust is non-negotiable in pharmacy contexts. This model assumes strict guardrails: no diagnosis, approved content, authentication before personal tasks, and clear escalation. The role is guidance and orchestration, not clinical authority.",
+            "Trust has to be designed into the experience from the beginning, especially in a pharmacy context.\n\nThe concept is not intended to diagnose, provide independent clinical advice, or replace pharmacist judgment. Its role is to help members understand available options, navigate approved processes, and move into the right existing workflow.\n\nOn the implementation side, the experience would need to be grounded in approved content and defined business rules, authenticate before using personal information, preserve privacy and auditability, and make human escalation clear.\n\nThe important principle is that the experience should always be honest about its role and its limits. Members should never be left wondering whether they are receiving general guidance or clinical advice.",
             "Phasing script: This is a proposed rollout path, not a fixed plan. Start with a focused MVP to validate member value and operational feasibility. If that works, expand progressively into authenticated assistance and then consent-based proactive support.",
             "Review questions script: These are the questions I want to pressure-test with your team. Where does this align or conflict with current roadmap priorities. Which journeys have the most pain today. What technical constraints should shape any MVP boundary.",
             "Collaboration script: I am not assuming a role to run the full program end-to-end. Where I can help is shaping MVP scope, translating across product and technical perspectives, and iterating quickly on concept direction based on your feedback.",
@@ -1175,8 +1265,13 @@
 
             const show = typeof forceVisible === 'boolean' ? forceVisible : !notes.classList.contains('visible');
             notes.classList.toggle('visible', show);
+            document.body.classList.toggle('notes-open', show);
             btn.textContent = show ? 'Hide notes (N)' : 'Show notes (N)';
             btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+        }
+
+        function syncFullscreenState() {
+            document.body.classList.toggle('is-fullscreen', !!document.fullscreenElement);
         }
 
         // Build dots
@@ -1219,7 +1314,10 @@
             }
             updateNotes();
             toggleNotes(false);
+            syncFullscreenState();
         }
+
+        document.addEventListener('fullscreenchange', syncFullscreenState);
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {

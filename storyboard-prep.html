@@ -479,15 +479,32 @@
 
         .roadmap-phase {
             background: var(--white);
-            border: 1px solid var(--border);
+            border: 1px solid #d6e0ea;
             border-radius: 14px;
             padding: 28px 24px;
             text-align: center;
+            box-shadow: 0 14px 28px rgba(16, 24, 40, 0.11), 0 2px 6px rgba(16, 24, 40, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,250,253,1) 100%);
         }
 
         .roadmap-phase.active {
-            border-color: var(--costco-blue);
-            border-width: 2px;
+            border-color: #6f9fc8;
+            border-width: 1px;
+            box-shadow: 0 16px 30px rgba(0, 93, 170, 0.16), 0 3px 8px rgba(16, 24, 40, 0.08), 0 0 0 1px rgba(0, 93, 170, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        .phase-badge {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            color: var(--costco-blue);
+            background: #eaf3fc;
+            border: 1px solid #cfe3f8;
+            text-transform: uppercase;
         }
 
         .phase-num {
@@ -525,6 +542,44 @@
             padding: 10px 12px;
             color: var(--costco-blue);
             font-style: italic;
+        }
+
+        .phase-gate {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #5f7084;
+            line-height: 1.35;
+            font-weight: 500;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .slide-content {
+            margin-top: -10px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .roadmap {
+            margin-top: 20px;
+            gap: 16px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .roadmap-phase {
+            padding: 20px 18px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap .roadmap {
+            margin-top: 28px;
+            gap: 24px;
         }
 
         /* === HUB SPOKE === */
@@ -858,6 +913,42 @@
                 margin-top: -14px;
             }
 
+            .presenter-mode.notes-open .slide-roadmap {
+                align-items: flex-start;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .slide-content {
+                margin-top: -4px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .roadmap {
+                margin-top: 14px;
+                gap: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .roadmap-phase {
+                padding: 14px 12px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .phase-title {
+                font-size: 16px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .phase-desc {
+                margin-bottom: 8px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .phase-example {
+                padding: 8px 10px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .phase-gate {
+                margin-top: 8px;
+                font-size: 11px;
+            }
+
+            .presenter-mode.is-fullscreen .slide-roadmap { align-items: center; }
+
             .presenter-mode.is-fullscreen .slide-trust { align-items: center; }
 
             .nav-bar { padding: 8px 12px; }
@@ -1131,29 +1222,33 @@
             </div>
         </section>
 
-        <!-- SLIDE 7: ROADMAP -->
-        <section class="slide">
+        <!-- SLIDE 8: ROADMAP -->
+        <section class="slide slide-roadmap">
             <div class="slide-content">
                 <div class="section-label">Proposed Phased Approach</div>
-                <h2>Start with an MVP, validate value, then expand.</h2>
+                <h2>Start focused, validate member value, then earn the right to expand</h2>
                 <div class="roadmap">
                     <div class="roadmap-phase active">
                         <div class="phase-num">1</div>
+                        <div class="phase-badge">Recommended starting point</div>
                         <div class="phase-title">Guide</div>
-                        <div class="phase-desc">Validate the hypothesis with public guidance and navigation support.</div>
-                        <div class="phase-example">"Where do I transfer a prescription?"</div>
+                        <div class="phase-desc">Validate the member need with public information, clear guidance, and navigation into existing flows.</div>
+                        <div class="phase-example">"How do I transfer a prescription?"</div>
+                        <div class="phase-gate">Does guidance improve clarity and next-step success?</div>
                     </div>
                     <div class="roadmap-phase">
                         <div class="phase-num">2</div>
                         <div class="phase-title">Assist</div>
-                        <div class="phase-desc">If Phase 1 works, add authenticated task support and smoother staff handoff.</div>
-                        <div class="phase-example">"Refill this prescription."</div>
+                        <div class="phase-desc">If Phase 1 demonstrates value, explore authenticated support and smoother transitions into pharmacy workflows.</div>
+                        <div class="phase-example">"Help me refill this prescription."</div>
+                        <div class="phase-gate">Can it improve completion without adding risk or operational burden?</div>
                     </div>
                     <div class="roadmap-phase">
                         <div class="phase-num">3</div>
-                        <div class="phase-title">Anticipate</div>
-                        <div class="phase-desc">If aligned to roadmap, move toward consent-based suggestions and broader member support.</div>
+                        <div class="phase-title">Explore proactive support</div>
+                        <div class="phase-desc">If aligned with member needs, consent, and Costco priorities, explore timely suggestions and broader support.</div>
                         <div class="phase-example">"You have refill options available to review."</div>
+                        <div class="phase-gate">Is proactive support trusted, useful, and wanted?</div>
                     </div>
                 </div>
             </div>
@@ -1286,7 +1381,7 @@
             "The shift I am exploring is not from navigation to no navigation. Pages, links, and structured flows will remain essential.\n\nThe opportunity may be to add guidance at the moments where the member has to interpret the system, connect multiple experiences, or decide which path applies to their situation.\n\nIn a navigation-first experience, the member has to translate their need into the structure of the site. In a guided experience, they can begin with their intent, receive clear next steps, and continue into the appropriate existing flow.\n\nHuman support also remains essential. The experience should recognize when judgment, reassurance, or pharmacy expertise is needed and make that transition clear.",
             "This is what the idea could enable across a few common member moments. The member begins with their situation or question rather than having to know which page, feature, or flow applies.\n\nThe goal is not for one experience to do everything. It is to understand enough of the member’s intent to provide clear information, surface the appropriate option, and move them into the right existing workflow.\n\nSome moments may require only simple guidance. Others may eventually use account or prescription context, if that is appropriate and feasible. And when the request requires pharmacy judgment or reassurance, the experience should make it easy to reach a person.",
             "Trust has to be designed into the experience from the beginning, especially in a pharmacy context.\n\nThe concept is not intended to diagnose, provide independent clinical advice, or replace pharmacist judgment. Its role is to help members understand available options, navigate approved processes, and move into the right existing workflow.\n\nOn the implementation side, the experience would need to be grounded in approved content and defined business rules, authenticate before using personal information, preserve privacy and auditability, and make human escalation clear.\n\nThe important principle is that the experience should always be honest about its role and its limits. Members should never be left wondering whether they are receiving general guidance or clinical advice.",
-            "Phasing script: This is a proposed rollout path, not a fixed plan. Start with a focused MVP to validate member value and operational feasibility. If that works, expand progressively into authenticated assistance and then consent-based proactive support.",
+            "This is a proposed learning path, not a fixed product roadmap.\n\nI would start with the lowest-risk version of the idea: public information, clear guidance, and navigation into existing Costco Pharmacy flows. That lets us test whether the member problem is real and whether guidance actually improves clarity and next-step success.\n\nIf that demonstrates value, the next phase could explore authenticated support and tighter workflow integration. The question at that point would not only be whether we can build it, but whether it improves completion without adding operational burden or risk.\n\nProactive support would be a later exploration, not an assumed destination. It would depend on member consent, trust, relevance, technical feasibility, and Costco’s priorities.\n\nThe principle is that each phase should earn the next one through evidence.",
             "Review questions script: These are the questions I want to pressure-test with your team. Where does this align or conflict with current roadmap priorities. Which journeys have the most pain today. What technical constraints should shape any MVP boundary.",
             "Collaboration script: I am not assuming a role to run the full program end-to-end. Where I can help is shaping MVP scope, translating across product and technical perspectives, and iterating quickly on concept direction based on your feedback.",
             "Vision script: This broader extension is optional and intentionally future-facing. If pharmacy proves the pattern, the same guidance model may transfer to other member journeys. If not, we still learn valuable design and decision insights from the MVP stage.",

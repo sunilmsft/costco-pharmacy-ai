@@ -621,6 +621,8 @@
 
         .presenter-mode.notes-open .slide-member-shift .slide-content {
             margin-top: -22px;
+            max-height: 23vh;
+            overflow-y: auto;
         }
 
         .presenter-mode.notes-open .slide-member-shift h2 {
@@ -850,6 +852,106 @@
         .presenter-mode.notes-open .slide-lens .takeaway {
             margin-top: 8px;
             padding: 10px 12px;
+        }
+
+        .presenter-mode.notes-open .slide-foundation,
+        .presenter-mode.notes-open .slide-capabilities {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-foundation .slide-content {
+            max-height: 23vh;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        .presenter-mode.notes-open .slide-capabilities .slide-content {
+            max-height: 22vh;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation,
+        .presenter-mode.is-fullscreen .slide-capabilities {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .slide-content,
+        .presenter-mode.is-fullscreen .slide-capabilities .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .slide-content {
+            margin-top: -6px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .slide-content,
+        .presenter-mode.is-fullscreen .slide-capabilities .slide-content {
+            margin-top: -14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation h2,
+        .presenter-mode.is-fullscreen .slide-capabilities h2,
+        .presenter-mode.is-fullscreen .slide-member-shift h2 {
+            margin-bottom: 6px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .tiles-grid {
+            margin-top: 16px;
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .tile {
+            padding: 18px 12px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .takeaway {
+            margin-top: 12px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-shift-layout {
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-situation-grid,
+        .presenter-mode.is-fullscreen .slide-member-shift .response-grid {
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-moment-item,
+        .presenter-mode.is-fullscreen .slide-member-shift .guidance-section {
+            padding: 12px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-moment-item {
+            min-height: 78px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .guidance-points {
+            gap: 5px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .takeaway {
+            margin-top: 8px;
+            padding: 12px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-grid {
+            margin-top: 16px;
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-card {
+            padding: 16px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-card-example {
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .takeaway {
+            margin-top: 12px;
         }
 
         .presenter-mode.is-fullscreen .slide-trust {
@@ -1527,7 +1629,7 @@
         </section>
 
         <!-- SLIDE 3: FOUNDATION -->
-        <section class="slide">
+        <section class="slide slide-foundation">
             <div class="slide-content">
                 <div class="section-label">STARTING POINT</div>
                 <h2>Costco Pharmacy already provides a strong digital foundation</h2>
@@ -1554,7 +1656,7 @@
                         <div class="tile-label">Choose Pickup or Delivery</div>
                     </div>
                 </div>
-                <div class="takeaway">The opportunity may be to connect these capabilities around the member’s intent and make the right next step easier to understand.</div>
+                <div class="takeaway">The opportunity may be to let members begin with their question, then connect them to the right existing capability and next step.</div>
             </div>
         </section>
 
@@ -1651,7 +1753,7 @@
                         <div class="cap-card-example">"Help me understand how to manage prescriptions for my family."</div>
                     </div>
                 </div>
-                <div class="takeaway cap-takeaway">Guided support helps members move from a question to the appropriate next step, without first needing to understand the site structure.</div>
+                <div class="takeaway cap-takeaway">Members can begin in their own words—typed or spoken—and be guided to the appropriate next step without first understanding the site structure.</div>
             </div>
         </section>
 
@@ -1926,9 +2028,9 @@
         const slideNotes = [
             "Thanks everyone for making the time. This is not a finished recommendation. I put it together to explore one question: could Costco Pharmacy make it easier for members to understand what to do next, especially when the right path is not immediately clear?\n\nI’ll share how I arrived at that hypothesis, show what the experience could feel like, and then I’d really value your perspective on whether the problem is real, where the idea fits, and what I may be missing.",
             "Before I get into the pharmacy opportunity, I wanted to give you a little context on the lens I used.\n\nI spent more than 25 years at Microsoft across operational, customer-experience, platform, and product roles. One thing that experience taught me is that customer friction often does not sit inside a single feature or screen. It appears in the spaces between experiences, where the customer has to repeat context, interpret the organization, or figure out what happens next.\n\nSo one lens I bring is looking at the full journey and finding those breaks in continuity.\n\nA second is letting the customer begin in their own words. They should not have to understand the website structure, internal terminology, or which workflow applies before they can get help. Ideally, they can describe what they need almost the way they would say it to a helpful person, and the experience can guide them from that intent into the right next step.\n\nTechnology, including conversational AI, can help enable that. But the goal is not to add technology for its own sake. The goal is a clearer and more seamless service experience, including an easy transition to a person when judgment or reassurance is needed.\n\nThe third lens is turning an idea like this into something small enough to test. Rather than assuming the full solution, I try to identify the hypothesis, build enough to make it tangible, and learn whether it is actually useful.\n\nI applied those same lenses here. At the same time, this remains an outside-in view based only on publicly available Costco Pharmacy experiences. I have not yet had the benefit of speaking with members, pharmacists, operational teams, or technology stakeholders, so I expect parts of the hypothesis to be incomplete.\n\nTransition to Slide 3:\nWith that context, my starting point was not that Costco Pharmacy lacks digital capability. In fact, there is already a strong foundation.",
-            "My starting point was that Costco Pharmacy already offers a strong set of digital capabilities. Members can refill or transfer prescriptions, schedule immunizations, compare prices, and choose how they receive medications.\n\nSo the hypothesis is not necessarily that another capability is missing. The opportunity may be in helping members connect their situation to the right capability.\n\nMembers usually do not arrive thinking in terms of features or site structure. They arrive with a question or circumstance: 'I have a new prescription,' 'I need this medication soon,' 'Can I get this vaccine here?' or 'What will this cost me?'\n\nThe question I started exploring was whether Costco could make it easier for members to move from that intent to the right next step.",
-            "Members can arrive at the same pharmacy experience with very different needs. Someone who needs a medication today is thinking differently from someone managing prescriptions for their family, transferring from another pharmacy, or simply trying to understand whether an appointment is required.\n\nNavigation and structured digital flows remain essential, especially when members already know what they need. The opportunity may be at the moments where the path is less clear, the journey crosses experiences, or the member needs reassurance.\n\nGuided support could let the member begin with their question, understand the relevant options, and move into the appropriate existing Costco flow. When judgment or pharmacy expertise is required, the path to a person should remain clear.\n\nSo the idea is not to replace navigation. It is to reduce the work members have to do to determine which path applies to their situation.",
-            "This is what the idea could enable across a few common member moments. The member begins with their situation or question rather than having to know which page, feature, or flow applies.\n\nThe goal is not for one experience to do everything. It is to understand enough of the member’s intent to provide clear information, surface the appropriate option, and move them into the right existing workflow.\n\nSome moments may require only simple guidance. Others may eventually use account or prescription context, if that is appropriate and feasible. And when the request requires pharmacy judgment or reassurance, the experience should make it easy to reach a person.",
+            "My starting point was that Costco Pharmacy already offers a strong set of digital capabilities. Members can refill or transfer prescriptions, schedule immunizations, compare prices, and choose how they receive medications.\n\nSo the hypothesis is not that another capability is necessarily missing.\n\nThe opportunity may be in helping members get to the right capability more easily.\n\nMembers usually do not arrive thinking in terms of site structure or feature names. They arrive with a question or a situation: 'I have a new prescription,' 'I need this medication soon,' 'Can I get this vaccine here?' or 'What will this cost?'\n\nA more seamless experience would let them begin in those terms, almost as they would speak to a helpful person, and then guide them into the right existing Costco Pharmacy flow.\n\nThat is the question I started exploring: can Costco make it easier for members to move from their intent to the appropriate next step?\n\nTransition to Slide 4:\nThat becomes especially important because the same capability can feel very different depending on the member’s situation.",
+            "Members can arrive at the same pharmacy experience with very different needs. Someone who needs a medication today is thinking differently from someone managing prescriptions for their family, transferring from another pharmacy, or trying to understand whether an appointment is required.\n\nIn each case, the member should be able to begin by describing the situation in their own words, rather than first deciding which page, feature, or workflow applies.\n\nNavigation and structured digital flows still matter, especially when members already know what they need. The opportunity is at the moments where the path is less clear, the journey crosses experiences, or the member needs reassurance.\n\nA seamless experience does not mean everything is automated. It means the member does not have to work out where digital guidance ends and human support begins.\n\nGuided support can help clarify the relevant options, connect the member to the appropriate existing flow, and make the transition to pharmacy staff clear when judgment or reassurance is needed.\n\nSo the idea is not to replace navigation. It is to reduce the work members have to do to determine which path applies to their situation.\n\nTransition to Slide 5:\nOnce we look at the experience through that lens, a few common member moments become especially useful places to test the idea.",
+            "This is where the idea becomes more concrete. The member does not need to begin by selecting a feature or knowing Costco’s pharmacy terminology. They can simply describe what they are trying to do.\n\nThat could be typed, or eventually spoken, but the important principle is that the experience begins in the member’s own words—almost like starting a conversation with a helpful person.\n\nThe experience does not need to complete every task itself. Its role is to understand enough of the member’s intent to provide clear information, surface the appropriate options, and connect them into the right existing Costco Pharmacy workflow.\n\nFor a straightforward question, that may mean simple guidance. For an authenticated task, it may eventually involve account or prescription context if appropriate and feasible. And when the request requires judgment, reassurance, or pharmacy expertise, the transition to a person should feel natural rather than like the member has reached a dead end.\n\nThat combination—natural conversation, the right digital path, and clear human support—is what I mean by a more seamless service experience.\n\nTransition to Slide 6:\nBecause this is pharmacy, that convenience only works if the boundaries and handoffs are designed for trust from the beginning.",
             "Trust has to be designed into the experience from the beginning, especially in a pharmacy context.\n\nThe concept is not intended to diagnose, provide independent clinical advice, or replace pharmacist judgment. Its role is to help members understand available options, navigate approved processes, and move into the right existing workflow.\n\nOn the implementation side, the experience would need to be grounded in approved content and defined business rules, authenticate before using personal information, preserve privacy and auditability, and make human escalation clear.\n\nThe important principle is that the experience should always be honest about its role and its limits. Members should never be left wondering whether they are receiving general guidance or clinical advice.",
             "This is a proposed learning path, not a fixed product roadmap.\n\nI would start with the lowest-risk version of the idea: public information, clear guidance, and navigation into existing Costco Pharmacy flows. That lets us test whether the member problem is real and whether guidance actually improves clarity and next-step success.\n\nIf that demonstrates value, the next phase could explore authenticated support and tighter workflow integration. The question at that point would not only be whether we can build it, but whether it improves completion without adding operational burden or risk.\n\nProactive support would be a later exploration, not an assumed destination. It would depend on member consent, trust, relevance, technical feasibility, and Costco’s priorities.\n\nThe principle is that each phase should earn the next one through evidence.",
             "Rather than explain the concept only through slides, I built a prototype to make the hypothesis easier to react to.\n\nThis is not intended to represent a finished Costco experience or a proposed final design. It uses sample data and illustrative flows to explore how guidance might help a member move from a question into the appropriate next step.\n\nAs we walk through it, I would especially value your reactions to three things: whether the experience improves clarity, where the guidance feels useful or unnecessary, and what would need to change to fit the realities of Costco Pharmacy.\n\nI would like to treat this as something we can pause, question, and challenge together rather than a formal demo.",

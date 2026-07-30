@@ -259,6 +259,306 @@
         .rx-tabs {
             display: flex;
             gap: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .rx-tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            color: var(--text-light);
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+        }
+
+        .rx-tab.active {
+            color: var(--costco-nav-blue);
+            border-bottom-color: var(--costco-nav-blue);
+        }
+
+        .rx-search {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .rx-search input {
+            width: 100%;
+            padding: 12px 16px;
+            padding-right: 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .rx-search input:focus { border-color: #0060a9; }
+
+        .rx-search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 16px;
+        }
+
+        .rx-filters-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .rx-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .rx-filter-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .rx-filter-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            background: white;
+        }
+
+        .rx-checkboxes {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .rx-checkboxes label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .rx-checkboxes input[type="checkbox"] {
+            accent-color: var(--costco-blue);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* === OTHER SERVICES SIDEBAR === */
+        .other-services {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .other-services h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .service-link-card {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border-light);
+            cursor: pointer;
+            align-items: flex-start;
+        }
+
+        .service-link-card:first-of-type { border-top: none; }
+
+        .service-link-card:hover h4 { color: #0060a9; }
+
+        .service-link-icon {
+            font-size: 20px;
+            color: var(--costco-blue);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .service-link-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .service-link-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .card-arrow {
+            margin-left: auto;
+            color: #999;
+            font-size: 18px;
+            padding-top: 2px;
+        }
+
+        .header-nav {
+            background: var(--costco-nav-blue);
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: background 0.2s;
+        }
+
+        .header-nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-chevron {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        /* === YELLOW BANNER === */
+        .info-banner {
+            background: var(--yellow-banner);
+            border: 1.5px solid var(--yellow-border);
+            border-radius: 6px;
+            padding: 16px 24px;
+            margin: 24px 32px 0;
+        }
+
+        .info-banner strong {
+            display: block;
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .info-banner p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .info-banner a {
+            font-size: 13px;
+            color: #0060a9;
+            text-decoration: none;
+        }
+
+        .info-banner a:hover { text-decoration: underline; }
+
+        /* === WELCOME === */
+        .welcome-section {
+            padding: 28px 32px 8px;
+        }
+
+        .welcome-section h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* === ACTION CARDS === */
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 20px 32px;
+        }
+
+        .action-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px 20px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .action-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .action-card-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .action-card-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .action-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .action-card-arrow {
+            position: absolute;
+            top: 24px;
+            right: 20px;
+            font-size: 18px;
+            color: #999;
+        }
+
+        /* === MAIN BODY LAYOUT === */
+        .main-body {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 20px;
+            padding: 12px 32px 40px;
+        }
+
+        /* Prescription List */
+        .rx-list-panel {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 28px;
+        }
+
+        .rx-list-panel h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .rx-tabs {
+            display: flex;
+            gap: 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 20px;
         }
@@ -698,6 +998,94 @@
             margin-top: 12px;
         }
 
+        .personalized-opening {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .personalized-opening-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .personalized-opening-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text);
+        }
+
+        .personalized-opening-subtitle {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .personalized-primary-prompts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .personalized-choice-btn {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #d8e2ee;
+            color: var(--costco-nav-blue);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+
+        .personalized-choice-btn:hover {
+            background: #f7fbff;
+            border-color: #b9d2ea;
+            box-shadow: 0 3px 10px rgba(0,93,170,0.08);
+            transform: translateY(-1px);
+        }
+
+        .personalized-choice-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .personalized-secondary-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            align-self: flex-start;
+            border: none;
+            background: none;
+            padding: 0;
+            color: var(--chat-blue);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            opacity: 0.85;
+        }
+
+        .personalized-secondary-action:hover {
+            opacity: 1;
+        }
+
         .smart-prompt-btn {
             background: white;
             border: 1px solid #e2e8f0;
@@ -780,6 +1168,19 @@
         .chat-input-area {
             padding: 16px;
             border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        .chat-input-hint {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .chat-input-row {
             display: flex;
             gap: 8px;
             align-items: center;
@@ -886,6 +1287,95 @@
             background: #002a4a;
         }
 
+        .updates-compact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .update-compact-item {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 20px 1fr 14px;
+            gap: 10px;
+            align-items: center;
+            text-align: left;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .update-compact-item:hover {
+            border-color: #bfd3ea;
+            background: #f8fbff;
+        }
+
+        .update-compact-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--costco-nav-blue);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .update-compact-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .update-compact-content {
+            min-width: 0;
+        }
+
+        .update-compact-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.35;
+            margin-bottom: 3px;
+        }
+
+        .update-compact-detail {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.45;
+        }
+
+        .update-compact-chevron {
+            color: #7994ad;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1;
+            justify-self: end;
+        }
+
+        .update-secondary-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 6px;
+            border-top: 1px solid #e9eef4;
+        }
+
+        .update-secondary-btn {
+            border: none;
+            background: none;
+            color: var(--chat-blue);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 2px 0;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
         /* Personalization badge */
         .personalized-badge {
             display: inline-flex;
@@ -923,14 +1413,26 @@
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
-            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.97);
+            border: 1px solid #9fb7cc;
             border-radius: 10px;
             padding: 6px;
             display: flex;
             gap: 4px;
             z-index: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            padding-top: 24px;
+        }
+
+        .scenario-tabs-label {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 10px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: #4a6377;
+            font-weight: 700;
         }
 
         .scenario-tab {
@@ -1010,12 +1512,13 @@
             /* Scenario tabs */
             .scenario-tabs {
                 bottom: 8px;
-                padding: 4px;
+                padding: 20px 4px 4px;
                 gap: 2px;
                 max-width: 95vw;
                 overflow-x: auto;
             }
             .scenario-tab { font-size: 11px; padding: 6px 10px; white-space: nowrap; }
+            .scenario-tabs-label { font-size: 9px; top: 4px; left: 8px; }
 
             .concept-banner { font-size: 10px; padding: 4px; }
             .site-header { margin-top: 24px; }
@@ -1031,10 +1534,11 @@
 
 <!-- Scenario switcher -->
 <div class="scenario-tabs">
-    <button class="scenario-tab active" onclick="loadScenario('personalized')">Personalized Return</button>
-    <button class="scenario-tab" onclick="loadScenario('transfer')">Transfer Rx</button>
-    <button class="scenario-tab" onclick="loadScenario('travel')">Travel Planning</button>
-    <button class="scenario-tab" onclick="loadScenario('discovery')">Service Discovery</button>
+    <span class="scenario-tabs-label">Illustrative scenarios</span>
+    <button class="scenario-tab active" onclick="loadScenario('personalized')">Your Pharmacy Today</button>
+    <button class="scenario-tab" onclick="loadScenario('transfer')">Move a Prescription</button>
+    <button class="scenario-tab" onclick="loadScenario('travel')">Travel Help</button>
+    <button class="scenario-tab" onclick="loadScenario('discovery')">Explore Pharmacy Services</button>
 </div>
 
 <!-- HEADER -->
@@ -1201,7 +1705,7 @@
         <div class="chat-toast-icon">💊</div>
         <div class="chat-toast-title">Pharmacy Assistant</div>
     </div>
-    <div class="chat-toast-body">Your <strong>Lisinopril 10mg</strong> refill is ready. Tap to manage it or ask me anything.</div>
+    <div class="chat-toast-body">I can help with what may need attention today, then guide you to the right next step.</div>
 </div>
 <div class="chat-fab-pulse" id="chatPulse"></div>
 <button class="chat-fab" id="chatFab" onclick="openChat()">
@@ -1216,7 +1720,7 @@
             <div class="chat-avatar">💊</div>
             <div class="chat-header-info">
                 <h3>Pharmacy Assistant</h3>
-                <p>Online · Typically replies instantly</p>
+                <p>Guidance for pharmacy tasks · Sample data</p>
             </div>
         </div>
         <div class="chat-header-actions">
@@ -1229,13 +1733,18 @@
         <!-- Messages loaded by scenario -->
     </div>
     <div class="chat-input-area">
-        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about your pharmacy needs..." onkeypress="handleKeyPress(event)">
-        <button class="chat-send" onclick="handleSend()">→</button>
+        <div class="chat-input-hint">Or ask in your own words</div>
+        <div class="chat-input-row">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your question…" onkeypress="handleKeyPress(event)">
+            <button class="chat-send" onclick="handleSend()">→</button>
+        </div>
     </div>
 </div>
 
 <script>
     // ============ SCENARIO DATA ============
+    const DEFAULT_CHAT_PLACEHOLDER = 'Type your question…';
+    let transferDraft = {};
     const scenarios = {
         personalized: {
             autoOpen: true,
@@ -1244,19 +1753,62 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        Hi Evan! Welcome back. I noticed a few things I can help you with today.
-                        <div class="chat-card">
-                            <div class="chat-card-title">🔔 Refill Available</div>
-                            <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — 90-day supply</div>
-                            <div class="chat-card-detail">📍 Costco #482, Issaquah · Copay: $4.00</div>
-                            <div class="chat-card-detail">Last filled May 12 — due now</div>
-                            <div class="chat-card-action" onclick="advanceConversation('personalized', 1)">💊 Refill Now</div>
-                        </div>
-                        <div class="smart-prompts">
-                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 2)">Show all my prescriptions</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 3)">I need help with something else</button>
+                        <div class="personalized-opening">
+                            <div class="personalized-opening-copy">
+                                <div class="personalized-opening-title">Hi Evan. How can I help today?</div>
+                                <div class="personalized-opening-subtitle">Choose an option below, or tell me what you need in your own words.</div>
+                            </div>
+                            <div class="personalized-primary-prompts">
+                                <button class="personalized-choice-btn" onclick="advanceConversation('personalized', 90)"><span class="personalized-choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V2L8 6l4 4V7c2.76 0 5 2.24 5 5 0 .72-.15 1.41-.43 2.03"/><path d="M6.5 18.1A8 8 0 0 1 4 12a8 8 0 0 1 8-8"/><path d="M12 19v3l4-4-4-4v3c-2.76 0-5-2.24-5-5 0-.72.15-1.41.43-2.03"/><path d="M17.5 5.9A8 8 0 0 1 20 12a8 8 0 0 1-8 8"/></svg></span><span>Review my pharmacy updates</span></button>
+                                <button class="personalized-choice-btn" onclick="advanceConversation('personalized', 1)"><span class="personalized-choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M9 3v3h6V3"/><path d="M10 9h4"/><path d="M9.5 12h5"/><path d="M9.5 15h5"/></svg></span><span>Refill or check a prescription</span></button>
+                                <button class="personalized-choice-btn" onclick="advanceConversation('personalized', 70)"><span class="personalized-choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8H4l3-3"/><path d="M4 8h10a5 5 0 0 1 5 5v1"/><path d="M17 16h3l-3 3"/><path d="M20 16H10a5 5 0 0 1-5-5v-1"/></svg></span><span>Move a prescription</span></button>
+                                <button class="personalized-choice-btn" onclick="advanceConversation('personalized', 3)"><span class="personalized-choice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H12l-4 3v-3H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M10 11h.01"/><path d="M14 11h.01"/><path d="M18 11h.01"/></svg></span><span>Something else</span></button>
+                            </div>
+                            <button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                         </div>
                     `
+                },
+                // Branch 90: Pharmacy updates
+                {
+                    type: 'continuation',
+                    branch: 90,
+                    skipBackLink: true,
+                    messages: [
+                        { type: 'user', html: 'Review my pharmacy updates' },
+                        { type: 'bot', delay: 1000, html: `
+                            Here are a few updates you may want to review today.
+                            <div class="updates-compact-list">
+                                <button class="update-compact-item" onclick="advanceConversation('personalized', 1)">
+                                    <span class="update-compact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V2L8 6l4 4V7c2.76 0 5 2.24 5 5"/><path d="M19 13a7 7 0 1 1-2.05-4.95"/></svg></span>
+                                    <div class="update-compact-content">
+                                        <div class="update-compact-title">Refill available</div>
+                                        <div class="update-compact-detail">Lisinopril 10 mg is due now</div>
+                                    </div>
+                                    <span class="update-compact-chevron" aria-hidden="true">›</span>
+                                </button>
+                                <button class="update-compact-item" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                                    <span class="update-compact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 14h4"/></svg></span>
+                                    <div class="update-compact-content">
+                                        <div class="update-compact-title">Payment method missing</div>
+                                        <div class="update-compact-detail">Update it before checkout</div>
+                                    </div>
+                                    <span class="update-compact-chevron" aria-hidden="true">›</span>
+                                </button>
+                                <button class="update-compact-item" onclick="advanceConversation('personalized', 71)">
+                                    <span class="update-compact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></span>
+                                    <div class="update-compact-content">
+                                        <div class="update-compact-title">Flu vaccine appointments available</div>
+                                        <div class="update-compact-detail">Appointments are available this fall</div>
+                                    </div>
+                                    <span class="update-compact-chevron" aria-hidden="true">›</span>
+                                </button>
+                            </div>
+                            <div class="update-secondary-actions">
+                                <button class="update-secondary-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
+                                <button class="update-secondary-btn" onclick="goBack()">Explore other options</button>
+                            </div>
+                        `},
+                    ]
                 },
                 // Branch 1: Refill flow
                 {
@@ -1265,19 +1817,18 @@
                     messages: [
                         { type: 'user', html: 'Yes, refill my Lisinopril' },
                         { type: 'bot', delay: 1200, html: `
-                            All set! Your refill is being processed. Here's your summary:
+                            I can start that refill now. First, how would you like to receive it?
                             <div class="chat-card">
-                                <div class="chat-card-title">✓ Refill Submitted</div>
+                                <div class="chat-card-title">Lisinopril 10mg — Ready to Process</div>
                                 <div class="chat-card-detail">Lisinopril 10mg — 90-day supply</div>
-                                <div class="chat-card-detail">Ready for pickup: Tomorrow by 2:00 PM</div>
                                 <div class="chat-card-detail">Location: Costco #482, Issaquah</div>
                                 <div class="chat-card-detail">Copay: $4.00</div>
                             </div>
-                            How would you like to get it?
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 10)">Pick up at counter</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 11)">Use Pay Ahead (skip the wait)</button>
                                 <button class="smart-prompt-btn" onclick="advanceConversation('personalized', 12)">Same-day delivery via Instacart</button>
+                                <button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                             </div>
                         `},
                     ]
@@ -1876,345 +2427,27 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        Hi Evan! How can I help you today?
+                        Hi Evan. I can help you move a prescription to Costco. Where is it currently?
                         <div class="smart-prompts">
-                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">I want to transfer a prescription to Costco</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 2)">Refill a prescription</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 3)">Check if my Rx is ready</button>
-                            <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 4)">Compare drug pricing</button>
+                            <button class="smart-prompt-btn" onclick="transferChooseOrigin('pharmacy')">At another pharmacy</button>
+                            <button class="smart-prompt-btn" onclick="transferChooseOrigin('costco')">At another Costco location</button>
                         </div>
+                        <button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                     `
                 },
-                // Branch 1: Transfer flow
                 {
                     type: 'continuation',
-                    branch: 1,
-                    messages: [
-                        { type: 'user', html: 'I want to transfer a prescription to Costco' },
-                        { type: 'bot', delay: 1000, html: `
-                            I can help with that! Transferring is easy — I just need a couple of details.
-                            <br><br>
-                            <strong>Which pharmacy are you transferring from?</strong>
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">Walgreens</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">CVS</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 10)">Rite Aid</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 11)">Another pharmacy</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 10: Walgreens/CVS/Rite Aid
-                {
-                    type: 'continuation',
-                    branch: 10,
-                    messages: [
-                        { type: 'user', html: 'Walgreens' },
-                        { type: 'bot', delay: 1200, html: `
-                            Got it — transferring from Walgreens. What medication would you like to transfer?
-                            <br><br>
-                            You can tell me the medication name, or if you have the Rx number from your bottle, that works too.
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 20)">Metformin 500mg</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 21)">I have multiple prescriptions to transfer</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 11: Another pharmacy
-                {
-                    type: 'continuation',
-                    branch: 11,
-                    messages: [
-                        { type: 'user', html: 'Another pharmacy' },
-                        { type: 'bot', delay: 800, html: `
-                            No problem! What's the name of the pharmacy? If you know the location (city or zip), that helps too.
-                        `},
-                    ]
-                },
-                // Branch 20: Single medication
-                {
-                    type: 'continuation',
-                    branch: 20,
-                    messages: [
-                        { type: 'user', html: 'Metformin 500mg, from the Walgreens on Front St in Issaquah' },
-                        { type: 'bot', delay: 1500, html: `
-                            Let me confirm the details:
-                            <div class="chat-card">
-                                <div class="chat-card-title">Transfer Request</div>
-                                <div class="chat-card-detail"><strong>Medication:</strong> Metformin 500mg</div>
-                                <div class="chat-card-detail"><strong>From:</strong> Walgreens — Front St, Issaquah, WA</div>
-                                <div class="chat-card-detail"><strong>To:</strong> Costco #482 — Issaquah, WA</div>
-                                <div class="chat-card-detail"><strong>Timeline:</strong> Usually ready within 24-48 hours</div>
-                                <div class="chat-card-detail"><strong>Costco member price:</strong> $4.00 / 30-day supply</div>
-                            </div>
-                            <br>
-                            Should I submit this transfer? We'll handle contacting Walgreens — you don't need to do anything else.
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 30)">Yes, submit the transfer</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 31)">Wait — I have another one to transfer too</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 21: Multiple transfer
-                {
-                    type: 'continuation',
-                    branch: 21,
-                    messages: [
-                        { type: 'user', html: 'I have multiple prescriptions to transfer' },
-                        { type: 'bot', delay: 1000, html: `
-                            No problem — we can transfer them all at once. Just list the medications and I'll bundle them into one transfer request. 
-                            <br><br>
-                            What are the medications? (Name and strength if you know it)
-                        `},
-                    ]
-                },
-                // Branch 30: Submit transfer
-                {
-                    type: 'continuation',
-                    branch: 30,
-                    messages: [
-                        { type: 'user', html: 'Yes, submit the transfer' },
-                        { type: 'bot', delay: 1000, html: `
-                            ✓ Transfer submitted! Here's what happens next:
-                            <div class="chat-card">
-                                <div class="chat-card-title">✓ Transfer In Progress</div>
-                                <div class="chat-card-detail">We'll contact Walgreens to retrieve your prescription</div>
-                                <div class="chat-card-detail">You'll get a text when it's ready (usually 24-48 hrs)</div>
-                                <div class="chat-card-detail">No action needed from you</div>
-                            </div>
-                            <br>
-                            <strong>Quick tip:</strong> Costco member pricing on Metformin 500mg is $4.00 for a 30-day supply — one of the lowest around.
-                            <div class="email-summary">
-                                <strong>📧 Confirmation emailed to Evan.m@gmail.com</strong>
-                                Includes: transfer details, expected timeline, and your Costco Pharmacy location info.
-                            </div>
-                            <br>Is there anything else I can help you with today?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 40)">Transfer another medication</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 41)">Set up auto-refill for this one</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">I'm all set, thank you</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 31: Add another
-                {
-                    type: 'continuation',
-                    branch: 31,
-                    messages: [
-                        { type: 'user', html: 'Wait — I have another one to transfer too' },
-                        { type: 'bot', delay: 800, html: `
-                            Sure! What's the other medication? Same pharmacy (Walgreens on Front St)?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 50)">Yes, same Walgreens — Atorvastatin 40mg</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 51)">Different pharmacy</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 50: Second transfer same pharmacy
-                {
-                    type: 'continuation',
-                    branch: 50,
-                    messages: [
-                        { type: 'user', html: 'Yes, same Walgreens — Atorvastatin 40mg' },
-                        { type: 'bot', delay: 1200, html: `
-                            Got it. Here's both transfers:
-                            <div class="chat-card">
-                                <div class="chat-card-title">Transfer Request — 2 Medications</div>
-                                <div class="chat-card-detail"><strong>1. Metformin 500mg</strong></div>
-                                <div class="chat-card-detail"><strong>2. Atorvastatin 40mg</strong></div>
-                                <div class="chat-card-detail">From: Walgreens — Front St, Issaquah, WA</div>
-                                <div class="chat-card-detail">To: Costco #482 — Issaquah, WA</div>
-                                <div class="chat-card-detail">Timeline: 24-48 hours for both</div>
-                            </div>
-                            <br>Ready to submit both?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 52)">Yes, submit both transfers</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 53)">Add one more</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 52: Both submitted
-                {
-                    type: 'continuation',
-                    branch: 52,
-                    messages: [
-                        { type: 'user', html: 'Yes, submit both transfers' },
-                        { type: 'bot', delay: 1000, html: `
-                            ✓ Both transfers submitted! We'll contact Walgreens and you'll get a text when each is ready.
-                            <div class="chat-card">
-                                <div class="chat-card-title">✓ 2 Transfers In Progress</div>
-                                <div class="chat-card-detail">✓ Metformin 500mg — processing</div>
-                                <div class="chat-card-detail">✓ Atorvastatin 40mg — processing</div>
-                                <div class="chat-card-detail">Expected: Ready within 24-48 hours</div>
-                            </div>
-                            <div class="email-summary">
-                                <strong>📧 Transfer confirmations emailed to Evan.m@gmail.com</strong>
-                            </div>
-                            <br>Welcome to Costco Pharmacy! 🎉 Your combined monthly savings on these two medications will be approximately <strong>$28/month</strong> vs. typical retail pricing.
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's everything I needed, thank you</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 40: Transfer another
-                {
-                    type: 'continuation',
-                    branch: 40,
-                    messages: [
-                        { type: 'user', html: 'Transfer another medication' },
-                        { type: 'bot', delay: 800, html: `
-                            Sure! What's the next medication and which pharmacy is it at?
-                        `},
-                    ]
-                },
-                // Branch 41: Auto-refill
-                {
-                    type: 'continuation',
-                    branch: 41,
-                    messages: [
-                        { type: 'user', html: 'Set up auto-refill for the Metformin' },
-                        { type: 'bot', delay: 1000, html: `
-                            ✓ Auto-refill enabled! Once the transfer completes and your first fill is done, we'll automatically refill it every 30 days. You'll get a text 2 days before each refill processes.
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all I needed, thank you</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 42: End
-                {
-                    type: 'continuation',
-                    branch: 42,
+                    branch: 22,
                     messages: [
                         { type: 'user', html: "I'm all set, thank you" },
                         { type: 'bot', delay: 800, html: `
-                            You're very welcome, Evan. We're really glad we could help. If you ever have questions — about your prescriptions, transfers, or anything else — we're always here for you.
-                            <br><br>Take care, and have a wonderful day. 💙
-                            <div class="chat-actions-row">
-                                <span class="chat-action-pill">📋 Email me a summary</span>
-                                <span class="chat-action-pill">⭐ Rate this conversation</span>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 3: Check Rx ready
-                {
-                    type: 'continuation',
-                    branch: 3,
-                    messages: [
-                        { type: 'user', html: 'Check if my Rx is ready' },
-                        { type: 'bot', delay: 1000, html: `
-                            Let me check your active prescriptions...
-                            <div class="chat-card">
-                                <div class="chat-card-title">📋 Prescription Status</div>
-                                <div class="chat-card-detail"><strong>Lisinopril 10mg</strong> — ✓ Ready for pickup</div>
-                                <div class="chat-card-detail"><strong>Atorvastatin 20mg</strong> — Processing (ready by 3 PM)</div>
-                            </div>
-                            <br>Your Lisinopril is ready now! Want to pick it up or have it delivered?
+                            You're welcome. If you want, I can still help you move a prescription now.
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 60)">Pick up now</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 61)">Wait for both to be ready, then deliver</button>
+                                <button class="smart-prompt-btn" onclick="restartScenario()">Move a prescription</button>
                             </div>
                         `},
                     ]
-                },
-                // Branch 60: Pick up now
-                {
-                    type: 'continuation',
-                    branch: 60,
-                    messages: [
-                        { type: 'user', html: "I'll pick up the Lisinopril now" },
-                        { type: 'bot', delay: 800, html: `
-                            Sounds good! Head to the pharmacy counter at Costco #482 — it's ready and waiting. Bring your ID.
-                            <br><br>Want me to text you when the Atorvastatin is ready later today?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Yes, text me when it's ready</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 61: Wait and deliver
-                {
-                    type: 'continuation',
-                    branch: 61,
-                    messages: [
-                        { type: 'user', html: 'Wait for both, then deliver together' },
-                        { type: 'bot', delay: 1000, html: `
-                            Smart — I'll bundle them. Once the Atorvastatin is ready (~3 PM), I'll trigger a same-day delivery for both. You'll get a text with tracking.
-                            <div class="chat-card">
-                                <div class="chat-card-title">📦 Bundled Delivery — Pending</div>
-                                <div class="chat-card-detail">Waiting for: Atorvastatin 20mg (~3 PM)</div>
-                                <div class="chat-card-detail">Then: Same-day delivery to your address</div>
-                                <div class="chat-card-detail">Both medications in one delivery</div>
-                            </div>
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">That's all I needed, thank you</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 4: Compare pricing
-                {
-                    type: 'continuation',
-                    branch: 4,
-                    messages: [
-                        { type: 'user', html: 'Compare drug pricing' },
-                        { type: 'bot', delay: 900, html: `
-                            I can look up Costco member pricing for any medication. What drug would you like to price check?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 70)">Ozempic</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 71)">Lipitor (generic)</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 72)">Adderall</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 70: Ozempic pricing
-                {
-                    type: 'continuation',
-                    branch: 70,
-                    messages: [
-                        { type: 'user', html: 'Ozempic' },
-                        { type: 'bot', delay: 1200, html: `
-                            <div class="chat-card">
-                                <div class="chat-card-title">Ozempic (Semaglutide) — Pricing</div>
-                                <div class="chat-card-detail"><strong>Costco member price:</strong> $892.47 (4-week pen)</div>
-                                <div class="chat-card-detail"><strong>With most insurance:</strong> $25-150 copay</div>
-                                <div class="chat-card-detail"><strong>Manufacturer savings card:</strong> May reduce to $25/fill</div>
-                                <div class="chat-card-detail"><strong>vs. Walgreens retail:</strong> ~$1,029</div>
-                                <div class="chat-card-detail"><strong>Your savings at Costco:</strong> ~$136/fill</div>
-                            </div>
-                            <br>Want me to check if your Blue Cross plan covers it, or would you like to transfer this prescription here?
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 73)">Check my insurance coverage</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">Transfer it to Costco</button>
-                            </div>
-                        `},
-                    ]
-                },
-                // Branch 73: Insurance check
-                {
-                    type: 'continuation',
-                    branch: 73,
-                    messages: [
-                        { type: 'user', html: 'Check if my Blue Cross covers Ozempic' },
-                        { type: 'bot', delay: 1200, html: `
-                            Based on your Blue Cross BCBS plan, Ozempic is covered under <strong>Tier 3 (Preferred Brand)</strong> with a $75 copay per fill.
-                            <br><br>
-                            That means with insurance at Costco, you'd pay <strong>$75/month</strong> — and there's a manufacturer savings card that could bring it to <strong>$25</strong>.
-                            <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 1)">Great, let me transfer it here</button>
-                                <button class="smart-prompt-btn" onclick="advanceConversation('transfer', 42)">Good to know, thanks</button>
-                            </div>
-                        `},
-                    ]
-                },
+                }
             ]
         },
 
@@ -2225,12 +2458,14 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        Hi Evan! What can I help you with today?
+                        Hi Evan! If you're getting ready for a trip, we can walk through what may matter and connect you to the right pharmacy actions.
+                        You can describe your situation naturally, or use one of these starters.
                         <div class="smart-prompts">
                             <button class="smart-prompt-btn" onclick="advanceConversation('travel', 1)">I'm planning a trip and need to get ready</button>
                             <button class="smart-prompt-btn" onclick="advanceConversation('travel', 2)">Schedule a vaccine</button>
                             <button class="smart-prompt-btn" onclick="advanceConversation('travel', 3)">Refill early — I'm going away</button>
                             <button class="smart-prompt-btn" onclick="advanceConversation('travel', 4)">What travel health services do you offer?</button>
+                            <button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                         </div>
                     `
                 },
@@ -2683,11 +2918,13 @@
                     messages: [
                         { type: 'user', html: "I leave July 10 — can we get the override?" },
                         { type: 'bot', delay: 1200, html: `
-                            Let me check with Blue Cross... Yes! Since your trip starts July 10 and the refill is eligible July 3, we can process a <strong>vacation supply override</strong> to fill it a few days early.
+                            Good question. Based on what I can see, a <strong>vacation supply override</strong> may be possible because your trip starts July 10 and refill eligibility is July 3.
+                            A pharmacist should confirm payer rules and timing before we finalize it.
                             <br><br>
-                            Want me to refill all three for your trip?
+                            Want me to prepare this request and connect you with the pharmacy team so you do not have to repeat the details?
                             <div class="smart-prompts">
-                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 72)">Yes, refill all three</button>
+                                <button class="smart-prompt-btn" onclick="advanceConversation('travel', 72)">Yes, prepare the request</button>
+                                <button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff now</button>
                             </div>
                         `},
                     ]
@@ -2723,20 +2960,20 @@
                     messages: [
                         { type: 'user', html: 'Yes, refill all three' },
                         { type: 'bot', delay: 1000, html: `
-                            ✓ All three refills submitted!
+                            ✓ Request prepared. The available refills are submitted now, and the vacation override is queued for pharmacist confirmation.
                             <div class="chat-card">
-                                <div class="chat-card-title">✓ 3 Refills — Travel Supply</div>
-                                <div class="chat-card-detail">💊 Lisinopril 10mg — 90-day</div>
-                                <div class="chat-card-detail">💊 Atorvastatin 20mg — 30-day (vacation override)</div>
-                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — 90-day</div>
-                                <div class="chat-card-detail">Ready: Tomorrow by 2 PM</div>
+                                <div class="chat-card-title">Travel Supply Request</div>
+                                <div class="chat-card-detail">💊 Lisinopril 10mg — submitted</div>
+                                <div class="chat-card-detail">💊 Vitamin D3 2000IU — submitted</div>
+                                <div class="chat-card-detail">💊 Atorvastatin 20mg — vacation override pending pharmacist confirmation</div>
+                                <div class="chat-card-detail">We'll text you once final timing is confirmed.</div>
                             </div>
-                            <br>You're all stocked up for your trip! 🧳
                             <div class="email-summary">
-                                <strong>📧 Refill confirmations emailed to Evan.m@gmail.com</strong>
+                                <strong>📧 Request summary emailed to Evan.m@gmail.com</strong>
                             </div>
                             <div class="smart-prompts">
                                 <button class="smart-prompt-btn" onclick="advanceConversation('travel', 32)">Amazing, thank you!</button>
+                                <button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                             </div>
                         `},
                     ]
@@ -2776,8 +3013,8 @@
                     type: 'bot',
                     delay: 500,
                     html: `
-                        <div class="personalized-badge">✦ New for you</div>
-                        Hi Evan! Quick heads-up — based on your profile, here are a couple of things you might not know about:
+                        <div class="personalized-badge">✦ Explore services</div>
+                        Hi Evan! Here are a few Costco Pharmacy services members often ask about. A couple may be useful for you today.
                         <div class="chat-card">
                             <div class="chat-card-title">💳 Your HSA Card Works Here</div>
                             <div class="chat-card-detail">Costco now accepts HSA/FSA cards at every register, including pharmacy. Your Blue Cross HSA is eligible.</div>
@@ -2788,10 +3025,12 @@
                             <div class="chat-card-detail">We fill pet prescriptions too — often at lower cost than vet offices. Same member pricing applies.</div>
                             <div class="chat-card-action">Explore pet meds</div>
                         </div>
+                        You can also tell me what you're trying to do, and I'll point you to the right service.
                         <div class="smart-prompts">
                             <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 1)">Tell me more about using my HSA card</button>
                             <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 2)">I actually do have a dog — how does pet Rx work?</button>
                             <button class="smart-prompt-btn" onclick="advanceConversation('discovery', 3)">No thanks, I need help with something else</button>
+                            <button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
                         </div>
                     `
                 },
@@ -3302,6 +3541,425 @@
         if (el) el.remove();
     }
 
+    function resetTransferDraft() {
+        transferDraft = {
+            originType: '',
+            currentPharmacy: '',
+            prescription: '',
+            destination: 'Costco Issaquah',
+            destinationLabel: 'Costco Issaquah',
+            forWhom: 'Evan',
+            activeStep: 'origin',
+            awaitingEditField: '',
+        };
+        setChatInputPlaceholder(DEFAULT_CHAT_PLACEHOLDER);
+    }
+
+    function setChatInputPlaceholder(text) {
+        const input = document.getElementById('chatInput');
+        if (input) input.placeholder = text || DEFAULT_CHAT_PLACEHOLDER;
+    }
+
+    function setTransferActiveStep(step) {
+        transferDraft.activeStep = step;
+        if (step === 'prescription') {
+            setChatInputPlaceholder('Enter the prescription name...');
+        } else if (step === 'currentPharmacy') {
+            setChatInputPlaceholder('Enter the pharmacy name...');
+        } else if (step === 'destination') {
+            setChatInputPlaceholder('Enter Costco location...');
+        } else if (step === 'familyName') {
+            setChatInputPlaceholder('Enter family member first name...');
+        } else {
+            setChatInputPlaceholder(DEFAULT_CHAT_PLACEHOLDER);
+        }
+    }
+
+    function disableTransferPromptButtons() {
+        document.querySelectorAll('.smart-prompt-btn').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        });
+        document.querySelectorAll('.personalized-secondary-action').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.5';
+        });
+    }
+
+    function titleCaseWords(text) {
+        return text
+            .split(' ')
+            .filter(Boolean)
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+            .join(' ');
+    }
+
+    function normalizeTransferText(text) {
+        return text.toLowerCase().replace(/[’']/g, "'").trim();
+    }
+
+    function canonicalPharmacyName(value) {
+        const cleaned = value.replace(/\s+/g, ' ').trim();
+        if (!cleaned) return '';
+        if (/\bwalgreens?\b/i.test(cleaned)) return 'Walgreens';
+        if (/\bcvs\b/i.test(cleaned)) return 'CVS';
+        if (/\brite aid\b/i.test(cleaned)) return 'Rite Aid';
+        if (/\bcostco\b/i.test(cleaned)) return titleCaseWords(cleaned.replace(/^the\s+/i, ''));
+        return titleCaseWords(cleaned.replace(/^the\s+/i, ''));
+    }
+
+    function canonicalDestinationName(value) {
+        const cleaned = value.replace(/\s+/g, ' ').trim();
+        if (!cleaned) return '';
+        if (/\bredmond\b/i.test(cleaned)) return 'Costco Redmond';
+        if (/\bseattle\b/i.test(cleaned)) return 'Costco Seattle';
+        if (/\bissaquah\b/i.test(cleaned)) return 'Costco Issaquah';
+        if (/\bcostco\b/i.test(cleaned)) return titleCaseWords(cleaned);
+        return '';
+    }
+
+    function extractTransferDetails(text) {
+        const details = {};
+        const lowerText = normalizeTransferText(text);
+
+        if (/\banother costco location\b|\bat another costco\b|\bfrom another costco\b/.test(lowerText)) {
+            details.originType = 'costco';
+        }
+        if (/\banother pharmacy\b|\bdifferent pharmacy\b/.test(lowerText)) {
+            details.originType = 'pharmacy';
+        }
+
+        const fromMatch = text.match(/\bfrom\s+([a-z0-9&.'\-\s]+?)(?=\s+to\b|[.,!?]|$)/i);
+        if (fromMatch && fromMatch[1]) {
+            details.currentPharmacy = canonicalPharmacyName(fromMatch[1]);
+        } else {
+            if (/\bwalgreens?\b/i.test(text)) details.currentPharmacy = 'Walgreens';
+            if (/\bcvs\b/i.test(text)) details.currentPharmacy = 'CVS';
+            if (/\brite aid\b/i.test(text)) details.currentPharmacy = 'Rite Aid';
+        }
+
+        if (details.currentPharmacy && !details.originType) {
+            details.originType = /\bcostco\b/i.test(details.currentPharmacy) ? 'costco' : 'pharmacy';
+        }
+
+        const toMatch = text.match(/\bto\s+([a-z0-9&.'\-\s]+?)(?=[.,!?]|$)/i);
+        if (toMatch && toMatch[1]) {
+            const destinationName = canonicalDestinationName(toMatch[1]);
+            if (destinationName) {
+                details.destination = destinationName;
+                details.destinationLabel = destinationName;
+            }
+        }
+
+        const meds = [];
+        const medRegex = /(Metformin(?:\s+\d+\s*mg)?|Lisinopril(?:\s+\d+\s*mg)?|Atorvastatin(?:\s+\d+\s*mg)?)/ig;
+        let match;
+        while ((match = medRegex.exec(text)) !== null) {
+            const medName = match[1].replace(/\s+/g, ' ').replace(/(\d)mg/i, '$1 mg');
+            if (!meds.some(m => m.toLowerCase() === medName.toLowerCase())) meds.push(medName);
+        }
+        if (meds.length > 0) details.prescription = meds.join(' and ');
+
+        return details;
+    }
+
+    function parsePrescriptionInput(text) {
+        let cleaned = text.replace(/\s+/g, ' ').trim();
+        cleaned = cleaned.replace(/^(help me|can you|please|i need to|i want to)\s+/i, '');
+        cleaned = cleaned.replace(/\b(move|transfer)\s+(my\s+)?prescriptions?\b/i, '').trim();
+        cleaned = cleaned.replace(/\bfrom\s+[a-z0-9&.'\-\s]+$/i, '').trim();
+        cleaned = cleaned.replace(/\bto\s+costco\s+[a-z0-9&.'\-\s]+$/i, '').trim();
+
+        if (!cleaned) return '';
+        if (/^(prescription|prescriptions|a prescription|my prescription)$/i.test(cleaned)) return '';
+        if (/^(hi|hello|thanks|thank you|ok|okay|yes|no)$/i.test(cleaned)) return '';
+        return cleaned;
+    }
+
+    function parseDestinationInput(text) {
+        return canonicalDestinationName(text);
+    }
+
+    function transferChooseOrigin(type) {
+        disableTransferPromptButtons();
+        transferDraft.originType = type;
+        addMessage('user', type === 'pharmacy' ? 'At another pharmacy' : 'At another Costco location');
+
+        if (type === 'pharmacy') {
+            setTransferActiveStep('currentPharmacy');
+            addMessage('bot', `Which pharmacy is it at?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('CVS')">CVS</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Walgreens')">Walgreens</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Rite Aid')">Rite Aid</button></div><button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+            return;
+        }
+
+        setTransferActiveStep('currentPharmacy');
+        addMessage('bot', `Which Costco location is it at?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Seattle')">Costco Seattle</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Kirkland')">Costco Kirkland</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Redmond')">Costco Redmond</button></div><button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+    }
+
+    function transferSelectCurrentPharmacy(name) {
+        disableTransferPromptButtons();
+        transferDraft.currentPharmacy = canonicalPharmacyName(name);
+        transferDraft.originType = /\bcostco\b/i.test(transferDraft.currentPharmacy) ? 'costco' : 'pharmacy';
+        addMessage('user', transferDraft.currentPharmacy);
+        setTransferActiveStep('prescription');
+        addMessage('bot', `Got it — ${transferDraft.currentPharmacy}. Which prescription or prescriptions would you like to move?<button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+    }
+
+    function transferApplyDefaults() {
+        if (!transferDraft.forWhom) transferDraft.forWhom = 'Evan';
+        if (!transferDraft.destination) transferDraft.destination = 'Costco Issaquah';
+        transferDraft.destinationLabel = transferDraft.destination;
+    }
+
+    function transferSummaryHtml(draft) {
+        const toValue = draft.destinationLabel || 'Costco Issaquah';
+        const forValue = draft.forWhom || 'Evan';
+        const fromValue = draft.currentPharmacy || 'Another pharmacy';
+        const prescriptionValue = draft.prescription || 'Not entered';
+
+        return `
+            <div class="transfer-summary-root">
+            <div class="chat-card">
+                <div class="chat-card-title">Move a Prescription</div>
+                <div class="chat-card-detail"><strong>From:</strong> ${fromValue}</div>
+                <div class="chat-card-detail"><strong>Prescription:</strong> ${prescriptionValue}</div>
+                <div class="chat-card-detail"><strong>For:</strong> ${forValue}</div>
+                <div class="chat-card-detail"><strong>To:</strong> ${toValue}</div>
+            </div>
+            <div class="smart-prompts">
+                <button class="smart-prompt-btn" onclick="transferContinueToReview()">Continue to Costco transfer</button>
+                <button class="smart-prompt-btn" onclick="transferOpenEdit()">Edit details</button>
+            </div>
+            <button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
+            </div>
+        `;
+    }
+
+    function renderTransferSummary(replaceExisting = false) {
+        transferApplyDefaults();
+        transferDraft.awaitingEditField = '';
+        setTransferActiveStep('summary');
+
+        if (replaceExisting) {
+            const summaryNodes = document.querySelectorAll('.chat-message.bot .transfer-summary-root');
+            if (summaryNodes.length > 0) {
+                summaryNodes.forEach(node => {
+                    const parentMsg = node.closest('.chat-message.bot');
+                    if (parentMsg) parentMsg.remove();
+                });
+            }
+        }
+
+        addMessage('bot', transferSummaryHtml(transferDraft));
+    }
+
+    function transferOpenEdit() {
+        disableTransferPromptButtons();
+        addMessage('user', 'Edit details');
+        transferDraft.awaitingEditField = '';
+        setTransferActiveStep('editMenu');
+        addMessage('bot', `Update any detail:<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferEditField('from')">From</button><button class="smart-prompt-btn" onclick="transferEditField('prescription')">Prescription</button><button class="smart-prompt-btn" onclick="transferEditField('for')">For</button><button class="smart-prompt-btn" onclick="transferEditField('to')">To</button></div>`);
+    }
+
+    function transferEditField(field) {
+        disableTransferPromptButtons();
+        transferDraft.awaitingEditField = field;
+
+        if (field === 'from') {
+            setTransferActiveStep('currentPharmacy');
+            addMessage('bot', `What should we use for the current pharmacy?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectEditedFrom('CVS')">CVS</button><button class="smart-prompt-btn" onclick="transferSelectEditedFrom('Walgreens')">Walgreens</button><button class="smart-prompt-btn" onclick="transferSelectEditedFrom('Rite Aid')">Rite Aid</button></div>`);
+            return;
+        }
+
+        if (field === 'prescription') {
+            setTransferActiveStep('prescription');
+            addMessage('bot', 'Which prescription or prescriptions would you like to use?');
+            return;
+        }
+
+        if (field === 'for') {
+            setTransferActiveStep('editFor');
+            addMessage('bot', `Who should this be for?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSetForValue('Evan')">Evan</button><button class="smart-prompt-btn" onclick="transferAskFamilyName()">Family member</button></div>`);
+            return;
+        }
+
+        setTransferActiveStep('destination');
+        addMessage('bot', `Which Costco location should we use?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectEditedDestination('Costco Issaquah')">Costco Issaquah</button><button class="smart-prompt-btn" onclick="transferSelectEditedDestination('Costco Redmond')">Costco Redmond</button><button class="smart-prompt-btn" onclick="transferSelectEditedDestination('Costco Seattle')">Costco Seattle</button></div>`);
+    }
+
+    function transferSelectEditedFrom(name) {
+        disableTransferPromptButtons();
+        transferDraft.currentPharmacy = canonicalPharmacyName(name);
+        transferDraft.originType = /\bcostco\b/i.test(transferDraft.currentPharmacy) ? 'costco' : 'pharmacy';
+        transferDraft.awaitingEditField = '';
+        addMessage('user', transferDraft.currentPharmacy);
+        renderTransferSummary(true);
+    }
+
+    function transferSelectEditedDestination(name) {
+        disableTransferPromptButtons();
+        transferDraft.destination = canonicalDestinationName(name) || 'Costco Issaquah';
+        transferDraft.destinationLabel = transferDraft.destination;
+        transferDraft.awaitingEditField = '';
+        addMessage('user', transferDraft.destinationLabel);
+        renderTransferSummary(true);
+    }
+
+    function transferSetForValue(name) {
+        disableTransferPromptButtons();
+        transferDraft.forWhom = name;
+        transferDraft.awaitingEditField = '';
+        addMessage('user', name);
+        renderTransferSummary(true);
+    }
+
+    function transferAskFamilyName() {
+        disableTransferPromptButtons();
+        transferDraft.awaitingEditField = 'for';
+        setTransferActiveStep('familyName');
+        addMessage('user', 'Family member');
+        addMessage('bot', 'Please enter the family member first name.');
+    }
+
+    function transferContinueToReview() {
+        disableTransferPromptButtons();
+        transferApplyDefaults();
+        setTransferActiveStep('review');
+        addMessage('user', 'Continue to Costco transfer');
+        addMessage('bot', `
+            <div class="chat-card">
+                <div class="chat-card-title">Costco Transfer Review</div>
+                <div class="chat-card-detail"><strong>From:</strong> ${transferDraft.currentPharmacy}</div>
+                <div class="chat-card-detail"><strong>Prescription:</strong> ${transferDraft.prescription}</div>
+                <div class="chat-card-detail"><strong>For:</strong> ${transferDraft.forWhom}</div>
+                <div class="chat-card-detail"><strong>To:</strong> ${transferDraft.destinationLabel}</div>
+                <div class="chat-card-detail">This information has been carried forward to the Costco transfer review screen.</div>
+                <div class="chat-card-detail">You can review or edit details before any real submission.</div>
+                <div class="chat-card-detail">Nothing has been submitted yet.</div>
+            </div>
+            <div class="smart-prompts">
+                <button class="smart-prompt-btn" onclick="transferOpenEdit()">Edit details</button>
+                <button class="smart-prompt-btn" onclick="transferFinishReview()">Finish review</button>
+            </div>
+        `);
+    }
+
+    function transferFinishReview() {
+        disableTransferPromptButtons();
+        addMessage('user', 'Finish review');
+        addMessage('bot', `
+            This prototype transfer review is complete. Nothing has been submitted.
+            <div class="smart-prompts">
+                <button class="smart-prompt-btn" onclick="transferOpenEdit()">Edit details</button>
+                <button class="smart-prompt-btn" onclick="restartScenario()">Start another transfer</button>
+            </div>
+            <button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>
+        `);
+    }
+
+    function handleTransferFreeText(text) {
+        const details = extractTransferDetails(text);
+        const activeStep = transferDraft.activeStep || 'origin';
+        const editField = transferDraft.awaitingEditField || '';
+
+        if ((activeStep === 'currentPharmacy' || editField === 'from') && !details.currentPharmacy) {
+            details.currentPharmacy = canonicalPharmacyName(text);
+            if (details.currentPharmacy) details.originType = /\bcostco\b/i.test(details.currentPharmacy) ? 'costco' : 'pharmacy';
+        }
+
+        if ((activeStep === 'prescription' || editField === 'prescription') && !details.prescription) {
+            details.prescription = parsePrescriptionInput(text);
+        }
+
+        if ((activeStep === 'destination' || editField === 'to') && !details.destination) {
+            const typedDestination = parseDestinationInput(text);
+            if (typedDestination) {
+                details.destination = typedDestination;
+                details.destinationLabel = typedDestination;
+            }
+        }
+
+        if (activeStep === 'familyName' && editField === 'for') {
+            const name = titleCaseWords(text.replace(/\s+/g, ' ').trim());
+            if (name) details.forWhom = name;
+        }
+
+        transferDraft = { ...transferDraft, ...details };
+
+        if (editField === 'from' && transferDraft.currentPharmacy) {
+            transferDraft.awaitingEditField = '';
+            renderTransferSummary(true);
+            return;
+        }
+        if (editField === 'prescription' && transferDraft.prescription) {
+            transferDraft.awaitingEditField = '';
+            renderTransferSummary(true);
+            return;
+        }
+        if (editField === 'to' && transferDraft.destination) {
+            transferDraft.awaitingEditField = '';
+            renderTransferSummary(true);
+            return;
+        }
+        if (editField === 'for' && transferDraft.forWhom) {
+            transferDraft.awaitingEditField = '';
+            renderTransferSummary(true);
+            return;
+        }
+
+        if (activeStep === 'summary') {
+            if (/\b(edit|change|update)\b/i.test(text)) {
+                transferOpenEdit();
+                return;
+            }
+            if (/\b(continue|next|review|go)\b/i.test(text)) {
+                transferContinueToReview();
+                return;
+            }
+        }
+
+        if (activeStep === 'review' && /\b(edit|change|update)\b/i.test(text)) {
+            transferOpenEdit();
+            return;
+        }
+
+        if (!transferDraft.originType && !transferDraft.currentPharmacy) {
+            if (/\bat another costco\b|\banother costco location\b/i.test(text)) {
+                transferDraft.originType = 'costco';
+            } else if (/\bat another pharmacy\b|\banother pharmacy\b|\bdifferent pharmacy\b/i.test(text)) {
+                transferDraft.originType = 'pharmacy';
+            }
+        }
+
+        if (!transferDraft.originType && transferDraft.currentPharmacy) {
+            transferDraft.originType = /\bcostco\b/i.test(transferDraft.currentPharmacy) ? 'costco' : 'pharmacy';
+        }
+
+        if (!transferDraft.originType) {
+            setTransferActiveStep('origin');
+            addMessage('bot', `I can help with that. Where is it currently?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferChooseOrigin('pharmacy')">At another pharmacy</button><button class="smart-prompt-btn" onclick="transferChooseOrigin('costco')">At another Costco location</button></div><button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+            return;
+        }
+
+        if (!transferDraft.currentPharmacy) {
+            setTransferActiveStep('currentPharmacy');
+            if (transferDraft.originType === 'costco') {
+                addMessage('bot', `Which Costco location is it at?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Seattle')">Costco Seattle</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Kirkland')">Costco Kirkland</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Costco Redmond')">Costco Redmond</button></div><button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+            } else {
+                addMessage('bot', `Which pharmacy is it at?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('CVS')">CVS</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Walgreens')">Walgreens</button><button class="smart-prompt-btn" onclick="transferSelectCurrentPharmacy('Rite Aid')">Rite Aid</button></div><button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+            }
+            return;
+        }
+
+        if (!transferDraft.prescription) {
+            setTransferActiveStep('prescription');
+            addMessage('bot', `Got it — ${transferDraft.currentPharmacy}. Which prescription or prescriptions would you like to move?<button class="personalized-secondary-action" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button>`);
+            return;
+        }
+
+        transferApplyDefaults();
+        renderTransferSummary();
+    }
+
     function advanceConversation(scenario, branch) {
         const data = scenarios[scenario];
         const continuation = data.messages.find(m => m.type === 'continuation' && m.branch === branch);
@@ -3322,7 +3980,7 @@
         });
 
         let delay = 0;
-        continuation.messages.forEach((msg, i) => {
+        continuation.messages.forEach((msg) => {
             delay += msg.delay || 800;
             if (msg.type === 'user') {
                 setTimeout(() => addMessage('user', msg.html), delay);
@@ -3338,12 +3996,14 @@
         });
 
         // Add back button after all messages render
-        setTimeout(() => {
-            const backDiv = document.createElement('div');
-            backDiv.innerHTML = '<button class="chat-back-btn" onclick="goBack()">← Explore other options</button>';
-            body.appendChild(backDiv);
-            body.scrollTop = body.scrollHeight;
-        }, delay + 200);
+        if (!continuation.skipBackLink) {
+            setTimeout(() => {
+                const backDiv = document.createElement('div');
+                backDiv.innerHTML = '<button class="chat-back-btn" onclick="goBack()">← Explore other options</button>';
+                body.appendChild(backDiv);
+                body.scrollTop = body.scrollHeight;
+            }, delay + 200);
+        }
     }
 
     function goBack() {
@@ -3357,11 +4017,27 @@
         const input = document.getElementById('chatInput');
         const text = input.value.trim();
         if (!text) return;
-        addMessage('user', text);
         input.value = '';
 
         // Detect "talk to human" intent
         const humanIntent = /\b(human|person|someone|call|phone|speak|talk to|representative|agent|real person)\b/i.test(text);
+
+        if (currentScenario === 'transfer') {
+            disableTransferPromptButtons();
+            addMessage('user', text);
+            setTimeout(() => showTyping(), 500);
+            setTimeout(() => {
+                removeTyping();
+                if (humanIntent) {
+                    addMessage('bot', `Of course — I'm happy to connect you with our pharmacy team. Let me get you the right number.<br><br>Who would you like to speak with?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">My local pharmacy (Costco #482, Issaquah)</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('mailorder')">Mail Order Pharmacy</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('tech')">Tech Support (website or app help)</button></div>`);
+                } else {
+                    handleTransferFreeText(text);
+                }
+            }, 1200);
+            return;
+        }
+
+        addMessage('user', text);
 
         setTimeout(() => showTyping(), 500);
 
@@ -3373,7 +4049,7 @@
         } else {
             setTimeout(() => {
                 removeTyping();
-                addMessage('bot', `I'd be happy to help with that. Let me look into "${text}" for you.<br><br>In a production implementation, this would connect to pharmacy systems for a real-time answer. Is there anything else I can help you with today?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="advanceConversation('${currentScenario}', 22)">I'm all set, thank you</button></div>`);
+                addMessage('bot', `I'd be happy to help with that. I can guide you to the right pharmacy step, or connect you directly to our team for help with this request.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button><button class="smart-prompt-btn" onclick="restartScenario()">Show my scenario options again</button></div>`);
             }, 1500);
         }
     }
@@ -3388,7 +4064,9 @@
         const body = document.getElementById('chatBody');
         conversationStack.push(body.innerHTML);
 
-        let userMsg, botMsg;
+        let userMsg = '';
+        let botMsg = '';
+
         if (type === 'local') {
             userMsg = 'My local pharmacy (Costco #482, Issaquah)';
             botMsg = `Here's the direct line for your pharmacy:
@@ -3444,6 +4122,12 @@
 
     function loadScenario(name) {
         currentScenario = name;
+        if (name === 'transfer') {
+            resetTransferDraft();
+            setTransferActiveStep('origin');
+        } else {
+            setChatInputPlaceholder(DEFAULT_CHAT_PLACEHOLDER);
+        }
         document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
         const activeTab = document.querySelector(`.scenario-tab[onclick*="${name}"]`);
         if (activeTab) activeTab.classList.add('active');

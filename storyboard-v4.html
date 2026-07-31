@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1559,283 +1559,438 @@
             line-height: 1.45;
             max-width: 980px;
             color: #4b6379;
+            margin-bottom: 10px;
         }
 
         .evo-framework {
-            margin-top: 16px;
-            border: 1px solid #d4e0ec;
-            border-radius: 16px;
+            margin-top: 8px;
+            border: 1px solid #d5e1ee;
+            border-radius: 14px;
             background: #fbfdff;
-            padding: 14px 14px 10px;
+            padding: 12px 12px 10px;
         }
 
-        .evo-top {
+        .evo-rail {
             display: grid;
-            grid-template-columns: 0.9fr auto 1fr auto 1fr auto 1fr;
+            grid-template-columns: 0.92fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .evo-rail-main {
+            grid-column: 2 / 5;
+            border: 1px solid #d9e5f1;
+            border-radius: 10px;
+            background: #f7fbff;
+            padding: 7px 8px 8px;
+        }
+
+        .evo-rail-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .evo-rail-label {
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #2e577f;
+            white-space: nowrap;
+        }
+
+        .evo-proof-chips {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .evo-proof-chip {
+            border: 1px solid #c7d8ea;
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 2px 7px;
+            font-size: 9px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #4f6a86;
+            line-height: 1.2;
+        }
+
+        .evo-rail-track {
+            position: relative;
+            height: 26px;
+        }
+
+        .evo-rail-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 8px;
+            height: 3px;
+            background: linear-gradient(90deg, #2f79c7 0%, #5159b7 58%, #744e97 100%);
+            border-radius: 99px;
+        }
+
+        .evo-gate-mark {
+            position: absolute;
+            transform: translateX(-50%);
+            display: grid;
+            justify-items: center;
+            gap: 1px;
+        }
+
+        .evo-gate-mark.g1 {
+            left: 33.333%;
+        }
+
+        .evo-gate-mark.g2 {
+            left: 66.666%;
+        }
+
+        .evo-gate-diamond {
+            width: 11px;
+            height: 11px;
+            background: #ffffff;
+            border: 2px solid #2e577f;
+            transform: rotate(45deg);
+            margin-top: 2px;
+        }
+
+        .evo-gate-label {
+            font-size: 9px;
+            letter-spacing: 0.65px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #607996;
+            line-height: 1;
+        }
+
+        .evo-grid {
+            display: grid;
+            grid-template-columns: 0.92fr 1fr 1fr 1fr;
+            gap: 10px;
             align-items: stretch;
         }
 
-        .evo-foundation {
-            border: 1px solid #d6e0ec;
-            background: #f5f8fc;
-            border-radius: 11px;
-            padding: 10px 10px;
+        .evo-col {
+            position: relative;
+            display: grid;
+            gap: 6px;
+            align-content: start;
         }
 
-        .evo-foundation-title {
-            font-size: 11px;
-            letter-spacing: 1.05px;
+        .evo-col:nth-child(n + 2) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .evo-col:not(:first-child)::before {
+            content: "";
+            position: absolute;
+            left: -13px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 4px;
+            border-radius: 999px;
+            background: #1f3e63;
+            box-shadow: 0 0 0 1px rgba(245, 250, 255, 0.95), 0 1px 2px rgba(20, 43, 67, 0.34);
+            z-index: 2;
+        }
+
+        .evo-col:not(:first-child)::after {
+            content: "";
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 10px solid #1f3e63;
+            filter: drop-shadow(0 0 1px rgba(245, 250, 255, 0.95)) drop-shadow(0 1px 1px rgba(20, 43, 67, 0.32));
+            z-index: 2;
+        }
+
+        .evo-phase-header {
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: #49637e;
-            font-weight: 800;
-            margin-bottom: 6px;
+            font-weight: 900;
+            line-height: 1.1;
         }
 
-        .evo-list {
+        .evo-phase-header.set {
+            color: #5f7994;
+        }
+
+        .evo-phase-header.crawl {
+            color: #2f79c7;
+        }
+
+        .evo-phase-header.walk {
+            color: #5159b7;
+        }
+
+        .evo-phase-header.run {
+            color: #744e97;
+        }
+
+        .evo-foundation {
+            border: 1.5px solid #cfdceb;
+            background: linear-gradient(180deg, #f6f9fd 0%, #edf4fb 100%);
+            border-radius: 11px;
+            padding: 9px 9px;
+            align-self: stretch;
+            box-shadow: 0 8px 16px rgba(29, 53, 79, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+        }
+
+        .evo-foundation-copy {
             margin: 0;
             padding: 0;
             list-style: none;
             display: grid;
-            gap: 4px;
+            gap: 8px;
         }
 
-        .evo-list li {
-            font-size: 12px;
-            line-height: 1.28;
-            color: #3a5369;
-            padding-left: 8px;
-            position: relative;
+        .evo-foundation-copy li {
+            display: grid;
+            grid-template-columns: 18px 1fr;
+            gap: 8px;
+            align-items: start;
+            font-size: 11px;
+            line-height: 1.36;
+            color: #3d5870;
+            font-weight: 650;
+            border: 1px solid #cedced;
+            border-radius: 7px;
+            background: #ffffff;
+            padding: 8px 9px;
         }
 
-        .evo-list li::before {
-            content: "";
-            width: 4px;
-            height: 4px;
+        .evo-step-num {
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background: #6f8fac;
-            position: absolute;
-            left: 0;
-            top: 6px;
+            border: 1px solid #bfd1e4;
+            background: #eef4fb;
+            color: #4b6581;
+            font-size: 10px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
         }
 
         .evo-phase {
             --phase-fill: #2e77c4;
             background: var(--phase-fill);
-            border: 1px solid color-mix(in srgb, var(--phase-fill) 80%, #101828);
             border-radius: 12px;
-            padding: 11px 11px;
+            padding: 12px 11px 0;
             color: #f8fbff;
-            box-shadow: 0 10px 20px rgba(16, 24, 40, 0.14), 0 1px 2px rgba(16, 24, 40, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.42);
+            box-shadow: 0 14px 24px rgba(16, 24, 40, 0.22), 0 2px 5px rgba(16, 24, 40, 0.14);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+            flex: 1 1 auto;
+            overflow: hidden;
         }
 
-        .evo-phase-crawl {
-            --phase-fill: #2f79c7;
-        }
+        .evo-phase-crawl { --phase-fill: #2f79c7; }
+        .evo-phase-walk { --phase-fill: #5159b7; }
+        .evo-phase-run { --phase-fill: #744e97; }
 
-        .evo-phase-walk {
-            --phase-fill: #5159b7;
-            transform: translateY(-2px);
-        }
-
-        .evo-phase-run {
-            --phase-fill: #744e97;
-            transform: translateY(-4px);
-        }
-
-        .evo-phase-label {
-            font-size: 11px;
-            letter-spacing: 1.1px;
+        .evo-card-capability {
+            font-size: 17px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            font-weight: 800;
-            color: rgba(246, 250, 255, 0.9);
+            font-weight: 900;
+            color: #ffffff;
             margin-bottom: 2px;
+            line-height: 1.05;
+            text-shadow: 0 1px 0 rgba(22, 38, 57, 0.2);
         }
 
-        .evo-phase-level {
-            font-size: 13px;
+        .evo-section {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .evo-section-label {
+            font-size: 10px;
             letter-spacing: 0.7px;
             text-transform: uppercase;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 1px;
+            font-weight: 850;
+            color: rgba(230, 238, 255, 0.92);
+            line-height: 1.25;
+            white-space: nowrap;
         }
 
-        .evo-phase-capability {
-            font-size: 11px;
-            letter-spacing: 0.4px;
-            color: #dbe8ff;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .evo-phase-copy {
+        .evo-section-copy {
             font-size: 12px;
-            color: #eef4ff;
-            line-height: 1.32;
+            color: #eef5ff;
+            line-height: 1.35;
+            font-weight: 450;
         }
 
-        .evo-phase-qualifier {
-            margin-top: 6px;
-            font-size: 11px;
-            color: #d7e3ff;
-            line-height: 1.24;
-            font-weight: 600;
+        .evo-section-copy.purpose {
+            font-size: 12px;
+            font-weight: 500;
+            color: #f7fbff;
+            line-height: 1.35;
         }
 
-        .evo-arrow {
+        .evo-card-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(248, 252, 255, 0.94);
+            padding: 9px 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            margin-left: -11px;
+            margin-right: -11px;
+            margin-bottom: 0;
+            min-height: 51px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #4f77a8;
-            font-size: 22px;
-            font-weight: 800;
-            align-self: center;
         }
 
-        .evo-gates {
-            display: grid;
-            grid-template-columns: 0.9fr auto 1fr auto 1fr auto 1fr;
-            gap: 8px;
-            margin-top: 9px;
-            align-items: stretch;
+        .evo-card-footer .evo-section {
+            width: 100%;
         }
 
-        .evo-gate {
-            border: 1px dashed #adbed4;
-            background: #f5f9ff;
-            border-radius: 10px;
-            padding: 7px 8px;
-            text-align: center;
+        .evo-card-footer .evo-section-label {
+            color: #294966;
         }
 
-        .evo-gate-title {
-            font-size: 10px;
-            letter-spacing: 0.95px;
-            text-transform: uppercase;
-            color: #48637f;
-            font-weight: 800;
-            margin-bottom: 4px;
+        .evo-card-footer .evo-section-copy {
+            color: #32516f;
+            font-weight: 450;
         }
 
-        .evo-gate-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: grid;
-            gap: 2px;
-        }
-
-        .evo-gate-list li {
-            font-size: 11px;
-            color: #4a6178;
-            line-height: 1.2;
-        }
-
-        .evo-gate-failfast {
-            margin-top: 4px;
-            font-size: 10px;
-            color: #607996;
-            line-height: 1.2;
-        }
-
-        .evo-gate-spacer {
-            border-radius: 10px;
-            background: transparent;
-        }
-
-        .evo-measure-band {
+        .evo-validation {
             margin-top: 10px;
-            border: 1px solid #cfdcec;
-            border-radius: 12px;
+            border: 1.5px solid #c9d9ea;
+            border-radius: 11px;
             background: linear-gradient(180deg, #edf4fc 0%, #f6faff 100%);
-            padding: 10px 10px;
+            padding: 11px 12px;
+            display: grid;
+            gap: 8px;
         }
 
-        .evo-measure-title {
-            font-size: 11px;
-            letter-spacing: 1.1px;
+        .evo-validation-title {
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 800;
             color: var(--costco-nav-blue);
-            text-align: center;
-            margin-bottom: 3px;
         }
 
-        .evo-measure-cycle {
+        .evo-validation-flow {
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             color: #2f4d67;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.3;
         }
 
-        .evo-measure-methods {
-            text-align: center;
-            margin-top: 3px;
-            font-size: 11px;
-            color: #5a7189;
-            line-height: 1.24;
-        }
-
-        .evo-lenses {
-            margin-top: 8px;
+        .evo-validation-row {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 7px;
+            grid-template-columns: 170px 1fr;
+            align-items: start;
+            gap: 12px;
+            border-top: 1px solid #d5e3f1;
+            padding-top: 8px;
+            padding-bottom: 2px;
         }
 
-        .evo-lens {
-            border: 1px solid #d3deea;
-            border-radius: 9px;
-            background: #ffffff;
-            padding: 8px 8px;
-            text-align: center;
-        }
-
-        .evo-lens-title {
+        .evo-validation-row-label {
             font-size: 10px;
             letter-spacing: 0.9px;
             text-transform: uppercase;
-            font-weight: 800;
-            color: #4c647e;
-            margin-bottom: 3px;
+            font-weight: 850;
+            color: #4d6784;
+            text-align: left;
+            white-space: nowrap;
+            line-height: 1.32;
         }
 
-        .evo-lens-copy {
+        .evo-validation-row-items {
+            font-size: 13px;
+            color: #3f5871;
+            line-height: 1.35;
+            font-weight: 450;
+        }
+
+        .evo-validation-note {
+            margin-top: 5px;
+            font-size: 12px;
+            line-height: 1.32;
+            color: #55728f;
+            font-weight: 450;
+        }
+
+        .evo-measure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 10px;
+        }
+
+        .evo-measure-group {
+            border: 1px solid #dbe6f2;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.42);
+            padding: 7px 8px;
+            display: grid;
+            gap: 3px;
+        }
+
+        .evo-measure-label {
+            font-size: 11px;
+            letter-spacing: 0.65px;
+            text-transform: uppercase;
+            font-weight: 850;
+            color: #3e5c79;
+            line-height: 1.22;
+        }
+
+        .evo-measure-items {
+            font-size: 13px;
+            line-height: 1.3;
+            color: #3f5871;
+            font-weight: 450;
+        }
+
+        .evo-measure-qualifier {
+            margin-top: 6px;
             font-size: 11px;
             line-height: 1.28;
-            color: #355069;
+            color: #627d97;
+            font-weight: 450;
         }
 
-        .evo-lenses-qualifier {
-            margin-top: 6px;
+        .evo-takeaway {
+            margin-top: 5px;
+            margin-bottom: 0;
             text-align: center;
-            font-size: 11px;
-            line-height: 1.24;
-            color: #5b728a;
-        }
-
-        .val-takeaway {
-            margin-top: 10px;
-            padding: 11px 12px;
-            border-radius: 10px;
-            background: #ecf4fc;
-            border: 1px solid #c7dbef;
-            color: #1f4e76;
-            font-size: 14px;
-            line-height: 1.35;
+            font-size: 12px;
+            line-height: 1.3;
+            color: #2f506f;
             font-weight: 700;
-            text-align: center;
-        }
-
-        .evo-reference-strip {
-            margin-top: 6px;
-            text-align: center;
-            font-size: 11px;
-            line-height: 1.25;
-            color: #5e7490;
-            font-weight: 600;
         }
 
         .presenter-mode.notes-open .slide-roadmap {
@@ -1843,55 +1998,64 @@
         }
 
         .presenter-mode.notes-open .slide-roadmap .slide-content {
-            margin-top: -10px;
+            margin-top: -8px;
         }
 
         .presenter-mode.notes-open .slide-roadmap .evo-framework {
-            margin-top: 10px;
-            padding: 10px 10px 9px;
+            margin-top: 8px;
+            padding: 9px 9px 8px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .evo-top,
-        .presenter-mode.notes-open .slide-roadmap .evo-gates,
-        .presenter-mode.notes-open .slide-roadmap .evo-lenses {
-            gap: 7px;
+        .presenter-mode.notes-open .slide-roadmap .evo-grid,
+        .presenter-mode.notes-open .slide-roadmap .evo-rail {
+            gap: 8px;
         }
 
+        .presenter-mode.notes-open .slide-roadmap .evo-phase,
         .presenter-mode.notes-open .slide-roadmap .evo-foundation,
-        .presenter-mode.notes-open .slide-roadmap .evo-phase {
-            padding: 8px 8px;
+        .presenter-mode.notes-open .slide-roadmap .evo-validation {
+            padding: 7px 7px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .evo-list li,
-        .presenter-mode.notes-open .slide-roadmap .evo-phase-copy,
-        .presenter-mode.notes-open .slide-roadmap .evo-phase-qualifier,
-        .presenter-mode.notes-open .slide-roadmap .evo-phase-capability {
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row {
+            grid-template-columns: 145px 1fr;
+            gap: 9px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-phase-header,
+        .presenter-mode.notes-open .slide-roadmap .evo-card-capability,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-flow {
             font-size: 11px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .evo-gate {
-            padding: 6px 6px;
+        .presenter-mode.notes-open .slide-roadmap .evo-section-copy,
+        .presenter-mode.notes-open .slide-roadmap .evo-foundation-copy li,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row-items,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-note,
+        .presenter-mode.notes-open .slide-roadmap .evo-takeaway {
+            font-size: 11px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .evo-gate-title,
-        .presenter-mode.notes-open .slide-roadmap .evo-gate-list li,
-        .presenter-mode.notes-open .slide-roadmap .evo-gate-failfast,
-        .presenter-mode.notes-open .slide-roadmap .evo-measure-cycle,
-        .presenter-mode.notes-open .slide-roadmap .evo-measure-methods,
-        .presenter-mode.notes-open .slide-roadmap .evo-lens-copy,
-        .presenter-mode.notes-open .slide-roadmap .evo-lenses-qualifier,
-        .presenter-mode.notes-open .slide-roadmap .evo-reference-strip {
-            font-size: 10px;
+        .presenter-mode.notes-open .slide-roadmap .evo-section-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-proof-chip,
+        .presenter-mode.notes-open .slide-roadmap .evo-gate-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-title,
+        .presenter-mode.notes-open .slide-roadmap .evo-rail-label {
+            font-size: 9px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .evo-arrow {
-            font-size: 18px;
+        .presenter-mode.notes-open .slide-roadmap .evo-col:not(:first-child)::before {
+            left: -11px;
+            width: 16px;
+            height: 3px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .val-takeaway {
-            margin-top: 8px;
-            padding: 9px 10px;
-            font-size: 12px;
+        .presenter-mode.notes-open .slide-roadmap .evo-col:not(:first-child)::after {
+            left: 0;
+            border-top-width: 6px;
+            border-bottom-width: 6px;
+            border-left-width: 8px;
         }
 
         .presenter-mode.is-fullscreen .slide-roadmap {
@@ -1903,7 +2067,7 @@
         }
 
         .presenter-mode.is-fullscreen .slide-roadmap .evo-framework {
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         /* === HUB SPOKE === */
@@ -2887,107 +3051,126 @@
             <div class="slide-content">
                 <div class="section-label">VALIDATED EVOLUTION</div>
                 <h2>Start focused. Measure continuously. Expand only when value is proven.</h2>
-                <p class="subtitle">Crawl, walk, and run—guided by evidence at every phase.</p>
+                <p class="subtitle">Capability grows from guidance to assistance to anticipation—each step earned through evidence.</p>
 
                 <div class="evo-framework">
-                    <div class="evo-top">
-                        <div class="evo-foundation">
-                            <div class="evo-foundation-title">SET DIRECTION</div>
-                            <ul class="evo-list">
-                                <li>Align on the North Star</li>
-                                <li>Establish the baseline</li>
-                                <li>Define hypotheses and success thresholds</li>
-                            </ul>
-                        </div>
-
-                        <div class="evo-arrow" aria-hidden="true">→</div>
-
-                        <div class="evo-phase evo-phase-crawl">
-                            <div class="evo-phase-label">CRAWL</div>
-                            <div class="evo-phase-level">GUIDE</div>
-                            <div class="evo-phase-capability">Explain and route</div>
-                            <div class="evo-phase-copy">Help members reach the right option, workflow, or person.</div>
-                            <div class="evo-phase-qualifier">Focused · Lower risk · Best for initial learning</div>
-                        </div>
-
-                        <div class="evo-arrow" aria-hidden="true">→</div>
-
-                        <div class="evo-phase evo-phase-walk">
-                            <div class="evo-phase-label">WALK</div>
-                            <div class="evo-phase-level">ASSIST</div>
-                            <div class="evo-phase-capability">Contextual assistance</div>
-                            <div class="evo-phase-copy">Use approved context to reduce effort and support more of the task.</div>
-                            <div class="evo-phase-qualifier">Contextual · Authenticated · More integrated</div>
-                        </div>
-
-                        <div class="evo-arrow" aria-hidden="true">→</div>
-
-                        <div class="evo-phase evo-phase-run">
-                            <div class="evo-phase-label">RUN</div>
-                            <div class="evo-phase-level">ANTICIPATE</div>
-                            <div class="evo-phase-capability">Proactive orchestration</div>
-                            <div class="evo-phase-copy">Surface timely needs across proactive or connected member journeys.</div>
-                            <div class="evo-phase-qualifier">Only after earlier phases prove value and trust</div>
+                    <div class="evo-rail">
+                        <div></div>
+                        <div class="evo-rail-main">
+                            <div class="evo-rail-head">
+                                <div class="evo-rail-label">ADVANCE ONLY WHEN PROVEN</div>
+                                <div class="evo-proof-chips" aria-label="Shared proof criteria">
+                                    <div class="evo-proof-chip">Value</div>
+                                    <div class="evo-proof-chip">Trust / Responsible AI</div>
+                                    <div class="evo-proof-chip">Operational readiness</div>
+                                </div>
+                            </div>
+                            <div class="evo-rail-track" aria-hidden="true">
+                                <div class="evo-rail-line"></div>
+                                <div class="evo-gate-mark g1">
+                                    <div class="evo-gate-diamond"></div>
+                                    <div class="evo-gate-label">Gate 1</div>
+                                </div>
+                                <div class="evo-gate-mark g2">
+                                    <div class="evo-gate-diamond"></div>
+                                    <div class="evo-gate-label">Gate 2</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="evo-gates">
-                        <div class="evo-gate-spacer" aria-hidden="true"></div>
-
-                        <div class="evo-arrow" aria-hidden="true"></div>
-
-                        <div class="evo-gate">
-                            <div class="evo-gate-title">READY TO ADVANCE?</div>
-                            <ul class="evo-gate-list">
-                                <li>Value demonstrated</li>
-                                <li>Trust, safety, and Responsible AI acceptable</li>
-                                <li>Operationally feasible</li>
-                            </ul>
-                            <div class="evo-gate-failfast">Learn early. Fail fast. Avoid scaling weak assumptions.</div>
+                    <div class="evo-grid">
+                        <div class="evo-col">
+                            <div class="evo-phase-header set">SET DIRECTION</div>
+                            <div class="evo-foundation">
+                                <ul class="evo-foundation-copy">
+                                    <li><span class="evo-step-num">1</span><span>Define the North Star</span></li>
+                                    <li><span class="evo-step-num">2</span><span>Establish the baseline</span></li>
+                                    <li><span class="evo-step-num">3</span><span>Set success thresholds</span></li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="evo-arrow" aria-hidden="true"></div>
-
-                        <div class="evo-gate">
-                            <div class="evo-gate-title">READY TO ADVANCE?</div>
-                            <ul class="evo-gate-list">
-                                <li>Value demonstrated</li>
-                                <li>Trust, safety, and Responsible AI acceptable</li>
-                                <li>Operationally feasible</li>
-                            </ul>
-                            <div class="evo-gate-failfast">Learn early. Fail fast. Avoid scaling weak assumptions.</div>
+                        <div class="evo-col">
+                            <div class="evo-phase-header crawl">CRAWL</div>
+                            <div class="evo-phase evo-phase-crawl">
+                                <div class="evo-card-capability">GUIDE</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Helps the member find the right path</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Clarifies the need and routes to the right workflow or person</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">LIMIT:</div><div class="evo-section-copy">Does not perform the task</div></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="evo-arrow" aria-hidden="true"></div>
-
-                        <div class="evo-gate-spacer" aria-hidden="true"></div>
-                    </div>
-
-                    <div class="evo-measure-band">
-                        <div class="evo-measure-title">MEASURE, LEARN, AND ITERATE THROUGHOUT</div>
-                        <div class="evo-measure-cycle">Baseline -> Hypothesis -> Experiment -> Measure -> Learn -> Iterate -> Decide</div>
-                        <div class="evo-measure-methods">Experimentation · A/B testing · Qualitative feedback · Operational data</div>
-                    </div>
-
-                    <div class="evo-lenses">
-                        <div class="evo-lens">
-                            <div class="evo-lens-title">MEMBER</div>
-                            <div class="evo-lens-copy">Completion · Effort · Satisfaction · Trust</div>
+                        <div class="evo-col">
+                            <div class="evo-phase-header walk">WALK</div>
+                            <div class="evo-phase evo-phase-walk">
+                                <div class="evo-card-capability">ASSIST</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Helps complete parts of the task</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Carries approved context into the workflow and reduces repeated effort</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">CONTROL:</div><div class="evo-section-copy">Member reviews and confirms key actions</div></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="evo-lens">
-                            <div class="evo-lens-title">BUSINESS</div>
-                            <div class="evo-lens-copy">Acquisition · Retention · Service adoption</div>
-                        </div>
-                        <div class="evo-lens">
-                            <div class="evo-lens-title">OPERATIONS</div>
-                            <div class="evo-lens-copy">Self-service · Avoidable calls · Resolution · Handoff quality</div>
+
+                        <div class="evo-col">
+                            <div class="evo-phase-header run">RUN</div>
+                            <div class="evo-phase evo-phase-run">
+                                <div class="evo-card-capability">ANTICIPATE</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Surfaces the next relevant need</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Uses permitted signals to offer timely next steps</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">GUARDRAIL:</div><div class="evo-section-copy">Consent-based and safeguarded</div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="evo-lenses-qualifier">Measures are selected based on the Costco Pharmacy priority established upfront.</div>
+
+                    <div class="evo-validation">
+                        <div class="evo-validation-title">VALIDATE THROUGHOUT</div>
+                        <div class="evo-validation-flow">Test the hypothesis → Measure the impact → Decide the next step</div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">HOW WE TEST</div>
+                            <div class="evo-validation-row-items">Experiments · A/B tests · Prototype testing · Controlled pilots</div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">SIGNALS WE USE</div>
+                            <div class="evo-validation-row-items">Telemetry · Explicit feedback · Qualitative insights · Operational data</div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">WHAT WE MEASURE</div>
+                            <div>
+                                <div class="evo-measure-grid">
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Member value</div>
+                                        <div class="evo-measure-items">HRR · Completion · Effort</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Business value</div>
+                                        <div class="evo-measure-items">Acquisition · Retention · Service adoption</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Operational readiness</div>
+                                        <div class="evo-measure-items">Handoff quality · Avoidable calls · Workflow reliability</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Trust &amp; Responsible AI</div>
+                                        <div class="evo-measure-items">Member control · Boundary adherence · Correct escalation</div>
+                                    </div>
+                                </div>
+                                <div class="evo-measure-qualifier">Illustrative measures; final KPIs depend on the selected North Star and scenario.</div>
+                            </div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">DECISION</div>
+                            <div class="evo-validation-row-items">Advance · Iterate · Change direction · Stop</div>
+                        </div>
+                    </div>
+
+                    <div class="evo-takeaway">More capability requires more evidence and stronger safeguards.</div>
                 </div>
-
-                <div class="val-takeaway">Each phase earns the next through measurable member and business value.</div>
-                <div class="evo-reference-strip">GUIDE gets the member to the task · ASSIST helps complete the task · ANTICIPATE surfaces the task before the member searches</div>
             </div>
         </section>
 
@@ -3313,3 +3496,4 @@
     </script>
 </body>
 </html>
+

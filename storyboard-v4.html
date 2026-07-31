@@ -769,43 +769,564 @@
             line-height: 1.4;
         }
 
-        /* === TRUST CHECKLIST === */
-        .trust-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-top: 28px;
+        /* === SLIDE 2: STRATEGIC OPPORTUNITY JOURNEY === */
+        .slide2-opportunity .slide-content {
+            max-width: 1120px;
         }
 
-        .trust-group {
+        .slide2-opportunity h2 {
+            max-width: 920px;
+            margin-bottom: 12px;
+            font-size: 33px;
+            line-height: 1.16;
+            letter-spacing: -0.2px;
+        }
+
+        .slide2-journey {
+            display: grid;
+            grid-template-columns: 0.95fr auto 1.6fr auto 0.95fr;
+            gap: 10px;
+            margin-top: 16px;
+            align-items: center;
+        }
+
+        .slide2-node {
+            background: var(--white);
+            border: 1px solid #d2deea;
+            border-radius: 14px;
+            padding: 15px 14px;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.03);
+        }
+
+        .slide2-node-mark {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            border: 2px solid #89a9c7;
+            position: relative;
+            background: #f8fbff;
+        }
+
+        .slide2-node-mark.start::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6f93b6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .slide2-node-mark.start::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            border: 1px solid rgba(111, 147, 182, 0.35);
+        }
+
+        .slide2-node-mark.end {
+            border-color: #6f95b8;
+            background: #f7fbff;
+        }
+
+        .slide2-node-mark.end::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 6px;
+            border-left: 2px solid #6f95b8;
+            border-bottom: 2px solid #6f95b8;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .slide2-flow-arrow {
+            width: 44px;
+            height: 2px;
+            background: linear-gradient(90deg, #8faecd 0%, #7c9ec1 100%);
+            position: relative;
+            opacity: 1;
+        }
+
+        .slide2-flow-arrow::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9bb6d0;
+            transform: translate(-10%, -50%);
+        }
+
+        .slide2-flow-arrow::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-top: 2px solid #7c9ec1;
+            border-right: 2px solid #7c9ec1;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .slide2-path {
+            background: #f4f8fe;
+            border: 2px solid #b8cee2;
+            border-radius: 14px;
+            padding: 12px 18px 14px;
+            box-shadow: 0 9px 18px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+            position: relative;
+        }
+
+        .slide2-path::before {
+            content: "";
+            position: absolute;
+            left: 38px;
+            right: 38px;
+            top: 43px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(116, 152, 186, 0.38) 0%, rgba(116, 152, 186, 0.62) 52%, rgba(116, 152, 186, 0.46) 100%);
+            z-index: 1;
+        }
+
+        .slide2-path-title {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .slide2-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            overflow: visible;
+        }
+
+        .slide2-step {
+            background: transparent;
+            border: 0;
+            padding: 0 4px 0;
+            min-height: 0;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            box-shadow: none;
+            position: relative;
         }
 
-        .trust-group-title {
+        .slide2-step:not(:last-child)::after {
+            content: none;
+        }
+
+        .slide2-step-index {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #e8f1fb;
+            border: 2px solid #9fbad4;
+            color: #5a7c9e;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 18px;
+            text-align: center;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(248, 251, 255, 0.95);
+        }
+
+        .slide2-step-label {
             font-size: 12px;
-            letter-spacing: 1.1px;
-            text-transform: uppercase;
-            color: #4a6377;
+            font-weight: 600;
+            line-height: 1.26;
+            color: #26425f;
+        }
+
+        .slide2-step:last-child .slide2-step-index {
+            background: #dfebf8;
+            border-color: #7d9fbe;
+            color: #446789;
+        }
+
+        .slide2-step:last-child .slide2-step-label {
+            color: #1f3e5b;
             font-weight: 700;
         }
 
-        .trust-item {
-            background: var(--green-light);
-            border-radius: 10px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--green);
+        .slide2-start {
+            border-left: 3px solid #93aec8;
+            background: #fcfdff;
         }
 
-        .trust-check {
-            font-size: 18px;
+        .slide2-end {
+            border-left: 3px solid #759cbe;
+            background: #f8fcff;
+        }
+
+        .slide2-node .cap-card-title {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .slide2-node .cap-card-example {
+            font-style: normal;
+        }
+
+        .slide2-takeaway {
+            margin-top: 14px;
+            padding: 11px 16px;
+            background: linear-gradient(180deg, #f9fbfe 0%, #f3f7fc 100%);
+            border: 1px solid #d9e4ee;
+            border-radius: 12px;
+            border-left: 3px solid #9ab5cf;
+            font-size: 14px;
+            color: #294764;
+            line-height: 1.45;
+            position: relative;
+        }
+
+        .slide2-takeaway::before {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #89a8c6;
+            transform: translateY(-50%);
+        }
+
+        .slide2-takeaway {
+            padding-left: 28px;
+        }
+
+        /* === SLIDE 3: PRIORITY-LED EXPERIENCE === */
+        .slide3-priority .slide-content {
+            max-width: 1080px;
+        }
+
+        .slide3-priority .priority-intro {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            max-width: 900px;
+        }
+
+        .slide3-priority .priority-qualifier {
+            font-size: 12px;
+            color: #5a6f84;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .slide3-priority .priority-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .slide3-priority .priority-card {
+            padding: 17px 16px 18px;
+            border-top-width: 3px;
+            border-top-style: solid;
+            min-height: 164px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 8px 16px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.04);
+        }
+
+        .slide3-priority .priority-card-growth {
+            background: linear-gradient(160deg, #eef7f1 0%, #f4fbf6 100%);
+            border-top-color: #4f9e6e;
+        }
+
+        .slide3-priority .priority-card-value {
+            background: linear-gradient(160deg, #fdf3e2 0%, #fef8ee 100%);
+            border-top-color: #c2882c;
+        }
+
+        .slide3-priority .priority-card-efficiency {
+            background: linear-gradient(160deg, #ebebf8 0%, #f3f3fc 100%);
+            border-top-color: #6265ad;
+        }
+
+        .slide3-priority .priority-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slide3-priority .priority-icon-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid #cbd9e6;
+            background: #f4f9ff;
+            color: #5f84a7;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
+        }
+
+        .slide3-priority .priority-card-growth .priority-icon-badge {
+            border-color: #8ecba7;
+            background: #d6f0e1;
+            color: #2d7a50;
+        }
+
+        .slide3-priority .priority-card-value .priority-icon-badge {
+            border-color: #e8c07e;
+            background: #fae8c4;
+            color: #9a6a20;
+        }
+
+        .slide3-priority .priority-card-efficiency .priority-icon-badge {
+            border-color: #9d9fd4;
+            background: #dadcf5;
+            color: #4a4e9c;
+        }
+
+        .slide3-priority .priority-icon-badge svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .slide3-priority .priority-title {
+            font-size: 12px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: var(--costco-nav-blue);
+            margin: 0;
+        }
+
+        .slide3-priority .priority-card-growth .priority-title {
+            color: #2d6641;
+        }
+
+        .slide3-priority .priority-card-value .priority-title {
+            color: #8a5a14;
+        }
+
+        .slide3-priority .priority-card-efficiency .priority-title {
+            color: #3d4190;
+        }
+
+        .slide3-priority .priority-copy {
+            font-style: normal;
+            font-size: 14px;
+            color: #41576b;
+            line-height: 1.35;
+        }
+
+        .slide3-priority .priority-takeaway {
+            margin-top: 14px;
+        }
+
+        /* === TRUST FRAMEWORK === */
+        .slide-trust .slide-content {
+            max-width: 1080px;
+        }
+
+        .slide-trust .trust-support-line {
+            font-size: 16px;
+            line-height: 1.45;
+            color: #486179;
+            max-width: 900px;
+        }
+
+        .trust-framework {
+            margin-top: 18px;
+            padding: 18px 18px 14px;
+            border-radius: 18px;
+            border: 1px solid #d7e2ee;
+            background:
+                radial-gradient(circle at 15% 8%, rgba(37, 99, 235, 0.08), transparent 40%),
+                radial-gradient(circle at 87% 12%, rgba(91, 71, 180, 0.08), transparent 38%),
+                radial-gradient(circle at 50% 92%, rgba(118, 68, 111, 0.08), transparent 36%),
+                #fbfcfe;
+        }
+
+        .trust-visual {
+            position: relative;
+            min-height: 330px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.76);
+            border: 1px solid #e2e9f2;
+            overflow: hidden;
+        }
+
+        .trust-connectors {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .trust-connectors path {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.9;
+        }
+
+        .trust-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            max-width: calc(100% - 220px);
+            text-align: center;
+            border-radius: 999px;
+            padding: 24px 22px;
+            border: 1px solid #cad6e5;
+            background: linear-gradient(180deg, #ffffff 0%, #f3f7fc 100%);
+            box-shadow: 0 12px 28px rgba(21, 36, 56, 0.09), 0 2px 4px rgba(21, 36, 56, 0.05);
+            z-index: 2;
+        }
+
+        .trust-core-label {
+            font-size: 12px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--costco-nav-blue);
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .trust-core-sub {
+            font-size: 13px;
+            line-height: 1.35;
+            color: #4c657d;
+            font-weight: 600;
+        }
+
+        .trust-core-rai {
+            margin-top: 6px;
+            font-size: 11px;
+            line-height: 1.25;
+            letter-spacing: 0.25px;
+            color: #5b69a8;
+            font-weight: 600;
+            opacity: 0.92;
+        }
+
+        .trust-principle {
+            --principle-accent: #2563eb;
+            position: absolute;
+            width: 290px;
+            border-radius: 14px;
+            border: 1px solid color-mix(in srgb, var(--principle-accent) 24%, #d6e1ed);
+            background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--principle-accent) 5%, #ffffff) 100%);
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            box-shadow: 0 8px 18px rgba(16, 24, 40, 0.07), 0 1px 2px rgba(16, 24, 40, 0.04);
+            z-index: 3;
+        }
+
+        .trust-principle-boundaries {
+            left: 22px;
+            top: 18px;
+            --principle-accent: #2563eb;
+        }
+
+        .trust-principle-context {
+            right: 22px;
+            top: 18px;
+            --principle-accent: #5b47b4;
+        }
+
+        .trust-principle-human {
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            --principle-accent: #76446f;
+        }
+
+        .trust-principle-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            border: 1px solid color-mix(in srgb, var(--principle-accent) 35%, #ffffff);
+            background: color-mix(in srgb, var(--principle-accent) 12%, #ffffff);
+            color: var(--principle-accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-principle-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.95;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .trust-principle-copy {
+            min-width: 0;
+        }
+
+        .trust-principle-label {
+            font-size: 11px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--costco-nav-blue);
+            line-height: 1.2;
+        }
+
+        .trust-principle-main {
+            margin-top: 3px;
+            font-size: 13px;
+            color: #304a61;
+            line-height: 1.35;
+            font-weight: 600;
+        }
+
+        .trust-outcome {
+            margin-top: 11px;
+            border: 1px solid #d2dbe8;
+            border-radius: 12px;
+            background: #f2f6fb;
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #2c4965;
+            font-weight: 700;
+            line-height: 1.35;
         }
 
         .presenter-mode .slide-trust {
@@ -820,17 +1341,78 @@
             margin-top: 4px;
         }
 
-        .presenter-mode.notes-open .slide-trust .trust-grid {
-            margin-top: 20px;
-            gap: 10px;
+        .presenter-mode.notes-open .slide-trust .trust-framework {
+            margin-top: 10px;
+            padding: 12px 12px 10px;
         }
 
-        .presenter-mode.notes-open .slide-trust .trust-group {
-            gap: 10px;
+        .presenter-mode.notes-open .slide-trust .trust-visual {
+            min-height: 260px;
         }
 
-        .presenter-mode.notes-open .slide-trust .trust-group-title {
+        .presenter-mode.notes-open .slide-trust .trust-core {
+            width: 300px;
+            max-width: calc(100% - 180px);
+            padding: 14px 14px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-label {
+            font-size: 11px;
             margin-bottom: 2px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-sub {
+            font-size: 12px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-rai {
+            margin-top: 4px;
+            font-size: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle {
+            width: 232px;
+            padding: 9px 10px;
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-boundaries {
+            left: 12px;
+            top: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-context {
+            right: 12px;
+            top: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-human {
+            bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-icon svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-label {
+            font-size: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-main {
+            font-size: 12px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-outcome {
+            margin-top: 7px;
+            padding: 7px 9px;
+            font-size: 12px;
         }
 
         .presenter-mode.notes-open .slide-lens {
@@ -962,99 +1544,298 @@
             margin-top: 0;
         }
 
-        .presenter-mode.is-fullscreen .slide-trust .trust-grid {
-            margin-top: 28px;
-            gap: 14px;
-        }
-
-        .presenter-mode.is-fullscreen .slide-trust .trust-group {
-            gap: 12px;
+        .presenter-mode.is-fullscreen .slide-trust .trust-visual {
+            min-height: 310px;
         }
 
 
-        /* === ROADMAP === */
-        .roadmap {
+        /* === VALIDATION PATH === */
+        .slide-roadmap .slide-content {
+            max-width: 1140px;
+        }
+
+        .slide-roadmap .subtitle {
+            font-size: 16px;
+            line-height: 1.45;
+            max-width: 980px;
+            color: #4b6379;
+        }
+
+        .evo-framework {
+            margin-top: 16px;
+            border: 1px solid #d4e0ec;
+            border-radius: 16px;
+            background: #fbfdff;
+            padding: 14px 14px 10px;
+        }
+
+        .evo-top {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 24px;
-            margin-top: 28px;
+            grid-template-columns: 0.9fr auto 1fr auto 1fr auto 1fr;
+            gap: 8px;
+            align-items: stretch;
         }
 
-        .roadmap-phase {
-            background: var(--white);
-            border: 1px solid #d6e0ea;
-            border-radius: 14px;
-            padding: 28px 24px;
-            text-align: center;
-            box-shadow: 0 14px 28px rgba(16, 24, 40, 0.11), 0 2px 6px rgba(16, 24, 40, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(247,250,253,1) 100%);
+        .evo-foundation {
+            border: 1px solid #d6e0ec;
+            background: #f5f8fc;
+            border-radius: 11px;
+            padding: 10px 10px;
         }
 
-        .roadmap-phase.active {
-            border-color: #6f9fc8;
-            border-width: 1px;
-            box-shadow: 0 16px 30px rgba(0, 93, 170, 0.16), 0 3px 8px rgba(16, 24, 40, 0.08), 0 0 0 1px rgba(0, 93, 170, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-        }
-
-        .phase-badge {
-            display: inline-block;
-            margin-bottom: 12px;
-            padding: 4px 10px;
-            border-radius: 999px;
+        .evo-foundation-title {
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.4px;
-            color: var(--costco-blue);
-            background: #eaf3fc;
-            border: 1px solid #cfe3f8;
+            letter-spacing: 1.05px;
             text-transform: uppercase;
+            color: #49637e;
+            font-weight: 800;
+            margin-bottom: 6px;
         }
 
-        .phase-num {
-            display: inline-flex;
+        .evo-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 4px;
+        }
+
+        .evo-list li {
+            font-size: 12px;
+            line-height: 1.28;
+            color: #3a5369;
+            padding-left: 8px;
+            position: relative;
+        }
+
+        .evo-list li::before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #6f8fac;
+            position: absolute;
+            left: 0;
+            top: 6px;
+        }
+
+        .evo-phase {
+            --phase-fill: #2e77c4;
+            background: var(--phase-fill);
+            border: 1px solid color-mix(in srgb, var(--phase-fill) 80%, #101828);
+            border-radius: 12px;
+            padding: 11px 11px;
+            color: #f8fbff;
+            box-shadow: 0 10px 20px rgba(16, 24, 40, 0.14), 0 1px 2px rgba(16, 24, 40, 0.08);
+        }
+
+        .evo-phase-crawl {
+            --phase-fill: #2f79c7;
+        }
+
+        .evo-phase-walk {
+            --phase-fill: #5159b7;
+            transform: translateY(-2px);
+        }
+
+        .evo-phase-run {
+            --phase-fill: #744e97;
+            transform: translateY(-4px);
+        }
+
+        .evo-phase-label {
+            font-size: 11px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: rgba(246, 250, 255, 0.9);
+            margin-bottom: 2px;
+        }
+
+        .evo-phase-level {
+            font-size: 13px;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1px;
+        }
+
+        .evo-phase-capability {
+            font-size: 11px;
+            letter-spacing: 0.4px;
+            color: #dbe8ff;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .evo-phase-copy {
+            font-size: 12px;
+            color: #eef4ff;
+            line-height: 1.32;
+        }
+
+        .evo-phase-qualifier {
+            margin-top: 6px;
+            font-size: 11px;
+            color: #d7e3ff;
+            line-height: 1.24;
+            font-weight: 600;
+        }
+
+        .evo-arrow {
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--accent-light);
-            color: var(--costco-blue);
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 12px;
+            color: #4f77a8;
+            font-size: 22px;
+            font-weight: 800;
+            align-self: center;
         }
 
-        .phase-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--costco-nav-blue);
-            margin-bottom: 8px;
+        .evo-gates {
+            display: grid;
+            grid-template-columns: 0.9fr auto 1fr auto 1fr auto 1fr;
+            gap: 8px;
+            margin-top: 9px;
+            align-items: stretch;
         }
 
-        .phase-desc {
-            font-size: 14px;
-            line-height: 1.45;
-            color: var(--text-light);
-            margin-bottom: 10px;
+        .evo-gate {
+            border: 1px dashed #adbed4;
+            background: #f5f9ff;
+            border-radius: 10px;
+            padding: 7px 8px;
+            text-align: center;
         }
 
-        .phase-example {
-            font-size: 13px;
-            color: var(--costco-blue);
-            background: #eaf3fc;
-            border-radius: 8px;
-            padding: 10px 12px;
-            line-height: 1.35;
-            font-style: italic;
-            font-weight: 500;
+        .evo-gate-title {
+            font-size: 10px;
+            letter-spacing: 0.95px;
+            text-transform: uppercase;
+            color: #48637f;
+            font-weight: 800;
+            margin-bottom: 4px;
         }
 
-        .phase-gate {
+        .evo-gate-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 2px;
+        }
+
+        .evo-gate-list li {
+            font-size: 11px;
+            color: #4a6178;
+            line-height: 1.2;
+        }
+
+        .evo-gate-failfast {
+            margin-top: 4px;
+            font-size: 10px;
+            color: #607996;
+            line-height: 1.2;
+        }
+
+        .evo-gate-spacer {
+            border-radius: 10px;
+            background: transparent;
+        }
+
+        .evo-measure-band {
             margin-top: 10px;
+            border: 1px solid #cfdcec;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #edf4fc 0%, #f6faff 100%);
+            padding: 10px 10px;
+        }
+
+        .evo-measure-title {
+            font-size: 11px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--costco-nav-blue);
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .evo-measure-cycle {
+            text-align: center;
             font-size: 12px;
-            color: #5f7084;
+            color: #2f4d67;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .evo-measure-methods {
+            text-align: center;
+            margin-top: 3px;
+            font-size: 11px;
+            color: #5a7189;
+            line-height: 1.24;
+        }
+
+        .evo-lenses {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 7px;
+        }
+
+        .evo-lens {
+            border: 1px solid #d3deea;
+            border-radius: 9px;
+            background: #ffffff;
+            padding: 8px 8px;
+            text-align: center;
+        }
+
+        .evo-lens-title {
+            font-size: 10px;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #4c647e;
+            margin-bottom: 3px;
+        }
+
+        .evo-lens-copy {
+            font-size: 11px;
+            line-height: 1.28;
+            color: #355069;
+        }
+
+        .evo-lenses-qualifier {
+            margin-top: 6px;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.24;
+            color: #5b728a;
+        }
+
+        .val-takeaway {
+            margin-top: 10px;
+            padding: 11px 12px;
+            border-radius: 10px;
+            background: #ecf4fc;
+            border: 1px solid #c7dbef;
+            color: #1f4e76;
+            font-size: 14px;
             line-height: 1.35;
-            font-weight: 500;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .evo-reference-strip {
+            margin-top: 6px;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.25;
+            color: #5e7490;
+            font-weight: 600;
         }
 
         .presenter-mode.notes-open .slide-roadmap {
@@ -1065,13 +1846,52 @@
             margin-top: -10px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .roadmap {
-            margin-top: 20px;
-            gap: 16px;
+        .presenter-mode.notes-open .slide-roadmap .evo-framework {
+            margin-top: 10px;
+            padding: 10px 10px 9px;
         }
 
-        .presenter-mode.notes-open .slide-roadmap .roadmap-phase {
-            padding: 20px 18px;
+        .presenter-mode.notes-open .slide-roadmap .evo-top,
+        .presenter-mode.notes-open .slide-roadmap .evo-gates,
+        .presenter-mode.notes-open .slide-roadmap .evo-lenses {
+            gap: 7px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-foundation,
+        .presenter-mode.notes-open .slide-roadmap .evo-phase {
+            padding: 8px 8px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-list li,
+        .presenter-mode.notes-open .slide-roadmap .evo-phase-copy,
+        .presenter-mode.notes-open .slide-roadmap .evo-phase-qualifier,
+        .presenter-mode.notes-open .slide-roadmap .evo-phase-capability {
+            font-size: 11px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-gate {
+            padding: 6px 6px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-gate-title,
+        .presenter-mode.notes-open .slide-roadmap .evo-gate-list li,
+        .presenter-mode.notes-open .slide-roadmap .evo-gate-failfast,
+        .presenter-mode.notes-open .slide-roadmap .evo-measure-cycle,
+        .presenter-mode.notes-open .slide-roadmap .evo-measure-methods,
+        .presenter-mode.notes-open .slide-roadmap .evo-lens-copy,
+        .presenter-mode.notes-open .slide-roadmap .evo-lenses-qualifier,
+        .presenter-mode.notes-open .slide-roadmap .evo-reference-strip {
+            font-size: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-arrow {
+            font-size: 18px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .val-takeaway {
+            margin-top: 8px;
+            padding: 9px 10px;
+            font-size: 12px;
         }
 
         .presenter-mode.is-fullscreen .slide-roadmap {
@@ -1082,9 +1902,8 @@
             margin-top: 0;
         }
 
-        .presenter-mode.is-fullscreen .slide-roadmap .roadmap {
-            margin-top: 28px;
-            gap: 24px;
+        .presenter-mode.is-fullscreen .slide-roadmap .evo-framework {
+            margin-top: 12px;
         }
 
         /* === HUB SPOKE === */
@@ -1166,6 +1985,45 @@
 
         .presenter-mode.notes-open .slide-optional-future .slide-content {
             margin-top: -10px;
+            transform: scale(0.9);
+            transform-origin: top center;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future p.subtitle {
+            font-size: 14px !important;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .compare-col {
+            padding: 10px 10px !important;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .compare-col ul li {
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .takeaway {
+            margin-top: 8px !important;
+            padding: 10px 12px;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content > div[style*="font-size: 12px"] {
+            font-size: 11px !important;
+            margin-top: 6px !important;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content > div[style*="font-size: 11px"] {
+            font-size: 10px !important;
+            margin-top: 4px !important;
         }
 
         .presenter-mode.notes-open .slide-optional-future .hub-spoke {
@@ -1263,6 +2121,10 @@
             max-height: 28vh;
         }
 
+        .presenter-mode.notes-open.active-slide-8 .presenter-notes {
+            max-height: 24vh;
+        }
+
         .presenter-notes.visible {
             display: block;
         }
@@ -1345,6 +2207,62 @@
                 white-space: normal;
             }
 
+            .slide2-journey {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 14px;
+            }
+
+            .slide2-flow-arrow {
+                display: none;
+            }
+
+            .slide2-path {
+                padding: 12px;
+            }
+
+            .slide2-path::before {
+                display: none;
+            }
+
+            .slide2-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .slide2-step {
+                min-height: 62px;
+            }
+
+            .slide2-takeaway {
+                margin-top: 10px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .slide3-priority .priority-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .slide3-priority .priority-card {
+                min-height: 0;
+                padding: 14px 14px;
+            }
+
+            .slide3-priority .priority-intro {
+                font-size: 15px;
+            }
+
+            .slide3-priority .priority-qualifier {
+                margin-bottom: 8px;
+            }
+
+            .slide3-priority .priority-takeaway {
+                margin-top: 10px;
+            }
+
             .hero-content h1 { font-size: 30px; }
             .hero-content .hero-line { font-size: 16px; }
 
@@ -1364,11 +2282,136 @@
 
             .cap-grid { grid-template-columns: 1fr; }
 
-            .trust-grid { grid-template-columns: 1fr; }
-            .trust-item { padding: 14px 16px; font-size: 13px; }
+            .slide-trust .trust-support-line {
+                font-size: 14px;
+                line-height: 1.4;
+            }
 
-            .roadmap { grid-template-columns: 1fr; gap: 14px; }
-            .roadmap-phase { padding: 20px; }
+            .trust-framework {
+                margin-top: 14px;
+                padding: 12px;
+            }
+
+            .trust-visual {
+                min-height: 0;
+                display: grid;
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .trust-connectors {
+                display: none;
+            }
+
+            .trust-core {
+                position: static;
+                transform: none;
+                width: auto;
+                max-width: none;
+                padding: 11px 10px;
+                border-radius: 12px;
+            }
+
+            .trust-core-sub {
+                font-size: 12px;
+            }
+
+            .trust-core-rai {
+                margin-top: 4px;
+                font-size: 10px;
+            }
+
+            .trust-principle {
+                position: static;
+                transform: none;
+                width: auto;
+                gap: 8px;
+                padding: 10px 10px;
+            }
+
+            .trust-principle-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .trust-principle-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .trust-principle-main {
+                font-size: 13px;
+            }
+
+            .trust-outcome {
+                margin-top: 9px;
+                padding: 8px 9px;
+                font-size: 12px;
+            }
+
+            .evo-framework {
+                margin-top: 12px;
+                padding: 10px 10px 9px;
+            }
+
+            .evo-top,
+            .evo-gates,
+            .evo-lenses {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .evo-phase,
+            .evo-foundation {
+                transform: none !important;
+                padding: 9px 9px;
+            }
+
+            .evo-arrow {
+                font-size: 18px;
+                line-height: 1;
+                padding: 2px 0;
+            }
+
+            .evo-gate-spacer {
+                display: none;
+            }
+
+            .evo-phase-label,
+            .evo-foundation-title,
+            .evo-measure-title,
+            .evo-lens-title,
+            .evo-gate-title {
+                font-size: 10px;
+            }
+
+            .evo-phase-level {
+                font-size: 12px;
+            }
+
+            .evo-list li,
+            .evo-phase-capability,
+            .evo-phase-copy,
+            .evo-phase-qualifier,
+            .evo-gate-list li,
+            .evo-gate-failfast,
+            .evo-measure-cycle,
+            .evo-measure-methods,
+            .evo-lens-copy,
+            .evo-lenses-qualifier,
+            .evo-reference-strip {
+                font-size: 11px;
+            }
+
+            .evo-gate {
+                padding: 7px 7px;
+            }
+
+            .val-takeaway {
+                margin-top: 8px;
+                font-size: 12px;
+                padding: 8px 9px;
+            }
 
             /* Hub-spoke → stacked list on mobile */
             .hub-spoke {
@@ -1429,17 +2472,79 @@
                 align-items: flex-start;
             }
 
+            .presenter-mode.notes-open .slide2-opportunity .slide-content {
+                margin-top: -6px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-journey {
+                margin-top: 10px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-node,
+            .presenter-mode.notes-open .slide2-opportunity .slide2-path {
+                padding: 10px 12px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-step {
+                min-height: 56px;
+                padding: 8px 6px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-step-label {
+                font-size: 11px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-takeaway {
+                margin-top: 8px;
+                padding: 9px 12px 9px 26px;
+                font-size: 13px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-grid {
+                margin-top: 10px;
+                gap: 8px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-card {
+                padding: 12px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-copy {
+                font-size: 13px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-icon-badge {
+                width: 30px;
+                height: 30px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-icon-badge svg {
+                width: 16px;
+                height: 16px;
+            }
+
             .presenter-mode.notes-open .slide-trust .slide-content {
                 margin-top: 0;
             }
 
-            .presenter-mode.notes-open .slide-trust .trust-grid {
-                margin-top: 16px;
-                gap: 8px;
+            .presenter-mode.notes-open .slide-trust .trust-framework {
+                margin-top: 10px;
+                padding: 10px;
             }
 
-            .presenter-mode.notes-open .slide-trust .trust-group {
-                gap: 8px;
+            .presenter-mode.notes-open .slide-trust .trust-visual {
+                display: grid;
+                gap: 6px;
+                padding: 8px;
+                min-height: 0;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-core,
+            .presenter-mode.notes-open .slide-trust .trust-principle {
+                position: static;
+                transform: none;
+                width: auto;
+                max-width: none;
             }
 
             .presenter-mode.notes-open .slide-lens .cap-grid {
@@ -1507,29 +2612,47 @@
                 margin-top: -4px;
             }
 
-            .presenter-mode.notes-open .slide-roadmap .roadmap {
-                margin-top: 14px;
-                gap: 10px;
-            }
-
-            .presenter-mode.notes-open .slide-roadmap .roadmap-phase {
-                padding: 14px 12px;
-            }
-
-            .presenter-mode.notes-open .slide-roadmap .phase-title {
-                font-size: 16px;
-            }
-
-            .presenter-mode.notes-open .slide-roadmap .phase-desc {
-                margin-bottom: 8px;
-            }
-
-            .presenter-mode.notes-open .slide-roadmap .phase-example {
-                padding: 8px 10px;
-            }
-
-            .presenter-mode.notes-open .slide-roadmap .phase-gate {
+            .presenter-mode.notes-open .slide-roadmap .evo-framework {
                 margin-top: 8px;
+                padding: 8px 8px 7px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-top,
+            .presenter-mode.notes-open .slide-roadmap .evo-gates,
+            .presenter-mode.notes-open .slide-roadmap .evo-lenses {
+                gap: 5px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-arrow {
+                font-size: 14px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-phase,
+            .presenter-mode.notes-open .slide-roadmap .evo-foundation,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-band,
+            .presenter-mode.notes-open .slide-roadmap .evo-lens {
+                padding: 7px 7px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-list li,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-capability,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-copy,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-qualifier,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-title,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-list li,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-failfast,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-cycle,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-methods,
+            .presenter-mode.notes-open .slide-roadmap .evo-lens-copy,
+            .presenter-mode.notes-open .slide-roadmap .evo-lenses-qualifier,
+            .presenter-mode.notes-open .slide-roadmap .evo-reference-strip {
+                font-size: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .val-takeaway {
+                margin-top: 7px;
+                padding: 7px 8px;
                 font-size: 11px;
             }
 
@@ -1568,10 +2691,10 @@
 
     <!-- NAV -->
     <div class="nav-bar">
-        <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">v4 · July 2026</span></div>
+        <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">v4 · August 2026</span></div>
         <div class="nav-right">
             <button class="fullscreen-btn" onclick="goToSlide(0)" title="Back to start">↺ Start</button>
-            <span class="slide-counter"><span id="currentSlide">1</span> / 13</span>
+            <span class="slide-counter"><span id="currentSlide">1</span> / 12</span>
             <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
         </div>
     </div>
@@ -1582,197 +2705,326 @@
         <!-- SLIDE 1: OPENING -->
         <section class="slide slide-hero">
             <div class="slide-content hero-content">
-                <div class="hero-line">In pharmacy, clarity is care.</div>
                 <div class="section-label" style="margin-bottom: 14px;">Costco Pharmacy · Outside-In Concept Exploration</div>
-                <h1>Guided Pharmacy Support as a <em style="color: var(--costco-nav-blue);">Member Effort</em> Opportunity</h1>
-                <p class="subtitle">This is an outside-in concept, not a finished recommendation. The goal is to explore whether guided support could make the member's next step easier, more relevant, and more connected.</p>
+                <div class="hero-line">In pharmacy, clarity is care.</div>
+                <h1>Enabling a more connected Costco Pharmacy experience</h1>
+                <p class="subtitle">An outside-in exploration of how guided support could complement existing capabilities, reduce member effort, and support Costco Pharmacy's priorities.</p>
                 <div class="hero-meta">
-                    Prepared by Sunil Venugopal &nbsp;·&nbsp; July 2026 &nbsp;·&nbsp; For discussion purposes
+                    Prepared by Sunil Venugopal &nbsp;·&nbsp; For discussion &nbsp;·&nbsp; August 7, 2026
                 </div>
             </div>
         </section>
 
         <!-- SLIDE 2: STARTING POINT -->
-        <section class="slide slide-foundation">
+        <section class="slide slide-foundation slide2-opportunity">
             <div class="slide-content">
-                <div class="section-label">STARTING POINT</div>
-                <h2>A strong digital foundation, with an opportunity to reduce member effort</h2>
-                <p style="font-size: 15px; color: var(--text-light); margin-bottom: 6px;">Based on publicly visible information, Costco Pharmacy already offers many important digital capabilities.</p>
-                <div class="tiles-grid">
-                    <div class="tile"><div class="tile-icon">💊</div><div class="tile-label">Refill Prescriptions</div></div>
-                    <div class="tile"><div class="tile-icon">🔄</div><div class="tile-label">Transfer Prescriptions</div></div>
-                    <div class="tile"><div class="tile-icon">💉</div><div class="tile-label">Schedule Immunizations</div></div>
-                    <div class="tile"><div class="tile-icon">💰</div><div class="tile-label">Compare Prices</div></div>
-                    <div class="tile"><div class="tile-icon">🚗</div><div class="tile-label">Pickup or Delivery</div></div>
+                <div class="section-label">STRATEGIC OPPORTUNITY</div>
+                <h2>The opportunity is in the journey between member intent and outcome</h2>
+                <p class="subtitle" style="font-size: 16px; max-width: 930px;">The need and destination may remain the same. The experience in between can become more contextual, continuous, and easier to complete.</p>
+
+                <div class="slide2-journey">
+                    <div class="slide2-node slide2-start">
+                        <div class="slide2-node-mark start"></div>
+                        <div class="cap-card-title">Member intent</div>
+                        <div class="cap-card-example">What I am trying to accomplish</div>
+                    </div>
+
+                    <div class="slide2-flow-arrow" aria-hidden="true"></div>
+
+                    <div class="slide2-path">
+                        <div class="cap-card-title slide2-path-title">A more connected path</div>
+                        <div class="slide2-steps">
+                            <div class="slide2-step"><span class="slide2-step-index">1</span><div class="slide2-step-label">Understand the need</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">2</span><div class="slide2-step-label">Use relevant permitted context</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">3</span><div class="slide2-step-label">Carry progress forward</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">4</span><div class="slide2-step-label">Guide or hand off without restarting</div></div>
+                        </div>
+                    </div>
+
+                    <div class="slide2-flow-arrow" aria-hidden="true"></div>
+
+                    <div class="slide2-node slide2-end">
+                        <div class="slide2-node-mark end"></div>
+                        <div class="cap-card-title">Right outcome</div>
+                        <div class="cap-card-example">Existing workflow or pharmacy support</div>
+                    </div>
                 </div>
-                <div class="takeaway">Members may arrive with a situation, not knowledge of the right page or workflow. The opportunity may be helping members reach the right existing capability or person with less effort.</div>
+
+                <div class="takeaway slide2-takeaway">The destination may not change. The experience getting there can.</div>
             </div>
         </section>
 
-        <!-- SLIDE 3: NORTH STAR -->
-        <section class="slide slide-capabilities">
+        <!-- SLIDE 3: PRIORITY-LED EXPERIENCE -->
+        <section class="slide slide-capabilities slide3-priority">
             <div class="slide-content">
-                <div class="section-label">NORTH STAR FIRST</div>
-                <h2>The right guided experience depends on the outcome Costco Pharmacy wants to improve</h2>
-                <p style="font-size: 14px; color: var(--text-light); margin-bottom: 8px;">Illustrative strategic directions (not assumptions about Costco Pharmacy priorities):</p>
-                <div class="cap-grid">
-                    <div class="cap-card">
-                        <div class="cap-card-header"><span class="cap-card-icon">📈</span><span class="cap-card-title">Growth</span></div>
-                        <div class="cap-card-example">Acquire new prescriptions, simplify transfers, improve relevant service adoption, and convert member intent into completed actions.</div>
+                <div class="section-label">PRIORITY-LED EXPERIENCE</div>
+                <h2>One approach. Different priorities. Different experiences.</h2>
+                <p class="priority-intro">The same foundation can be tailored around growth, member value, or operational efficiency.</p>
+                <p class="priority-qualifier">Illustrative strategic directions, not assumptions about Costco Pharmacy priorities.</p>
+                <div class="cap-grid priority-grid">
+                    <div class="cap-card priority-card priority-card-growth">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M4 18h16" />
+                                    <path d="M6 15l4-4 3 3 5-6" />
+                                    <path d="M18 8h2v2" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">GROWTH</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Acquire and retain more prescriptions</div>
                     </div>
-                    <div class="cap-card">
-                        <div class="cap-card-header"><span class="cap-card-icon">😊</span><span class="cap-card-title">Member Experience</span></div>
-                        <div class="cap-card-example">Improve clarity and completion, reduce repeated effort, increase confidence and satisfaction, and make support easier to access.</div>
+
+                    <div class="cap-card priority-card priority-card-value">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M12 21s-5.5-3.4-8-7.1C2 10.9 3.2 7.5 6.3 7.2c1.8-.2 3.1.7 4 2 1-1.3 2.3-2.2 4.1-2 3.1.3 4.2 3.7 2.2 6.7C17.5 17.6 12 21 12 21z" />
+                                    <path d="M18.5 11.2c.8-.8 1.9-1.1 3-1" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">MEMBER VALUE</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Strengthen convenience, trust, satisfaction, and loyalty</div>
                     </div>
-                    <div class="cap-card">
-                        <div class="cap-card-header"><span class="cap-card-icon">⚙️</span><span class="cap-card-title">Operational Efficiency</span></div>
-                        <div class="cap-card-example">Increase successful digital self-service, reduce avoidable calls, improve resolution time, and carry useful context into handoffs.</div>
+
+                    <div class="cap-card priority-card priority-card-efficiency">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <circle cx="10" cy="12" r="3" />
+                                    <path d="M10 5v2" />
+                                    <path d="M10 17v2" />
+                                    <path d="M3 12h2" />
+                                    <path d="M15 12h2" />
+                                    <path d="M5.4 7.4l1.4 1.4" />
+                                    <path d="M13.2 15.2l1.4 1.4" />
+                                    <path d="M5.4 16.6l1.4-1.4" />
+                                    <path d="M13.2 8.8l1.4-1.4" />
+                                    <path d="M18 13l2 2 3-3" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">OPERATIONAL EFFICIENCY</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Improve digital completion and reduce avoidable calls</div>
                     </div>
                 </div>
-                <div class="takeaway">Align on the North Star first, then select the member journey, experience, and measures most likely to support it.</div>
+                <div class="takeaway priority-takeaway">Priority shapes the journey, starting scenario, and measures.</div>
             </div>
         </section>
 
-        <!-- SLIDE 4: EXPERIENCE MODEL -->
-        <section class="slide slide-member-shift">
-            <div class="slide-content">
-                <div class="section-label">WHAT THE EXPERIENCE COULD ENABLE</div>
-                <h2>Begin with the member's situation and guide them to the appropriate next step</h2>
-                <div class="comparison" style="margin-top: 20px;">
-                    <div class="compare-col future" style="border-width:1px;">
-                        <h3>1. Understand the need</h3>
-                        <div class="compare-subtitle">Start in the member's own words</div>
-                        <ul>
-                            <li><span class="step-dot"></span>Do not require the member to know site structure first</li>
-                            <li><span class="step-dot"></span>Do not require pharmacy terminology first</li>
-                        </ul>
-                    </div>
-                    <div class="compare-col future" style="border-width:1px;">
-                        <h3>2. Use appropriate context</h3>
-                        <div class="compare-subtitle">Reduce effort while preserving control</div>
-                        <ul>
-                            <li><span class="step-dot"></span>Use permitted context: saved preferences, prior choices, location, journey context</li>
-                            <li><span class="step-dot"></span>Offer defaults the member can change</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="comparison" style="margin-top: 12px; grid-template-columns: 1fr 1fr; gap: 16px;">
-                    <div class="compare-col future" style="border-width:1px;">
-                        <h3>3. Connect the next step</h3>
-                        <div class="compare-subtitle">Guide into existing Costco workflows</div>
-                        <ul>
-                            <li><span class="step-dot"></span>Connect related journeys when relevant</li>
-                            <li><span class="step-dot"></span>Make pharmacy staff easy to reach when judgment is needed</li>
-                        </ul>
-                    </div>
-                    <div class="compare-col today" style="background:#fbfdff;">
-                        <h3>Illustrative examples</h3>
-                        <div class="compare-subtitle">Short examples only</div>
-                        <ul>
-                            <li><span class="step-dot"></span>Suggest the member's usual pharmacy, while allowing a different location</li>
-                            <li><span class="step-dot"></span>Suggest pickup or delivery based on saved preferences, while allowing changes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="takeaway">Use context to reduce effort, not to remove member control.</div>
-            </div>
-        </section>
-
-        <!-- SLIDE 5: TRUST -->
+        <!-- SLIDE 4: TRUST -->
         <section class="slide slide-trust">
             <div class="slide-content">
                 <div class="section-label">DESIGNED FOR TRUST</div>
-                <h2>Trust and safety principles for a guided pharmacy experience</h2>
-                <div class="trust-grid">
-                    <div class="trust-group">
-                        <div class="trust-group-title">1. Clear boundaries</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Supports members without replacing pharmacist judgment</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>No diagnosis or independent clinical advice</div>
+                <h2>Trust must be designed into the experience</h2>
+                <p class="trust-support-line">Clear boundaries, responsible context, and intentional human support work together throughout the journey.</p>
+                <div class="trust-framework">
+                    <div class="trust-visual">
+                        <svg class="trust-connectors" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                            <path d="M282 140 C380 195, 430 220, 500 260" stroke="#9dbbe6" />
+                            <path d="M718 140 C620 195, 570 220, 500 260" stroke="#b4a7e6" />
+                            <path d="M500 390 C500 340, 500 306, 500 260" stroke="#c49cbc" />
+                        </svg>
+
+                        <div class="trust-core">
+                            <div class="trust-core-label">GUIDED PHARMACY EXPERIENCE</div>
+                            <div class="trust-core-sub">Help appropriately · Protect member control · Involve people when needed</div>
+                            <div class="trust-core-rai">Responsible AI principles applied throughout</div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-boundaries">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" />
+                                    <path d="M9 12l2 2 4-4" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">CLEAR BOUNDARIES</div>
+                                <div class="trust-principle-main">Support members without replacing pharmacist judgment.</div>
+                            </div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-context">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M12 4a7 7 0 0 0-7 7v5a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-5a7 7 0 0 0-7-7z" />
+                                    <path d="M12 13v3" />
+                                    <circle cx="12" cy="10" r="1" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">RESPONSIBLE USE OF CONTEXT</div>
+                                <div class="trust-principle-main">Use approved information, defined rules, and visible member control.</div>
+                            </div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-human">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <circle cx="8" cy="8" r="3" />
+                                    <path d="M3.5 18c1.1-2.7 3-4 5.5-4s4.4 1.3 5.5 4" />
+                                    <path d="M16 10h5" />
+                                    <path d="M19 7l3 3-3 3" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">INTENTIONAL HUMAN SUPPORT</div>
+                                <div class="trust-principle-main">Hand off with useful context when judgment or assistance is needed.</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="trust-group">
-                        <div class="trust-group-title">2. Responsible use of context</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Approved information and defined business rules</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Authentication, privacy, consent, and auditability</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Context reduces effort without removing member control</div>
-                    </div>
-                    <div class="trust-group">
-                        <div class="trust-group-title">3. Intentional human support</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Handoff is a designed part of the experience, not a failure</div>
-                        <div class="trust-item"><span class="trust-check">✓</span>Carry useful context so members do not repeat themselves</div>
-                    </div>
+
+                    <div class="trust-outcome">Member control preserved · Pharmacist judgment protected · No unnecessary restart</div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 6: MEASURE FRAMEWORK -->
+        <!-- SLIDE 5: EVOLUTION + VALIDATION -->
         <section class="slide slide-roadmap">
             <div class="slide-content">
-                <div class="section-label">LEARN AND DECIDE</div>
-                <h2>Start focused, measure, and earn the right to expand</h2>
-                <div class="roadmap" style="grid-template-columns: repeat(5, minmax(0, 1fr));">
-                    <div class="roadmap-phase active">
-                        <div class="phase-num">1</div>
-                        <div class="phase-title">Align</div>
-                        <div class="phase-desc">Confirm the North Star and target member journey.</div>
+                <div class="section-label">VALIDATED EVOLUTION</div>
+                <h2>Start focused. Measure continuously. Expand only when value is proven.</h2>
+                <p class="subtitle">Crawl, walk, and run—guided by evidence at every phase.</p>
+
+                <div class="evo-framework">
+                    <div class="evo-top">
+                        <div class="evo-foundation">
+                            <div class="evo-foundation-title">SET DIRECTION</div>
+                            <ul class="evo-list">
+                                <li>Align on the North Star</li>
+                                <li>Establish the baseline</li>
+                                <li>Define hypotheses and success thresholds</li>
+                            </ul>
+                        </div>
+
+                        <div class="evo-arrow" aria-hidden="true">→</div>
+
+                        <div class="evo-phase evo-phase-crawl">
+                            <div class="evo-phase-label">CRAWL</div>
+                            <div class="evo-phase-level">GUIDE</div>
+                            <div class="evo-phase-capability">Explain and route</div>
+                            <div class="evo-phase-copy">Help members reach the right option, workflow, or person.</div>
+                            <div class="evo-phase-qualifier">Focused · Lower risk · Best for initial learning</div>
+                        </div>
+
+                        <div class="evo-arrow" aria-hidden="true">→</div>
+
+                        <div class="evo-phase evo-phase-walk">
+                            <div class="evo-phase-label">WALK</div>
+                            <div class="evo-phase-level">ASSIST</div>
+                            <div class="evo-phase-capability">Contextual assistance</div>
+                            <div class="evo-phase-copy">Use approved context to reduce effort and support more of the task.</div>
+                            <div class="evo-phase-qualifier">Contextual · Authenticated · More integrated</div>
+                        </div>
+
+                        <div class="evo-arrow" aria-hidden="true">→</div>
+
+                        <div class="evo-phase evo-phase-run">
+                            <div class="evo-phase-label">RUN</div>
+                            <div class="evo-phase-level">ANTICIPATE</div>
+                            <div class="evo-phase-capability">Proactive orchestration</div>
+                            <div class="evo-phase-copy">Surface timely needs across proactive or connected member journeys.</div>
+                            <div class="evo-phase-qualifier">Only after earlier phases prove value and trust</div>
+                        </div>
                     </div>
-                    <div class="roadmap-phase">
-                        <div class="phase-num">2</div>
-                        <div class="phase-title">Baseline</div>
-                        <div class="phase-desc">Understand current performance before introducing an MVP.</div>
+
+                    <div class="evo-gates">
+                        <div class="evo-gate-spacer" aria-hidden="true"></div>
+
+                        <div class="evo-arrow" aria-hidden="true"></div>
+
+                        <div class="evo-gate">
+                            <div class="evo-gate-title">READY TO ADVANCE?</div>
+                            <ul class="evo-gate-list">
+                                <li>Value demonstrated</li>
+                                <li>Trust, safety, and Responsible AI acceptable</li>
+                                <li>Operationally feasible</li>
+                            </ul>
+                            <div class="evo-gate-failfast">Learn early. Fail fast. Avoid scaling weak assumptions.</div>
+                        </div>
+
+                        <div class="evo-arrow" aria-hidden="true"></div>
+
+                        <div class="evo-gate">
+                            <div class="evo-gate-title">READY TO ADVANCE?</div>
+                            <ul class="evo-gate-list">
+                                <li>Value demonstrated</li>
+                                <li>Trust, safety, and Responsible AI acceptable</li>
+                                <li>Operationally feasible</li>
+                            </ul>
+                            <div class="evo-gate-failfast">Learn early. Fail fast. Avoid scaling weak assumptions.</div>
+                        </div>
+
+                        <div class="evo-arrow" aria-hidden="true"></div>
+
+                        <div class="evo-gate-spacer" aria-hidden="true"></div>
                     </div>
-                    <div class="roadmap-phase">
-                        <div class="phase-num">3</div>
-                        <div class="phase-title">Test</div>
-                        <div class="phase-desc">Launch a narrow, responsible hypothesis.</div>
+
+                    <div class="evo-measure-band">
+                        <div class="evo-measure-title">MEASURE, LEARN, AND ITERATE THROUGHOUT</div>
+                        <div class="evo-measure-cycle">Baseline -> Hypothesis -> Experiment -> Measure -> Learn -> Iterate -> Decide</div>
+                        <div class="evo-measure-methods">Experimentation · A/B testing · Qualitative feedback · Operational data</div>
                     </div>
-                    <div class="roadmap-phase">
-                        <div class="phase-num">4</div>
-                        <div class="phase-title">Measure</div>
-                        <div class="phase-desc">Track outcomes continuously, including experimentation and A/B testing when appropriate.</div>
+
+                    <div class="evo-lenses">
+                        <div class="evo-lens">
+                            <div class="evo-lens-title">MEMBER</div>
+                            <div class="evo-lens-copy">Completion · Effort · Satisfaction · Trust</div>
+                        </div>
+                        <div class="evo-lens">
+                            <div class="evo-lens-title">BUSINESS</div>
+                            <div class="evo-lens-copy">Acquisition · Retention · Service adoption</div>
+                        </div>
+                        <div class="evo-lens">
+                            <div class="evo-lens-title">OPERATIONS</div>
+                            <div class="evo-lens-copy">Self-service · Avoidable calls · Resolution · Handoff quality</div>
+                        </div>
                     </div>
-                    <div class="roadmap-phase">
-                        <div class="phase-num">5</div>
-                        <div class="phase-title">Decide</div>
-                        <div class="phase-desc">Expand, iterate, change direction, or stop.</div>
-                    </div>
+                    <div class="evo-lenses-qualifier">Measures are selected based on the Costco Pharmacy priority established upfront.</div>
                 </div>
-                <div class="cap-grid" style="margin-top: 16px;">
-                    <div class="cap-card"><div class="cap-card-title" style="margin-bottom:6px;">Illustrative measures</div><div class="cap-card-example">Successful next-step completion, abandonment, conversion/prescription acquisition, member satisfaction, avoidable call reduction, resolution time, handoff rate and quality.</div></div>
-                    <div class="cap-card"><div class="cap-card-title" style="margin-bottom:6px;">Expansion principle</div><div class="cap-card-example">Begin with guidance + existing workflows, add deeper assistance only if it demonstrates value, explore proactive support only if trusted, useful, wanted, and aligned with Costco priorities.</div></div>
-                </div>
-                <div class="takeaway">Each phase earns the next through measurable member and business value, not simply because more technology is possible.</div>
+
+                <div class="val-takeaway">Each phase earns the next through measurable member and business value.</div>
+                <div class="evo-reference-strip">GUIDE gets the member to the task · ASSIST helps complete the task · ANTICIPATE surfaces the task before the member searches</div>
             </div>
         </section>
 
-        <!-- SLIDE 7: PROTOTYPE -->
+        <!-- SLIDE 6: PROTOTYPE -->
         <section class="slide slide-hero slide-prototype">
             <div class="slide-content hero-content">
                 <div class="section-label">MAKE THE HYPOTHESIS TANGIBLE</div>
                 <h1>Use the prototype to pressure-test the interaction model</h1>
-                <p class="subtitle">The prototype is illustrative. It is not a final Costco design or roadmap. The right starting scenario depends on Costco Pharmacy's North Star, member insights, operational data, and baseline performance.</p>
+                <p class="subtitle">These are illustrative scenarios, not a proposed roadmap. Different priorities can point to different starting experiences.</p>
                 <div class="prototype-review">
-                    <div class="prototype-review-label">As you review, consider:</div>
+                    <div class="prototype-review-label">Illustrative scenario-to-outcome mapping:</div>
+                    <ul class="prototype-review-items" style="gap: 6px; margin-bottom: 12px;">
+                        <li><strong>Move a Prescription:</strong> Growth and prescription acquisition</li>
+                        <li><strong>Your Pharmacy Today:</strong> Member effort, satisfaction, and avoidable-call reduction</li>
+                        <li><strong>Travel Help:</strong> Longer-term connected member journey</li>
+                    </ul>
+                    <div class="prototype-review-label" style="margin-top: 2px;">As you review, consider:</div>
                     <ul class="prototype-review-items">
                         <li>Does this reduce member effort?</li>
                         <li>Where does guidance help, or get in the way?</li>
-                        <li>What would need to change to fit Costco Pharmacy?</li>
-                        <li>What should be measured in an initial test?</li>
+                        <li>What should be measured first against the chosen North Star?</li>
                     </ul>
                 </div>
                 <div style="margin-top: 30px;">
                     <a href="prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
                 </div>
                 <div class="hero-meta" style="margin-top: 28px;">
-                    Sample data only · No real member information · Interactions are illustrative
+                    The actual first scenario should be selected using Costco Pharmacy's North Star, member insights, operational data, and baseline performance.
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 8: CLOSING DISCUSSION -->
+        <!-- SLIDE 7: CLOSING DISCUSSION -->
         <section class="slide slide-closing-discussion">
             <div class="slide-content">
                 <div class="section-label">CLOSING DISCUSSION</div>
-                <h2>Collaborative discussion before any roadmap decision</h2>
+                <h2>Collaborative discussion before any decision</h2>
                 <div class="closing-grid">
                     <div class="closing-card">
                         <div class="closing-card-title">1. What resonated?</div>
@@ -1787,34 +3039,60 @@
                         <div class="closing-card-body">Which North Star and journey should we study first, and what baseline data or constraints are required?</div>
                     </div>
                 </div>
-                <div class="takeaway">If the problem resonates, a possible next step is to align on the desired outcome, select one high-value journey, establish a baseline, and determine whether a responsible first test is worth exploring.</div>
+                <div class="takeaway">A possible next step: align on the desired outcome, select one journey, establish the baseline, and decide whether a responsible first test is worth exploring.</div>
             </div>
         </section>
 
-        <!-- SLIDE 9: OPTIONAL FUTURE -->
+        <!-- SLIDE 8: OPTIONAL FUTURE -->
         <section class="slide slide-optional-future">
             <div class="slide-content" style="text-align: left; max-width: 980px;">
                 <div class="section-label">OPTIONAL FUTURE VISION</div>
-                <h2>What could connected Costco member journeys eventually make possible?</h2>
-                <div class="comparison" style="grid-template-columns: 1fr; gap: 14px; margin-top: 18px;">
-                    <div class="compare-col future">
-                        <h3>Illustrative connected journey: Travel planning -> pharmacy next steps</h3>
-                        <div class="compare-subtitle">Future implication, not part of the initial MVP</div>
+                <h2>Specialized agents. One continuous Costco member journey.</h2>
+                <p class="subtitle" style="font-size: 16px; max-width: 900px;">Context moves with the member, so every handoff continues the journey instead of restarting it.</p>
+
+                <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: center;">
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Book Thailand trip</div></div>
+                    <div style="font-size: 16px; color: #7b97b3; text-align: center;">-></div>
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Prepare for travel</div></div>
+                    <div style="font-size: 16px; color: #7b97b3; text-align: center;">-></div>
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Complete pharmacy actions</div></div>
+                </div>
+
+                <div style="margin-top: 10px; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 10px; align-items: start;">
+                    <div class="compare-col today" style="padding: 12px 12px;">
+                        <h3>Costco Travel Agent</h3>
                         <ul>
-                            <li><span class="step-dot"></span>Travel destination and timing are understood</li>
-                            <li><span class="step-dot"></span>Relevant travel-health guidance is surfaced</li>
-                            <li><span class="step-dot"></span>Upcoming prescription needs are checked</li>
-                            <li><span class="step-dot"></span>Early refill or immunization path is offered when relevant</li>
-                            <li><span class="step-dot"></span>Member is connected directly to the right workflow or pharmacy staff support</li>
-                            <li><span class="step-dot"></span>The member continues without coordinating every step independently</li>
+                            <li><span class="step-dot"></span>Understands destination: Thailand</li>
+                            <li><span class="step-dot"></span>Understands travel dates and trip context</li>
+                            <li><span class="step-dot"></span>Understands relevant member intent</li>
+                        </ul>
+                    </div>
+
+                    <div class="compare-col future" style="padding: 10px 10px; border-style: dashed;">
+                        <div class="cap-card-title" style="font-size: 12px; margin-bottom: 6px;">Handoff with context - continue, don't restart</div>
+                        <div style="font-size: 11px; color: #4f6579; line-height: 1.35;">Thailand destination · travel dates · member intent · permitted information · information already provided · progress already made · unresolved pharmacy need</div>
+                    </div>
+
+                    <div class="compare-col future" style="padding: 12px 12px;">
+                        <h3>Costco Pharmacy Agent</h3>
+                        <ul>
+                            <li><span class="step-dot"></span>Surfaces relevant travel-health guidance</li>
+                            <li><span class="step-dot"></span>Understands refill timing without repetition</li>
+                            <li><span class="step-dot"></span>Offers early-refill or immunization paths</li>
+                            <li><span class="step-dot"></span>Connects pharmacy staff with useful context when needed</li>
                         </ul>
                     </div>
                 </div>
-                <div class="takeaway">The larger opportunity is continuity across Costco journeys from the member's point of view. Any broader use depends on evidence, consent, relevance, technical feasibility, and business-area priorities.</div>
+
+                <div class="takeaway" style="margin-top: 10px;">The member does not repeat their situation, re-enter information, or start over.</div>
+                <div style="margin-top: 8px; font-size: 12px; color: #5a7085; line-height: 1.35;"><strong>Foundation:</strong> Member permission · Identity · Approved context · Safeguards · Existing workflows · Human support</div>
+                <div style="margin-top: 6px; font-size: 11px; color: #7a8fa4; text-align: center;">Experience Agent A -> contextual handoff -> Experience Agent B</div>
+                <div style="margin-top: 6px; font-size: 11px; color: #6a8197; text-align: center;">Optional future vision, not part of the initial MVP and not a proposed Costco architecture. Broader use depends on evidence, consent, relevance, feasibility, and business priorities.</div>
+                <div style="margin-top: 4px; font-size: 11px; color: #6a8197; text-align: center;">The same contextual-handoff pattern could eventually connect other complex Costco member journeys.</div>
             </div>
         </section>
 
-        <!-- SLIDE 10: APPENDIX DIVIDER -->
+        <!-- SLIDE 9: APPENDIX DIVIDER -->
         <section class="slide slide-appendix-divider">
             <div class="slide-content">
                 <div class="section-label">APPENDIX</div>
@@ -1824,7 +3102,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 11: NAVIGATION VS GUIDANCE -->
+        <!-- SLIDE 10: NAVIGATION VS GUIDANCE -->
         <section class="slide slide-shift">
             <div class="slide-content">
                 <div class="section-label">APPENDIX · NAVIGATION VS GUIDANCE</div>
@@ -1852,7 +3130,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 12: LEARNING QUESTIONS -->
+        <!-- SLIDE 11: LEARNING QUESTIONS -->
         <section class="slide">
             <div class="slide-content">
                 <div class="section-label">APPENDIX · LEARNING QUESTIONS</div>
@@ -1878,7 +3156,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 13: CONTRIBUTION + CAPABILITY PROGRESSION -->
+        <!-- SLIDE 12: CONTRIBUTION + CAPABILITY PROGRESSION -->
         <section class="slide">
             <div class="slide-content">
                 <div class="section-label">APPENDIX · CONTRIBUTION MODEL</div>
@@ -1918,19 +3196,18 @@
 
     <script>
         let currentIndex = 0;
-        const totalSlides = 13;
+        const totalSlides = 12;
         const presenterMode = new URLSearchParams(window.location.search).get('presenter') === '1';
 
         const slideNotes = [
             "This is an outside-in concept exploration based on publicly visible information, not a finished recommendation. The purpose is to test whether guided support could reduce member effort while preserving trusted pharmacy workflows.\n\nTransition: start with what already exists well and where the effort gap might still be.",
             "Costco Pharmacy already appears to have a strong digital foundation. The hypothesis is not adding capabilities for their own sake; it is helping members reach the right existing capability or staff path with less confusion.\n\nBrief credibility cue: my lens comes from long experience in customer journey design and measured product iteration.\n\nTransition: if we agree on that premise, the key question becomes which outcome matters most.",
             "This slide intentionally starts with North Star alignment. Growth, member experience, and operational efficiency are illustrative options, not assumptions about Costco's actual priorities. Different priorities should lead to different starting journeys and measures.\n\nTransition: once the outcome is clear, we can shape the interaction model around that outcome.",
-            "The model is simple: understand intent in the member's own words, use permitted context to reduce effort, then connect the right next step. Context should make work lighter, not reduce control.\n\nUse examples briefly and keep focus on behavior, not demographics.\n\nTransition: this only works if trust boundaries are explicit.",
-            "Trust design is non-negotiable in pharmacy. Clear boundaries, responsible context use, and intentional handoff all matter from day one. Handoff to staff is part of success, not failure.\n\nTransition: with guardrails set, we can define a learning approach that earns expansion.",
-            "This is a learning-and-decision framework: Align, Baseline, Test, Measure, Decide. Baseline and experimentation are central so results can be compared honestly before expanding.\n\nEach phase earns the next through measurable value, not technical possibility.\n\nTransition: the prototype is used to make this hypothesis tangible and discussable.",
-            "The prototype is illustrative and intentionally not final design or roadmap. The goal is to react to interaction patterns and effort reduction, then decide what to test first based on Costco priorities and baseline data.\n\nTransition: close with collaborative discussion, not a roadmap ask.",
-            "This is a discussion slide, not a decision gate. We are looking for what resonates, what to challenge, and what may be worth validating first. If it resonates, a prudent next step is one journey, one baseline, one responsible test.\n\nTransition: optional future implication if useful for the room.",
-            "Optional slide: connected journeys are a longer-term possibility, not MVP scope. The key idea is continuity from the member's perspective across moments, with evidence and consent required before expansion.\n\nTransition: appendix provides supporting detail for Q and A.",
+            "Whatever priority Costco Pharmacy chooses, trust has to be designed in from the beginning. Clear boundaries keep guidance useful without replacing pharmacist judgment. Context must be approved, governed, auditable, and still under member control. Human support is intentional, and context should move with the member so handoff does not restart the journey.\n\nTransition: with guardrails in place, the next step is to start narrowly, measure value, and decide whether expansion is earned.",
+            "North Star and baseline happen before the first phase. Guide is the likely starting point: run it as a focused learning phase with continuous measurement, experimentation, and iteration.\n\nAt the gate, progress is conditional: move to Assist only if value is demonstrated; otherwise iterate, change direction, or stop. The same pattern applies before Anticipate.\n\nMeasures depend on the selected North Star. Illustrative groups: Growth (completed transfers, prescription acquisition, relevant service adoption), Member experience (successful completion, abandonment, satisfaction), Operations (avoidable calls, resolution time, handoff quality).",
+            "The prototype scenarios show how different priorities can point to different starting experiences. Move a Prescription maps to growth and acquisition, Your Pharmacy Today maps to member effort and avoidable-call reduction, and Travel Help maps to longer-term connected journeys.\n\nThese are illustrative scenarios, not roadmap recommendations.",
+            "Use this as a collaborative invitation, not a proposal ask. Focus the discussion on what resonated, what to challenge, and what to validate first.\n\nClose with one pragmatic next step: align on outcome, pick one journey, baseline it, and decide whether a responsible first test is worth exploring.",
+            "This is optional, longer-term thinking. It does not require one master agent across Costco. Business experiences can keep specialized agents, with contextual handoff between them.\n\nThe key capability is continuity: the receiving agent continues the journey with intent, relevant context, and progress already carried forward, rather than restarting.\n\nThailand is one illustration. Broader use depends on permission, relevance, evidence, feasibility, safeguards, and business priorities.",
             "Appendix divider note: the core narrative is complete; the next slides are supporting details only.",
             "Supporting detail on navigation versus guidance: this is not replacing existing navigation, but reducing interpretation effort at uncertain moments while keeping staff access explicit.",
             "Supporting detail on what we would need to learn: baseline metrics, journey selection criteria, friction signals, and guardrail readiness. Different priorities will change what success looks like.",

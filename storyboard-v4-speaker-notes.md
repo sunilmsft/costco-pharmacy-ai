@@ -162,21 +162,27 @@ Show how the experience can evolve through Crawl, Walk, and Run, how the phases 
 
 ### Core message
 
-Begin with the simplest useful experience. Measure value, trust, Responsible AI, and operational feasibility. Let the evidence determine whether to advance, iterate, change direction, or stop.
+Start with the simplest useful experience. Increase capability only when measurable value, trust and Responsible AI, and operational readiness justify the next phase.
 
 ### Suggested talk track
 
-"With the priorities and guardrails established, I would use a crawl-walk-run approach rather than commit upfront to the most advanced experience.
+"With the priorities and guardrails established, I would not begin with the most advanced experience.
 
-Guide gets the member to the task. It understands the request, clarifies the options, and connects the member to the right existing workflow or person, but it does not perform the task.
+First, we set the direction: agree on the North Star, understand the baseline, and define what success would need to look like.
 
-Assist helps the member complete the task. In an authenticated experience, it can carry approved context forward, reduce repeated entry, and support more of the workflow while the member reviews and confirms meaningful actions.
+Crawl begins with Guide. The experience helps the member understand where to go and connects them to the right existing workflow or person, but it does not perform the task.
 
-Anticipate surfaces a relevant need before the member has to search for it, using permitted signals, consent, and appropriate safeguards.
+For example, if the starting scenario is moving a prescription, Guide could clarify the need and route the member into the correct transfer workflow.
 
-Measurement runs throughout every phase. At each evidence gate, we assess value, trust and Responsible AI, and operational feasibility.
+If that demonstrates measurable value, maintains trust and Responsible AI standards, and is operationally workable, we reach the first gate.
 
-Moving forward is only one outcome. The evidence may tell us to iterate, change direction, or stop."
+Walk introduces Assist. The experience can carry approved context forward, reduce repeated effort, and support more of the workflow while the member reviews and confirms important actions.
+
+Only after that earns the next step would we consider Run: Anticipate. Using permitted signals and appropriate safeguards, the experience could surface a relevant next need before the member has to search for it.
+
+Across every phase, we test the hypothesis, measure the impact, and decide whether to advance, iterate, change direction, or stop.
+
+The principle is simple: more capability requires more evidence and stronger safeguards."
 
 ### Transition to Slide 6
 

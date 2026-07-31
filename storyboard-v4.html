@@ -1550,8 +1550,104 @@
 
 
         /* === VALIDATION PATH === */
+        .slide2-opportunity .slide-content,
+        .slide3-priority .slide-content,
+        .slide-trust .slide-content {
+            position: relative;
+        }
+
+        .slide2-opportunity .section-label,
+        .slide3-priority .section-label,
+        .slide-trust .section-label {
+            display: none;
+        }
+
+        .slide2-opportunity .slide-content::before,
+        .slide3-priority .slide-content::before,
+        .slide-trust .slide-content::before {
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 15px;
+            line-height: 1;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3f6185;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .slide2-opportunity .slide-content::before {
+            content: "STRATEGIC OPPORTUNITY";
+        }
+
+        .slide3-priority .slide-content::before {
+            content: "PRIORITY-LED EXPERIENCE";
+        }
+
+        .slide-trust .slide-content::before {
+            content: "DESIGNED FOR TRUST";
+        }
+
+        .slide2-opportunity .slide-content::after,
+        .slide3-priority .slide-content::after,
+        .slide-trust .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
         .slide-roadmap .slide-content {
             max-width: 1140px;
+            position: relative;
+        }
+
+        .slide-roadmap .section-label {
+            display: none;
+        }
+
+        .slide-roadmap .slide-content::before {
+            content: "VALIDATED EVOLUTION";
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 15px;
+            line-height: 1;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3f6185;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .slide-roadmap .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .slide-roadmap h2 {
+            margin-bottom: 12px;
         }
 
         .slide-roadmap .subtitle {

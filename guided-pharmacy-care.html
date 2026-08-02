@@ -3158,7 +3158,7 @@
 
     <!-- NAV -->
     <div class="nav-bar">
-        <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">v4 · August 2026</span></div>
+        <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">August 2026</span></div>
         <div class="nav-right">
             <button class="fullscreen-btn" onclick="goToSlide(0)" title="Back to start">↺ Start</button>
             <span class="slide-counter"><span id="currentSlide">1</span> / 11</span>
@@ -3511,7 +3511,7 @@
                     <div class="prototype-note">These are hypotheses to pressure-test, not final architecture or roadmap commitments.</div>
                 </div>
                 <div class="prototype-open-link">
-                    <a href="prototype-meeting-20260807-v2.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
+                    <a href="guided-pharmacy-care-prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
                 </div>
                 <div class="hero-meta">
                     The actual first scenario should be selected using Costco Pharmacy's North Star, member insights, operational data, and baseline performance.
@@ -3662,52 +3662,9 @@
 
     <div class="dot-indicators" id="dotIndicators"></div>
 
-    <aside class="presenter-notes" id="presenterNotes">
-        <div class="notes-title">Presenter Notes</div>
-        <div class="notes-body" id="notesBody"></div>
-    </aside>
-
-    <button class="notes-toggle-btn" id="notesToggleBtn" type="button" aria-expanded="false" aria-controls="presenterNotes">Show notes (N)</button>
-
     <script>
         let currentIndex = 0;
         const totalSlides = 11;
-        const presenterMode = new URLSearchParams(window.location.search).get('presenter') === '1';
-
-        const slideNotes = [
-            "This is an outside-in concept exploration based on publicly visible information, not a finished recommendation. The purpose is to test whether guided support could reduce member effort while preserving trusted pharmacy workflows.\n\nTransition: start with what already exists well and where the effort gap might still be.",
-            "Costco Pharmacy already appears to have a strong digital foundation. The hypothesis is not adding capabilities for their own sake; it is helping members reach the right existing capability or staff path with less confusion.\n\nBrief credibility cue: my lens comes from long experience in customer journey design and measured product iteration.\n\nTransition: if we agree on that premise, the key question becomes which outcome matters most.",
-            "This slide intentionally starts with North Star alignment. Growth, member experience, and operational efficiency are illustrative options, not assumptions about Costco's actual priorities. Different priorities should lead to different starting journeys and measures.\n\nTransition: once the outcome is clear, we can shape the interaction model around that outcome.",
-            "Whatever priority Costco Pharmacy chooses, trust has to be designed in from the beginning. Clear boundaries keep guidance useful without replacing pharmacist judgment. Context must be approved, governed, auditable, and still under member control. Human support is intentional, and context should move with the member so handoff does not restart the journey.\n\nTransition: with guardrails in place, the next step is to start narrowly, measure value, and decide whether expansion is earned.",
-            "North Star and baseline happen before the first phase. Guide is the likely starting point: run it as a focused learning phase with continuous measurement, experimentation, and iteration.\n\nAt the gate, progress is conditional: move to Assist only if value is demonstrated; otherwise iterate, change direction, or stop. The same pattern applies before Anticipate.\n\nMeasures depend on the selected North Star. Illustrative groups: Growth (completed transfers, prescription acquisition, relevant service adoption), Member experience (successful completion, abandonment, satisfaction), Operations (avoidable calls, resolution time, handoff quality).",
-            "The prototype scenarios show how different priorities can point to different starting experiences. Move a Prescription maps to growth and acquisition, Your Pharmacy Today maps to member effort and avoidable-call reduction, and Travel Help maps to longer-term connected journeys.\n\nThese are illustrative scenarios, not roadmap recommendations.",
-            "Use this as a collaborative invitation, not a proposal ask. Focus the discussion on what resonated, what to challenge, and what to validate first.\n\nClose with one pragmatic next step: align on outcome, pick one journey, baseline it, and decide whether a responsible first test is worth exploring.",
-            "Appendix divider note: the core narrative is complete; the next slides are supporting details only.",
-            "Supporting detail on navigation versus guidance: this is not replacing existing navigation, but reducing interpretation effort at uncertain moments while keeping staff access explicit.",
-            "Supporting detail on what we would need to learn: baseline metrics, journey selection criteria, friction signals, and guardrail readiness. Different priorities will change what success looks like.",
-            "This is optional, longer-term thinking. It focuses on continuity across experiences rather than a specific architecture or roadmap. Context carries forward with permission, safeguards, and human support, so the member does not repeat their situation or start over. Broader use depends on permission, relevance, evidence, feasibility, safeguards, and business priorities."
-        ];
-
-        function updateNotes() {
-            if (!presenterMode) return;
-            const notes = document.getElementById('presenterNotes');
-            const body = document.getElementById('notesBody');
-            if (!notes || !body) return;
-            body.textContent = slideNotes[currentIndex] || "";
-        }
-
-        function toggleNotes(forceVisible) {
-            if (!presenterMode) return;
-            const notes = document.getElementById('presenterNotes');
-            const btn = document.getElementById('notesToggleBtn');
-            if (!notes || !btn) return;
-
-            const show = typeof forceVisible === 'boolean' ? forceVisible : !notes.classList.contains('visible');
-            notes.classList.toggle('visible', show);
-            document.body.classList.toggle('notes-open', show);
-            btn.textContent = show ? 'Hide notes (N)' : 'Show notes (N)';
-            btn.setAttribute('aria-expanded', show ? 'true' : 'false');
-        }
 
         function updateActiveSlideClass() {
             const body = document.body;
@@ -3746,7 +3703,6 @@
                 nextArrow.setAttribute('aria-hidden', currentIndex === totalSlides - 1 ? 'true' : 'false');
             }
             updateActiveSlideClass();
-            updateNotes();
         }
 
         function nextSlide() { goToSlide(currentIndex + 1); }
@@ -3760,19 +3716,6 @@
             }
         }
 
-        // Enable presenter notes panel with ?presenter=1
-        if (presenterMode) {
-            document.body.classList.add('presenter-mode');
-            const btn = document.getElementById('notesToggleBtn');
-            if (btn) {
-                btn.classList.add('visible');
-                btn.addEventListener('click', () => toggleNotes());
-            }
-            updateNotes();
-            toggleNotes(false);
-            syncFullscreenState();
-        }
-
         goToSlide(currentIndex);
 
         document.addEventListener('fullscreenchange', syncFullscreenState);
@@ -3782,9 +3725,6 @@
             if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
             if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
             if (e.key === 'f' || e.key === 'F') toggleFullscreen();
-            if ((e.key === 'n' || e.key === 'N') && presenterMode) {
-                toggleNotes();
-            }
         });
 
         // Touch/swipe

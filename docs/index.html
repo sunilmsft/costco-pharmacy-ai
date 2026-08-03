@@ -313,7 +313,8 @@
 
         .feedback { text-align: center; }
         .feedback p { max-width: 590px; margin: 0 auto; color: var(--muted); }
-        .feedback .button { margin-top: 22px; }
+        .feedback-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 18px; margin-top: 22px; }
+        .feedback-secondary { color: var(--blue); font-size: 14px; font-weight: 800; }
 
         .site-footer { padding: 30px 0; background: var(--ink); color: #d9e8ef; }
         .site-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -343,6 +344,8 @@
             .card { min-height: 0; padding: 24px; }
             .hero-actions, .card-actions { align-items: stretch; flex-direction: column; }
             .hero-actions .button, .card-actions .button { width: 100%; }
+            .feedback-actions { align-items: stretch; flex-direction: column; }
+            .feedback-actions .button, .feedback-secondary { width: 100%; }
             h1 { font-size: clamp(40px, 13vw, 58px); }
             .category-toggle { padding: 18px; font-size: 16px; }
             .category-panel { padding: 0 18px 18px; }
@@ -364,6 +367,7 @@
                 <a href="#explore">Explore</a>
                 <a href="#discussion">Discussion</a>
                 <a href="#questions">Questions</a>
+                <a href="#feedback">Feedback</a>
             </div>
             <a class="nav-cta" href="guided-pharmacy-care-prototype.html">Explore prototype</a>
         </nav>
@@ -488,7 +492,10 @@
         <section class="section tinted feedback" id="feedback" aria-labelledby="feedback-title">
             <h2 id="feedback-title">Questions or feedback?</h2>
             <p>I’d welcome your perspective on what resonated, what should be challenged, and what may be worth exploring further.</p>
-            <a class="button secondary" href="https://www.linkedin.com/in/sunilve" target="_blank" rel="noopener noreferrer">Share feedback <span aria-hidden="true">↗</span></a>
+            <div class="feedback-actions">
+                <a class="button" href="mailto:sunil1308@gmail.com?subject=Guided%20Pharmacy%20Care%20feedback" aria-label="Email Sunil about Guided Pharmacy Care feedback">Email Sunil</a>
+                <a class="feedback-secondary" href="https://www.sunilvenugopal.com/" target="_blank" rel="noopener noreferrer">Learn more about Sunil</a>
+            </div>
         </section>
     </main>
 

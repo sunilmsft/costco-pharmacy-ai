@@ -3,80 +3,532 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A shareable concept hub for Guided Pharmacy Care.">
     <title>Guided Pharmacy Care</title>
     <style>
         :root {
             color-scheme: light;
+            --ink: #183247;
+            --muted: #5a7085;
+            --blue: #005daa;
+            --blue-dark: #00477f;
+            --teal: #007f82;
+            --pale: #f3f8fb;
+            --line: #d9e6ee;
+            --white: #ffffff;
+            --shadow: 0 18px 45px rgba(24, 50, 71, 0.08);
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f8fb;
-            color: #183247;
+            font-synthesis: none;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 84px;
         }
 
         body {
             margin: 0;
-            min-height: 100vh;
-            display: grid;
+            background: var(--pale);
+            color: var(--ink);
+            line-height: 1.55;
+        }
+
+        a { color: var(--blue); }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #f5b335;
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: -48px;
+            z-index: 20;
+            padding: 10px 14px;
+            background: var(--ink);
+            color: var(--white);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .skip-link:focus { top: 0; }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid rgba(217, 230, 238, 0.95);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-wrap {
+            width: min(1160px, calc(100% - 40px));
+            min-height: 68px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            color: var(--ink);
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            display: inline-grid;
+            width: 26px;
+            height: 26px;
+            margin-right: 8px;
             place-items: center;
+            border-radius: 8px;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 13px;
+            vertical-align: -2px;
         }
 
-        main {
-            width: min(680px, calc(100% - 40px));
-            padding: 48px;
-            background: #ffffff;
-            border: 1px solid #dce8f0;
-            border-radius: 18px;
-            box-shadow: 0 16px 40px rgba(24, 50, 71, 0.08);
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
 
-        h1 {
-            margin: 0 0 10px;
-            color: #005daa;
-            font-size: clamp(30px, 5vw, 46px);
-        }
+        .nav-links::-webkit-scrollbar { display: none; }
 
-        p {
-            margin: 0 0 28px;
-            font-size: 18px;
-            line-height: 1.5;
-        }
-
-        nav {
-            display: grid;
-            gap: 12px;
-        }
-
-        a {
-            display: block;
-            padding: 15px 18px;
-            border-radius: 10px;
-            background: #005daa;
-            color: #ffffff;
+        .nav-links a {
+            padding: 9px 11px;
+            color: var(--muted);
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
+            white-space: nowrap;
+            border-radius: 7px;
         }
 
-        a:hover,
-        a:focus-visible {
-            background: #00477f;
+        .nav-links a:hover { background: #edf5f9; color: var(--blue); }
+
+        .nav-cta,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 11px 17px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: background 160ms ease, transform 160ms ease;
         }
 
-        small {
-            display: block;
-            margin-top: 28px;
-            color: #5a7085;
-            line-height: 1.5;
+        .nav-cta:hover,
+        .button:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+        .button.secondary {
+            background: var(--white);
+            border-color: #bcd1df;
+            color: var(--blue);
+        }
+
+        .button.secondary:hover { background: #edf5f9; }
+
+        .button.text-button {
+            min-height: auto;
+            padding: 5px 0;
+            background: transparent;
+            color: var(--blue);
+        }
+
+        .hero,
+        .section,
+        .site-footer-inner {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+            gap: 72px;
+            align-items: center;
+            min-height: min(650px, calc(100vh - 68px));
+            padding: 86px 0 94px;
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3 { line-height: 1.12; letter-spacing: -0.035em; }
+
+        h1 {
+            max-width: 680px;
+            margin: 0;
+            color: var(--ink);
+            font-size: clamp(42px, 6vw, 74px);
+        }
+
+        .hero-lead {
+            max-width: 650px;
+            margin: 24px 0 14px;
+            color: #2f536b;
+            font-size: clamp(19px, 2.2vw, 24px);
+            line-height: 1.4;
+        }
+
+        .hero-note {
+            max-width: 630px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .hero-actions,
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .hero-aside {
+            padding: 28px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-aside-label {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .path-list { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+        .path-list li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; }
+        .path-number {
+            display: grid;
+            width: 30px;
+            height: 30px;
+            place-items: center;
+            border-radius: 50%;
+            background: #e8f3f7;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 800;
+        }
+        .path-list strong { display: block; margin-bottom: 2px; font-size: 15px; }
+        .path-list span { color: var(--muted); font-size: 14px; }
+
+        .section { padding: 88px 0; }
+        .section.tinted { width: 100%; max-width: none; padding-right: max(20px, calc((100% - 1160px) / 2)); padding-left: max(20px, calc((100% - 1160px) / 2)); background: var(--white); }
+        .section-heading { max-width: 680px; margin-bottom: 34px; }
+        h2 { margin: 0 0 12px; font-size: clamp(31px, 4vw, 48px); }
+        .section-heading > p { margin: 0; color: var(--muted); font-size: 17px; }
+
+        .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        .card {
+            display: flex;
+            min-height: 270px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(24, 50, 71, 0.04);
+        }
+        .card.accent { border-top: 4px solid var(--blue); }
+        .card.teal-accent { border-top: 4px solid var(--teal); }
+        .card-label { margin-bottom: 13px; color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+        .card h3 { margin: 0 0 12px; font-size: 25px; }
+        .card p { margin: 0; color: var(--muted); font-size: 15px; }
+        .card .disclaimer { margin-top: 16px; color: #446174; font-size: 13px; }
+        .card-actions { margin-top: auto; }
+
+        .discussion-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+        .discussion-card { padding: 24px; background: #f7fbfd; border: 1px solid var(--line); border-radius: 13px; }
+        .discussion-card h3 { margin: 0 0 10px; font-size: 21px; }
+        .discussion-card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+        .questions-shell { max-width: 900px; }
+        .category { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); overflow: hidden; }
+        .category-toggle,
+        .question-toggle {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+        .category-toggle { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 22px; font-size: 18px; font-weight: 800; }
+        .category-toggle:hover,
+        .question-toggle:hover { background: #f5fafc; }
+        .chevron { flex: 0 0 auto; color: var(--blue); font-size: 22px; transition: transform 160ms ease; }
+        .category-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+        .category-panel { padding: 0 22px 22px; }
+        .question { border-top: 1px solid #e7eff3; }
+        .question-toggle { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 0; color: #27495e; font-size: 15px; font-weight: 800; }
+        .question-toggle .chevron { font-size: 18px; }
+        .question-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+        .answer { padding: 0 26px 18px 0; color: var(--muted); font-size: 14px; }
+        [hidden] { display: none !important; }
+
+        .next-step {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+            gap: 50px;
+            align-items: start;
+        }
+        .step-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: steps; }
+        .step-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; color: #3f6073; font-size: 15px; }
+        .step-list li::before { counter-increment: steps; content: counter(steps); display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; background: #e8f3f7; color: var(--blue); font-size: 12px; font-weight: 800; }
+        .closing-line { margin: 24px 0 0; color: var(--blue-dark); font-size: 18px; font-weight: 700; }
+
+        .feedback { text-align: center; }
+        .feedback p { max-width: 590px; margin: 0 auto; color: var(--muted); }
+        .feedback .button { margin-top: 22px; }
+
+        .site-footer { padding: 30px 0; background: var(--ink); color: #d9e8ef; }
+        .site-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .footer-copy { margin: 0; font-size: 13px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+        .footer-links a { color: #d9e8ef; font-size: 13px; font-weight: 700; }
+
+        @media (max-width: 800px) {
+            .nav-wrap { width: calc(100% - 28px); gap: 12px; }
+            .brand { font-size: 14px; }
+            .brand-mark { width: 23px; height: 23px; margin-right: 5px; }
+            .nav-cta { min-height: 40px; padding: 9px 11px; font-size: 12px; }
+            .nav-links { order: 3; width: 100%; }
+            .nav-wrap { flex-wrap: wrap; padding: 10px 0; }
+            .hero { grid-template-columns: 1fr; gap: 34px; min-height: auto; padding: 64px 0 72px; }
+            .hero-aside { max-width: 620px; }
+            .section, .section.tinted { padding-top: 68px; padding-bottom: 68px; }
+            .discussion-grid { grid-template-columns: 1fr; }
+            .next-step { grid-template-columns: 1fr; gap: 28px; }
+            .site-footer-inner { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 560px) {
+            .hero, .section, .site-footer-inner { width: calc(100% - 28px); }
+            .section.tinted { width: 100%; padding-right: 14px; padding-left: 14px; }
+            .cards { grid-template-columns: 1fr; }
+            .card { min-height: 0; padding: 24px; }
+            .hero-actions, .card-actions { align-items: stretch; flex-direction: column; }
+            .hero-actions .button, .card-actions .button { width: 100%; }
+            h1 { font-size: clamp(40px, 13vw, 58px); }
+            .category-toggle { padding: 18px; font-size: 16px; }
+            .category-panel { padding: 0 18px 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
         }
     </style>
 </head>
 <body>
-    <main>
-        <h1>Guided Pharmacy Care</h1>
-        <p>Outside-in concept exploration</p>
-        <nav aria-label="Concept exploration links">
-            <a href="guided-pharmacy-care.html">View concept exploration</a>
-            <a href="guided-pharmacy-care-prototype.html">Open interactive prototype</a>
+    <a class="skip-link" href="#overview">Skip to content</a>
+    <header class="site-header">
+        <nav class="nav-wrap" aria-label="Primary navigation">
+            <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true">G</span>Guided Pharmacy Care</a>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#explore">Explore</a>
+                <a href="#discussion">Discussion</a>
+                <a href="#questions">Questions</a>
+            </div>
+            <a class="nav-cta" href="guided-pharmacy-care-prototype.html">Explore prototype</a>
         </nav>
-        <small>This page will evolve into the shareable concept hub.</small>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" id="overview" aria-labelledby="overview-title">
+            <div>
+                <p class="eyebrow">Outside-in concept exploration</p>
+                <h1 id="overview-title">Guided Pharmacy Care</h1>
+                <p class="hero-lead">An outside-in exploration of how Costco Pharmacy could help members move from intent to action with clearer guidance, less searching, and less repetition.</p>
+                <p class="hero-note">This concept is intended to make a possible member experience tangible and support discussion. It is not a finished recommendation, production design, or commitment to a particular technology or architecture.</p>
+                <div class="hero-actions">
+                    <a class="button" href="guided-pharmacy-care.html">View concept exploration</a>
+                    <a class="button secondary" href="guided-pharmacy-care-prototype.html">Explore interactive prototype</a>
+                    <a class="button text-button" href="#discussion">Continue the discussion <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+            <aside class="hero-aside" aria-label="How to explore">
+                <div class="hero-aside-label">A simple path through the concept</div>
+                <ol class="path-list">
+                    <li><span class="path-number">1</span><div><strong>See the direction</strong><span>Start with the member journey and the role of trust.</span></div></li>
+                    <li><span class="path-number">2</span><div><strong>Experience the journeys</strong><span>Try two illustrative, scripted member paths.</span></div></li>
+                    <li><span class="path-number">3</span><div><strong>Choose what to discuss</strong><span>Open only the questions most relevant to you.</span></div></li>
+                </ol>
+            </aside>
+        </section>
+
+        <section class="section tinted" id="explore" aria-labelledby="explore-title">
+            <div class="section-heading">
+                <h2 id="explore-title">Explore the concept</h2>
+                <p>Review the proposed direction, then experience two illustrative member journeys.</p>
+            </div>
+            <div class="cards">
+                <article class="card accent">
+                    <div class="card-label">Concept exploration</div>
+                    <h3>See the opportunity from the member’s perspective</h3>
+                    <p>Explore the role of trust and safety, and how the experience could evolve gradually through evidence.</p>
+                    <div class="card-actions"><a class="button" href="guided-pharmacy-care.html">View concept exploration</a></div>
+                </article>
+                <article class="card teal-accent">
+                    <div class="card-label">Interactive prototype</div>
+                    <h3>Experience two illustrative member journeys</h3>
+                    <p>Explore preparing for international travel and transferring a prescription to Costco Pharmacy.</p>
+                    <p class="disclaimer">The prototype uses scripted interactions and sample data. It does not connect to live Costco systems or complete real transactions.</p>
+                    <div class="card-actions"><a class="button" href="guided-pharmacy-care-prototype.html">Open interactive prototype</a></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="discussion" aria-labelledby="discussion-title">
+            <div class="section-heading">
+                <h2 id="discussion-title">Continue the discussion</h2>
+                <p>The concept is intended to create something concrete to react to, challenge, and refine together.</p>
+            </div>
+            <div class="discussion-grid">
+                <article class="discussion-card"><h3>What resonated?</h3><p>Which parts of the member experience or proposed direction feel most relevant?</p></article>
+                <article class="discussion-card"><h3>What should we challenge?</h3><p>Which assumptions, constraints, dependencies, or internal realities need to be reconsidered?</p></article>
+                <article class="discussion-card"><h3>What may be worth validating first?</h3><p>Which member journey or outcome could provide the strongest starting point for learning?</p></article>
+            </div>
+        </section>
+
+        <section class="section tinted" id="questions" aria-labelledby="questions-title">
+            <div class="section-heading">
+                <h2 id="questions-title">Questions worth exploring</h2>
+                <p>The answers below frame the concept and the decisions that would still require discovery, validation, and Costco expertise.</p>
+            </div>
+            <div class="questions-shell">
+                <section class="category">
+                    <h3><button class="category-toggle" type="button" aria-expanded="false" aria-controls="member-experience-panel"><span>Member experience</span><span class="chevron" aria-hidden="true">⌄</span></button></h3>
+                    <div class="category-panel" id="member-experience-panel" hidden>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="member-q1"><span>Would this replace existing pharmacy systems?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="member-q1" hidden>No. The concept is intended to complement and connect existing capabilities. Members may still complete their task through the same refill, transfer, immunization, scheduling, or support workflows. The opportunity is to improve the journey into and across them.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="member-q2"><span>How does the member remain in control?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="member-q2" hidden>Important actions should remain visible and reviewable. Members should explicitly confirm consequential actions and retain the ability to change course, stop, or connect with pharmacy staff.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="member-q3"><span>What happens when a member needs human help?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="member-q3" hidden>The experience should provide a clear path to the appropriate pharmacy staff and carry useful context forward where permitted. It should not become the only route to pharmacy support.</div></div>
+                    </div>
+                </section>
+                <section class="category">
+                    <h3><button class="category-toggle" type="button" aria-expanded="false" aria-controls="trust-panel"><span>Trust and member control</span><span class="chevron" aria-hidden="true">⌄</span></button></h3>
+                    <div class="category-panel" id="trust-panel" hidden>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="trust-q1"><span>What happens when the experience is wrong or unavailable?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="trust-q1" hidden>It should communicate uncertainty, preserve progress where possible, and provide a clear fallback to the appropriate pharmacy support. It should never silently guess or block access to human help.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="trust-q2"><span>How would member and pharmacy information be protected?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="trust-q2" hidden>Any production design would need approved data sources, minimum necessary access, authentication, consent where required, auditability, retention controls, and clear restrictions on how information may be used.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="trust-q3"><span>Where does pharmacist or staff judgment remain important?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="trust-q3" hidden>Wherever safety, judgment, or nuance matters, the experience should route to the appropriate person and keep pharmacy professionals authoritative.</div></div>
+                    </div>
+                </section>
+                <section class="category">
+                    <h3><button class="category-toggle" type="button" aria-expanded="false" aria-controls="technology-panel"><span>Technology and integration</span><span class="chevron" aria-hidden="true">⌄</span></button></h3>
+                    <div class="category-panel" id="technology-panel" hidden>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="technology-q1"><span>Is the prototype currently using AI?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="technology-q1" hidden>Not in the current runtime. It uses scripted interactions and sample data to make the member journey tangible before choosing models, integrations, or architecture.<br><br>A production experience might use a language model for natural-language understanding, while clinical guidance and consequential actions should rely on approved content, structured data, deterministic workflows, explicit confirmation, and appropriate human oversight.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="technology-q2"><span>What would a production version require?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="technology-q2" hidden>That would depend on the selected journey. Possible needs could include identity and consent, approved clinical content, existing Costco workflows and APIs, staff handoff, monitoring, auditability, and governance.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="technology-q3"><span>What technology, model, or cloud would it use?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="technology-q3" hidden>The concept is intentionally platform-agnostic. Any implementation should align with Costco’s approved architecture, security standards, platforms, technology partners, and operating model.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="technology-q4"><span>How would integration change over time?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="technology-q4" hidden>Guide could begin with approved information, routing, and links to existing workflows. Assist could add authenticated context, workflow support, and explicit confirmation. Anticipate would require permitted signals, consent, proactive orchestration, monitoring, and stronger governance.</div></div>
+                    </div>
+                </section>
+                <section class="category">
+                    <h3><button class="category-toggle" type="button" aria-expanded="false" aria-controls="validation-panel"><span>Validation and operating model</span><span class="chevron" aria-hidden="true">⌄</span></button></h3>
+                    <div class="category-panel" id="validation-panel" hidden>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="validation-q1"><span>How would success be measured?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="validation-q1" hidden>Measures should follow the selected outcome and baseline. Depending on the priority, that could include member effort, completion, trust, handoff quality, business outcomes, or operational impact.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="validation-q2"><span>What might a first validation look like?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="validation-q2" hidden>A bounded journey with a limited audience, clear success criteria, understood dependencies, and explicit criteria to advance, iterate, change direction, or stop.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="validation-q3"><span>What happens if the first scenario does not demonstrate value?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="validation-q3" hidden>That is still useful learning. The phased model is intended to prevent overinvestment and support a deliberate decision to improve the approach, choose a different direction, or stop.</div></div>
+                        <div class="question"><button class="question-toggle" type="button" aria-expanded="false" aria-controls="validation-q4"><span>Who would operate and maintain it?</span><span class="chevron" aria-hidden="true">⌄</span></button><div class="answer" id="validation-q4" hidden>A production experience would require clear ownership for content, workflow rules, monitoring, evaluation, escalation, incidents, and change management. Those responsibilities should align with Costco’s existing operating model.</div></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="section" id="next-step" aria-labelledby="next-step-title">
+            <div class="next-step">
+                <div class="section-heading"><h2 id="next-step-title">Start with the outcome, not the technology</h2><p>A responsible next step could be to:</p></div>
+                <div>
+                    <ol class="step-list">
+                        <li>Align on the member or business outcome.</li>
+                        <li>Select one bounded journey.</li>
+                        <li>Understand the current baseline and dependencies.</li>
+                        <li>Identify the required operational, clinical, technology, and governance partners.</li>
+                        <li>Decide whether a small validation is worth exploring.</li>
+                    </ol>
+                    <p class="closing-line">The goal is not to begin with the most advanced experience. It is to learn where guided support can create meaningful value and earn the right to expand.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tinted feedback" id="feedback" aria-labelledby="feedback-title">
+            <h2 id="feedback-title">Questions or feedback?</h2>
+            <p>I’d welcome your perspective on what resonated, what should be challenged, and what may be worth exploring further.</p>
+            <a class="button secondary" href="https://www.linkedin.com/in/sunilve" target="_blank" rel="noopener noreferrer">Share feedback <span aria-hidden="true">↗</span></a>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p class="footer-copy">Outside-in concept exploration · Illustrative scenarios and sample data · No live transactions</p>
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="guided-pharmacy-care.html">Concept exploration</a>
+                <a href="guided-pharmacy-care-prototype.html">Interactive prototype</a>
+                <a href="#overview">Return to top</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        const categoryButtons = document.querySelectorAll('.category-toggle');
+        const questionButtons = document.querySelectorAll('.question-toggle');
+
+        function setExpanded(button, panel, expanded) {
+            button.setAttribute('aria-expanded', String(expanded));
+            panel.hidden = !expanded;
+        }
+
+        categoryButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const panel = document.getElementById(button.getAttribute('aria-controls'));
+                const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
+                categoryButtons.forEach((otherButton) => {
+                    const otherPanel = document.getElementById(otherButton.getAttribute('aria-controls'));
+                    setExpanded(otherButton, otherPanel, otherButton === button && shouldOpen);
+                });
+            });
+        });
+
+        questionButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const answer = document.getElementById(button.getAttribute('aria-controls'));
+                setExpanded(button, answer, button.getAttribute('aria-expanded') !== 'true');
+            });
+        });
+    </script>
 </body>
 </html>

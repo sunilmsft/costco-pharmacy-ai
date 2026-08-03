@@ -1,0 +1,3740 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Pharmacy Care — Concept Exploration</title>
+    <style>
+        :root {
+            --costco-red: #E31837;
+            --costco-blue: #005DAA;
+            --costco-nav-blue: #003B64;
+            --text: #1a1a2e;
+            --text-light: #555;
+            --bg: #f8f9fb;
+            --white: #ffffff;
+            --border: #e8ecf0;
+            --accent-light: #eef4fb;
+            --green: #2e7d32;
+            --green-light: #e8f5e9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* === DISCLAIMER BAR === */
+        .disclaimer-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #f3f6fa;
+            color: #617287;
+            text-align: center;
+            font-size: 11px;
+            padding: 6px 16px;
+            letter-spacing: 0.4px;
+            z-index: 1000;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* === NAV BAR === */
+        .nav-bar {
+            position: fixed;
+            top: 28px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 24px;
+            z-index: 999;
+            height: 40px;
+        }
+
+        .nav-left {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-right .slide-counter {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .fullscreen-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .fullscreen-btn:hover { background: var(--accent-light); }
+
+        /* === SLIDES === */
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100vh;
+            padding-top: 68px;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: calc(100vh - 68px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 60px;
+        }
+
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* === TYPOGRAPHY === */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--costco-blue);
+            margin-bottom: 12px;
+        }
+
+        .slide h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--costco-nav-blue);
+            margin-bottom: 16px;
+        }
+
+        .slide h1 em {
+            font-style: normal;
+            color: var(--costco-red);
+        }
+
+        .slide h2 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--costco-nav-blue);
+            margin-bottom: 16px;
+        }
+
+        .slide p.subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .slide2-intro {
+            max-width: none !important;
+            white-space: nowrap;
+        }
+
+        .takeaway {
+            margin-top: 28px;
+            padding: 16px 20px;
+            background: var(--accent-light);
+            border-left: 3px solid var(--costco-blue);
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+            color: var(--costco-nav-blue);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* === HERO === */
+        .slide-hero {
+            background: linear-gradient(135deg, #f8f9fb 0%, #eef4fb 100%);
+        }
+
+        .hero-content { text-align: center; }
+
+        .hero-content .hero-line {
+            font-size: 20px;
+            color: var(--costco-blue);
+            font-weight: 500;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        .hero-content p.subtitle {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-meta {
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .slide-closing-placeholder,
+        .slide-appendix-divider {
+            background: #f6f8fb;
+        }
+
+        .slide-closing-placeholder .slide-content,
+        .slide-appendix-divider .slide-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .slide-closing-placeholder p.subtitle,
+        .slide-appendix-divider p.subtitle {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .slide-closing-discussion .closing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .slide-closing-discussion .closing-card {
+            background: var(--white);
+            border: 1px solid #d7e2ec;
+            border-radius: 12px;
+            padding: 18px 16px;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.04);
+        }
+
+        .slide-closing-discussion .closing-card:nth-child(1) { border-top: 3px solid #9fb5ca; }
+        .slide-closing-discussion .closing-card:nth-child(2) { border-top: 3px solid #9aaec2; }
+        .slide-closing-discussion .closing-card:nth-child(3) { border-top: 3px solid #8ca9c5; }
+
+        .slide-closing-discussion .closing-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .slide-closing-discussion .closing-card-body {
+            font-size: 14px;
+            line-height: 1.42;
+            color: #4e6478;
+        }
+
+        .slide-closing-discussion .takeaway {
+            margin-top: 16px;
+        }
+
+        .slide-closing-discussion .slide-content {
+            position: relative;
+        }
+
+        .slide-closing-discussion .section-label {
+            display: none;
+        }
+
+        .slide-closing-discussion .slide-content::before {
+            content: "CLOSING DISCUSSION";
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: #3f6185;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            line-height: 1;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .slide-closing-discussion .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .slide-appendix-divider .slide-content {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid #d9e3ee;
+            border-radius: 16px;
+            padding: 46px 52px;
+            box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+            position: relative;
+        }
+
+        .slide-appendix-divider .slide-content::before,
+        .slide-appendix-divider .slide-content::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,59,100,0.22) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        .slide-appendix-divider .slide-content::before {
+            content: "APPENDIX";
+            left: 0;
+            right: 0;
+            top: -42px;
+            height: auto;
+            padding-left: 0;
+            border-left: 0;
+            border-bottom: 2px solid #3f78b3;
+            padding-bottom: 7px;
+            background: none;
+            color: #3f6185;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 2.6px;
+            line-height: 1;
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .slide-appendix-divider .slide-content::after {
+            left: 36px;
+            right: 36px;
+            bottom: 16px;
+        }
+
+        .slide-appendix-divider .section-label {
+            display: none;
+            margin-bottom: 18px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid #bdd2e7;
+            background: #edf4fb;
+            letter-spacing: 1.8px;
+        }
+
+        .slide-appendix-divider h2 {
+            margin-bottom: 14px;
+            font-size: 46px;
+        }
+
+        .slide-appendix-divider p.subtitle {
+            max-width: 760px;
+        }
+
+        .appendix-start-note {
+            margin-top: 24px;
+            font-size: 13px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #5a6f84;
+            font-weight: 600;
+        }
+
+        .presenter-mode.notes-open .slide-closing-placeholder,
+        .presenter-mode.notes-open .slide-appendix-divider {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-closing-placeholder .slide-content,
+        .presenter-mode.notes-open .slide-appendix-divider .slide-content {
+            margin-top: 18px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .slide-content {
+            margin-top: -6px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion h2 {
+            margin-bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-grid {
+            margin-top: 14px;
+            gap: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card {
+            padding: 14px 13px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card-title {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .closing-card-body {
+            font-size: 13px;
+        }
+
+        .presenter-mode.notes-open .slide-closing-discussion .takeaway {
+            margin-top: 10px;
+            padding: 12px 14px;
+            font-size: 13px;
+        }
+
+        .presenter-mode.notes-open .slide-appendix-divider .slide-content {
+            padding-top: 34px;
+            padding-bottom: 34px;
+        }
+
+        .presenter-mode.notes-open .slide-appendix-divider h2 {
+            font-size: 40px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-closing-placeholder,
+        .presenter-mode.is-fullscreen .slide-appendix-divider {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-closing-discussion {
+            align-items: center;
+        }
+
+        .slide-prototype .prototype-review {
+            margin-top: 22px;
+            color: var(--text-light);
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slide-prototype .prototype-review-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            margin-bottom: 10px;
+        }
+
+        .slide-prototype .prototype-review-items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 7px;
+            font-size: 15px;
+            line-height: 1.45;
+        }
+
+        .slide-prototype .prototype-review-items li {
+            color: #54677a;
+        }
+
+        .slide-prototype .slide-content {
+            max-width: 1140px;
+            position: relative;
+        }
+
+        .slide-prototype .section-label {
+            display: none;
+        }
+
+        .slide-prototype .slide-content::before {
+            content: "MAKE THE HYPOTHESIS TANGIBLE";
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 15px;
+            line-height: 1;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3f6185;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .slide-prototype .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .slide-prototype .prototype-review {
+            max-width: 980px;
+            margin-top: 24px;
+        }
+
+        .slide-prototype .prototype-lens-label {
+            margin-bottom: 9px;
+            color: #64798c;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .slide-prototype .prototype-beats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 0 0 18px;
+            text-align: left;
+        }
+
+        .slide-prototype .prototype-beat {
+            min-height: 116px;
+            padding: 16px 16px 14px;
+            border: 1px solid #d4e0ec;
+            border-top: 4px solid #2f79c7;
+            border-radius: 11px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 7px 16px rgba(16, 24, 40, 0.07);
+        }
+
+        .slide-prototype .prototype-beat:nth-child(2) { border-top-color: #5159b7; }
+        .slide-prototype .prototype-beat:nth-child(3) { border-top-color: #744e97; }
+
+        .slide-prototype .prototype-beat-label {
+            margin-bottom: 7px;
+            color: var(--costco-nav-blue);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        .slide-prototype .prototype-beat-title {
+            color: #3d5870;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .slide-prototype .prototype-beat-example {
+            margin-top: 6px;
+            color: #5b7186;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .slide-prototype .prototype-review-label { margin-bottom: 7px; }
+
+        .slide-prototype .prototype-review-items {
+            font-size: 14px;
+            line-height: 1.35;
+        }
+
+        .slide-prototype .prototype-note {
+            margin-top: 13px;
+            color: #627589;
+            font-size: 12px;
+            font-style: italic;
+            line-height: 1.35;
+        }
+
+        .slide-prototype .prototype-open-link {
+            margin-top: 22px !important;
+        }
+
+        .slide-prototype .hero-meta {
+            margin-top: 20px !important;
+            line-height: 1.4;
+        }
+
+        .presenter-mode.notes-open .slide-prototype {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .slide-content {
+            margin-top: -10px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .prototype-review {
+            margin-top: 16px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .prototype-review-items {
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .presenter-mode.notes-open .slide-prototype .hero-meta {
+            margin-top: 18px !important;
+        }
+
+        .presenter-mode.is-fullscreen .slide-prototype {
+            align-items: center;
+        }
+
+        /* === TILES GRID === */
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .tile {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+        }
+
+        .tile-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tile-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* === MOMENTS GRID === */
+        .moments-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .moment-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .moment-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .moment-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .moment-context {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* === MEMBER PERSPECTIVE + SHIFT (CONSOLIDATED) === */
+        .slide-member-shift .member-shift-layout {
+            margin-top: 20px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .slide-member-shift .column-heading {
+            font-size: 12px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: #4a6377;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .slide-member-shift .member-situation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .slide-member-shift .member-moment-item {
+            position: relative;
+            background: #fbfdff;
+            border: 1px solid #d5e0ea;
+            border-radius: 12px;
+            padding: 14px 15px;
+            box-shadow: 0 7px 16px rgba(16, 24, 40, 0.08), 0 1px 3px rgba(16, 24, 40, 0.04);
+            min-height: 88px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-member-shift .member-moment-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 12px 0 0 12px;
+            background: #b6c7d8;
+        }
+
+        .slide-member-shift .member-urgency::before { background: #d98080; }
+        .slide-member-shift .member-responsibility::before { background: #d4a45d; }
+        .slide-member-shift .member-uncertainty::before { background: #8f83ba; }
+        .slide-member-shift .member-new-process::before { background: #74a6d3; }
+
+        .slide-member-shift .member-moment-label {
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #5b7286;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .slide-member-shift .member-moment-quote {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.35;
+        }
+
+        .slide-member-shift .response-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .slide-member-shift .guidance-section {
+            background: #f8fbff;
+            border: 1px solid #d3dfeb;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.07), 0 1px 3px rgba(16, 24, 40, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-member-shift .guidance-section.navigation-card {
+            background: #f8fbff;
+            border-left: 3px solid #9bb6cf;
+        }
+
+        .slide-member-shift .guidance-section.guidance-card {
+            background: #f5f9ff;
+            border-left: 3px solid #6f9fc8;
+        }
+
+        .slide-member-shift .guidance-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 8px;
+        }
+
+        .slide-member-shift .guidance-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .slide-member-shift .guidance-points li {
+            font-size: 13px;
+            line-height: 1.38;
+            color: #4f6579;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .slide-member-shift .guidance-points li::before {
+            content: "\2022";
+            color: #89a8c5;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .slide-member-shift .takeaway {
+            margin-top: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .slide-content {
+            margin-top: -22px;
+            max-height: 23vh;
+            overflow-y: auto;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift h2 {
+            margin-bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-shift-layout {
+            margin-top: 8px;
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .column-heading {
+            margin-bottom: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-situation-grid,
+        .presenter-mode.notes-open .slide-member-shift .response-grid {
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-moment-item,
+        .presenter-mode.notes-open .slide-member-shift .guidance-section {
+            padding: 10px 12px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .member-moment-item {
+            min-height: 68px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .guidance-points {
+            gap: 6px;
+        }
+
+        .presenter-mode.notes-open .slide-member-shift .takeaway {
+            margin-top: 6px;
+            padding: 12px 14px;
+            font-size: 13px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift {
+            align-items: center;
+        }
+
+        /* === TWO COLUMN COMPARISON === */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 28px;
+        }
+
+        .compare-col {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+        }
+
+        .compare-col.future {
+            border-color: var(--costco-blue);
+            border-width: 2px;
+        }
+
+        .compare-col h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .compare-col.today h3 { color: var(--text-light); }
+        .compare-col.future h3 { color: var(--costco-blue); }
+
+        .compare-subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .compare-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .compare-col ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .compare-col ul li:last-child { border-bottom: none; }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .today .step-dot { background: #ccc; }
+        .future .step-dot { background: var(--costco-blue); }
+
+        /* === CAPABILITY CARDS === */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .cap-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .cap-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cap-card-icon {
+            font-size: 20px;
+        }
+
+        .cap-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+        }
+
+        .cap-card-example {
+            font-size: 13px;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* === SLIDE 2: STRATEGIC OPPORTUNITY JOURNEY === */
+        .slide2-opportunity .slide-content {
+            max-width: 1120px;
+        }
+
+        .slide2-opportunity h2 {
+            max-width: 920px;
+            margin-bottom: 12px;
+            font-size: 33px;
+            line-height: 1.16;
+            letter-spacing: -0.2px;
+        }
+
+        .slide2-journey {
+            display: grid;
+            grid-template-columns: 0.95fr auto 1.6fr auto 0.95fr;
+            gap: 10px;
+            margin-top: 16px;
+            align-items: center;
+        }
+
+        .slide2-node {
+            background: var(--white);
+            border: 1px solid #d2deea;
+            border-radius: 14px;
+            padding: 15px 14px;
+            text-align: center;
+            box-shadow: 0 6px 14px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.03);
+        }
+
+        .slide2-node-mark {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            border: 2px solid #89a9c7;
+            position: relative;
+            background: #f8fbff;
+        }
+
+        .slide2-node-mark.start::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6f93b6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .slide2-node-mark.start::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            border: 1px solid rgba(111, 147, 182, 0.35);
+        }
+
+        .slide2-node-mark.end {
+            border-color: #6f95b8;
+            background: #f7fbff;
+        }
+
+        .slide2-node-mark.end::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 6px;
+            border-left: 2px solid #6f95b8;
+            border-bottom: 2px solid #6f95b8;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .slide2-flow-arrow {
+            width: 44px;
+            height: 2px;
+            background: linear-gradient(90deg, #8faecd 0%, #7c9ec1 100%);
+            position: relative;
+            opacity: 1;
+        }
+
+        .slide2-flow-arrow::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9bb6d0;
+            transform: translate(-10%, -50%);
+        }
+
+        .slide2-flow-arrow::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-top: 2px solid #7c9ec1;
+            border-right: 2px solid #7c9ec1;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .slide2-path {
+            background: #f4f8fe;
+            border: 2px solid #b8cee2;
+            border-radius: 14px;
+            padding: 12px 18px 14px;
+            box-shadow: 0 9px 18px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+            position: relative;
+        }
+
+        .slide2-path::before {
+            content: "";
+            position: absolute;
+            left: 38px;
+            right: 38px;
+            top: 43px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(116, 152, 186, 0.38) 0%, rgba(116, 152, 186, 0.62) 52%, rgba(116, 152, 186, 0.46) 100%);
+            z-index: 1;
+        }
+
+        .slide2-path-title {
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .slide2-steps {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            overflow: visible;
+        }
+
+        .slide2-step {
+            background: transparent;
+            border: 0;
+            padding: 0 4px 0;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .slide2-step:not(:last-child)::after {
+            content: none;
+        }
+
+        .slide2-step-index {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #e8f1fb;
+            border: 2px solid #9fbad4;
+            color: #5a7c9e;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 18px;
+            text-align: center;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(248, 251, 255, 0.95);
+        }
+
+        .slide2-step-label {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.26;
+            color: #26425f;
+        }
+
+        .slide2-step:last-child .slide2-step-index {
+            background: #dfebf8;
+            border-color: #7d9fbe;
+            color: #446789;
+        }
+
+        .slide2-step:last-child .slide2-step-label {
+            color: #1f3e5b;
+            font-weight: 700;
+        }
+
+        .slide2-start {
+            border-left: 3px solid #93aec8;
+            background: #fcfdff;
+        }
+
+        .slide2-end {
+            border-left: 3px solid #759cbe;
+            background: #f8fcff;
+        }
+
+        .slide2-node .cap-card-title {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .slide2-node .cap-card-example {
+            font-style: normal;
+        }
+
+        .slide2-takeaway {
+            margin-top: 14px;
+            padding: 11px 16px;
+            background: linear-gradient(180deg, #f9fbfe 0%, #f3f7fc 100%);
+            border: 1px solid #d9e4ee;
+            border-radius: 12px;
+            border-left: 3px solid #9ab5cf;
+            font-size: 14px;
+            color: #294764;
+            line-height: 1.45;
+            position: relative;
+        }
+
+        .slide2-takeaway::before {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #89a8c6;
+            transform: translateY(-50%);
+        }
+
+        .slide2-takeaway {
+            padding-left: 28px;
+        }
+
+        /* === SLIDE 3: PRIORITY-LED EXPERIENCE === */
+        .slide3-priority .slide-content {
+            max-width: 1080px;
+        }
+
+        .slide3-priority .priority-intro {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            max-width: 900px;
+        }
+
+        .slide3-priority .priority-qualifier {
+            font-size: 12px;
+            color: #5a6f84;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .slide3-priority .priority-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .slide3-priority .priority-card {
+            --priority-fill: #2f79c7;
+            background: #ffffff;
+            padding: 17px 16px 18px;
+            border: 1px solid #d2dce8;
+            border-top: 3px solid var(--priority-fill);
+            min-height: 164px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(16, 24, 40, 0.09), 0 1px 3px rgba(16, 24, 40, 0.04);
+        }
+
+        .slide3-priority .priority-card-growth {
+            --priority-fill: #2f79c7;
+        }
+
+        .slide3-priority .priority-card-value {
+            --priority-fill: #5159b7;
+        }
+
+        .slide3-priority .priority-card-efficiency {
+            --priority-fill: #744e97;
+        }
+
+        .slide3-priority .priority-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: -5px -4px 12px;
+            padding: 9px 10px;
+            border-radius: 9px;
+            background: var(--priority-fill);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .slide3-priority .priority-icon-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .slide3-priority .priority-card-growth .priority-icon-badge {
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-card-value .priority-icon-badge {
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-card-efficiency .priority-icon-badge {
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-icon-badge svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .slide3-priority .priority-title {
+            font-size: 12px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .slide3-priority .priority-card-growth .priority-title {
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-card-value .priority-title {
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-card-efficiency .priority-title {
+            color: #ffffff;
+        }
+
+        .slide3-priority .priority-copy {
+            font-style: normal;
+            font-size: 14px;
+            color: #304a61;
+            line-height: 1.35;
+            background: #ffffff;
+            padding: 11px 12px;
+            flex: 1 1 auto;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .slide3-priority .priority-takeaway {
+            margin-top: 14px;
+        }
+
+        /* === TRUST FRAMEWORK === */
+        .slide-trust .slide-content {
+            max-width: 1080px;
+        }
+
+        .slide-trust .trust-support-line {
+            font-size: 16px;
+            line-height: 1.45;
+            color: #486179;
+            max-width: 900px;
+        }
+
+        .trust-framework {
+            margin-top: 18px;
+            padding: 18px 18px 14px;
+            border-radius: 18px;
+            border: 1px solid #d7e2ee;
+            background:
+                radial-gradient(circle at 15% 8%, rgba(37, 99, 235, 0.08), transparent 40%),
+                radial-gradient(circle at 87% 12%, rgba(91, 71, 180, 0.08), transparent 38%),
+                radial-gradient(circle at 50% 92%, rgba(118, 68, 111, 0.08), transparent 36%),
+                #fbfcfe;
+        }
+
+        .trust-visual {
+            position: relative;
+            min-height: 330px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.76);
+            border: 1px solid #e2e9f2;
+            overflow: hidden;
+        }
+
+        .trust-connectors {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .trust-connectors path {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.9;
+        }
+
+        .trust-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            max-width: calc(100% - 220px);
+            text-align: center;
+            border-radius: 999px;
+            padding: 24px 22px;
+            border: 1px solid #9eb7df;
+            background: linear-gradient(135deg, #f4f8ff 0%, #f5f2ff 100%);
+            box-shadow: 0 12px 28px rgba(37, 79, 150, 0.13), 0 2px 4px rgba(91, 71, 180, 0.08);
+            z-index: 2;
+        }
+
+        .trust-core-label {
+            font-size: 12px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--costco-nav-blue);
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .trust-core-sub {
+            font-size: 13px;
+            line-height: 1.35;
+            color: #4c657d;
+            font-weight: 600;
+        }
+
+        .trust-core-rai {
+            margin-top: 6px;
+            font-size: 11px;
+            line-height: 1.25;
+            letter-spacing: 0.25px;
+            color: #5b69a8;
+            font-weight: 600;
+            opacity: 0.92;
+        }
+
+        .trust-principle {
+            --principle-accent: #2563eb;
+            position: absolute;
+            width: 290px;
+            border-radius: 14px;
+            border: 1px solid color-mix(in srgb, var(--principle-accent) 34%, #d6e1ed);
+            border-left: 4px solid var(--principle-accent);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--principle-accent) 11%, #ffffff) 0%, color-mix(in srgb, var(--principle-accent) 4%, #ffffff) 100%);
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            box-shadow: 0 8px 18px color-mix(in srgb, var(--principle-accent) 12%, rgba(16, 24, 40, 0.07)), 0 1px 2px rgba(16, 24, 40, 0.04);
+            z-index: 3;
+        }
+
+        .trust-principle-boundaries {
+            left: 22px;
+            top: 18px;
+            --principle-accent: #2563eb;
+        }
+
+        .trust-principle-context {
+            right: 22px;
+            top: 18px;
+            --principle-accent: #5b47b4;
+        }
+
+        .trust-principle-human {
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            --principle-accent: #76446f;
+        }
+
+        .trust-principle-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            border: 1px solid color-mix(in srgb, var(--principle-accent) 48%, #ffffff);
+            background: color-mix(in srgb, var(--principle-accent) 18%, #ffffff);
+            color: var(--principle-accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-principle-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.95;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .trust-principle-copy {
+            min-width: 0;
+        }
+
+        .trust-principle-label {
+            font-size: 11px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--costco-nav-blue);
+            line-height: 1.2;
+        }
+
+        .trust-principle-main {
+            margin-top: 3px;
+            font-size: 13px;
+            color: #304a61;
+            line-height: 1.35;
+            font-weight: 600;
+        }
+
+        .trust-outcome {
+            margin-top: 11px;
+            border: 1px solid #a9bddb;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #edf4ff 0%, #f3f0ff 50%, #f9eff9 100%);
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #2c4965;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .presenter-mode .slide-trust {
+            align-items: center;
+        }
+
+        .presenter-mode.notes-open .slide-trust {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-trust .slide-content {
+            margin-top: 4px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-framework {
+            margin-top: 10px;
+            padding: 12px 12px 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-visual {
+            min-height: 260px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core {
+            width: 300px;
+            max-width: calc(100% - 180px);
+            padding: 14px 14px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-label {
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-sub {
+            font-size: 12px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-core-rai {
+            margin-top: 4px;
+            font-size: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle {
+            width: 232px;
+            padding: 9px 10px;
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-boundaries {
+            left: 12px;
+            top: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-context {
+            right: 12px;
+            top: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-human {
+            bottom: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-icon svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-label {
+            font-size: 10px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-principle-main {
+            font-size: 12px;
+        }
+
+        .presenter-mode.notes-open .slide-trust .trust-outcome {
+            margin-top: 7px;
+            padding: 7px 9px;
+            font-size: 12px;
+        }
+
+        .presenter-mode.notes-open .slide-lens {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-lens .slide-content {
+            margin-top: -180px;
+        }
+
+        .presenter-mode.notes-open .slide-lens .cap-grid {
+            margin-top: 10px !important;
+        }
+
+        .presenter-mode.notes-open .slide-lens .cap-card {
+            padding: 12px 14px;
+        }
+
+        .presenter-mode.notes-open .slide-lens .takeaway {
+            margin-top: 8px;
+            padding: 10px 12px;
+        }
+
+        .presenter-mode.notes-open .slide-foundation,
+        .presenter-mode.notes-open .slide-capabilities {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-foundation .slide-content {
+            max-height: 23vh;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        .presenter-mode.notes-open .slide-capabilities .slide-content {
+            max-height: 22vh;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation,
+        .presenter-mode.is-fullscreen .slide-capabilities {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .slide-content,
+        .presenter-mode.is-fullscreen .slide-capabilities .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .slide-content {
+            margin-top: -6px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .slide-content,
+        .presenter-mode.is-fullscreen .slide-capabilities .slide-content {
+            margin-top: -14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation h2,
+        .presenter-mode.is-fullscreen .slide-capabilities h2,
+        .presenter-mode.is-fullscreen .slide-member-shift h2 {
+            margin-bottom: 6px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .tiles-grid {
+            margin-top: 16px;
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .tile {
+            padding: 18px 12px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-foundation .takeaway {
+            margin-top: 12px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-shift-layout {
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-situation-grid,
+        .presenter-mode.is-fullscreen .slide-member-shift .response-grid {
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-moment-item,
+        .presenter-mode.is-fullscreen .slide-member-shift .guidance-section {
+            padding: 12px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .member-moment-item {
+            min-height: 78px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .guidance-points {
+            gap: 5px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-member-shift .takeaway {
+            margin-top: 8px;
+            padding: 12px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-grid {
+            margin-top: 16px;
+            gap: 10px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-card {
+            padding: 16px 14px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .cap-card-example {
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.is-fullscreen .slide-capabilities .takeaway {
+            margin-top: 12px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-trust .trust-visual {
+            min-height: 310px;
+        }
+
+
+        /* === VALIDATION PATH === */
+        .slide2-opportunity .slide-content,
+        .slide3-priority .slide-content,
+        .slide-trust .slide-content {
+            position: relative;
+        }
+
+        .slide2-opportunity .section-label,
+        .slide3-priority .section-label,
+        .slide-trust .section-label {
+            display: none;
+        }
+
+        .slide2-opportunity .slide-content::before,
+        .slide3-priority .slide-content::before,
+        .slide-trust .slide-content::before {
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 15px;
+            line-height: 1;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3f6185;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .slide2-opportunity .slide-content::before {
+            content: "STRATEGIC OPPORTUNITY";
+        }
+
+        .slide3-priority .slide-content::before {
+            content: "PRIORITY-LED EXPERIENCE";
+        }
+
+        .slide-trust .slide-content::before {
+            content: "DESIGNED FOR TRUST";
+        }
+
+        .slide2-opportunity .slide-content::after,
+        .slide3-priority .slide-content::after,
+        .slide-trust .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .slide-roadmap .slide-content {
+            max-width: 1140px;
+            position: relative;
+        }
+
+        .slide-roadmap .section-label {
+            display: none;
+        }
+
+        .slide-roadmap .slide-content::before {
+            content: "VALIDATED EVOLUTION";
+            position: absolute;
+            left: -56px;
+            top: 14px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 15px;
+            line-height: 1;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3f6185;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .slide-roadmap .slide-content::after {
+            content: "";
+            position: absolute;
+            left: -67px;
+            top: 16px;
+            width: 2px;
+            height: 168px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #3f78b3 0%, #2f659f 100%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .slide-roadmap h2 {
+            margin-bottom: 12px;
+        }
+
+        .slide-roadmap .subtitle {
+            font-size: 16px;
+            line-height: 1.45;
+            max-width: 980px;
+            color: #4b6379;
+            margin-bottom: 10px;
+        }
+
+        .evo-framework {
+            margin-top: 8px;
+            border: 1px solid #d5e1ee;
+            border-radius: 14px;
+            background: #fbfdff;
+            padding: 12px 12px 10px;
+        }
+
+        .evo-rail {
+            display: grid;
+            grid-template-columns: 0.92fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .evo-rail-main {
+            grid-column: 2 / 5;
+            border: 1px solid #d9e5f1;
+            border-radius: 10px;
+            background: #f7fbff;
+            padding: 7px 8px 8px;
+        }
+
+        .evo-rail-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .evo-rail-label {
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #2e577f;
+            white-space: nowrap;
+        }
+
+        .evo-proof-chips {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .evo-proof-chip {
+            border: 1px solid #c7d8ea;
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 2px 7px;
+            font-size: 9px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #4f6a86;
+            line-height: 1.2;
+        }
+
+        .evo-rail-track {
+            position: relative;
+            height: 26px;
+        }
+
+        .evo-rail-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 8px;
+            height: 3px;
+            background: linear-gradient(90deg, #2f79c7 0%, #5159b7 58%, #744e97 100%);
+            border-radius: 99px;
+        }
+
+        .evo-gate-mark {
+            position: absolute;
+            transform: translateX(-50%);
+            display: grid;
+            justify-items: center;
+            gap: 1px;
+        }
+
+        .evo-gate-mark.g1 {
+            left: 33.333%;
+        }
+
+        .evo-gate-mark.g2 {
+            left: 66.666%;
+        }
+
+        .evo-gate-diamond {
+            width: 11px;
+            height: 11px;
+            background: #ffffff;
+            border: 2px solid #2e577f;
+            transform: rotate(45deg);
+            margin-top: 2px;
+        }
+
+        .evo-gate-label {
+            font-size: 9px;
+            letter-spacing: 0.65px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #607996;
+            line-height: 1;
+        }
+
+        .evo-grid {
+            display: grid;
+            grid-template-columns: 0.92fr 1fr 1fr 1fr;
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .evo-col {
+            position: relative;
+            display: grid;
+            gap: 6px;
+            align-content: start;
+        }
+
+        .evo-col:nth-child(n + 2) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .evo-col:not(:first-child)::before {
+            content: "";
+            position: absolute;
+            left: -13px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 4px;
+            border-radius: 999px;
+            background: #1f3e63;
+            box-shadow: 0 0 0 1px rgba(245, 250, 255, 0.95), 0 1px 2px rgba(20, 43, 67, 0.34);
+            z-index: 2;
+        }
+
+        .evo-col:not(:first-child)::after {
+            content: "";
+            position: absolute;
+            left: -2px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 10px solid #1f3e63;
+            filter: drop-shadow(0 0 1px rgba(245, 250, 255, 0.95)) drop-shadow(0 1px 1px rgba(20, 43, 67, 0.32));
+            z-index: 2;
+        }
+
+        .evo-phase-header {
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .evo-phase-header.set {
+            color: #5f7994;
+        }
+
+        .evo-phase-header.crawl {
+            color: #2f79c7;
+        }
+
+        .evo-phase-header.walk {
+            color: #5159b7;
+        }
+
+        .evo-phase-header.run {
+            color: #744e97;
+        }
+
+        .evo-foundation {
+            border: 1.5px solid #cfdceb;
+            background: linear-gradient(180deg, #f6f9fd 0%, #edf4fb 100%);
+            border-radius: 11px;
+            padding: 9px 9px;
+            align-self: stretch;
+            box-shadow: 0 8px 16px rgba(29, 53, 79, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+        }
+
+        .evo-foundation-copy {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .evo-foundation-copy li {
+            display: grid;
+            grid-template-columns: 18px 1fr;
+            gap: 8px;
+            align-items: start;
+            font-size: 11px;
+            line-height: 1.36;
+            color: #3d5870;
+            font-weight: 650;
+            border: 1px solid #cedced;
+            border-radius: 7px;
+            background: #ffffff;
+            padding: 8px 9px;
+        }
+
+        .evo-step-num {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #bfd1e4;
+            background: #eef4fb;
+            color: #4b6581;
+            font-size: 10px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .evo-phase {
+            --phase-fill: #2e77c4;
+            background: var(--phase-fill);
+            border-radius: 12px;
+            padding: 12px 11px 0;
+            color: #f8fbff;
+            border: 2px solid rgba(255, 255, 255, 0.42);
+            box-shadow: 0 14px 24px rgba(16, 24, 40, 0.22), 0 2px 5px rgba(16, 24, 40, 0.14);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+            flex: 1 1 auto;
+            overflow: hidden;
+        }
+
+        .evo-phase-crawl { --phase-fill: #2f79c7; }
+        .evo-phase-walk { --phase-fill: #5159b7; }
+        .evo-phase-run { --phase-fill: #744e97; }
+
+        .evo-card-capability {
+            font-size: 17px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 2px;
+            line-height: 1.05;
+            text-shadow: 0 1px 0 rgba(22, 38, 57, 0.2);
+        }
+
+        .evo-section {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .evo-section-label {
+            font-size: 10px;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            font-weight: 850;
+            color: rgba(230, 238, 255, 0.92);
+            line-height: 1.25;
+            white-space: nowrap;
+        }
+
+        .evo-section-copy {
+            font-size: 12px;
+            color: #eef5ff;
+            line-height: 1.35;
+            font-weight: 450;
+        }
+
+        .evo-section-copy.purpose {
+            font-size: 12px;
+            font-weight: 500;
+            color: #f7fbff;
+            line-height: 1.35;
+        }
+
+        .evo-card-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            background: rgba(248, 252, 255, 0.94);
+            padding: 9px 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            margin-left: -11px;
+            margin-right: -11px;
+            margin-bottom: 0;
+            min-height: 51px;
+            display: flex;
+            align-items: center;
+        }
+
+        .evo-card-footer .evo-section {
+            width: 100%;
+        }
+
+        .evo-card-footer .evo-section-label {
+            color: #294966;
+        }
+
+        .evo-card-footer .evo-section-copy {
+            color: #32516f;
+            font-weight: 450;
+        }
+
+        .evo-validation {
+            margin-top: 10px;
+            border: 1.5px solid #c9d9ea;
+            border-radius: 11px;
+            background: linear-gradient(180deg, #edf4fc 0%, #f6faff 100%);
+            padding: 11px 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .evo-validation-title {
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: var(--costco-nav-blue);
+        }
+
+        .evo-validation-flow {
+            text-align: center;
+            font-size: 14px;
+            color: #2f4d67;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .evo-validation-row {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            align-items: start;
+            gap: 12px;
+            border-top: 1px solid #d5e3f1;
+            padding-top: 8px;
+            padding-bottom: 2px;
+        }
+
+        .evo-validation-row-label {
+            font-size: 10px;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            font-weight: 850;
+            color: #4d6784;
+            text-align: left;
+            white-space: nowrap;
+            line-height: 1.32;
+        }
+
+        .evo-validation-row-items {
+            font-size: 13px;
+            color: #3f5871;
+            line-height: 1.35;
+            font-weight: 450;
+        }
+
+        .evo-validation-note {
+            margin-top: 5px;
+            font-size: 12px;
+            line-height: 1.32;
+            color: #55728f;
+            font-weight: 450;
+        }
+
+        .evo-measure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 10px;
+        }
+
+        .evo-measure-group {
+            border: 1px solid #dbe6f2;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.42);
+            padding: 7px 8px;
+            display: grid;
+            gap: 3px;
+        }
+
+        .evo-measure-label {
+            font-size: 11px;
+            letter-spacing: 0.65px;
+            text-transform: uppercase;
+            font-weight: 850;
+            color: #3e5c79;
+            line-height: 1.22;
+        }
+
+        .evo-measure-items {
+            font-size: 13px;
+            line-height: 1.3;
+            color: #3f5871;
+            font-weight: 450;
+        }
+
+        .evo-measure-qualifier {
+            margin-top: 6px;
+            font-size: 11px;
+            line-height: 1.28;
+            color: #627d97;
+            font-weight: 450;
+        }
+
+        .evo-takeaway {
+            margin-top: 5px;
+            margin-bottom: 0;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.3;
+            color: #2f506f;
+            font-weight: 700;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .slide-content {
+            margin-top: -8px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-framework {
+            margin-top: 8px;
+            padding: 9px 9px 8px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-grid,
+        .presenter-mode.notes-open .slide-roadmap .evo-rail {
+            gap: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-phase,
+        .presenter-mode.notes-open .slide-roadmap .evo-foundation,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation {
+            padding: 7px 7px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row {
+            grid-template-columns: 145px 1fr;
+            gap: 9px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-phase-header,
+        .presenter-mode.notes-open .slide-roadmap .evo-card-capability,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-flow {
+            font-size: 11px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-section-copy,
+        .presenter-mode.notes-open .slide-roadmap .evo-foundation-copy li,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row-items,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-note,
+        .presenter-mode.notes-open .slide-roadmap .evo-takeaway {
+            font-size: 11px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-section-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-row-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-proof-chip,
+        .presenter-mode.notes-open .slide-roadmap .evo-gate-label,
+        .presenter-mode.notes-open .slide-roadmap .evo-validation-title,
+        .presenter-mode.notes-open .slide-roadmap .evo-rail-label {
+            font-size: 9px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-col:not(:first-child)::before {
+            left: -11px;
+            width: 16px;
+            height: 3px;
+        }
+
+        .presenter-mode.notes-open .slide-roadmap .evo-col:not(:first-child)::after {
+            left: 0;
+            border-top-width: 6px;
+            border-bottom-width: 6px;
+            border-left-width: 8px;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap {
+            align-items: center;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap .slide-content {
+            margin-top: 0;
+        }
+
+        .presenter-mode.is-fullscreen .slide-roadmap .evo-framework {
+            margin-top: 10px;
+        }
+
+        /* === HUB SPOKE === */
+        .hub-spoke {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 36px;
+            position: relative;
+            height: 380px;
+        }
+
+        .hub-center {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--costco-nav-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.3;
+            padding: 20px;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0,59,100,0.2);
+        }
+
+        .spokes-ring {
+            position: absolute;
+            width: 480px;
+            height: 380px;
+        }
+
+        .spoke {
+            position: absolute;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .spoke:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .spoke:nth-child(2) { top: 18%; right: 0; }
+        .spoke:nth-child(3) { bottom: 18%; right: 0; }
+        .spoke:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .spoke:nth-child(5) { bottom: 18%; left: 0; }
+        .spoke:nth-child(6) { top: 18%; left: 0; }
+
+        .spoke.highlight {
+            border-color: var(--costco-blue);
+            background: var(--accent-light);
+        }
+
+        .slide-optional-future .spoke {
+            opacity: 0.68;
+            border-color: #d7e2ec;
+            color: #5a7085;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+        }
+
+        .slide-optional-future .spoke.highlight {
+            opacity: 0.88;
+            border-color: #a9c5df;
+            background: #edf4fb;
+            color: #315d86;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future {
+            align-items: flex-start;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content {
+            margin-top: -10px;
+            transform: scale(0.9);
+            transform-origin: top center;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future p.subtitle {
+            font-size: 14px !important;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .compare-col {
+            padding: 10px 10px !important;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .compare-col ul li {
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .takeaway {
+            margin-top: 8px !important;
+            padding: 10px 12px;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content > div[style*="font-size: 12px"] {
+            font-size: 11px !important;
+            margin-top: 6px !important;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .slide-content > div[style*="font-size: 11px"] {
+            font-size: 10px !important;
+            margin-top: 4px !important;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .hub-spoke {
+            margin-top: 22px;
+            height: 300px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .spokes-ring {
+            width: 430px;
+            height: 300px;
+        }
+
+        .presenter-mode.notes-open .slide-optional-future .takeaway {
+            margin-top: 20px !important;
+        }
+
+        .presenter-mode.is-fullscreen .slide-optional-future {
+            align-items: center;
+        }
+
+        /* === DOT INDICATORS === */
+        .dot-indicators {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--costco-blue);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* === ARROWS === */
+        .slide-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: 1px solid #d0d5dd;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--costco-nav-blue);
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: all 0.2s;
+        }
+
+        .slide-arrow:hover {
+            background: var(--accent-light);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .slide-arrow.is-disabled {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .slide-arrow.left { left: 20px; }
+        .slide-arrow.right { right: 20px; }
+
+        /* === PRESENTER NOTES === */
+        .presenter-notes {
+            display: none;
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1200;
+            background: rgba(0, 59, 100, 0.96);
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+            max-height: 34vh;
+            overflow-y: auto;
+        }
+
+        .presenter-mode.notes-open.active-slide-2 .presenter-notes {
+            max-height: 28vh;
+        }
+
+        .presenter-mode.notes-open.active-slide-8 .presenter-notes {
+            max-height: 24vh;
+        }
+
+        .presenter-notes.visible {
+            display: block;
+        }
+
+        .notes-title {
+            font-size: 11px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .notes-body {
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .notes-toggle-btn {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1300;
+            background: var(--costco-nav-blue);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .notes-toggle-btn:hover {
+            background: #0b4a78;
+        }
+
+        .notes-toggle-btn.visible {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .presenter-mode.notes-open:not(.is-fullscreen) .slide {
+            padding-bottom: 190px;
+        }
+
+        .presenter-mode .slide-capabilities .cap-takeaway {
+            margin-bottom: 84px;
+        }
+
+
+        /* === FULLSCREEN === */
+        :fullscreen .disclaimer-bar,
+        :fullscreen .nav-bar { display: none; }
+        :fullscreen .slides-container { padding-top: 0; }
+        :fullscreen .slide { height: 100vh; }
+
+        /* === MOBILE RESPONSIVE === */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 20px 60px;
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+
+            .presenter-mode.notes-open:not(.is-fullscreen) .slide {
+                padding-bottom: 240px;
+            }
+
+            .slide h1 { font-size: 28px; }
+            .slide h2 { font-size: 22px; }
+            .slide p.subtitle { font-size: 15px; }
+
+            .slide2-intro {
+                white-space: normal;
+            }
+
+            .slide2-journey {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 14px;
+            }
+
+            .slide2-flow-arrow {
+                display: none;
+            }
+
+            .slide2-path {
+                padding: 12px;
+            }
+
+            .slide2-path::before {
+                display: none;
+            }
+
+            .slide2-steps {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .slide2-step {
+                min-height: 62px;
+            }
+
+            .slide2-takeaway {
+                margin-top: 10px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .slide3-priority .priority-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .slide3-priority .priority-card {
+                min-height: 0;
+                padding: 14px 14px;
+            }
+
+            .slide3-priority .priority-intro {
+                font-size: 15px;
+            }
+
+            .slide3-priority .priority-qualifier {
+                margin-bottom: 8px;
+            }
+
+            .slide3-priority .priority-takeaway {
+                margin-top: 10px;
+            }
+
+            .hero-content h1 { font-size: 30px; }
+            .hero-content .hero-line { font-size: 16px; }
+
+            .tiles-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .tile { padding: 14px 8px; }
+            .tile-label { font-size: 11px; }
+
+            .moments-grid { grid-template-columns: 1fr; }
+            .moment-card { padding: 16px; }
+
+            .comparison { grid-template-columns: 1fr; gap: 16px; }
+            .compare-col { padding: 18px; }
+
+            .cap-grid { grid-template-columns: 1fr; }
+
+            .slide-trust .trust-support-line {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .trust-framework {
+                margin-top: 14px;
+                padding: 12px;
+            }
+
+            .trust-visual {
+                min-height: 0;
+                display: grid;
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .trust-connectors {
+                display: none;
+            }
+
+            .trust-core {
+                position: static;
+                transform: none;
+                width: auto;
+                max-width: none;
+                padding: 11px 10px;
+                border-radius: 12px;
+            }
+
+            .trust-core-sub {
+                font-size: 12px;
+            }
+
+            .trust-core-rai {
+                margin-top: 4px;
+                font-size: 10px;
+            }
+
+            .trust-principle {
+                position: static;
+                transform: none;
+                width: auto;
+                gap: 8px;
+                padding: 10px 10px;
+            }
+
+            .trust-principle-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .trust-principle-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .trust-principle-main {
+                font-size: 13px;
+            }
+
+            .trust-outcome {
+                margin-top: 9px;
+                padding: 8px 9px;
+                font-size: 12px;
+            }
+
+            .evo-framework {
+                margin-top: 12px;
+                padding: 10px 10px 9px;
+            }
+
+            .evo-top,
+            .evo-gates,
+            .evo-lenses {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .evo-phase,
+            .evo-foundation {
+                transform: none !important;
+                padding: 9px 9px;
+            }
+
+            .evo-arrow {
+                font-size: 36px;
+                line-height: 1;
+                padding: 2px 0;
+            }
+
+            .evo-gate-spacer {
+                display: none;
+            }
+
+            .evo-phase-label,
+            .evo-foundation-title,
+            .evo-measure-title,
+            .evo-lens-title,
+            .evo-gate-title {
+                font-size: 10px;
+            }
+
+            .evo-phase-level {
+                font-size: 12px;
+            }
+
+            .evo-list li,
+            .evo-phase-capability,
+            .evo-phase-copy,
+            .evo-phase-qualifier,
+            .evo-gate-list li,
+            .evo-gate-failfast,
+            .evo-measure-cycle,
+            .evo-measure-methods,
+            .evo-lens-copy,
+            .evo-lenses-qualifier,
+            .evo-reference-strip {
+                font-size: 11px;
+            }
+
+            .evo-gate {
+                padding: 7px 7px;
+            }
+
+            .val-takeaway {
+                margin-top: 8px;
+                font-size: 12px;
+                padding: 8px 9px;
+            }
+
+            /* Hub-spoke → stacked list on mobile */
+            .hub-spoke {
+                position: static;
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .hub {
+                position: static;
+                transform: none;
+                width: auto;
+                margin-bottom: 12px;
+            }
+            .spoke {
+                position: static;
+                transform: none !important;
+                width: 80%;
+                text-align: center;
+            }
+
+            /* Nav */
+            .slide-arrow { width: 36px; height: 36px; font-size: 16px; }
+            .slide-arrow.left { left: 8px; }
+            .slide-arrow.right { right: 8px; }
+
+            .presenter-notes {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                padding: 12px;
+                max-height: 42vh;
+            }
+
+            .presenter-mode.notes-open.active-slide-2 .presenter-notes {
+                max-height: 36vh;
+            }
+
+            .notes-body {
+                font-size: 13px;
+            }
+
+            .notes-toggle-btn {
+                right: 10px;
+                bottom: 10px;
+                padding: 9px 12px;
+            }
+
+            .presenter-mode .slide-capabilities .cap-takeaway {
+                margin-bottom: 0;
+            }
+
+            .presenter-mode.notes-open .slide-trust {
+                align-items: flex-start;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide-content {
+                margin-top: -6px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-journey {
+                margin-top: 10px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-node,
+            .presenter-mode.notes-open .slide2-opportunity .slide2-path {
+                padding: 10px 12px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-step {
+                min-height: 56px;
+                padding: 8px 6px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-step-label {
+                font-size: 11px;
+            }
+
+            .presenter-mode.notes-open .slide2-opportunity .slide2-takeaway {
+                margin-top: 8px;
+                padding: 9px 12px 9px 26px;
+                font-size: 13px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-grid {
+                margin-top: 10px;
+                gap: 8px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-card {
+                padding: 12px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-copy {
+                font-size: 13px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-icon-badge {
+                width: 30px;
+                height: 30px;
+            }
+
+            .presenter-mode.notes-open .slide3-priority .priority-icon-badge svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .presenter-mode.notes-open .slide-trust .slide-content {
+                margin-top: 0;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-framework {
+                margin-top: 10px;
+                padding: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-visual {
+                display: grid;
+                gap: 6px;
+                padding: 8px;
+                min-height: 0;
+            }
+
+            .presenter-mode.notes-open .slide-trust .trust-core,
+            .presenter-mode.notes-open .slide-trust .trust-principle {
+                position: static;
+                transform: none;
+                width: auto;
+                max-width: none;
+            }
+
+            .presenter-mode.notes-open .slide-lens .cap-grid {
+                margin-top: 8px !important;
+            }
+
+            .presenter-mode.notes-open .slide-lens .cap-card {
+                padding: 11px 12px;
+            }
+
+            .presenter-mode.notes-open .slide-lens .takeaway {
+                margin-top: 8px;
+            }
+
+            .presenter-mode.notes-open .slide-lens .slide-content {
+                margin-top: -40px;
+            }
+
+            .slide-member-shift .member-shift-layout {
+                gap: 10px;
+            }
+
+            .slide-member-shift .member-situation-grid,
+            .slide-member-shift .response-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .slide-member-shift .member-moment-item,
+            .slide-member-shift .guidance-section {
+                padding: 10px 12px;
+            }
+
+            .slide-member-shift .member-moment-item {
+                min-height: 0;
+            }
+
+            .slide-member-shift .guidance-section {
+                margin-bottom: 0;
+            }
+
+            .slide-member-shift .takeaway {
+                margin-top: 10px;
+            }
+
+            .slide-closing-discussion .closing-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .slide-closing-discussion .closing-card {
+                padding: 12px 13px;
+            }
+
+            .slide-closing-discussion .takeaway {
+                margin-top: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap {
+                align-items: flex-start;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .slide-content {
+                margin-top: -4px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-framework {
+                margin-top: 8px;
+                padding: 8px 8px 7px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-top,
+            .presenter-mode.notes-open .slide-roadmap .evo-gates,
+            .presenter-mode.notes-open .slide-roadmap .evo-lenses {
+                gap: 5px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-arrow {
+                font-size: 14px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-phase,
+            .presenter-mode.notes-open .slide-roadmap .evo-foundation,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-band,
+            .presenter-mode.notes-open .slide-roadmap .evo-lens {
+                padding: 7px 7px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .evo-list li,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-capability,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-copy,
+            .presenter-mode.notes-open .slide-roadmap .evo-phase-qualifier,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-title,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-list li,
+            .presenter-mode.notes-open .slide-roadmap .evo-gate-failfast,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-cycle,
+            .presenter-mode.notes-open .slide-roadmap .evo-measure-methods,
+            .presenter-mode.notes-open .slide-roadmap .evo-lens-copy,
+            .presenter-mode.notes-open .slide-roadmap .evo-lenses-qualifier,
+            .presenter-mode.notes-open .slide-roadmap .evo-reference-strip {
+                font-size: 10px;
+            }
+
+            .presenter-mode.notes-open .slide-roadmap .val-takeaway {
+                margin-top: 7px;
+                padding: 7px 8px;
+                font-size: 11px;
+            }
+
+            .presenter-mode.is-fullscreen .slide-roadmap { align-items: center; }
+
+            .presenter-mode.is-fullscreen .slide-trust { align-items: center; }
+
+            .nav-bar { padding: 8px 12px; }
+            .dot-indicators { bottom: 12px; }
+
+            .takeaway { font-size: 13px; padding: 12px 14px; }
+
+            .slide-appendix-divider .slide-content {
+                padding: 30px 20px;
+            }
+
+            .slide-appendix-divider h2 {
+                font-size: 34px;
+            }
+
+            .slide-appendix-divider .slide-content::before {
+                left: 0;
+                right: 0;
+                top: -30px;
+                padding-left: 0;
+                border-left: 0;
+                border-bottom-width: 1px;
+                padding-bottom: 5px;
+                font-size: 36px;
+                letter-spacing: 1.2px;
+            }
+
+            .appendix-start-note {
+                margin-top: 16px;
+                font-size: 12px;
+            }
+
+            /* CTA slide */
+            .cta-links { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- DISCLAIMER -->
+    <div class="disclaimer-bar">
+        Concept exploration · Not affiliated with or endorsed by Costco · For discussion only
+    </div>
+
+    <!-- NAV -->
+    <div class="nav-bar">
+        <div class="nav-left">Guided Pharmacy Care — Concept Exploration <span style="opacity:0.5; margin-left:8px;">August 2026</span></div>
+        <div class="nav-right">
+            <button class="fullscreen-btn" onclick="goToSlide(0)" title="Back to start">↺ Start</button>
+            <span class="slide-counter"><span id="currentSlide">1</span> / 11</span>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+        </div>
+    </div>
+
+    <!-- SLIDES -->
+    <div class="slides-container" id="slidesContainer">
+
+        <!-- SLIDE 1: OPENING -->
+        <section class="slide slide-hero">
+            <div class="slide-content hero-content">
+                <div class="section-label" style="margin-bottom: 14px;">Costco Pharmacy · Outside-In Concept Exploration</div>
+                <div class="hero-line">In pharmacy, clarity is care.</div>
+                <h1>Enabling a more connected Costco Pharmacy experience</h1>
+                <p class="subtitle">An outside-in exploration of how guided support could complement existing capabilities, reduce member effort, and support Costco Pharmacy's priorities.</p>
+                <div class="hero-meta">
+                    Prepared by Sunil Venugopal &nbsp;·&nbsp; For discussion &nbsp;·&nbsp; August 7, 2026
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: STARTING POINT -->
+        <section class="slide slide-foundation slide2-opportunity">
+            <div class="slide-content">
+                <div class="section-label">STRATEGIC OPPORTUNITY</div>
+                <h2>The opportunity is in the journey between member intent and outcome</h2>
+                <p class="subtitle" style="font-size: 16px; max-width: 930px;">The need and destination may remain the same. The experience in between can become more contextual, continuous, and easier to complete.</p>
+
+                <div class="slide2-journey">
+                    <div class="slide2-node slide2-start">
+                        <div class="slide2-node-mark start"></div>
+                        <div class="cap-card-title">Member intent</div>
+                        <div class="cap-card-example">What I am trying to accomplish</div>
+                    </div>
+
+                    <div class="slide2-flow-arrow" aria-hidden="true"></div>
+
+                    <div class="slide2-path">
+                        <div class="cap-card-title slide2-path-title">A more connected path</div>
+                        <div class="slide2-steps">
+                            <div class="slide2-step"><span class="slide2-step-index">1</span><div class="slide2-step-label">Understand the need</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">2</span><div class="slide2-step-label">Use relevant permitted context</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">3</span><div class="slide2-step-label">Carry progress forward</div></div>
+                            <div class="slide2-step"><span class="slide2-step-index">4</span><div class="slide2-step-label">Guide or hand off without restarting</div></div>
+                        </div>
+                    </div>
+
+                    <div class="slide2-flow-arrow" aria-hidden="true"></div>
+
+                    <div class="slide2-node slide2-end">
+                        <div class="slide2-node-mark end"></div>
+                        <div class="cap-card-title">Right outcome</div>
+                        <div class="cap-card-example">Existing workflow or pharmacy support</div>
+                    </div>
+                </div>
+
+                <div class="takeaway slide2-takeaway">The destination may not change. The experience getting there can.</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: PRIORITY-LED EXPERIENCE -->
+        <section class="slide slide-capabilities slide3-priority">
+            <div class="slide-content">
+                <div class="section-label">PRIORITY-LED EXPERIENCE</div>
+                <h2>One approach. Different priorities. Different experiences.</h2>
+                <p class="priority-intro">The same foundation can be tailored around growth, member value, or operational efficiency.</p>
+                <p class="priority-qualifier">Illustrative strategic directions, not assumptions about Costco Pharmacy priorities.</p>
+                <div class="cap-grid priority-grid">
+                    <div class="cap-card priority-card priority-card-growth">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M4 18h16" />
+                                    <path d="M6 15l4-4 3 3 5-6" />
+                                    <path d="M17 8h3v3" />
+                                    <path d="M7 18v-2M11 18v-4M15 18v-2M19 18v-6" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">GROWTH</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Acquire and retain more prescriptions</div>
+                    </div>
+
+                    <div class="cap-card priority-card priority-card-value">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M12 20.5S4.5 16.2 4.5 10.5c0-2.1 1.5-3.7 3.6-3.7 1.7 0 3 1 3.9 2.3.9-1.3 2.2-2.3 3.9-2.3 2.1 0 3.6 1.6 3.6 3.7 0 5.7-7.5 10-7.5 10z" />
+                                    <path d="M18.5 4.5v4M16.5 6.5h4" />
+                                    <path d="M4.5 17.5h4" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">MEMBER VALUE</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Strengthen convenience, trust, satisfaction, and loyalty</div>
+                    </div>
+
+                    <div class="cap-card priority-card priority-card-efficiency">
+                        <div class="priority-header">
+                            <span class="priority-icon-badge" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M4 15a8 8 0 0 1 16 0" />
+                                    <path d="M6 15h12" />
+                                    <path d="M12 15l3.2-4" />
+                                    <path d="M7 18h10" />
+                                    <path d="M18 5l1 2M21 7l-2 1" />
+                                </svg>
+                            </span>
+                            <div class="cap-card-title priority-title">OPERATIONAL EFFICIENCY</div>
+                        </div>
+                        <div class="cap-card-example priority-copy">Improve digital completion and reduce avoidable calls</div>
+                    </div>
+                </div>
+                <div class="takeaway priority-takeaway">Priority shapes the journey, starting scenario, and measures.</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: TRUST -->
+        <section class="slide slide-trust">
+            <div class="slide-content">
+                <div class="section-label">DESIGNED FOR TRUST</div>
+                <h2>Trust must be designed into the experience</h2>
+                <p class="trust-support-line">Clear boundaries, responsible context, and intentional human support work together throughout the journey.</p>
+                <div class="trust-framework">
+                    <div class="trust-visual">
+                        <svg class="trust-connectors" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                            <path d="M282 140 C380 195, 430 220, 500 260" stroke="#9dbbe6" />
+                            <path d="M718 140 C620 195, 570 220, 500 260" stroke="#b4a7e6" />
+                            <path d="M500 390 C500 340, 500 306, 500 260" stroke="#c49cbc" />
+                        </svg>
+
+                        <div class="trust-core">
+                            <div class="trust-core-label">GUIDED PHARMACY EXPERIENCE</div>
+                            <div class="trust-core-sub">Help appropriately · Protect member control · Involve people when needed</div>
+                            <div class="trust-core-rai">Responsible AI principles applied throughout</div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-boundaries">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z" />
+                                    <path d="M8.5 12l2.2 2.2 4.8-5" />
+                                    <path d="M9 7.3c1.9.9 4.1.9 6 0" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">CLEAR BOUNDARIES</div>
+                                <div class="trust-principle-main">Support members without replacing pharmacist judgment.</div>
+                            </div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-context">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <path d="M4 7h13a3 3 0 0 1 3 3v7H7a3 3 0 0 1-3-3V7z" />
+                                    <path d="M7 7V5h11a2 2 0 0 1 2 2v3" />
+                                    <path d="M8 12h8M8 15h5" />
+                                    <circle cx="18" cy="17" r="2.5" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">RESPONSIBLE USE OF CONTEXT</div>
+                                <div class="trust-principle-main">Use approved information, defined rules, and visible member control.</div>
+                            </div>
+                        </div>
+
+                        <div class="trust-principle trust-principle-human">
+                            <span class="trust-principle-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                                    <circle cx="8" cy="8" r="3" />
+                                    <circle cx="16.5" cy="9.5" r="2.5" />
+                                    <path d="M3.5 18c1.1-2.7 3-4 5.5-4s4.4 1.3 5.5 4" />
+                                    <path d="M14 17c.8-1.8 2.2-2.8 4-2.8 1.4 0 2.5.5 3.5 1.5" />
+                                    <path d="M16 5h5M19 2l3 3-3 3" />
+                                </svg>
+                            </span>
+                            <div class="trust-principle-copy">
+                                <div class="trust-principle-label">INTENTIONAL HUMAN SUPPORT</div>
+                                <div class="trust-principle-main">Hand off with useful context when judgment or assistance is needed.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trust-outcome">Member control preserved · Pharmacist judgment protected · No unnecessary restart</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: EVOLUTION + VALIDATION -->
+        <section class="slide slide-roadmap">
+            <div class="slide-content">
+                <div class="section-label">VALIDATED EVOLUTION</div>
+                <h2>Start focused. Measure continuously. Expand only when value is proven.</h2>
+                <p class="subtitle">Capability grows from guidance to assistance to anticipation—each step earned through evidence.</p>
+
+                <div class="evo-framework">
+                    <div class="evo-rail">
+                        <div></div>
+                        <div class="evo-rail-main">
+                            <div class="evo-rail-head">
+                                <div class="evo-rail-label">ADVANCE ONLY WHEN PROVEN</div>
+                                <div class="evo-proof-chips" aria-label="Shared proof criteria">
+                                    <div class="evo-proof-chip">Value</div>
+                                    <div class="evo-proof-chip">Trust / Responsible AI</div>
+                                    <div class="evo-proof-chip">Operational readiness</div>
+                                </div>
+                            </div>
+                            <div class="evo-rail-track" aria-hidden="true">
+                                <div class="evo-rail-line"></div>
+                                <div class="evo-gate-mark g1">
+                                    <div class="evo-gate-diamond"></div>
+                                    <div class="evo-gate-label">Gate 1</div>
+                                </div>
+                                <div class="evo-gate-mark g2">
+                                    <div class="evo-gate-diamond"></div>
+                                    <div class="evo-gate-label">Gate 2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evo-grid">
+                        <div class="evo-col">
+                            <div class="evo-phase-header set">SET DIRECTION</div>
+                            <div class="evo-foundation">
+                                <ul class="evo-foundation-copy">
+                                    <li><span class="evo-step-num">1</span><span>Define the North Star</span></li>
+                                    <li><span class="evo-step-num">2</span><span>Establish the baseline</span></li>
+                                    <li><span class="evo-step-num">3</span><span>Set success thresholds</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="evo-col">
+                            <div class="evo-phase-header crawl">CRAWL</div>
+                            <div class="evo-phase evo-phase-crawl">
+                                <div class="evo-card-capability">GUIDE</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Helps the member find the right path</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Clarifies the need and routes to the right workflow or person</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">LIMIT:</div><div class="evo-section-copy">Does not perform the task</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="evo-col">
+                            <div class="evo-phase-header walk">WALK</div>
+                            <div class="evo-phase evo-phase-walk">
+                                <div class="evo-card-capability">ASSIST</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Helps complete parts of the task</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Carries approved context into the workflow and reduces repeated effort</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">CONTROL:</div><div class="evo-section-copy">Member reviews and confirms key actions</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="evo-col">
+                            <div class="evo-phase-header run">RUN</div>
+                            <div class="evo-phase evo-phase-run">
+                                <div class="evo-card-capability">ANTICIPATE</div>
+                                <div class="evo-section"><div class="evo-section-label">WHAT:</div><div class="evo-section-copy purpose">Surfaces the next relevant need</div></div>
+                                <div class="evo-section"><div class="evo-section-label">HOW:</div><div class="evo-section-copy">Uses permitted signals to offer timely next steps</div></div>
+                                <div class="evo-card-footer">
+                                    <div class="evo-section"><div class="evo-section-label">GUARDRAIL:</div><div class="evo-section-copy">Consent-based and safeguarded</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="evo-validation">
+                        <div class="evo-validation-title">VALIDATE THROUGHOUT</div>
+                        <div class="evo-validation-flow">Test the hypothesis → Measure the impact → Decide the next step</div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">HOW WE TEST</div>
+                            <div class="evo-validation-row-items">Experiments · A/B tests · Prototype testing · Controlled pilots</div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">SIGNALS WE USE</div>
+                            <div class="evo-validation-row-items">Telemetry · Explicit feedback · Qualitative insights · Operational data</div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">WHAT WE MEASURE</div>
+                            <div>
+                                <div class="evo-measure-grid">
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Member value</div>
+                                        <div class="evo-measure-items">HRR · Completion · Effort</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Business value</div>
+                                        <div class="evo-measure-items">Acquisition · Retention · Service adoption</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Operational readiness</div>
+                                        <div class="evo-measure-items">Handoff quality · Avoidable calls · Workflow reliability</div>
+                                    </div>
+                                    <div class="evo-measure-group">
+                                        <div class="evo-measure-label">Trust &amp; Responsible AI</div>
+                                        <div class="evo-measure-items">Member control · Boundary adherence · Correct escalation</div>
+                                    </div>
+                                </div>
+                                <div class="evo-measure-qualifier">Illustrative measures; final KPIs depend on the selected North Star and scenario.</div>
+                            </div>
+                        </div>
+                        <div class="evo-validation-row">
+                            <div class="evo-validation-row-label">DECISION</div>
+                            <div class="evo-validation-row-items">Advance · Iterate · Change direction · Stop</div>
+                        </div>
+                    </div>
+
+                    <div class="evo-takeaway">More capability requires more evidence and stronger safeguards.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: PROTOTYPE -->
+        <section class="slide slide-hero slide-prototype">
+            <div class="slide-content hero-content">
+                <div class="section-label">MAKE THE HYPOTHESIS TANGIBLE</div>
+                <h1>Use the prototype to test the operating model</h1>
+                <p class="subtitle">Using Member Value as the starting lens, one member journey shows how guidance, assistance, and anticipation could evolve through evidence.</p>
+                <div class="prototype-review">
+                    <div class="prototype-lens-label">ILLUSTRATIVE STARTING LENS: MEMBER VALUE</div>
+                    <div class="prototype-beats" aria-label="Three demo beats">
+                        <div class="prototype-beat">
+                            <div class="prototype-beat-label">GUIDE</div>
+                            <div class="prototype-beat-title">Find the right path</div>
+                            <div class="prototype-beat-example">Example: Move another prescription</div>
+                        </div>
+                        <div class="prototype-beat">
+                            <div class="prototype-beat-label">ASSIST</div>
+                            <div class="prototype-beat-title">Reduce repeated effort</div>
+                            <div class="prototype-beat-example">Example: Continue the transfer with approved context</div>
+                        </div>
+                        <div class="prototype-beat">
+                            <div class="prototype-beat-label">ANTICIPATE</div>
+                            <div class="prototype-beat-title">Surface the next relevant need</div>
+                            <div class="prototype-beat-example">Example: Lisinopril refill due</div>
+                        </div>
+                    </div>
+                    <div class="prototype-review-label">As you review, consider:</div>
+                    <ul class="prototype-review-items">
+                        <li>What visibly improves for the member?</li>
+                        <li>What should be measured first?</li>
+                        <li>Where would integration, governance, or human support be needed?</li>
+                    </ul>
+                    <div class="prototype-note">These are hypotheses to pressure-test, not final architecture or roadmap commitments.</div>
+                </div>
+                <div class="prototype-open-link">
+                    <a href="guided-pharmacy-care-prototype.html" style="display: inline-block; background: var(--costco-blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,93,170,0.3);">Open the Prototype →</a>
+                </div>
+                <div class="hero-meta">
+                    The actual first scenario should be selected using Costco Pharmacy's North Star, member insights, operational data, and baseline performance.
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: CLOSING DISCUSSION -->
+        <section class="slide slide-closing-discussion">
+            <div class="slide-content">
+                <div class="section-label">CLOSING DISCUSSION</div>
+                <h2>Collaborative discussion before any decision</h2>
+                <div class="closing-grid">
+                    <div class="closing-card">
+                        <div class="closing-card-title">1. What resonated?</div>
+                        <div class="closing-card-body">Which outcome, member moment, or interaction pattern felt most relevant?</div>
+                    </div>
+                    <div class="closing-card">
+                        <div class="closing-card-title">2. What should we challenge?</div>
+                        <div class="closing-card-body">Where does this outside-in hypothesis not match Costco Pharmacy's reality?</div>
+                    </div>
+                    <div class="closing-card">
+                        <div class="closing-card-title">3. What may be worth validating first?</div>
+                        <div class="closing-card-body">Which North Star and journey should we study first, and what baseline data or constraints are required?</div>
+                    </div>
+                </div>
+                <div class="takeaway">A possible next step: align on the desired outcome, select one journey, establish the baseline, and decide whether a responsible first test is worth exploring.</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: APPENDIX DIVIDER -->
+        <section class="slide slide-appendix-divider">
+            <div class="slide-content">
+                <div class="section-label">APPENDIX</div>
+                <h2>Supporting detail for discussion</h2>
+                <p class="subtitle">Additional context removed from the core narrative, for deeper review and Q&amp;A.</p>
+                <div class="appendix-start-note">Supporting material begins on the next slide</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: NAVIGATION VS GUIDANCE -->
+        <section class="slide slide-shift">
+            <div class="slide-content">
+                <div class="section-label">APPENDIX · NAVIGATION VS GUIDANCE</div>
+                <h2>Navigation remains essential; guidance reduces decision effort</h2>
+                <div class="comparison">
+                    <div class="compare-col today">
+                        <h3>Navigation-first</h3>
+                        <div class="compare-subtitle">Member maps their need to site structure</div>
+                        <ul>
+                            <li><span class="step-dot"></span>Find a likely service page</li>
+                            <li><span class="step-dot"></span>Interpret options and policy details</li>
+                            <li><span class="step-dot"></span>Decide whether to self-serve or call</li>
+                        </ul>
+                    </div>
+                    <div class="compare-col future">
+                        <h3>Guided support</h3>
+                        <div class="compare-subtitle">Member starts with intent, then moves to action</div>
+                        <ul>
+                            <li><span class="step-dot"></span>Ask in their own words</li>
+                            <li><span class="step-dot"></span>Receive clear next-step guidance</li>
+                            <li><span class="step-dot"></span>Enter the right workflow with context carried forward</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: LEARNING QUESTIONS -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="section-label">APPENDIX · LEARNING QUESTIONS</div>
+                <h2>What baseline and evidence would strengthen a first-test decision?</h2>
+                <div class="cap-grid">
+                    <div class="cap-card">
+                        <div class="cap-card-header"><span class="cap-card-icon">📍</span><span class="cap-card-title">Journey selection</span></div>
+                        <div class="cap-card-example">Which member journey has the strongest mix of value, feasibility, and urgency?</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header"><span class="cap-card-icon">📊</span><span class="cap-card-title">Baseline performance</span></div>
+                        <div class="cap-card-example">Current completion, abandonment, call drivers, and resolution times for the selected journey.</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header"><span class="cap-card-icon">🧠</span><span class="cap-card-title">Behavioral signals</span></div>
+                        <div class="cap-card-example">Where members hesitate, repeat steps, or switch to staff assistance.</div>
+                    </div>
+                    <div class="cap-card">
+                        <div class="cap-card-header"><span class="cap-card-icon">🛡️</span><span class="cap-card-title">Guardrail readiness</span></div>
+                        <div class="cap-card-example">Content governance, policy boundaries, handoff conditions, and auditability requirements.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: OPTIONAL FUTURE -->
+        <section class="slide slide-optional-future">
+            <div class="slide-content" style="text-align: left; max-width: 980px;">
+                <div class="section-label">OPTIONAL FUTURE VISION</div>
+                <h2>Connected experiences. One continuous Costco member journey.</h2>
+                <p class="subtitle" style="font-size: 16px; max-width: 900px;">Context moves with the member, so every handoff continues the journey instead of restarting it.</p>
+
+                <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: center;">
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Book Thailand trip</div></div>
+                    <div style="font-size: 16px; color: #7b97b3; text-align: center;">-></div>
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Prepare for travel</div></div>
+                    <div style="font-size: 16px; color: #7b97b3; text-align: center;">-></div>
+                    <div class="cap-card" style="padding: 10px 10px; text-align: center;"><div class="cap-card-title" style="font-size: 12px;">Complete pharmacy actions</div></div>
+                </div>
+
+                <div style="margin-top: 10px; display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 10px; align-items: start;">
+                    <div class="compare-col today" style="padding: 12px 12px;">
+                        <h3>Costco Travel experience</h3>
+                        <ul>
+                            <li><span class="step-dot"></span>Understands destination: Thailand</li>
+                            <li><span class="step-dot"></span>Understands travel dates and trip context</li>
+                            <li><span class="step-dot"></span>Understands relevant member intent</li>
+                        </ul>
+                    </div>
+
+                    <div class="compare-col future" style="padding: 10px 10px; border-style: dashed;">
+                        <div class="cap-card-title" style="font-size: 12px; margin-bottom: 6px;">Handoff with context - continue, don't restart</div>
+                        <div style="font-size: 11px; color: #4f6579; line-height: 1.35;">Thailand destination · travel dates · member intent · permitted information · information already provided · progress already made · unresolved pharmacy need</div>
+                    </div>
+
+                    <div class="compare-col future" style="padding: 12px 12px;">
+                        <h3>Costco Pharmacy experience</h3>
+                        <ul>
+                            <li><span class="step-dot"></span>Surfaces relevant travel-health guidance</li>
+                            <li><span class="step-dot"></span>Understands refill timing without repetition</li>
+                            <li><span class="step-dot"></span>Offers early-refill or immunization paths</li>
+                            <li><span class="step-dot"></span>Connects pharmacy staff with useful context when needed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="takeaway" style="margin-top: 10px;">The member does not repeat their situation, re-enter information, or start over.</div>
+                <div style="margin-top: 8px; font-size: 12px; color: #5a7085; line-height: 1.35;"><strong>Foundation:</strong> Member permission · Identity · Approved context · Safeguards · Existing workflows · Human support</div>
+                <div style="margin-top: 6px; font-size: 11px; color: #6a8197; text-align: center;">Optional future vision, not part of the initial MVP and not a proposed Costco architecture. Broader use depends on evidence, consent, relevance, feasibility, and business priorities.</div>
+                <div style="margin-top: 4px; font-size: 11px; color: #6a8197; text-align: center;">The same contextual-handoff pattern could eventually connect other complex Costco member journeys.</div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="slide-arrow left" id="prevArrow" onclick="prevSlide()" aria-label="Previous slide">&#8249;</div>
+    <div class="slide-arrow right" id="nextArrow" onclick="nextSlide()" aria-label="Next slide">&#8250;</div>
+
+    <div class="dot-indicators" id="dotIndicators"></div>
+
+    <script>
+        let currentIndex = 0;
+        const totalSlides = 11;
+
+        function updateActiveSlideClass() {
+            const body = document.body;
+            body.className = body.className.replace(/\bactive-slide-\d+\b/g, '').trim();
+            body.classList.add(`active-slide-${currentIndex + 1}`);
+        }
+
+        function syncFullscreenState() {
+            document.body.classList.toggle('is-fullscreen', !!document.fullscreenElement);
+        }
+
+        // Build dots
+        const dotsContainer = document.getElementById('dotIndicators');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+            document.getElementById('slidesContainer').style.transform = `translateX(-${currentIndex * 100}vw)`;
+            document.getElementById('currentSlide').textContent = currentIndex + 1;
+            document.querySelectorAll('.dot').forEach((d, i) => {
+                d.className = 'dot' + (i === currentIndex ? ' active' : '');
+            });
+            const prevArrow = document.getElementById('prevArrow');
+            const nextArrow = document.getElementById('nextArrow');
+            if (prevArrow) {
+                prevArrow.classList.toggle('is-disabled', currentIndex === 0);
+                prevArrow.setAttribute('aria-hidden', currentIndex === 0 ? 'true' : 'false');
+            }
+            if (nextArrow) {
+                nextArrow.classList.toggle('is-disabled', currentIndex === totalSlides - 1);
+                nextArrow.setAttribute('aria-hidden', currentIndex === totalSlides - 1 ? 'true' : 'false');
+            }
+            updateActiveSlideClass();
+        }
+
+        function nextSlide() { goToSlide(currentIndex + 1); }
+        function prevSlide() { goToSlide(currentIndex - 1); }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        goToSlide(currentIndex);
+
+        document.addEventListener('fullscreenchange', syncFullscreenState);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        // Touch/swipe
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+        });
+    </script>
+</body>
+</html>
+

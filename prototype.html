@@ -4239,6 +4239,10 @@
         addMessage('bot', `<div class="safety-mental-card"><div class="safety-mental-title">You're not alone — help is available right now</div><div class="safety-mental-copy">It sounds like you may be going through something really difficult. Please reach out to a crisis counselor — they're trained to help with anxiety, panic, and emotional distress, any time of day.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 if in physical danger</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — free, confidential, and available 24/7 for mental health crises, panic, and emotional distress. Costco Pharmacy's assistant is not equipped to support mental health emergencies.</div></div>`);
     }
 
+    function renderCoughColdResponse() {
+        addMessage('bot', `I can help with general information about over-the-counter cough and cold medicines, or connect you with a Costco pharmacist. I can't diagnose the cause or recommend a treatment for you.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('discovery')">General medication information</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with a Costco pharmacist</button></div><div class="safety-alert-note">If you have trouble breathing, chest pain, confusion, severe weakness, or symptoms that feel urgent, seek emergency care immediately.</div>`);
+    }
+
     function renderCombinedEmergencyOptions() {
         addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">Medical emergency?</div><div class="safety-alert-copy">Call 911 immediately. Do not wait for this chat.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div></div><div class="safety-mental-card"><div class="safety-mental-title">Mental health or emotional crisis?</div><div class="safety-mental-copy">You don't have to face this alone. Free, confidential help is available right now — for anxiety, panic, or any emotional distress.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — available 24/7. Costco Pharmacy's assistant is not equipped to support medical or mental health emergencies.</div></div>`);
     }
@@ -4293,6 +4297,11 @@
             setTimeout(() => {
                 removeTyping();
                 addMessage('bot', `Of course — I'm happy to connect you with our pharmacy team. Let me get you the right number.<br><br>Who would you like to speak with?<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">My local pharmacy (Costco #482, Issaquah)</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('mailorder')">Mail Order Pharmacy</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('tech')">Tech Support (website or app help)</button></div>`);
+            }, 1200);
+        } else if (/\b(cough|cold|runny nose|sore throat|congestion)\b/i.test(text)) {
+            setTimeout(() => {
+                removeTyping();
+                renderCoughColdResponse();
             }, 1200);
         } else {
             setTimeout(() => {

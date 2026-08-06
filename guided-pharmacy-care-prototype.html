@@ -5329,6 +5329,10 @@
         addMessage('bot', `<div class="safety-mental-card"><div class="safety-mental-title">You're not alone — help is available right now</div><div class="safety-mental-copy">It sounds like you may be going through something really difficult. Please reach out to a crisis counselor — they're trained to help with anxiety, panic, and emotional distress, any time of day.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 if in physical danger</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — free, confidential, and available 24/7 for mental health crises, panic, and emotional distress. Costco Pharmacy's assistant is not equipped to support mental health emergencies.</div></div>`);
     }
 
+    function renderCoughColdResponse() {
+        addMessage('bot', `I can help with general information about over-the-counter cough and cold medicines, or connect you with a Costco pharmacist. I can't diagnose the cause or recommend a treatment for you.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('discovery')">General medication information</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with a Costco pharmacist</button></div><div class="safety-alert-note">If you have trouble breathing, chest pain, confusion, severe weakness, or symptoms that feel urgent, seek emergency care immediately.</div>`);
+    }
+
     function renderBoundedFallback() {
         addMessage('bot', `I can help with Costco Pharmacy topics such as prescriptions, transfers, travel help, immunizations, medication questions, and pharmacy services. I can’t help with general non-pharmacy questions, diagnose conditions, or replace emergency services.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="beginConnectedTransfer()">Move a prescription</button><button class="smart-prompt-btn" onclick="loadScenario('personalized')">Review pharmacy updates</button><button class="smart-prompt-btn" onclick="loadScenario('travel')">Travel help</button><button class="smart-prompt-btn" onclick="loadScenario('discovery')">Explore pharmacy services</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button></div>`);
     }
@@ -5399,6 +5403,8 @@
                 else if (/\bhsa card\b/i.test(text)) renderServiceDetail('hsa');
                 else renderServiceOptions();
             }, 650);
+        } else if (/\b(cough|cold|runny nose|sore throat|congestion)\b/i.test(text)) {
+            scheduleAssistantResponse(renderCoughColdResponse, 650);
         } else {
             scheduleAssistantResponse(renderBoundedFallback, 650);
         }

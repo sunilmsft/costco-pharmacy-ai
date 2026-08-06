@@ -92,6 +92,7 @@
             align-items: center;
             gap: 6px;
             color: var(--text);
+            cursor: pointer;
         }
 
         .account-icon {
@@ -104,6 +105,23 @@
             justify-content: center;
             font-size: 10px;
         }
+
+        .account-backdrop { position: fixed; inset: 0; z-index: 1200; background: rgba(20, 31, 40, 0.54); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+        .account-backdrop.is-open { opacity: 1; pointer-events: auto; }
+        .account-drawer { position: absolute; top: 0; right: 0; width: min(390px, 100%); height: 100%; overflow-y: auto; background: #fff; box-shadow: -8px 0 24px rgba(0, 0, 0, 0.16); transform: translateX(100%); transition: transform 0.24s ease; }
+        .account-backdrop.is-open .account-drawer { transform: translateX(0); }
+        .account-drawer-header { display: flex; justify-content: space-between; gap: 16px; padding: 20px 22px 18px; border-bottom: 1px solid #d8dee4; }
+        .account-member { display: flex; gap: 12px; align-items: center; }
+        .account-member-mark { width: 48px; height: 30px; display: grid; place-items: center; background: #101820; color: #f4c400; border-radius: 2px; font-size: 11px; font-weight: 700; }
+        .account-member-name { color: #1f2933; font-size: 17px; font-weight: 700; }
+        .account-member-meta { margin-top: 3px; color: #5c6873; font-size: 12px; }
+        .account-close { width: 32px; height: 32px; border: 0; background: transparent; color: #4b5560; cursor: pointer; font-size: 26px; line-height: 1; }
+        .account-links { padding: 10px 18px 20px; }
+        .account-link-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 8px; border: 0; border-bottom: 1px solid #edf0f2; background: transparent; color: #3f4850; text-align: left; font: inherit; cursor: pointer; }
+        .account-link-item:hover { background: #f4f7f9; color: var(--costco-nav-blue); }
+        .account-link-icon { width: 22px; color: #68747e; text-align: center; font-size: 18px; }
+        .account-links-divider { height: 1px; margin: 12px 0; background: #cbd3d9; }
+        .account-drawer-note { margin: 0 8px 8px; padding: 12px; background: #f4f8fb; color: #5c6873; font-size: 12px; line-height: 1.4; }
 
         /* Nav bar */
         .header-nav {
@@ -2131,7 +2149,7 @@
         </div>
         <div class="header-top-right">
             <a href="#">Go To Costco.com</a>
-            <a href="#" class="account-link">
+            <a href="#" class="account-link" onclick="openAccountPanel(event)">
                 <span class="account-icon">👤</span>
                 Account
             </a>
@@ -2145,6 +2163,29 @@
         <a href="#">Support <span class="nav-chevron">∨</span></a>
     </nav>
 </header>
+
+<div class="account-backdrop" id="accountBackdrop" onclick="closeAccountPanel(event)">
+    <aside class="account-drawer" aria-label="Account menu" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+        <div class="account-drawer-header">
+            <div class="account-member"><div class="account-member-mark">COSTCO</div><div><div class="account-member-name">Hello, Sunil!</div><div class="account-member-meta">Executive Membership<br>Member Since 2018</div></div></div>
+            <button class="account-close" type="button" aria-label="Close account menu" onclick="closeAccountPanel()">×</button>
+        </div>
+        <div class="account-links">
+            <button class="account-link-item" type="button"><span class="account-link-icon">◎</span>Account Details</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">⌂</span>Addresses</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">♡</span>Immunization History</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">♧</span>Personal Health Record</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">▤</span>Payment Methods</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">▣</span>Insurance</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">⚙</span>Preferences</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">◈</span>Agreements</button>
+            <button class="account-link-item" type="button"><span class="account-link-icon">♧</span>Family and Pets</button>
+            <div class="account-links-divider"></div>
+            <p class="account-drawer-note">This is an illustrative prototype. Account links are representative and do not open live Costco account services.</p>
+            <button class="account-link-item" type="button"><span class="account-link-icon">↪</span>Sign Out</button>
+        </div>
+    </aside>
+</div>
 
 <!-- YELLOW BANNER -->
 <div class="info-banner">
@@ -4209,6 +4250,20 @@
     function closeAboutPanel() {
         document.getElementById('aboutPanel').classList.remove('open');
     }
+
+    function openAccountPanel(event) {
+        if (event) event.preventDefault();
+        document.getElementById('accountBackdrop').classList.add('is-open');
+    }
+
+    function closeAccountPanel(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('accountBackdrop').classList.remove('is-open');
+    }
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeAccountPanel();
+    });
 
     function addMessage(type, html) {
         const body = document.getElementById('chatBody');

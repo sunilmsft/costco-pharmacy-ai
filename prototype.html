@@ -1200,6 +1200,95 @@
             border-color: var(--costco-nav-blue);
         }
 
+        .safety-emergency-link {
+            background: none;
+            border: none;
+            color: #9a3412;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            padding: 0;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .safety-emergency-link:hover { color: #7c2d12; }
+
+        .safety-alert-card {
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            border-left: 4px solid #ea580c;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 4px;
+        }
+
+        .safety-alert-title {
+            color: #9a3412;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .safety-alert-copy {
+            color: #7c2d12;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .safety-emergency-action {
+            background: #b91c1c;
+            color: white;
+            text-align: center;
+        }
+
+        .safety-emergency-action:hover { background: #991b1b; }
+
+        .safety-alert-note {
+            color: #9a3412;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .safety-mental-card {
+            background: #f5f3ff;
+            border: 1px solid #c4b5fd;
+            border-left: 4px solid #7c3aed;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 8px;
+        }
+
+        .safety-mental-title {
+            color: #4c1d95;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .safety-mental-copy {
+            color: #3b0764;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .safety-mental-note {
+            color: #4c1d95;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .safety-mental-action {
+            background: #6d28d9;
+            color: white;
+            text-align: center;
+        }
+
+        .safety-mental-action:hover { background: #5b21b6; }
+
         .chat-send {
             width: 38px;
             height: 38px;
@@ -1733,6 +1822,7 @@
         <!-- Messages loaded by scenario -->
     </div>
     <div class="chat-input-area">
+        <button class="safety-emergency-link" onclick="showEmergencyOptions()">Need urgent or emergency help?</button>
         <div class="chat-input-hint">Or ask in your own words</div>
         <div class="chat-input-row">
             <input type="text" class="chat-input" id="chatInput" placeholder="Type your question…" onkeypress="handleKeyPress(event)">
@@ -4013,11 +4103,50 @@
         body.scrollTop = body.scrollHeight;
     }
 
+    function isEmergencyMessage(text) {
+        return /\b(heart attack|chest pain|can't breathe|cannot breathe|difficulty breathing|trouble breathing|shortness of breath|stroke|seizure|unconscious|not breathing|severe bleeding|suicid(?:e|al)|overdose|poisoned|poisoning)\b/i.test(text);
+    }
+
+    // Catches mental health / emotional crisis signals before intent classification runs
+    function isMentalHealthCrisis(text) {
+        return /\b(anxiety attack|panic attack|mental health crisis|mental breakdown|going thru anxiety|going through anxiety|having a panic|self[- ]?harm|hurting myself|hurt myself|harming myself|harm myself|cutting myself|kill myself|end my life|want to die|don'?t want to live|no reason to live|in crisis|breaking down|can'?t cope|feel(?:ing)? hopeless|feel(?:ing)? suicidal)\b/i.test(text);
+    }
+
+    function renderEmergencyResponse() {
+        addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">If this may be a medical emergency</div><div class="safety-alert-copy">Call 911 now, or your local emergency number. Do not wait for this chat or rely on Costco Pharmacy for emergency care.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div><div class="safety-alert-note">If you are with someone who may be having a heart attack, stroke, or another life-threatening emergency, get emergency help immediately.</div></div>`);
+    }
+
+    function renderMentalHealthResponse() {
+        addMessage('bot', `<div class="safety-mental-card"><div class="safety-mental-title">You're not alone — help is available right now</div><div class="safety-mental-copy">It sounds like you may be going through something really difficult. Please reach out to a crisis counselor — they're trained to help with anxiety, panic, and emotional distress, any time of day.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 if in physical danger</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — free, confidential, and available 24/7 for mental health crises, panic, and emotional distress. Costco Pharmacy's assistant is not equipped to support mental health emergencies.</div></div>`);
+    }
+
+    function renderCombinedEmergencyOptions() {
+        addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">Medical emergency?</div><div class="safety-alert-copy">Call 911 immediately. Do not wait for this chat.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div></div><div class="safety-mental-card"><div class="safety-mental-title">Mental health or emotional crisis?</div><div class="safety-mental-copy">You don't have to face this alone. Free, confidential help is available right now — for anxiety, panic, or any emotional distress.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — available 24/7. Costco Pharmacy's assistant is not equipped to support medical or mental health emergencies.</div></div>`);
+    }
+
+    function showEmergencyOptions() {
+        openChat();
+        addMessage('user', 'Need urgent or emergency help?');
+        renderCombinedEmergencyOptions();
+    }
+
     function handleSend() {
         const input = document.getElementById('chatInput');
         const text = input.value.trim();
         if (!text) return;
         input.value = '';
+
+        if (isMentalHealthCrisis(text)) {
+            addMessage('user', text);
+            setTimeout(() => { removeTyping(); renderMentalHealthResponse(); }, 400);
+            return;
+        }
+
+        if (isEmergencyMessage(text)) {
+            addMessage('user', text);
+            setTimeout(() => { removeTyping(); renderEmergencyResponse(); }, 400);
+            return;
+        }
 
         // Detect "talk to human" intent
         const humanIntent = /\b(human|person|someone|call|phone|speak|talk to|representative|agent|real person)\b/i.test(text);

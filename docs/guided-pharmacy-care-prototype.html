@@ -1478,6 +1478,21 @@
             margin-top: 8px;
         }
 
+        .safety-emergency-link {
+            background: none;
+            border: none;
+            color: #9a3412;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            padding: 0;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .safety-emergency-link:hover { color: #7c2d12; }
+
         .safety-mental-card {
             background: #f5f3ff;
             border: 1px solid #c4b5fd;
@@ -2220,6 +2235,7 @@
         <!-- Messages loaded by scenario -->
     </div>
     <div class="chat-input-area">
+        <button class="safety-emergency-link" onclick="showEmergencyOptions()">Need urgent or emergency help?</button>
         <div class="chat-input-hint">Or ask in your own words</div>
         <div class="chat-input-row">
             <input type="text" class="chat-input" id="chatInput" placeholder="Type your question…" onkeypress="handleKeyPress(event)">
@@ -5178,6 +5194,16 @@
 
     function renderEmergencyResponse() {
         addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">If this may be a medical emergency</div><div class="safety-alert-copy">Call 911 now, or your local emergency number. Do not wait for this chat or rely on Costco Pharmacy for emergency care.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div><div class="safety-alert-note">If you are with someone who may be having a heart attack, stroke, or another life-threatening emergency, get emergency help immediately.</div></div>`);
+    }
+
+    function renderCombinedEmergencyOptions() {
+        addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">Medical emergency?</div><div class="safety-alert-copy">Call 911 immediately. Do not wait for this chat.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div></div><div class="safety-mental-card"><div class="safety-mental-title">Mental health or emotional crisis?</div><div class="safety-mental-copy">You don't have to face this alone. Free, confidential help is available right now — for anxiety, panic, or any emotional distress.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — available 24/7. Costco Pharmacy's assistant is not equipped to support medical or mental health emergencies.</div></div>`);
+    }
+
+    function showEmergencyOptions() {
+        openChat();
+        addMessage('user', 'Need urgent or emergency help?');
+        scheduleAssistantResponse(renderCombinedEmergencyOptions, 250);
     }
 
     function renderMentalHealthResponse() {

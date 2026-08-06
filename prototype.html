@@ -4240,7 +4240,11 @@
     }
 
     function renderCoughColdResponse() {
-        addMessage('bot', `I can help with general information about over-the-counter cough and cold medicines, or connect you with a Costco pharmacist. I can't diagnose the cause or recommend a treatment for you.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('discovery')">General medication information</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with a Costco pharmacist</button></div><div class="safety-alert-note">If you have trouble breathing, chest pain, confusion, severe weakness, or symptoms that feel urgent, seek emergency care immediately.</div>`);
+        addMessage('bot', `I can help with general information about over-the-counter cough and cold medicines, or connect you with a Costco pharmacist. I can't diagnose the cause or recommend a treatment for you.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="renderMedicationInformation()">General medication information</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with a Costco pharmacist</button></div><div class="safety-alert-note">If you have trouble breathing, chest pain, confusion, severe weakness, or symptoms that feel urgent, seek emergency care immediately.</div>`);
+    }
+
+    function renderMedicationInformation() {
+        addMessage('bot', `For general cough-and-cold medication information, a pharmacist can help you compare options based on your symptoms, age, other medicines, and health conditions. I can provide general information, but I can't diagnose the cause or recommend a specific treatment.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with a Costco pharmacist</button><button class="smart-prompt-btn" onclick="renderCoughColdResponse()">Back to cough and cold options</button></div>`);
     }
 
     function renderCombinedEmergencyOptions() {

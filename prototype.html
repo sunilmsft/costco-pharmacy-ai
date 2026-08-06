@@ -4252,7 +4252,9 @@
 
     // Catches mental health / emotional crisis signals before intent classification runs
     function isMentalHealthCrisis(text) {
-        return /\b(anxiety attack|panic attack|mental health crisis|mental breakdown|going thru anxiety|going through anxiety|having a panic|self[- ]?harm|hurting myself|hurt myself|harming myself|harm myself|cutting myself|kill myself|end my life|want to die|don'?t want to live|no reason to live|in crisis|breaking down|can'?t cope|feel(?:ing)? hopeless|feel(?:ing)? suicidal)\b/i.test(text);
+        const normalized = text.toLowerCase();
+        const isPetContext = /\b(dog|cat|pet|puppy|kitten|animal)\b/.test(normalized);
+        return !isPetContext && /\b(anxiety|anxious|anxiety attack|panic attack|mental health crisis|mental breakdown|going thru anxiety|going through anxiety|having a panic|self[- ]?harm|hurting myself|hurt myself|harming myself|harm myself|cutting myself|kill myself|end my life|want to die|don'?t want to live|no reason to live|in crisis|breaking down|can'?t cope|feel(?:ing)? hopeless|feel(?:ing)? suicidal)\b/i.test(text);
     }
 
     function renderEmergencyResponse() {

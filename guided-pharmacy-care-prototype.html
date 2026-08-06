@@ -1478,6 +1478,45 @@
             margin-top: 8px;
         }
 
+        .safety-mental-card {
+            background: #f5f3ff;
+            border: 1px solid #c4b5fd;
+            border-left: 4px solid #7c3aed;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 4px;
+        }
+
+        .safety-mental-title {
+            color: #4c1d95;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .safety-mental-copy {
+            color: #3b0764;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .safety-mental-note {
+            color: #4c1d95;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .safety-mental-action {
+            background: #6d28d9;
+            color: white;
+            text-align: center;
+        }
+
+        .safety-mental-action:hover {
+            background: #5b21b6;
+        }
+
         .travel-prep-section {
             margin-top: 10px;
         }
@@ -5132,8 +5171,17 @@
         return /\b(heart attack|chest pain|can't breathe|cannot breathe|difficulty breathing|trouble breathing|shortness of breath|stroke|seizure|unconscious|not breathing|severe bleeding|suicid(?:e|al)|overdose|poisoned|poisoning)\b/i.test(text);
     }
 
+    // Catches mental health / emotional crisis signals before intent classification runs
+    function isMentalHealthCrisis(text) {
+        return /\b(anxiety attack|panic attack|mental health crisis|mental breakdown|going thru anxiety|going through anxiety|having a panic|self[- ]?harm|hurting myself|hurt myself|harming myself|harm myself|cutting myself|kill myself|end my life|want to die|don'?t want to live|no reason to live|in crisis|breaking down|can'?t cope|feel(?:ing)? hopeless|feel(?:ing)? suicidal)\b/i.test(text);
+    }
+
     function renderEmergencyResponse() {
         addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">If this may be a medical emergency</div><div class="safety-alert-copy">Call 911 now, or your local emergency number. Do not wait for this chat or rely on Costco Pharmacy for emergency care.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div><div class="safety-alert-note">If you are with someone who may be having a heart attack, stroke, or another life-threatening emergency, get emergency help immediately.</div></div>`);
+    }
+
+    function renderMentalHealthResponse() {
+        addMessage('bot', `<div class="safety-mental-card"><div class="safety-mental-title">You're not alone — help is available right now</div><div class="safety-mental-copy">It sounds like you may be going through something really difficult. Please reach out to a crisis counselor — they're trained to help with anxiety, panic, and emotional distress, any time of day.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 if in physical danger</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — free, confidential, and available 24/7 for mental health crises, panic, and emotional distress. Costco Pharmacy's assistant is not equipped to support mental health emergencies.</div></div>`);
     }
 
     function renderBoundedFallback() {
@@ -5146,6 +5194,12 @@
         const text = input.value.trim();
         if (!text) return;
         input.value = '';
+
+        if (isMentalHealthCrisis(text)) {
+            addMessage('user', text);
+            scheduleAssistantResponse(renderMentalHealthResponse, 250);
+            return;
+        }
 
         if (isEmergencyMessage(text)) {
             addMessage('user', text);

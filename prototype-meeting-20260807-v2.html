@@ -1478,6 +1478,45 @@
             margin-top: 8px;
         }
 
+        .safety-mental-card {
+            background: #f5f3ff;
+            border: 1px solid #c4b5fd;
+            border-left: 4px solid #7c3aed;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 4px;
+        }
+
+        .safety-mental-title {
+            color: #4c1d95;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .safety-mental-copy {
+            color: #3b0764;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .safety-mental-note {
+            color: #4c1d95;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .safety-mental-action {
+            background: #6d28d9;
+            color: white;
+            text-align: center;
+        }
+
+        .safety-mental-action:hover {
+            background: #5b21b6;
+        }
+
         .travel-prep-section {
             margin-top: 10px;
         }
@@ -3998,8 +4037,8 @@
         discovery: {
             autoOpen: true,
             messages: [{ type: 'bot', delay: 500, html: `<div class="personalized-badge">✦ Selected services</div>Here are the featured pharmacy-service paths supported in this concept.<div class="curated-service-card"><div class="chat-card-title">💳 HSA/FSA information</div><div class="chat-card-detail">Learn about general card-use guidance without validating a specific item or plan.</div><button type="button" class="service-card-action" data-service-choice="hsa">Learn more</button></div><div class="curated-service-card"><div class="chat-card-title">🐕 Pet medications</div><div class="chat-card-detail">Learn about the general pet-prescription service without checking a specific medication.</div><button type="button" class="service-card-action" data-service-choice="pet">Explore pet meds</button></div><div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('travel')">Travel help</button><button class="smart-prompt-btn" onclick="beginConnectedTransfer()">Prescription transfer</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Contact my Costco Pharmacy</button></div>` },
-            { type: 'continuation', branch: 1, messages: [{ type: 'user', html: 'Learn more' }, { type: 'bot', delay: 650, html: `Costco accepts eligible HSA and FSA cards for qualifying purchases. Eligibility depends on the item and the member’s plan.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('discovery')">Return to service options</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Contact my Costco Pharmacy</button></div>` }]},
-            { type: 'continuation', branch: 2, messages: [{ type: 'user', html: 'Explore pet meds' }, { type: 'bot', delay: 650, html: `Costco Pharmacy fills many prescriptions for pets. Availability and required information depend on the medication. Your preferred Costco Pharmacy can help confirm the next step.<div class="smart-prompts"><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Contact my Costco Pharmacy</button><button class="smart-prompt-btn" onclick="loadScenario('discovery')">Return to service options</button><button class="smart-prompt-btn" onclick="loadScenario('personalized')">Return to Pharmacy Today</button></div>` }]}
+            { type: 'continuation', branch: 1, messages: [{ type: 'user', html: 'Learn more' }, { type: 'bot', delay: 650, html: `HSA and FSA cards may be used for eligible pharmacy and health-related purchases, but eligibility is determined by the specific item and your plan administrator. A card may work for one item and not another, so it is worth confirming before you complete the purchase.<div class="chat-card"><div class="chat-card-title">A practical way to check</div><div class="chat-card-detail"><strong>1.</strong> Review your plan’s eligible-expense guidance.</div><div class="chat-card-detail"><strong>2.</strong> Confirm whether the specific medication or item qualifies.</div><div class="chat-card-detail"><strong>3.</strong> Keep your receipt and any supporting documentation in case your plan administrator requests it.</div><div class="chat-card-detail"><strong>Important:</strong> This concept provides general guidance only. It does not validate a card, confirm item eligibility, or check your plan in real time.</div></div><div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario('discovery')">Return to service options</button><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button></div>` }]},
+            { type: 'continuation', branch: 2, messages: [{ type: 'user', html: 'Explore pet meds' }, { type: 'bot', delay: 650, html: `Costco Pharmacy can help with prescription medications for pets, including common needs such as flea and tick, heartworm, anxiety, diabetes, and antibiotics. A veterinarian prescription may be required, and availability, pricing, and fulfillment options can vary by medication and location.<div class="chat-card"><div class="chat-card-title">How to get started</div><div class="chat-card-detail">Search for the medication name or browse by pet-health category. Have your pet’s prescription details and veterinarian information available if the pharmacy team needs them.</div><div class="chat-card-detail"><strong>Good to know:</strong> This concept does not search live inventory, verify a prescription, or show current pricing.</div></div><div class="smart-prompts"><a class="smart-prompt-btn" href="https://www.costco.com/pet-medications.html" target="_blank" rel="noopener noreferrer">Browse Costco pet medications</a><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button><button class="smart-prompt-btn" onclick="loadScenario('discovery')">Return to service options</button><button class="smart-prompt-btn" onclick="loadScenario('personalized')">Return to Pharmacy Today</button></div>` }]}
             ]
         }
     };
@@ -4860,10 +4899,10 @@
 
     function renderServiceDetail(kind) {
         const message = kind === 'pet'
-            ? `Costco Pharmacy fills many prescriptions for pets. Availability and required information depend on the medication. Your preferred Costco Pharmacy can help confirm the next step.`
-            : `Costco accepts eligible HSA and FSA cards for qualifying purchases. Eligibility depends on the item and the member’s plan.`;
+            ? `Costco Pharmacy can help with prescription medications for pets, including common needs such as flea and tick, heartworm, anxiety, diabetes, and antibiotics. A veterinarian prescription may be required, and availability, pricing, and fulfillment options can vary by medication and location.<div class="chat-card"><div class="chat-card-title">How to get started</div><div class="chat-card-detail">Search for the medication name or browse by pet-health category. Have your pet’s prescription details and veterinarian information available if the pharmacy team needs them.</div><div class="chat-card-detail"><strong>Good to know:</strong> This concept does not search live inventory, verify a prescription, or show current pricing.</div></div><div class="smart-prompts"><a class="smart-prompt-btn" href="https://www.costco.com/pet-medications.html" target="_blank" rel="noopener noreferrer">Browse Costco pet medications</a><button class="smart-prompt-btn" onclick="showPharmacyConnect('local')">Talk with Costco Pharmacy staff</button></div>`
+            : `HSA and FSA cards may be used for eligible pharmacy and health-related purchases, but eligibility is determined by the specific item and your plan administrator. A card may work for one item and not another, so it is worth confirming before you complete the purchase.<div class="chat-card"><div class="chat-card-title">A practical way to check</div><div class="chat-card-detail"><strong>1.</strong> Review your plan’s eligible-expense guidance.</div><div class="chat-card-detail"><strong>2.</strong> Confirm whether the specific medication or item qualifies.</div><div class="chat-card-detail"><strong>3.</strong> Keep your receipt and any supporting documentation in case your plan administrator requests it.</div><div class="chat-card-detail"><strong>Important:</strong> This concept provides general guidance only. It does not validate a card, confirm item eligibility, or check your plan in real time.</div></div>`;
         const returnHome = kind === 'pet' ? '<button class="smart-prompt-btn" onclick="loadScenario(\'personalized\')">Return to Pharmacy Today</button>' : '';
-        addMessage('bot', `${message}<div class="smart-prompts">${kind === 'pet' ? '<button class="smart-prompt-btn" onclick="showPharmacyConnect(\'local\')">Contact my Costco Pharmacy</button>' : ''}<button class="smart-prompt-btn" onclick="loadScenario('discovery')">Return to service options</button>${returnHome}${kind !== 'pet' ? '<button class="smart-prompt-btn" onclick="showPharmacyConnect(\'local\')">Contact my Costco Pharmacy</button>' : ''}</div>`);
+        addMessage('bot', `${message}<div class="smart-prompts"><button class="smart-prompt-btn" onclick="loadScenario(\'discovery\')">Return to service options</button>${returnHome}${kind !== 'pet' ? '<button class="smart-prompt-btn" onclick="showPharmacyConnect(\'local\')">Talk with Costco Pharmacy staff</button>' : ''}</div>`);
     }
 
     function extractTravelDetails(text) {
@@ -5132,8 +5171,17 @@
         return /\b(heart attack|chest pain|can't breathe|cannot breathe|difficulty breathing|trouble breathing|shortness of breath|stroke|seizure|unconscious|not breathing|severe bleeding|suicid(?:e|al)|overdose|poisoned|poisoning)\b/i.test(text);
     }
 
+    // Catches mental health / emotional crisis signals before intent classification runs
+    function isMentalHealthCrisis(text) {
+        return /\b(anxiety attack|panic attack|mental health crisis|mental breakdown|going thru anxiety|going through anxiety|having a panic|self[- ]?harm|hurting myself|hurt myself|harming myself|harm myself|cutting myself|kill myself|end my life|want to die|don'?t want to live|no reason to live|in crisis|breaking down|can'?t cope|feel(?:ing)? hopeless|feel(?:ing)? suicidal)\b/i.test(text);
+    }
+
     function renderEmergencyResponse() {
         addMessage('bot', `<div class="safety-alert-card"><div class="safety-alert-title">If this may be a medical emergency</div><div class="safety-alert-copy">Call 911 now, or your local emergency number. Do not wait for this chat or rely on Costco Pharmacy for emergency care.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 now</a></div><div class="safety-alert-note">If you are with someone who may be having a heart attack, stroke, or another life-threatening emergency, get emergency help immediately.</div></div>`);
+    }
+
+    function renderMentalHealthResponse() {
+        addMessage('bot', `<div class="safety-mental-card"><div class="safety-mental-title">You're not alone — help is available right now</div><div class="safety-mental-copy">It sounds like you may be going through something really difficult. Please reach out to a crisis counselor — they're trained to help with anxiety, panic, and emotional distress, any time of day.</div><div class="smart-prompts"><a class="smart-prompt-btn safety-mental-action" href="tel:988">Call or text 988</a><a class="smart-prompt-btn safety-emergency-action" href="tel:911">Call 911 if in physical danger</a></div><div class="safety-mental-note">988 is the Suicide &amp; Crisis Lifeline — free, confidential, and available 24/7 for mental health crises, panic, and emotional distress. Costco Pharmacy's assistant is not equipped to support mental health emergencies.</div></div>`);
     }
 
     function renderBoundedFallback() {
@@ -5146,6 +5194,12 @@
         const text = input.value.trim();
         if (!text) return;
         input.value = '';
+
+        if (isMentalHealthCrisis(text)) {
+            addMessage('user', text);
+            scheduleAssistantResponse(renderMentalHealthResponse, 250);
+            return;
+        }
 
         if (isEmergencyMessage(text)) {
             addMessage('user', text);

@@ -934,6 +934,76 @@
             background: rgba(255,255,255,0.15);
         }
 
+        .about-panel {
+            position: absolute;
+            inset: 0;
+            background: #fff;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(102%);
+            transition: transform 0.25s ease;
+        }
+
+        .about-panel.open { transform: translateY(0); }
+
+        .about-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            background: var(--costco-nav-blue);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .about-panel-title { font-size: 14px; font-weight: 700; }
+
+        .about-panel-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .about-panel-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        .about-section {
+            padding: 11px 12px;
+            border-radius: 8px;
+            background: #f8fbff;
+            border: 1px solid #e2edf5;
+        }
+
+        .about-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--costco-nav-blue);
+            margin-bottom: 4px;
+        }
+
+        .about-section-body {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .about-section-emergency {
+            background: #fff7ed;
+            border-color: #fcd9b2;
+        }
+
+        .about-section-emergency .about-section-title { color: #9a3412; }
+
         .chat-close {
             background: none;
             border: none;
@@ -2232,10 +2302,11 @@
             <div class="chat-avatar">💊</div>
             <div class="chat-header-info">
                 <h3>Pharmacy Assistant</h3>
-                <p>Guidance for pharmacy tasks · Sample data</p>
+                <p>AI-assisted · Not a substitute for your pharmacist</p>
             </div>
         </div>
         <div class="chat-header-actions">
+            <button class="chat-header-btn" onclick="openAboutPanel()" title="About this assistant">ℹ</button>
             <button class="chat-header-btn" onclick="restartScenario()" title="Restart conversation">↺</button>
             <button class="chat-header-btn" onclick="downloadTranscript()" title="Download transcript">↓</button>
             <button class="chat-close" onclick="closeChat()">✕</button>
@@ -2252,6 +2323,34 @@
         <div class="chat-input-row">
             <input type="text" class="chat-input" id="chatInput" placeholder="Type your question…" onkeypress="handleKeyPress(event)">
             <button class="chat-send" onclick="handleSend()">→</button>
+        </div>
+    </div>
+    <div class="about-panel" id="aboutPanel" aria-hidden="true">
+        <div class="about-panel-header">
+            <span class="about-panel-title">About this assistant</span>
+            <button class="about-panel-close" onclick="closeAboutPanel()" aria-label="Close">✕</button>
+        </div>
+        <div class="about-panel-body">
+            <div class="about-section">
+                <div class="about-section-title">✓ What I can help with</div>
+                <div class="about-section-body">Prescription refills and status, transfers between pharmacies, travel health preparation, immunization scheduling, medication questions, and general Costco Pharmacy services.</div>
+            </div>
+            <div class="about-section">
+                <div class="about-section-title">✗ What I can't do</div>
+                <div class="about-section-body">Diagnose conditions, provide medical advice, replace your pharmacist or doctor, or respond to medical and mental health emergencies.</div>
+            </div>
+            <div class="about-section">
+                <div class="about-section-title">🤖 Powered by AI</div>
+                <div class="about-section-body">This assistant uses AI to guide you through pharmacy tasks. It works with sample data in this prototype and does not access your real health records or submit live transactions.</div>
+            </div>
+            <div class="about-section">
+                <div class="about-section-title">🔒 Your privacy</div>
+                <div class="about-section-body">Conversations in this prototype are not stored, transmitted, or used to train any model.</div>
+            </div>
+            <div class="about-section about-section-emergency">
+                <div class="about-section-title">🚨 In an emergency</div>
+                <div class="about-section-body">Call 911 for medical emergencies. Call or text 988 for mental health crises. Do not rely on this assistant in an emergency.</div>
+            </div>
         </div>
     </div>
 </div>
@@ -4101,6 +4200,14 @@
         document.getElementById('chatFab').classList.remove('hidden');
         document.getElementById('chatPulse').classList.remove('hidden');
         chatOpen = false;
+    }
+
+    function openAboutPanel() {
+        document.getElementById('aboutPanel').classList.add('open');
+    }
+
+    function closeAboutPanel() {
+        document.getElementById('aboutPanel').classList.remove('open');
     }
 
     function addMessage(type, html) {
